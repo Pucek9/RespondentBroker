@@ -1,58 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc18f59f-5952-43d0-8d82-911dbbff0341" name="Default" comment="Create template of prototype project">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/images/avatar2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/RespondentBroker.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_browser.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_npm.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/.finished-upgraders" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/.id" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/platforms" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/release" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.meteor/versions" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/api/projects.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/helpers/constants.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/styles/fonts.googleapis.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/styles/main.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/styles/w3.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/dashboard/dashboard.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/dashboard/dashboard.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/dynamicTable/dynamicTable.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/dynamicTable/dynamicTable.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/leftPanel/leftPanel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/leftPanel/leftPanel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/myProjectsTab/myProjectsTab.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/myProjectsTab/myProjectsTab.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/navigation/navigation.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/navigation/navigation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/projectAdd/projectAdd.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/projectAdd/projectAdd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/projectDetails/projectDetails.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/projectDetails/projectDetails.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/projectRemove/projectRemove.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/projectRemove/projectRemove.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/projectsTab/projectsTab.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/projectsTab/projectsTab.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/respondentBroker/respondentBroker.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/respondentBroker/respondentBroker.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/userPanel/userPanel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/userPanel/userPanel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/usersTab/usersTab.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/components/usersTab/usersTab.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/services/data-format-factory.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/main.js" />
+    <list default="true" id="bc18f59f-5952-43d0-8d82-911dbbff0341" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -139,11 +89,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="respondentBroker.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="respondentBroker.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/components/respondentBroker/respondentBroker.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
               <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -165,18 +125,6 @@
             <state relative-caret-position="68">
               <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/components/dashboard/dashboard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -272,6 +220,7 @@
         <option value="$PROJECT_DIR$/imports/ui/components/projectAdd/projectAdd.html" />
         <option value="$PROJECT_DIR$/imports/ui/components/userPanel/userPanel.html" />
         <option value="$PROJECT_DIR$/imports/ui/components/leftPanel/leftPanel.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -702,7 +651,7 @@
       <recent name="E:\Projekty\Meteor\RespondentBroker\imports\styles" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Meteor.Meteor">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -749,6 +698,18 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="meteor-app-runner" factoryName="Meteor">
+      <option name="exePath" value="C:\Users\Pucek\AppData\Local\.meteor\meteor.bat" />
+      <option name="startBrowserSettings">
+        <browser url="http://localhost:3000" />
+      </option>
+      <meteor-runner-state>
+        <startBrowserSettings>
+          <browser url="http://localhost:3000" />
+        </startBrowserSettings>
+      </meteor-runner-state>
+      <method />
+    </configuration>
     <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -762,6 +723,21 @@
       <recursive>false</recursive>
       <method />
     </configuration>
+    <configuration default="false" name="Meteor" type="meteor-app-runner" factoryName="Meteor">
+      <option name="exePath" value="$USER_HOME$/AppData/Local/.meteor/meteor.bat" />
+      <option name="startBrowserSettings">
+        <browser url="http://localhost:3000" />
+      </option>
+      <meteor-runner-state>
+        <startBrowserSettings>
+          <browser url="http://localhost:3000" />
+        </startBrowserSettings>
+      </meteor-runner-state>
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Meteor.Meteor" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -779,12 +755,27 @@
       <workItem from="1481254212358" duration="2584000" />
       <workItem from="1481256820504" duration="3987000" />
       <workItem from="1481593024110" duration="47812000" />
-      <workItem from="1481693471456" duration="39281000" />
+      <workItem from="1481693471456" duration="39698000" />
     </task>
+    <task id="LOCAL-00001" summary="Create template of prototype project">
+      <created>1481776669478</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1481776669478</updated>
+    </task>
+    <task id="LOCAL-00002" summary="updated gitignore">
+      <created>1481777040077</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1481777040077</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93664000" />
+    <option name="totallyTimeSpent" value="94081000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -804,11 +795,11 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970026" sideWeight="0.4964176" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32833788" sideWeight="0.5117707" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32288828" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32833788" sideWeight="0.48822927" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28201634" sideWeight="0.48822927" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23024523" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27792916" sideWeight="0.8444217" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28065395" sideWeight="0.8444217" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -846,7 +837,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create template of prototype project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create template of prototype project" />
+    <MESSAGE value="updated gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -855,14 +847,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/styles/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1248,6 +1232,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
           <folding />
         </state>
       </provider>
