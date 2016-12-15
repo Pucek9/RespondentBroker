@@ -1,0 +1,8 @@
+<ul>
+	<li ng-repeat="position in navigation.positions">
+		<a href="{{position.href}}" class="w3-padding" ng-click="navigation.setActive($index)" ng-class="{'w3-blue': navigation.isActive($index)}">
+			<i class="fa fa-{{position.icon}} fa-fw"></i>
+			{{position.name}}
+		</a>
+	</li>
+</ul>

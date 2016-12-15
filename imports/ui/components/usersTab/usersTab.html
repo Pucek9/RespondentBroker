@@ -1,0 +1,6 @@
+<h5><i class="fa fa-{{usersTab.icon}} fa-fw"></i>{{usersTab.pageTitle}}</h5>
+
+<ul>
+	<li ng-repeat="user in usersTab.users">{{user.emails[0].address}}</li>
+</ul>
+{{usersTab.users.length}}

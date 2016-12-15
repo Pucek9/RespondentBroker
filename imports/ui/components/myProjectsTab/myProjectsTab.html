@@ -1,0 +1,4 @@
+<h5><i class="fa fa-{{myProjectsTab.icon}} fa-fw"></i>{{myProjectsTab.pageTitle}} ({{myProjectsTab.projects.length}})</h5>
+<a class="w3-btn w3-teal" href='/projects/new'>Add new</a>
+
+<dynamic-table data="myProjectsTab.projects" columns="myProjectsTab.columns" params="myProjectsTab.params"></dynamic-table>
