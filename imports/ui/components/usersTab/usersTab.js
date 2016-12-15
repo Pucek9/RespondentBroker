@@ -19,12 +19,9 @@ class UsersTab {
 		this.helpers({
 
 			users() {
-				console.log('x');
-				return Meteor.users.find({}).fetch()
+				return Meteor.users.find({})
 			}
-
 		});
-
 	}
 
 

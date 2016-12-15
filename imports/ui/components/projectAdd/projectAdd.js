@@ -5,7 +5,7 @@ import {Meteor} from 'meteor/meteor';
 import template from './projectAdd.html';
 import {Projects} from '../../../api/projects';
 import moment from 'moment';
-import DATE_MASK from '../../../helpers/constants';
+import {DATE_MASK} from '../../../helpers/constants';
 
 class ProjectAdd {
 	constructor() {
@@ -16,6 +16,7 @@ class ProjectAdd {
 
 	submit() {
 		this.project.owner = Meteor.userId();
+		this.project.responses = 0;
 		this.project.createDate = moment().format(DATE_MASK);
 		this.project.updateDate = moment().format(DATE_MASK);
 		Projects.insert(this.project);

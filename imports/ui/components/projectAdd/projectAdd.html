@@ -2,17 +2,17 @@
 
 <form class="w3-container">
 	Project Name
-	<input class="w3-input w3-animate-input" type="text" style="width:30%" ng-model="projectAdd.project.projectName"
+	<input class="w3-input w3-animate-input" type="text" style="width:60%" ng-model="projectAdd.project.projectName"
 	       placeholder="Project Name">
 	Description
-	<input class="w3-input w3-animate-input" type="multiline" style="width:30%" ng-model="projectAdd.project.description"
-	       placeholder="Instruction">
+	<textarea  class="w3-input w3-animate-input" style="width:60%" rows="10" ng-model="projectAdd.project.description"
+	       placeholder="Instruction"></textarea>
 	Upload your application
-	<input class="w3-input w3-animate-input" type="file" style="width:30%" ng-model="projectAdd.project.application"
+	<input class="w3-input w3-animate-input" type="file" style="width:60%" ng-model="projectAdd.project.application"
 	       placeholder="Application">
 	Add URL to your survey
-	<input class="w3-input w3-animate-input" type="url" style="width:30%" ng-model="projectAdd.project.surveyURL"
-	       placeholder="Application">
+	<input class="w3-input w3-animate-input" type="url" style="width:60%" ng-model="projectAdd.project.surveyURL"
+	       placeholder="URL to survey">
 	<button ng-click="projectAdd.submit()">Add project</button>
 </form>
 
