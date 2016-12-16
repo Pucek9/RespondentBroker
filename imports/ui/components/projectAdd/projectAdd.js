@@ -4,23 +4,28 @@ import {Meteor} from 'meteor/meteor';
 
 import template from './projectAdd.html';
 import {Projects} from '../../../api/projects';
-import moment from 'moment';
-import {DATE_MASK} from '../../../helpers/constants';
+import {dateNowString} from '../../../helpers/helpers';
 
 class ProjectAdd {
-	constructor() {
+	constructor(Notification) {
+		'ngInject';
+		this.Notification = Notification;
+
 		this.project = {};
+
 		this.pageTitle = 'Add new project ';
 		this.icon = 'plus-circle';
+		this.color = 'green';
 	}
 
 	submit() {
 		this.project.owner = Meteor.userId();
 		this.project.responses = 0;
-		this.project.createDate = moment().format(DATE_MASK);
-		this.project.updateDate = moment().format(DATE_MASK);
+		this.project.created= dateNowString();
+		this.project.updated = dateNowString();
 		Projects.insert(this.project);
 		this.reset();
+		this.Notification.success('Project added successfully!');
 	}
 
 	reset() {

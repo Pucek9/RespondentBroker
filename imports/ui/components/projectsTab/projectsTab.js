@@ -14,34 +14,25 @@ class ProjectsTab {
 		// this.dataTableFormatter = dataTableFormatter;
 		this.pageTitle = 'Projects ';
 		this.icon = 'search';
+		this.color = 'yellow';
 
 		this.helpers({
 			projects() {
 				return Projects.find({});
 			}
-
 		});
-
-
-		// this.getProjects = () => {
-		// 	return this.projects;
-		// };
 		// this.data = this.getProjects();
-
 		// this.params = {formatTittle: true, hideId: true, dateColumn: 'createDate'};
 
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
-			{field: "projectName", filter: {projectName: "text"}, show: true, sortable: "projectName", title: "Project Name"},
+			{field: "name", filter: {name: "text"}, show: true, sortable: "name", title: "Project Name"},
 			{field: "responses", filter: {responses: "text"}, show: true, sortable: "responses", title: "Responses"},
-			{field: "createDate", filter: {createDate: "text"}, show: true, sortable: "createDate", title: "Create Date"},
-			{field: "updateDate", filter: {createDate: "text"}, show: true, sortable: "updateDate", title: "Last Update"},
+			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
+			{field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
 			{field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"}
 		];
-
 	}
-
-
 }
 
 const name = 'projectsTab';

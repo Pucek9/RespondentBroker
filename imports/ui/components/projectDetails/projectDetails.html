@@ -1,8 +1,69 @@
-The project you selected is:
-<form>
-	project name: <input type="text" ng-model="projectDetails.project.name" />
-	Description: <input type="text" ng-model="projectDetails.project.description" />
-	<button ng-click="projectDetails.save()">Save</button>
-</form>
+<div class="w3-card-4">
+	<header class="w3-container w3-{{projectDetails.color}}">
+		<h5>
+			<button class="w3-btn w3-ripple w3-right w3-border w3-black header-button" ui-sref="myProjects">
+				<i class="fa fa-chevron-circle-left"></i> Back
+			</button>
+			<i class="fa fa-{{projectDetails.icon}} fa-fw"></i>{{projectDetails.pageTitle}} {{projectDetails.project.name}}
+		</h5>
+	</header>
+	<div class="w3-container w3-pale-{{projectDetails.color}} w3-border-{{projectDetails.color}} w3-leftbar w3-rightbar w3-bottombar" >
 
-<button ui-sref="projects">Back</button>
+		<h2>1. Please download and install <a
+				href={{projectDetails.project.application}}>{{projectDetails.project.name}}</a> application.</h2>
+		<h2>2. Please download and install <a href="https://lookback.io/download">LookBack</a> application.</h2>
+
+		<h2>3. Please follow instructions and make movies:</h2>
+		<textarea class="w3-input w3-animate-input" disabled="true" style="width:80%" rows="10"
+		          ng-model="projectDetails.project.description"></textarea>
+
+		<h2>4. Please upload your movies and tag them.</h2>
+		<form class="w3-container">
+			<input class="w3-input w3-animate-input" type="text" style="width:30%" ng-model="projectDetails.response.movieTag"
+			       placeholder="Movie tag">
+			<input class="w3-input w3-animate-input" type="file" style="width:30%"
+			       placeholder="Movie">
+			<button ng-click="projectDetails.addNew()">Add new</button>
+		</form>
+		<h2>5. Please fill <a ng-href="{{projectDetails.project.surveyURL}}">survey</a> and sign it.</h2>
+
+		<button class="w3-btn w3-ripple w3-left w3-border w3-{{projectDetails.color}}" ng-click="projectDetails.confirm()">
+			<i class="fa fa-{{projectDetails.icon}}"></i> Confirm
+		</button>
+	</div>
+</div>
+
+
+<!--<div class="w3-card-4">-->
+<!--<header class="w3-container w3-{{projectEdit.color}}">-->
+<!--<h5>-->
+<!--<button class="w3-btn w3-ripple w3-right w3-border w3-black header-button" ui-sref="myProjects">-->
+<!--<i class="fa fa-chevron-circle-left"></i> Back-->
+<!--</button>-->
+<!--<h5><i class="fa fa-{{projectEdit.icon}} "></i> {{projectEdit.pageTitle}}</h5>-->
+<!--</h5>-->
+<!--</header>-->
+<!--<div class="w3-container" style="padding: 0px">-->
+<!--<form class="w3-container">-->
+<!--<p> Project Name-->
+<!--<input class="w3-input w3-animate-input" type="text" style="width:60%" ng-model="projectEdit.project.name"-->
+<!--placeholder="Project Name"></p>-->
+<!--<p> Description-->
+<!--<textarea class="w3-input w3-animate-input" style="width:60%" rows="10"-->
+<!--ng-model="projectEdit.project.description"-->
+<!--placeholder="Instruction"></textarea></p>-->
+<!--<p>Upload your application-->
+<!--<input class="w3-input w3-animate-input" type="file" style="width:60%" ng-model="projectEdit.project.application"-->
+<!--placeholder="Application"></p>-->
+<!--<p>Add URL to your survey-->
+<!--<input class="w3-input w3-animate-input" type="url" style="width:60%" ng-model="projectEdit.project.surveyURL"-->
+<!--placeholder="URL to survey"></p>-->
+<!--<p>-->
+<!--<button class="w3-btn w3-ripple w3-left w3-border w3-{{projectEdit.color}}" ng-click="projectEdit.confirm()">-->
+<!--<i class="fa fa-{{projectEdit.icon}}"></i> Confirm-->
+<!--</button>-->
+<!--</p>-->
+<!--</form>-->
+<!--</div>-->
+
+<!--</div>-->

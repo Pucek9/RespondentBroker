@@ -1,5 +1,4 @@
-html,body,h1,h2,h3,h4,h5
-{
+html, body, h1, h2, h3, h4, h5 {
 	font-family: "Raleway", sans-serif;
 }
 
@@ -18,7 +17,7 @@ a.w3-btn {
 	text-decoration: none;
 }
 
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
 	z-index: 2;
 	color: #fff;
 	cursor: default;
@@ -26,7 +25,7 @@ a.w3-btn {
 	border-color: #337ab7;
 }
 
-.pagination>li>a, .pagination>li>span {
+.pagination > li > a, .pagination > li > span {
 	position: relative;
 	float: left;
 	padding: 6px 12px;
@@ -36,4 +35,12 @@ a.w3-btn {
 	text-decoration: none;
 	background-color: #fff;
 	border: 1px solid #ddd;
+}
+
+#login-dropdown-list {
+	margin: -35px -14px 0 -92px;
+}
+
+.header-button {
+	margin-top: -7px;
 }

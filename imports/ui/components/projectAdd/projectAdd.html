@@ -1,19 +1,33 @@
-<h5><i class="fa fa-{{projectAdd.icon}} fa-fw"></i>{{projectAdd.pageTitle}}</h5>
+<div class="w3-card-4">
+	<header class="w3-container w3-{{projectAdd.color}}">
+		<h5>
+			<button class="w3-btn w3-ripple w3-right w3-border w3-black header-button" ui-sref="myProjects">
+				<i class="fa fa-chevron-circle-left"></i> Back
+			</button>
+			<i class="fa fa-{{projectAdd.icon}}"></i> {{projectAdd.pageTitle}}
+		</h5>
+	</header>
+	<div class="w3-container" style="padding: 0px">
+		<form class="w3-container w3-pale-{{projectAdd.color}} w3-leftbar w3-rightbar w3-bottombar w3-border-{{projectAdd.color}}">
+			<p> Project Name
+				<input class="w3-input w3-animate-input" type="text" style="width:60%" ng-model="projectAdd.project.name"
+				       placeholder="Project Name"></p>
+			<p> Description
+				<textarea class="w3-input w3-animate-input" style="width:60%" rows="10"
+				          ng-model="projectAdd.project.description"
+				          placeholder="Instruction"></textarea></p>
+			<p>Upload your application
+				<input class="w3-input w3-animate-input" type="file" style="width:60%" ng-model="projectAdd.project.application"
+				       placeholder="Application"></p>
+			<p>Add URL to your survey
+				<input class="w3-input w3-animate-input" type="url" style="width:60%" ng-model="projectAdd.project.surveyURL"
+				       placeholder="URL to survey"></p>
+			<p>
+				<button class="w3-btn w3-ripple w3-left w3-border w3-{{projectAdd.color}}" ng-click="projectAdd.submit()">
+					<i class="fa fa-{{projectAdd.icon}}"></i> Confirm
+				</button>
+			</p>
+		</form>
+	</div>
 
-<form class="w3-container">
-	Project Name
-	<input class="w3-input w3-animate-input" type="text" style="width:60%" ng-model="projectAdd.project.projectName"
-	       placeholder="Project Name">
-	Description
-	<textarea  class="w3-input w3-animate-input" style="width:60%" rows="10" ng-model="projectAdd.project.description"
-	       placeholder="Instruction"></textarea>
-	Upload your application
-	<input class="w3-input w3-animate-input" type="file" style="width:60%" ng-model="projectAdd.project.application"
-	       placeholder="Application">
-	Add URL to your survey
-	<input class="w3-input w3-animate-input" type="url" style="width:60%" ng-model="projectAdd.project.surveyURL"
-	       placeholder="URL to survey">
-	<button ng-click="projectAdd.submit()">Add project</button>
-</form>
-
-<button ui-sref="myProjects">Back</button>
+</div>

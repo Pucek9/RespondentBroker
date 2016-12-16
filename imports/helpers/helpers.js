@@ -1,5 +1,5 @@
 import moment from 'moment';
-import DATE_MASK from './constants';
+import {DATE_MASK} from './constants';
 
 function randomDate() {
 	return new Date(Math.floor(Math.random() * new Date()));

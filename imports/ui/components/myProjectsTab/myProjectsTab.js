@@ -5,9 +5,11 @@ import {Meteor} from 'meteor/meteor';
 
 import template from './myProjectsTab.html';
 import {Projects} from '../../../api/projects';
-import {name as ProjectAdd} from '../projectAdd/projectAdd';
+// import {name as ProjectAdd} from '../projectAdd/projectAdd';
 // import {name as ProjectRemove} from '../projectRemove/projectRemove';
-import {name as DynamicTable} from '../dynamicTable/dynamicTable';
+// import {name as DynamicTable} from '../dynamicTable/dynamicTable';
+import {name as NormalTable} from '../normalTable/normalTable';
+import {name as Actions} from '../actions/actions';
 
 class MyProjectsTab {
 
@@ -17,6 +19,7 @@ class MyProjectsTab {
 		// this.dataTableFormatter = dataTableFormatter;
 		this.pageTitle = 'My Projects ';
 		this.icon = 'search';
+		this.color = 'blue';
 		this.userId = Meteor.userId();
 
 		this.helpers({
@@ -26,15 +29,15 @@ class MyProjectsTab {
 		});
 
 
-		this.params = {formatTittle: true, hideId: true, dateColumn: 'createDate'};
+		// this.params = {formatTittle: true, hideId: true, dateColumn: 'created'};
 		//
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
-			{field: "projectName", filter: {projectName: "text"}, show: true, sortable: "projectName", title: "Project Name"},
+			{field: "name", filter: {name: "text"}, show: true, sortable: "name", title: "Project Name"},
 			{field: "responses", filter: {responses: "text"}, show: true, sortable: "responses", title: "Responses"},
-			{field: "createDate", filter: {createDate: "text"}, show: true, sortable: "createDate", title: "Create Date"},
-			{field: "updateDate", filter: {createDate: "text"}, show: true, sortable: "updateDate", title: "Last Update"},
-			{field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"}
+			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Created"},
+			{field: "updated", filter: {created: "text"}, show: true, sortable: "updated", title: "Updated"},
+			{field: "actions", show: true, title: "Actions"}
 		];
 	}
 }
@@ -45,9 +48,11 @@ const name = 'myProjectsTab';
 export default angular.module(name, [
 	angularMeteor,
 	uiRouter,
-	ProjectAdd,
+	// ProjectAdd,
 	// ProjectRemove,
-	DynamicTable
+	Actions,
+	NormalTable,
+	// DynamicTable
 ]).component(name, {
 	template,
 	controllerAs: name,
