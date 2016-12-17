@@ -7,10 +7,11 @@ import {Projects} from '../../../api/projects';
 import {dateNowString} from '../../../helpers/helpers';
 
 class ProjectAdd {
-	constructor(Notification) {
+	constructor($state, $location, notification) {
 		'ngInject';
-		this.Notification = Notification;
-
+		this.$state = $state;
+		this.$location = $location;
+		this.notification = notification;
 		this.project = {};
 
 		this.pageTitle = 'Add new project ';
@@ -25,7 +26,10 @@ class ProjectAdd {
 		this.project.updated = dateNowString();
 		Projects.insert(this.project);
 		this.reset();
-		this.Notification.success('Project added successfully!');
+		this.notification.success('Your project was added successfully!');
+		// this.$state.go('myProjects')
+		this.$location.path('/projects/bAwxTnfYKeNr9xgSp/details')
+
 	}
 
 	reset() {

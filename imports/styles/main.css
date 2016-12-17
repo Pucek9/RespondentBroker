@@ -44,3 +44,50 @@ a.w3-btn {
 .header-button {
 	margin-top: -7px;
 }
+
+md-toast {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	z-index: 10000;
+}
+
+md-toast div.md-toast-content {
+	height: 80px;
+	text-align: center;
+}
+
+md-toast div.md-toast-content span {
+	font-size: 20px;
+}
+
+md-toast.md-error-toast-theme div.md-toast-content{
+	color: white !important;
+	background-color: red !important;
+}
+
+md-toast.md-success-toast-theme div.md-toast-content{
+	color: white !important;
+	background-color: green !important;
+}
+
+md-toast.md-warning-toast-theme div.md-toast-content{
+	color: black !important;
+	background-color: orange !important;
+}
+
+md-toast.md-info-toast-theme div.md-toast-content{
+	color: white !important;
+	background-color: blue !important;
+}
+
+button.md-action.md-button.ng-scope.md-default-theme.md-ink-ripple {
+	margin-left: 30px;
+	background-color: darkred;
+	width: 9px;
+	height: 20px;
+}
+
+.md-ripple-container  {
+	display:none;
+}

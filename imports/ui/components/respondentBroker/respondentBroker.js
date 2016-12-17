@@ -4,7 +4,13 @@ import uiRouter from 'angular-ui-router';
 import ngTable from 'ng-table';
 import Notifications from 'angular-ui-notification';
 
+import ngMaterial from 'angular-material';
+import ngAria from 'angular-aria';
+import ngAnimate from 'angular-animate';
+
+
 import dataTableFormatter from '../../services/data-format-factory'
+import notification from '../../services/notification-factory'
 
 import template from './respondentBroker.html';
 import {name as Dashboard} from '../dashboard/dashboard';
@@ -16,10 +22,16 @@ import {name as ProjectEdit} from '../projectEdit/projectEdit';
 import {name as ProjectDetails} from '../projectDetails/projectDetails';
 import {name as UsersTab} from '../usersTab/usersTab';
 import {name as LeftPanel} from '../leftPanel/leftPanel';
+// import {name as Toast} from '../toast/toast';
 
 class RespondentBroker {
-}
 
+	constructor($scope,$reactive) {
+		'ngInject';
+		$reactive(this).attach($scope);
+	}
+
+}
 const name = 'respondentBroker';
 
 // create a module
@@ -35,7 +47,9 @@ export default angular.module(name, [
 	ProjectDetails,
 	UsersTab,
 	LeftPanel,
-	'ui-notification',
+	'ngMaterial',
+	'ngAria',
+	'ngAnimate',
 	'ngTable',
 	'accounts.ui'
 ]).component(name, {
@@ -45,22 +59,13 @@ export default angular.module(name, [
 })
 	.config(config)
 	.run(run)
-	.factory('dataTableFormatter',dataTableFormatter);
+	.factory('dataTableFormatter', dataTableFormatter)
+	.factory('notification', notification);
 
-function config($locationProvider, $urlRouterProvider, NotificationProvider) {
+function config($locationProvider, $urlRouterProvider) {
 	'ngInject';
 	$locationProvider.html5Mode(true);
 	$urlRouterProvider.otherwise('/dashboard');
-
-	NotificationProvider.setOptions({
-		delay: 10000,
-		startTop: 20,
-		startRight: 10,
-		verticalSpacing: 20,
-		horizontalSpacing: 20,
-		positionX: 'left',
-		positionY: 'bottom'
-	});
 }
 
 function run($rootScope, $state) {

@@ -5,10 +5,11 @@ import template from './projectRemove.html';
 import {Projects} from '../../../api/projects';
 
 class ProjectRemove {
-	constructor($stateParams,$scope, $reactive) {
+	constructor($stateParams,$scope, $reactive, $state, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
-
+		this.$state = $state;
+		this.notification = notification;
 		this.pageTitle = 'Remove project:';
 		this.icon = 'remove';
 		this.color = 'red';
@@ -25,6 +26,8 @@ class ProjectRemove {
 	confirm() {
 		if (this.project) {
 			Projects.remove(this.project._id);
+			this.notification.success('Your project was removed successfully!');
+			this.$state.go('myProjects');
 		}
 	}
 }

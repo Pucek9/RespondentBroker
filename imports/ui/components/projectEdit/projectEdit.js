@@ -7,18 +7,18 @@ import template from './projectEdit.html';
 import {dateNowString} from '../../../helpers/helpers';
 
 class ProjectEdit {
-	constructor($stateParams, $scope, $reactive, $timeout, Notification) {
+	constructor($stateParams, $scope, $reactive, $state, notification) {
 
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
-		this.Notification = Notification;
+		this.$state = $state;
+		this.notification = notification;
 
 		this.pageTitle = 'Update your project ';
 		this.icon = 'refresh';
 		this.color = 'blue';
 
-		$timeout(() => {console.log(this.project)}, 2000);
 		this.helpers({
 			project() {
 				return Projects.findOne({
@@ -41,11 +41,10 @@ class ProjectEdit {
 			}
 		}, (error) => {
 			if (error) {
-				console.log('Oops, unable to update the project...');
-				// this.Notification.error('Oops, unable to update the project...');
+				this.notification.error('Oops, unable to update the project...');
 			} else {
-					console.log('Your project was updated successfully...');
-					this.Notification.success('Your project was updated successfully!');
+				this.$state.go('myProjects');
+					this.notification.success('Your project was updated successfully!');
 			}
 
 		});

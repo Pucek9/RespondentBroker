@@ -28,9 +28,11 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/random_stream.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/stream_client_common.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/livedata_connection.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/kraignos_angular-ui-notification/0.2.0/web.browser/dist/angular-ui-notification.css" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/stream_client_sockjs.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/namespace.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/livedata_common.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/kraignos_angular-ui-notification/0.2.0/web.browser/dist/angular-ui-notification.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/client_convenience.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/id_map.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/ejson/1.0.13/web.browser/stringify.js" />
@@ -224,9 +226,11 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/random_stream.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/stream_client_common.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/livedata_connection.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/kraignos_angular-ui-notification/0.2.0/web.browser/dist/angular-ui-notification.css" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/stream_client_sockjs.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/namespace.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/livedata_common.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/kraignos_angular-ui-notification/0.2.0/web.browser/dist/angular-ui-notification.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/client_convenience.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/id_map.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/ejson/1.0.13/web.browser/stringify.js" />
