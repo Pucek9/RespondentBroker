@@ -21,7 +21,7 @@ class NormalTable {
 	};
 
 	renderTable() {
-		this.dataSet = new this.NgTableParams({
+		this.dataSet = this.NgTableParams({
 			count: 5
 		}, {
 			counts: [5, 10, 25],

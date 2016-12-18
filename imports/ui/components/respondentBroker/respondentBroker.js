@@ -21,6 +21,9 @@ import {name as ProjectRemove} from '../projectRemove/projectRemove';
 import {name as ProjectEdit} from '../projectEdit/projectEdit';
 import {name as ProjectDetails} from '../projectDetails/projectDetails';
 import {name as UsersTab} from '../usersTab/usersTab';
+import {name as UserEdit} from '../userEdit/userEdit';
+import {name as UserDetails} from '../userDetails/userDetails';
+
 import {name as LeftPanel} from '../leftPanel/leftPanel';
 // import {name as Toast} from '../toast/toast';
 
@@ -46,6 +49,8 @@ export default angular.module(name, [
 	ProjectEdit,
 	ProjectDetails,
 	UsersTab,
+	UserEdit,
+	UserDetails,
 	LeftPanel,
 	'ngMaterial',
 	'ngAria',

@@ -7,10 +7,9 @@ import {Projects} from '../../../api/projects';
 import {dateNowString} from '../../../helpers/helpers';
 
 class ProjectAdd {
-	constructor($state, $location, notification) {
+	constructor($state, notification) {
 		'ngInject';
 		this.$state = $state;
-		this.$location = $location;
 		this.notification = notification;
 		this.project = {};
 
@@ -24,12 +23,18 @@ class ProjectAdd {
 		this.project.responses = 0;
 		this.project.created= dateNowString();
 		this.project.updated = dateNowString();
-		Projects.insert(this.project);
-		this.reset();
-		this.notification.success('Your project was added successfully!');
-		// this.$state.go('myProjects')
-		this.$location.path('/projects/bAwxTnfYKeNr9xgSp/details')
-
+		Projects.insert(this.project,
+			(error, id) => {
+				if (error) {
+					this.notification.error('There is problem with add your project! Error: ' + error);
+				}
+				else {
+					this.reset();
+					this.notification.success('Your project was added successfully!');
+					this.$state.go('projectDetails',{projectId: id});
+				}
+			}
+		);
 	}
 
 	reset() {

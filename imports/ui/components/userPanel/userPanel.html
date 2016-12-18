@@ -1,14 +1,18 @@
 <div class="w3-container w3-row">
 	<div class="w3-col s4">
-		<img src="images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+		<img ng-src="{{(userPanel.user ? userPanel.user.profile.avatar : userPanel.guestAvatar)}}" class="w3-circle w3-margin-right" style="width:50px">
+		<div ng-show="userPanel.user">
+			<span><i class="fa fa-star" aria-hidden="true"></i> {{userPanel.user.profile.level}}</span>
+			<span><i class="fa fa-money" aria-hidden="true"></i> {{userPanel.user.profile.points}}</span>
+		</div>
 	</div>
 	<div class="w3-col s8">
-		<span>Welcome, <strong>{{(userPanel.user ? 'User' : 'Guest')}}</strong></span><br/>
+		<span>Welcome, <strong>{{(userPanel.user ? userPanel.user.profile.name : 'Guest')}}</strong></span><br/>
 		<login-buttons></login-buttons><br/>
-		<a href="#" class="w3-hover-none w3-hover-text-red w3-show-inline-block"><i class="fa fa-envelope"></i></a>
+		<a ng-click="userPanel.myFunc()" href="#" class="w3-hover-none w3-hover-text-red w3-show-inline-block"><i class="fa fa-envelope"></i></a>
 		<a href="#" class="w3-hover-none w3-hover-text-green w3-show-inline-block"><i class="fa fa-user"></i></a>
 		<a href="#" class="w3-hover-none w3-hover-text-yellow w3-show-inline-block"><i class="fa fa-cog"></i></a>
 		<a href="#" class="w3-hover-none w3-hover-text-blue w3-show-inline-block"><i class="fa fa-language"></i></a>
 	</div>
-
+<h1></h1>
 </div>

@@ -1,36 +1,44 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-
+import {Meteor} from 'meteor/meteor';
 import template from './navigation.html';
 
 class Navigation {
 
-	constructor() {
+	constructor($scope, $reactive) {
+		'ngInject';
+		$reactive(this).attach($scope);
+
 		this.index = 0;
 
-		this.positions = [
-			{
-				name: 'Dashboard', icon: 'dashboard', href: '/',
-			},
-			{
-				name: 'My Projects', icon: 'dashboard', href: '/projects/my',
-			},
-			{
-				name: 'Projects', icon: 'search', href: '/projects',
-			},
-			{
-				name: 'History', icon: 'history', href: '/history',
-			},
-			{
-				name: 'Users', icon: 'users', href: '/users',
-			},
-			{
-				name: 'User', icon: 'user', href: '#',
-			},
-			{
-				name: 'Settings', icon: 'cog', href: '/settings',
+		this.helpers({
+			positions() {
+				return [
+					{
+						name: 'Dashboard', icon: 'dashboard', href: '/',
+					},
+					{
+						name: 'My Projects', icon: 'dashboard', href: '/projects/my',
+					},
+					{
+						name: 'Projects', icon: 'search', href: '/projects',
+					},
+					{
+						name: 'History', icon: 'history', href: '/history',
+					},
+					{
+						name: 'Users', icon: 'users', href: '/users',
+					},
+					{
+						name: 'Account', icon: 'user', href: '/users/' + Meteor.userId()+ '/details',
+					},
+					{
+						name: 'Settings', icon: 'cog', href: '/users/' + Meteor.userId()+ '/edit',
+					}
+				]
 			}
-		];
+		});
+
 	};
 
 	setActive(index) {
@@ -40,6 +48,7 @@ class Navigation {
 	isActive(index) {
 		return this.index === index;
 	};
+
 
 }
 const name = 'navigation';
