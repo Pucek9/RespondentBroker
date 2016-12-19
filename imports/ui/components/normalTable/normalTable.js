@@ -13,7 +13,6 @@ class NormalTable {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.NgTableParams = NgTableParams;
-
 	};
 
 	$onInit() {
@@ -25,12 +24,9 @@ class NormalTable {
 			count: 5
 		}, {
 			counts: [5, 10, 25],
-			// filterDelay: 300,
 			dataset: this.data
 		});
-
 	};
-
 }
 
 const name = 'normalTable';

@@ -1,18 +1,16 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import {Meteor} from 'meteor/meteor';
-import {Accounts} from 'meteor/accounts-base'
 
 import template from './userPanel.html';
 
 
 class UserPanel {
 
-	constructor($scope, $reactive, $rootScope, $timeout) {
+	constructor($scope, $reactive, $timeout) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.$timeout = $timeout;
-		this.$rootScope = $rootScope;
 
 		this.guestAvatar = 'http://www.w3schools.com/w3images/avatar1.png';
 
@@ -21,31 +19,20 @@ class UserPanel {
 				return Meteor.user()
 			},
 			email() {
-				// return Meteor.user().emails[0].address;
+				let user = Meteor.user();
+				if (user) {
+					let email = user.emails[0].address;
+					this.setDisplayNameToEmail(email);
+				}
 			}
 		});
-
-		Accounts.onLogin(() => {
-			this.setDisplayNameToEmail();
-		});
-
 	}
 
-	setDisplayNameToEmail() {
+	setDisplayNameToEmail(email) {
 		this.$timeout(() => {
-			// this.email = this.$rootScope.currentUser.emails[0].address;
-			// this.display = angular.element(document).find('#login-name-link');
-			// if(this.$rootScope.loggingIn) {
-			// 	this.display.text(this.email + ' ▾');
-			// }
-		}, 1000);
-	}
-
-	$onInit() {
-		if(this.$rootScope.loggingIn) {
-			this.setDisplayNameToEmail();
-		}
-
+			let display = angular.element(document).find('#login-name-link');
+			display.text(email + ' ▾');
+		}, 100);
 	}
 
 }

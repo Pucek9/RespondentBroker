@@ -8,7 +8,7 @@
 	</div>
 	<div class="w3-col s8">
 		<span>Welcome, <strong>{{(userPanel.user ? userPanel.user.profile.name : 'Guest')}}</strong></span><br/>
-		<login-buttons></login-buttons><br/>
+		<login-buttons ng-init="userPanel.email()"></login-buttons><br/>
 		<a ng-click="userPanel.myFunc()" href="#" class="w3-hover-none w3-hover-text-red w3-show-inline-block"><i class="fa fa-envelope"></i></a>
 		<a href="#" class="w3-hover-none w3-hover-text-green w3-show-inline-block"><i class="fa fa-user"></i></a>
 		<a href="#" class="w3-hover-none w3-hover-text-yellow w3-show-inline-block"><i class="fa fa-cog"></i></a>

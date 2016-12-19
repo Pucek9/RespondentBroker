@@ -7,7 +7,7 @@ import template from './projectDetails.html';
 import {Projects} from '../../../api/projects';
 
 class ProjectDetails {
-	constructor($stateParams, $scope, $reactive,  $state, notification) {
+	constructor($stateParams, $scope, $reactive, $state, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
@@ -18,18 +18,31 @@ class ProjectDetails {
 		this.icon = 'check-square-o';
 		this.color = 'yellow';
 
+		this.steps = [];
+
 		this.helpers({
 			project() {
 				return Projects.findOne({
-					_id: $stateParams.projectId
+					_id: this.projectId
 				});
+			},
+			isMyProject() {
+				let project = Projects.findOne({_id: this.projectId});
+				if (project) {
+					return Meteor.userId() === project.owner;
+				}
+
 			}
 		});
 	}
 
+	addNew() {
+		console.log('addedNew');
+	}
+
 	confirm() {
 		this.project.responses++;
-		console.log(this.project.responses)
+		console.log(this.project.responses);
 		Projects.update({
 			_id: this.project._id
 		}, {

@@ -13,6 +13,7 @@ class Navigation {
 
 		this.helpers({
 			positions() {
+				let userId = Meteor.userId();
 				return [
 					{
 						name: 'Dashboard', icon: 'dashboard', href: '/',
@@ -30,10 +31,10 @@ class Navigation {
 						name: 'Users', icon: 'users', href: '/users',
 					},
 					{
-						name: 'Account', icon: 'user', href: '/users/' + Meteor.userId()+ '/details',
+						name: 'Account', icon: 'user', href: '/users/' + userId + '/details',
 					},
 					{
-						name: 'Settings', icon: 'cog', href: '/users/' + Meteor.userId()+ '/edit',
+						name: 'Settings', icon: 'cog', href: '/users/' + userId + '/edit',
 					}
 				]
 			}
@@ -48,7 +49,6 @@ class Navigation {
 	isActive(index) {
 		return this.index === index;
 	};
-
 
 }
 const name = 'navigation';
