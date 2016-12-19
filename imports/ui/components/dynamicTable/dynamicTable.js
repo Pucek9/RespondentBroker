@@ -11,7 +11,7 @@ class DynamicTable {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.dataSet = new NgTableParams({
-			count: 5
+			count: 10
 		}, {
 			counts: [5, 10, 25],
 			filterDelay: 300,
@@ -42,6 +42,6 @@ export default angular.module(name, [
 	bindings: {
 		'columns': '=',
 		'data': '=',
-		'params': '='
+		// 'params': '='
 	},
 })

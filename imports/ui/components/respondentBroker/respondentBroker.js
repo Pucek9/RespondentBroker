@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 import ngTable from 'ng-table';
 import Notifications from 'angular-ui-notification';
 
+import gSanitize from 'angular-sanitize';
 import ngMaterial from 'angular-material';
 import ngAria from 'angular-aria';
 import ngAnimate from 'angular-animate';
@@ -52,6 +53,7 @@ export default angular.module(name, [
 	UserEdit,
 	UserDetails,
 	LeftPanel,
+	'ngSanitize',
 	'ngMaterial',
 	'ngAria',
 	'ngAnimate',

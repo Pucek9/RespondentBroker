@@ -2,7 +2,8 @@
 	<table ng-table-dynamic="dynamicTable.dataSet with dynamicTable.columns" show-filter="true"
 	       class="w3-table w3-table-all w3-hoverable">
 		<tr ng-repeat="row in $data track by row._id">
-			<td ng-repeat="col in $columns">{{row[col.field]}}</td>
+			<td ng-repeat="col in $columns" ng-bind-html="col.getValue(this, row) || row[col.field]">{{row[col.field]}}</td>
 		</tr>
 	</table>
 </div>
+<!--|| row[col.field]-->

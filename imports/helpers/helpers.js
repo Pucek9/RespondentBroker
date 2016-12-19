@@ -13,4 +13,10 @@ function dateNowString() {
 	return moment().format(DATE_MASK);
 }
 
-export {randomDateString, dateNowString}
+function interpolatedValue($scope, row) {
+	return this.interpolateExpr({
+		row: row
+	});
+}
+
+export {randomDateString, dateNowString, interpolatedValue}
