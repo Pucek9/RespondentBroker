@@ -2,13 +2,14 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
-
-import template from './projectDetails.html';
 import {Projects} from '../../../api/projects';
 import {Responses} from '../../../api/responses';
 
+import {interpolatedValue} from '../../../helpers/helpers';
+import template from './projectDetails.html';
+
 class ProjectDetails {
-	constructor($stateParams, $scope, $reactive, $state, notification) {
+	constructor($stateParams, $scope, $reactive, $state, $interpolate, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
@@ -34,14 +35,42 @@ class ProjectDetails {
 					return Meteor.userId() === project.owner;
 				}
 			},
+			responses() {
+				return Responses.find({project: this.projectId});
+			},
+			isResponsed() {
+				return Responses.find({project: this.projectId, owner: Meteor.userId()});
+			}
 		});
+
+		this.columns = [
+			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
+			{
+				field: "owner",
+				show: true,
+				title: "Presented",
+				sortable: "owner",
+				filter: {owner: "text"},
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`<a href="users/{{row.owner}}/details">{{row.owner}}</a>`),
+			},
+			{
+				field: "steps",
+				show: true,
+				title: "Steps",
+				sortable: "steps.length",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.steps.length}}`)
+			},
+			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
+		];
 	}
 
 	reset() {
 		this.temp = {};
 	}
 
-	remove (step) {
+	remove(step) {
 		let index = this.response.steps.indexOf(step);
 		this.response.steps.splice(index, 1);
 	}
@@ -104,15 +133,6 @@ class ProjectDetails {
 			}
 		);
 
-		// 	this.project.responses++;
-		// 	console.log(this.project.responses);
-		// 	Projects.update({
-		// 		_id: this.project._id
-		// 	}, {
-		// 		$set: {
-		// 			responses: this.project.responses,
-		// 		}
-		// 	});
 	}
 
 }

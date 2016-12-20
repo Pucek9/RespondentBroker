@@ -34,7 +34,6 @@ class LeftPanel {
 
 }
 
-
 const name = 'leftPanel';
 
 // create a module

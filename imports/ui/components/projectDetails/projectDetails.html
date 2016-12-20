@@ -29,35 +29,45 @@
 
 		<h2>4. Please upload your movies and tag them.</h2>
 		<form class="w3-container">
-			<input ng-disabled="projectDetails.isMyProject" class="w3-input w3-animate-input" type="text" style="width:30%"
+			<input ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
+			       class="w3-input w3-animate-input" type="text" style="width:30%"
 			       ng-model="projectDetails.temp.movieTag"
 			       placeholder="Movie tag">
-			<input ng-disabled="projectDetails.isMyProject" class="w3-input w3-animate-input" type="text" style="width:30%"
+			<input ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
+			       class="w3-input w3-animate-input" type="text" style="width:30%"
 			       ng-model="projectDetails.temp.movieURL"
 			       placeholder="Movie URL">
 			<!--<input ng-disabled="projectDetails.isMyProject" class="w3-input w3-animate-input" type="file" style="width:30%"-->
-			       <!--placeholder="Movie">-->
-			<button ng-click="projectDetails.addNew()" ng-disabled="projectDetails.isMyProject">Add new</button>
+			<!--placeholder="Movie">-->
+			<button ng-click="projectDetails.addNew()"
+			        ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">Add new
+			</button>
 		</form>
 
-		<div class="w3-container" ng-if="!projectDetails.isMyProject">
+		<div class="w3-container" ng-if="!projectDetails.isMyProject || projectDetails.isResponsed.length === 0">
 			<div ng-repeat="step in projectDetails.response.steps">
-				<div>Movie Tag: {{step.movieTag}} <button ng-click="projectDetails.remove(step)">x</button></div>
+				<div>Movie Tag: {{step.movieTag}}
+					<button ng-click="projectDetails.remove(step)">x</button>
+				</div>
 				<video id="v" width="270" height="480"
-					controls crossOrigin="anonymous">
+				       controls crossOrigin="anonymous">
 					<source ng-src="{{step.movieURL}}" type="video/mp4">
 				</video>
 			</div>
 		</div>
 
 		<h2>5. Please fill <a ng-href="{{projectDetails.project.surveyURL}}">survey</a> and sign it.</h2>
+		<div>
+			<button ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
+			        class="w3-btn w3-ripple w3-left w3-border w3-{{projectDetails.color}}"
+			        ng-click="projectDetails.confirm()">
+				<i class="fa fa-{{projectDetails.icon}}"></i> Confirm
+			</button>
+		</div>
 
-		<div><button ng-disabled="projectDetails.isMyProject"
-		        class="w3-btn w3-ripple w3-left w3-border w3-{{projectDetails.color}}" ng-click="projectDetails.confirm()">
-			<i class="fa fa-{{projectDetails.icon}}"></i> Confirm
-		</button></div>
-
-
+		<div ng-if="projectDetails.isMyProject">
+			<dynamic-table data="projectDetails.responses" columns="projectDetails.columns"></dynamic-table>
+		</div>
 
 	</div>
 </div>

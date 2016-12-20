@@ -9,11 +9,11 @@ import ngMaterial from 'angular-material';
 import ngAria from 'angular-aria';
 import ngAnimate from 'angular-animate';
 
-
 import dataTableFormatter from '../../services/data-format-factory'
 import notification from '../../services/notification-factory'
 
 import template from './respondentBroker.html';
+import {name as DynamicTable} from '../dynamicTable/dynamicTable';
 import {name as Dashboard} from '../dashboard/dashboard';
 import {name as MyProjectsTab} from '../myProjectsTab/myProjectsTab';
 import {name as ProjectsTab} from '../projectsTab/projectsTab';
@@ -24,9 +24,7 @@ import {name as ProjectDetails} from '../projectDetails/projectDetails';
 import {name as UsersTab} from '../usersTab/usersTab';
 import {name as UserEdit} from '../userEdit/userEdit';
 import {name as UserDetails} from '../userDetails/userDetails';
-
 import {name as LeftPanel} from '../leftPanel/leftPanel';
-// import {name as Toast} from '../toast/toast';
 
 class RespondentBroker {
 
@@ -43,6 +41,7 @@ export default angular.module(name, [
 	angularMeteor,
 	uiRouter,
 	Dashboard,
+	DynamicTable,
 	MyProjectsTab,
 	ProjectsTab,
 	ProjectAdd,

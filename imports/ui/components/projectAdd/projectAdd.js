@@ -1,10 +1,10 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import {Meteor} from 'meteor/meteor';
-
-import template from './projectAdd.html';
 import {Projects} from '../../../api/projects';
+
 import {dateNowString} from '../../../helpers/helpers';
+import template from './projectAdd.html';
 
 class ProjectAdd {
 	constructor($state, notification) {
@@ -21,7 +21,7 @@ class ProjectAdd {
 	submit() {
 		this.project.owner = Meteor.userId();
 		this.project.responses = [];
-		this.project.created= dateNowString();
+		this.project.created = dateNowString();
 		this.project.updated = dateNowString();
 		Projects.insert(this.project,
 			(error, id) => {
@@ -31,7 +31,7 @@ class ProjectAdd {
 				else {
 					this.reset();
 					this.notification.success('Your project was added successfully!');
-					this.$state.go('projectDetails',{projectId: id});
+					this.$state.go('projectDetails', {projectId: id});
 				}
 			}
 		);

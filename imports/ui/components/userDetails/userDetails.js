@@ -7,7 +7,7 @@ import template from './userDetails.html';
 
 import {Responses} from '../../../api/responses';
 import {Projects} from '../../../api/projects';
-// import {name as DynamicTable} from '../dynamicTable/dynamicTable';
+
 import {interpolatedValue} from '../../../helpers/helpers';
 
 class UserDetails {

@@ -2,12 +2,11 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
-
-import template from './myProjectsTab.html';
 import {Projects} from '../../../api/projects';
 
-import {name as DynamicTable} from '../dynamicTable/dynamicTable';
 import {interpolatedValue} from '../../../helpers/helpers';
+import {name as DynamicTable} from '../dynamicTable/dynamicTable';
+import template from './myProjectsTab.html';
 import actionsTemplate from './actions.html';
 
 class MyProjectsTab {
