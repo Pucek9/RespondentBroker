@@ -1,8 +1,9 @@
 import {Meteor} from 'meteor/meteor';
 import {Accounts} from 'meteor/accounts-base'
 import {Projects} from '../imports/api/projects';
+import {Responses} from '../imports/api/responses';
 
-import {PROJECTS} from '../imports/helpers/seedData';
+import {PROJECTS, RESPONSES} from '../imports/helpers/seedData';
 
 ownsDocument = function (userId, doc) {
 	console.log('ownsDocument: ',doc && doc._id === userId);
@@ -18,6 +19,14 @@ Meteor.startup(() => {
 		});
 	}
 
+	if (Responses.find().count() === 0) {
+		const responses = RESPONSES;
+
+		responses.forEach((response) => {
+			Responses.insert(response)
+		});
+	}
+
 	Meteor.users.allow({
 		update: ownsDocument
 	});
@@ -26,7 +35,7 @@ Meteor.startup(() => {
 		user.profile = {
 			name: 'User',
 			forName: '',
-			avatar: 'http://www.w3schools.com/w3images/avatar2.png',
+			avatar: '/images/avatar2.png',
 			responses: [],
 			level: 0,
 			points: 0,

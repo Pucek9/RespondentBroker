@@ -5,9 +5,10 @@ import {Meteor} from 'meteor/meteor';
 
 import template from './myProjectsTab.html';
 import {Projects} from '../../../api/projects';
-import actionsTemplate from './actions.html';
+
 import {name as DynamicTable} from '../dynamicTable/dynamicTable';
 import {interpolatedValue} from '../../../helpers/helpers';
+import actionsTemplate from './actions.html';
 
 class MyProjectsTab {
 

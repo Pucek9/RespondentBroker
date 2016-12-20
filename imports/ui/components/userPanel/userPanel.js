@@ -12,7 +12,7 @@ class UserPanel {
 		$reactive(this).attach($scope);
 		this.$timeout = $timeout;
 
-		this.guestAvatar = 'http://www.w3schools.com/w3images/avatar1.png';
+		this.guestAvatar = '/images/avatar1.png';
 
 		this.helpers({
 			user() {

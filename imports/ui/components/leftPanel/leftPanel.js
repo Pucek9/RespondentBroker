@@ -8,6 +8,7 @@ import template from './leftPanel.html';
 class LeftPanel {
 
 	constructor() {
+		this.logo = 'Respondent Broker';
 		// Get the Sidenav
 		this.mySidenav = document.getElementById("mySidenav");
 		// Get the DIV with overlay effect

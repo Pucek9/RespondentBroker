@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import { Projects } from '../imports/api/projects';
+import { Responses } from '../imports/api/responses';
 
 import '../imports/styles/fonts.googleapis.css';
 import '../imports/styles/w3.css';

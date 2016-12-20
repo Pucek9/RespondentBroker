@@ -5,13 +5,15 @@ import {Meteor} from 'meteor/meteor';
 
 import template from './projectsTab.html';
 import {Projects} from '../../../api/projects';
+
 import {name as DynamicTable} from '../dynamicTable/dynamicTable';
+import {interpolatedValue} from '../../../helpers/helpers';
+import actionsTemplate from './actions.html';
 
 class ProjectsTab {
-	constructor($scope, $reactive, dataTableFormatter) {
+	constructor($scope, $reactive, $interpolate) {
 		'ngInject';
 		$reactive(this).attach($scope);
-		// this.dataTableFormatter = dataTableFormatter;
 		this.pageTitle = 'Projects ';
 		this.icon = 'search';
 		this.color = 'yellow';
@@ -21,8 +23,6 @@ class ProjectsTab {
 				return Projects.find({});
 			}
 		});
-		// this.data = this.getProjects();
-		// this.params = {formatTittle: true, hideId: true, dateColumn: 'createDate'};
 
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
@@ -30,7 +30,14 @@ class ProjectsTab {
 			{field: "responses", filter: {responses: "text"}, show: true, sortable: "responses", title: "Responses"},
 			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
 			{field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
-			{field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"}
+			{field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"},
+			{
+				field: "_id",
+				show: true,
+				title: "Actions",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(actionsTemplate)
+			}
 		];
 	}
 }

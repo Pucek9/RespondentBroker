@@ -5,6 +5,7 @@ import {Meteor} from 'meteor/meteor';
 
 import template from './projectDetails.html';
 import {Projects} from '../../../api/projects';
+import {Responses} from '../../../api/responses';
 
 class ProjectDetails {
 	constructor($stateParams, $scope, $reactive, $state, notification) {
@@ -18,7 +19,8 @@ class ProjectDetails {
 		this.icon = 'check-square-o';
 		this.color = 'yellow';
 
-		this.steps = [];
+		this.response = {};
+		this.response.steps = [];
 
 		this.helpers({
 			project() {
@@ -31,33 +33,85 @@ class ProjectDetails {
 				if (project) {
 					return Meteor.userId() === project.owner;
 				}
-
-			}
+			},
 		});
+	}
+
+	reset() {
+		this.temp = {};
+	}
+
+	remove (step) {
+		let index = this.response.steps.indexOf(step);
+		this.response.steps.splice(index, 1);
 	}
 
 	addNew() {
-		console.log('addedNew');
+		this.response.steps.push({
+			movieTag: this.temp.movieTag,
+			movieURL: this.temp.movieURL
+		});
+		this.reset();
 	}
 
-	confirm() {
-		this.project.responses++;
-		console.log(this.project.responses);
-		Projects.update({
-			_id: this.project._id
+	addToUser(id) {
+		Meteor.users.update({
+			_id: Meteor.userId()
 		}, {
-			$set: {
-				responses: this.project.responses,
+			$push: {
+				'profile.responses': id,
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('Oops, unable to update the project...');
+				this.notification.error('There is problem with add your response to user! Error: ' + error);
 			} else {
-				this.notification.success('Your project was updated successfully!');
+
+				this.notification.success('Your response was updated successfully!');
 				this.$state.go('projects');
 			}
-
 		});
+	}
+
+	addToProject(id) {
+		Projects.update({
+			_id: this.project._id
+		}, {
+			$push: {
+				responses: id,
+			}
+		}, (error) => {
+			if (error) {
+				this.notification.error('There is problem with add your response to project! Error: ' + error);
+			} else {
+				this.addToUser(id);
+
+			}
+		});
+	}
+
+	confirm() {
+		this.response.owner = Meteor.userId();
+		this.response.project = this.projectId;
+		Responses.insert(angular.copy(this.response),
+			(error, id) => {
+				if (error) {
+					this.notification.error('There is problem with add your response! Error: ' + error);
+				}
+				else {
+					this.addToProject(id);
+				}
+			}
+		);
+
+		// 	this.project.responses++;
+		// 	console.log(this.project.responses);
+		// 	Projects.update({
+		// 		_id: this.project._id
+		// 	}, {
+		// 		$set: {
+		// 			responses: this.project.responses,
+		// 		}
+		// 	});
 	}
 
 }

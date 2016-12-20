@@ -1,9 +1,10 @@
-import { Mongo } from 'meteor/mongo';
+import {Mongo} from 'meteor/mongo';
 
 export const Responses = new Mongo.Collection('responses');
 
 Responses.allow({
 	insert(userId, response) {
+		console.log(userId, response);
 		return userId && response.owner === userId;
 	},
 	update(userId, response, fields, modifier) {

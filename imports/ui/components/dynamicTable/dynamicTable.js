@@ -3,7 +3,6 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
 import template from './dynamicTable.html';
-import {Projects} from '../../../api/projects';
 
 class DynamicTable {
 
@@ -42,6 +41,5 @@ export default angular.module(name, [
 	bindings: {
 		'columns': '=',
 		'data': '=',
-		// 'params': '='
 	},
 })
