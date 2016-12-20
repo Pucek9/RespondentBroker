@@ -5,13 +5,14 @@ import {Meteor} from 'meteor/meteor';
 
 import template from './userDetails.html';
 
-// import {Responses} from '../../../api/responses';
+import {Responses} from '../../../api/responses';
+import {Projects} from '../../../api/projects';
 // import {name as DynamicTable} from '../dynamicTable/dynamicTable';
-// import {interpolatedValue} from '../../../helpers/helpers';
+import {interpolatedValue} from '../../../helpers/helpers';
 // import actionsTemplate from './actions.html';
 
 class UserDetails {
-	constructor($stateParams, $scope, $reactive, $state, notification) {
+	constructor($stateParams, $scope, $reactive, $state, $interpolate, notification) {
 
 		'ngInject';
 		$reactive(this).attach($scope);
@@ -24,19 +25,28 @@ class UserDetails {
 		this.color = 'yellow';
 
 		this.columns = [
-			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
-			{field: "name", filter: {name: "text"}, show: true, sortable: "name", title: "Project Name"},
-			{field: "responses", filter: {responses: "text"}, show: true, sortable: "responses", title: "Responses"},
-			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
-			{field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
-			{field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"},
-			// {
-			// 	field: "_id",
-			// 	show: true,
-			// 	title: "Actions",
-			// 	getValue: interpolatedValue,
-			// 	interpolateExpr: $interpolate(actionsTemplate)
-			// }
+			{field: "_id", filter: {_id: "text"}, show: true, sortable: "_id", title: "_id"},
+			{
+				field: "projectName",
+				show: true,
+				title: "Project Name",
+				sortable: "projectName",
+				filter: {projectName: "text"},
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/details">{{row.projectName}}</a>`),
+			},
+			// {field: "steps.length", filter: {steps: "number"}, show: true, sortable: "steps", title: "Steps"},
+			// {field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
+			// {field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
+			// {field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"},
+			{
+				field: "steps",
+				show: true,
+				title: "Steps",
+				sortable: "steps.length",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.steps.length}}`)
+			}
 		];
 
 		this.helpers({
@@ -44,11 +54,23 @@ class UserDetails {
 				return Meteor.users.findOne({
 					_id: this.userId
 				});
-			}
+			},
+			responses() {
+				let responses = Responses.find({'owner': this.userId}).fetch();
+				if (responses){
+					let projects = Projects.find({});
+					responses.forEach((r, index, responsesArray)=>{
+						projects.forEach((p)=> {
+							if (r.project === p._id) {
+								responsesArray[index].projectName =  p.name;
+							}
+						});
+					});
+					return responses;
+				}
+			},
 		});
 	}
-
-
 }
 
 const name = 'userDetails';

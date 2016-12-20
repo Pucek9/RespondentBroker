@@ -16,8 +16,8 @@
 			<p> Level: {{userDetails.user.profile.level}}</p>
 			<p> Points: {{userDetails.user.profile.points}}</p>
 			<br/>
-			Responses:
-			<dynamic-table data="userDetails.user.profile.responses" columns="userDetails.columns"></dynamic-table>
+			Responses ({{userDetails.responses.length}}):
+			<dynamic-table data="userDetails.responses" columns="userDetails.columns"></dynamic-table>
 		</div>
 	</div>
 

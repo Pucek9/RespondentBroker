@@ -30,9 +30,16 @@ class MyProjectsTab {
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
 			{field: "name", filter: {name: "text"}, show: true, sortable: "name", title: "Project Name"},
-			{field: "responses", filter: {responses: "text"}, show: true, sortable: "responses", title: "Responses"},
 			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Created"},
 			{field: "updated", filter: {created: "text"}, show: true, sortable: "updated", title: "Updated"},
+			{
+				field: "responses",
+				show: true,
+				title: "Responses",
+				sortable: "responses.length",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.responses.length}}`)
+			},
 			{
 				field: "_id",
 				show: true,
