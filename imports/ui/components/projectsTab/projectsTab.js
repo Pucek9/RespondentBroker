@@ -22,14 +22,16 @@ class ProjectsTab {
 			projects() {
 				return Projects.find({});
 			}
+
 		});
 
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
 			{field: "name", filter: {name: "text"}, show: true, sortable: "name", title: "Project Name"},
-			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
+			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Created"},
 			{field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
 			{field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"},
+			{field: "points", filter: {points: "number"}, show: true, sortable: "points", title: "Points"},
 			{
 				field: "responses",
 				show: true,

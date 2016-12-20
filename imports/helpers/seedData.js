@@ -10,6 +10,7 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'RtfTEHK5scrkRZcch',
+		points: 6,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
 	},
@@ -20,6 +21,7 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'KJhjaeHJdfkRZcch',
+		points: 4,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ'
 	},
@@ -30,6 +32,7 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'KJhjaeHJdfkRZcch',
+		points: 8,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ'
 	},
@@ -40,6 +43,7 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'XasjJHsdkjetewbe',
+		points: 7,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
 	},
@@ -50,6 +54,7 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'RtfTEHK5scrkRZcch',
+		points: 9,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ'
 	},
@@ -60,6 +65,7 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'RtfTEHK5scrkRZcch',
+		points: 3,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
 	},
@@ -74,6 +80,7 @@ Proin convallis nunc at justo sodales aliquam. Aliquam ullamcorper ligula ligula
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'RtfTEHK5scrkRZcch',
+		points: 2,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
 	}
@@ -84,6 +91,7 @@ const RESPONSES = [
 	{
 		owner: "9X285yQzusTQwteYv",
 		project: "3P3DpFLCp6ubrTC54",
+		isPaid: false,
 		steps: [{
 			movieTag: "First Task",
 			movieURL: "/screen.m4v"

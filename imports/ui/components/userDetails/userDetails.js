@@ -9,7 +9,6 @@ import {Responses} from '../../../api/responses';
 import {Projects} from '../../../api/projects';
 // import {name as DynamicTable} from '../dynamicTable/dynamicTable';
 import {interpolatedValue} from '../../../helpers/helpers';
-// import actionsTemplate from './actions.html';
 
 class UserDetails {
 	constructor($stateParams, $scope, $reactive, $state, $interpolate, notification) {
@@ -21,11 +20,11 @@ class UserDetails {
 		this.notification = notification;
 
 		this.pageTitle = 'Account Details ';
-		this.icon = 'account';
+		this.icon = 'user-circle-o';
 		this.color = 'yellow';
 
 		this.columns = [
-			{field: "_id", filter: {_id: "text"}, show: true, sortable: "_id", title: "_id"},
+			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
 			{
 				field: "projectName",
 				show: true,
@@ -35,7 +34,7 @@ class UserDetails {
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/details">{{row.projectName}}</a>`),
 			},
-			// {field: "steps.length", filter: {steps: "number"}, show: true, sortable: "steps", title: "Steps"},
+			{field: "points", filter: {points: "number"}, show: true, sortable: "points", title: "Points"},
 			// {field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
 			// {field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
 			// {field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"},
@@ -57,12 +56,13 @@ class UserDetails {
 			},
 			responses() {
 				let responses = Responses.find({'owner': this.userId}).fetch();
-				if (responses){
+				if (responses) {
 					let projects = Projects.find({});
-					responses.forEach((r, index, responsesArray)=>{
-						projects.forEach((p)=> {
+					responses.forEach((r, index, responsesArray) => {
+						projects.forEach((p) => {
 							if (r.project === p._id) {
-								responsesArray[index].projectName =  p.name;
+								responsesArray[index].projectName = p.name;
+								responsesArray[index].points = p.points;
 							}
 						});
 					});

@@ -30,6 +30,7 @@ class MyProjectsTab {
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
 			{field: "name", filter: {name: "text"}, show: true, sortable: "name", title: "Project Name"},
+			{field: "points", filter: {points: "number"}, show: true, sortable: "points", title: "Points"},
 			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Created"},
 			{field: "updated", filter: {created: "text"}, show: true, sortable: "updated", title: "Updated"},
 			{

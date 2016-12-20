@@ -31,7 +31,7 @@ class Navigation {
 						name: 'Users', icon: 'users', href: '/users',
 					},
 					{
-						name: 'Account', icon: 'user', href: '/users/' + userId + '/details',
+						name: 'Account', icon: 'address-card-o', href: '/users/' + userId + '/details',
 					},
 					{
 						name: 'Settings', icon: 'cog', href: '/users/' + userId + '/edit',

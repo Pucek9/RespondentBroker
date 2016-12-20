@@ -81,7 +81,7 @@ class ProjectDetails {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('There is problem with add your response to project! Error: ' + error);
+				this.notification.error('There is problem with add your response to project! ' + error);
 			} else {
 				this.addToUser(id);
 
@@ -92,10 +92,11 @@ class ProjectDetails {
 	confirm() {
 		this.response.owner = Meteor.userId();
 		this.response.project = this.projectId;
+		this.response.isPaid = false;
 		Responses.insert(angular.copy(this.response),
 			(error, id) => {
 				if (error) {
-					this.notification.error('There is problem with add your response! Error: ' + error);
+					this.notification.error('There is problem with add your response! ' + error);
 				}
 				else {
 					this.addToProject(id);

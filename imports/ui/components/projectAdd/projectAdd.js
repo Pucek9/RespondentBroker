@@ -20,7 +20,7 @@ class ProjectAdd {
 
 	submit() {
 		this.project.owner = Meteor.userId();
-		this.project.responses = 0;
+		this.project.responses = [];
 		this.project.created= dateNowString();
 		this.project.updated = dateNowString();
 		Projects.insert(this.project,

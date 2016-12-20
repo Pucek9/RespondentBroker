@@ -2,23 +2,23 @@
 	<header class="w3-container w3-{{userDetails.color}}">
 		<h5>
 			<!--<button class="w3-btn w3-ripple w3-right w3-border w3-black header-button" ui-sref="users">-->
-				<!--<i class="fa fa-chevron-circle-left"></i> Back-->
+			<!--<i class="fa fa-chevron-circle-left"></i> Back-->
 			<!--</button>-->
 			<h5><i class="fa fa-{{userDetails.icon}} "></i> {{userDetails.pageTitle}}</h5>
 		</h5>
 	</header>
 	<div class="w3-container" style="padding: 0px">
-		<div class="w3-container w3-pale-{{userDetails.color}} w3-border-{{userDetails.color}} w3-leftbar w3-rightbar w3-bottombar">
+		<div
+				class="w3-container w3-pale-{{userDetails.color}} w3-border-{{userDetails.color}} w3-leftbar w3-rightbar w3-bottombar">
 			<img ng-src="{{userDetails.user.profile.avatar}}" class="w3-right" style="width:150px">
-			<p> Name: {{userDetails.user.profile.name}}</p>
-			<p> Forname: {{userDetails.user.profile.forName}}</p>
-			<p> Email: {{userDetails.user.emails[0].address}}</p>
-			<p> Level: {{userDetails.user.profile.level}}</p>
-			<p> Points: {{userDetails.user.profile.points}}</p>
+			<p><i class="fa fa-address-card-o" aria-hidden="true"></i>
+				Name: {{userDetails.user.profile.name}} {{userDetails.user.profile.forName}}</p>
+			<p><i class="fa fa-envelope-o" aria-hidden="true"></i> Email: {{userDetails.user.emails[0].address}}</p>
+			<p><i class="fa fa-star" aria-hidden="true"></i> Level: {{userDetails.user.profile.level}}</p>
+			<p><i class="fa fa-money" aria-hidden="true"></i> Points: {{userDetails.user.profile.points}}</p>
 			<br/>
-			Responses ({{userDetails.responses.length}}):
+			<i class="fa fa-mobile" aria-hidden="true"></i> Responses ({{userDetails.responses.length}}):
 			<dynamic-table data="userDetails.responses" columns="userDetails.columns"></dynamic-table>
 		</div>
 	</div>
-
 </div>
