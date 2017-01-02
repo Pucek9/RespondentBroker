@@ -10,8 +10,8 @@
 	<div class="w3-container w3-pale-{{projectRemove.color}} w3-border-{{projectRemove.color}} w3-leftbar w3-rightbar w3-bottombar">
 		<h2>Are you sure to remove that project?</h2>
 		<h4><b>Project Title:</b> {{projectRemove.project.name}}</h4>
-		<h4><b>Points:</b> {{projectRemove.project.points}}</h4>
-		<h4><b>Responses:</b> {{projectRemove.project.responses}}</h4>
+		<h4><b>Points:</b> {{projectRemove.project.minPoints}} - {{projectRemove.project.maxPoints}}</h4>
+		<h4><b>Responses:</b> {{projectRemove.project.responses.length}}</h4>
 		<h4><b>Create date:</b> {{projectRemove.project.created}}</h4>
 		<h4><b>Last update date:</b> {{projectRemove.project.updated}}</h4>
 		<h4><b>Description:</b></h4>

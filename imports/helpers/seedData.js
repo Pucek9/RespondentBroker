@@ -10,7 +10,9 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'RtfTEHK5scrkRZcch',
-		points: 6,
+		isStepRating: true,
+		isStepDescription: true,
+		maxPoints: 9, minPoints: 6,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
 	},
@@ -21,7 +23,9 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'KJhjaeHJdfkRZcch',
-		points: 4,
+		isStepRating: true,
+		isStepDescription: true,
+		maxPoints: 10, minPoints: 4,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ'
 	},
@@ -32,7 +36,9 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'KJhjaeHJdfkRZcch',
-		points: 8,
+		isStepRating: true,
+		isStepDescription: true,
+		maxPoints: 12, minPoints: 8,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ'
 	},
@@ -43,7 +49,9 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'XasjJHsdkjetewbe',
-		points: 7,
+		isStepRating: true,
+		isStepDescription: true,
+		maxPoints: 16, minPoints: 7,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
 	},
@@ -54,7 +62,9 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'RtfTEHK5scrkRZcch',
-		points: 9,
+		isStepRating: true,
+		isStepDescription: true,
+		maxPoints: 12, minPoints: 9,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ'
 	},
@@ -65,7 +75,9 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'RtfTEHK5scrkRZcch',
-		points: 3,
+		isStepRating: true,
+		isStepDescription: true,
+		maxPoints: 18, minPoints: 3,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
 	},
@@ -80,7 +92,9 @@ Proin convallis nunc at justo sodales aliquam. Aliquam ullamcorper ligula ligula
 		created: randomDateString(),
 		updated: dateNowString(),
 		owner: 'RtfTEHK5scrkRZcch',
-		points: 2,
+		isStepRating: true,
+		isStepDescription: true,
+		maxPoints: 10, minPoints: 2,
 		application: '',
 		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
 	}
@@ -94,7 +108,9 @@ const RESPONSES = [
 		isPaid: false,
 		steps: [{
 			movieTag: "First Task",
-			movieURL: "/screen.m4v"
+			movieURL: "/screen.m4v",
+			rating: 4,
+			description: 'was nice'
 		}]
 	}
 ];

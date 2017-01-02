@@ -2,12 +2,11 @@
 	<header class="w3-container w3-{{projectsTab.color}}">
 		<h5><i class="fa fa-{{projectsTab.icon}}"></i> {{projectsTab.pageTitle}} ({{projectsTab.projects.length}})</h5>
 	</header>
-	<div class="w3-container w3-pale-{{projectsTab.color}} w3-border-{{projectsTab.color}} w3-leftbar w3-rightbar w3-bottombar"
+	<div
+			class="w3-container w3-pale-{{projectsTab.color}} w3-border-{{projectsTab.color}} w3-leftbar w3-rightbar w3-bottombar"
 			style="padding: 0px">
-		<dynamic-table data="projectsTab.projects" columns="projectsTab.columns"
-		               params="projectsTab.params">
-		</dynamic-table>
+		<dynamic-table data="projectsTab.projects" columns="projectsTab.columns"></dynamic-table>
 	</div>
-	<footer class="w3-container w3-blue">
-	</footer>
+	<!--<footer class="w3-container w3-blue">-->
+	<!--</footer>-->
 </div>

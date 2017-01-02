@@ -21,7 +21,7 @@ class UserPanel {
 			email() {
 				let user = Meteor.user();
 				if (user) {
-					let email = user.emails[0].address;
+					let email = user.profile.email;
 					this.setDisplayNameToEmail(email);
 				}
 			}

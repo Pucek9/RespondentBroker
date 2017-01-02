@@ -35,6 +35,10 @@ class ProjectEdit {
 			$set: {
 				name: this.project.name,
 				description: this.project.description,
+				minPoints: this.project.minPoints,
+				maxPoints: this.project.maxPoints,
+				isStepRating: this.project.isStepRating,
+				isStepDescription: this.project.isStepDescription,
 				surveyURL: this.project.surveyURL,
 				application: this.project.application,
 				updated: dateNowString()

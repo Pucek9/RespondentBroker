@@ -37,7 +37,8 @@ class UserEdit {
 				'profile.name': this.user.profile.name,
 				'profile.forName': this.user.profile.forName,
 				'profile.avatar': this.user.profile.avatar,
-				'emails.0.address': this.user.emails[0].address.toLowerCase()
+				'profile.email': this.user.profile.email,
+				'emails.0.address': this.user.profile.email,
 			}
 		}, (error) => {
 			if (error) {

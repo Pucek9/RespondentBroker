@@ -8,6 +8,7 @@ import gSanitize from 'angular-sanitize';
 import ngMaterial from 'angular-material';
 import ngAria from 'angular-aria';
 import ngAnimate from 'angular-animate';
+import inputStars from 'angular-input-stars';
 
 import dataTableFormatter from '../../services/data-format-factory'
 import notification from '../../services/notification-factory'
@@ -28,7 +29,7 @@ import {name as LeftPanel} from '../leftPanel/leftPanel';
 
 class RespondentBroker {
 
-	constructor($scope,$reactive) {
+	constructor($scope, $reactive) {
 		'ngInject';
 		$reactive(this).attach($scope);
 	}
@@ -52,12 +53,13 @@ export default angular.module(name, [
 	UserEdit,
 	UserDetails,
 	LeftPanel,
+	'angular-input-stars',
 	'ngSanitize',
 	'ngMaterial',
 	'ngAria',
 	'ngAnimate',
 	'ngTable',
-	'accounts.ui'
+	'accounts.ui',
 ]).component(name, {
 	template,
 	controllerAs: name,

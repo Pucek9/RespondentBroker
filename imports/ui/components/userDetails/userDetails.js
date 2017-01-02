@@ -35,6 +35,7 @@ class UserDetails {
 				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/details">{{row.projectName}}</a>`),
 			},
 			{field: "points", filter: {points: "number"}, show: true, sortable: "points", title: "Points"},
+			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
 			// {field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
 			// {field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
 			// {field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"},

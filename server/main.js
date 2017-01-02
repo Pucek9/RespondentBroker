@@ -33,6 +33,7 @@ Meteor.startup(() => {
 
 	Accounts.onCreateUser(function (options, user) {
 		user.profile = {
+			email: user.emails[0].address,
 			name: 'User',
 			forName: '',
 			avatar: '/images/avatar2.png',

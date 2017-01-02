@@ -18,7 +18,13 @@ class ProjectDetails {
 
 		this.pageTitle = 'Project details';
 		this.icon = 'check-square-o';
-		this.color = 'yellow';
+		// this.color = 'yellow';
+
+		// var el = angular.element(document).find('#el');
+		// var currentRating = 0;
+		// var maxRating= 5;
+		// var callback = function(rating) { alert(rating); };
+		// var myRating = rating(el, currentRating, maxRating, callback);
 
 		this.response = {};
 		this.response.steps = [];
@@ -29,30 +35,74 @@ class ProjectDetails {
 					_id: this.projectId
 				});
 			},
+			isStepRating() {
+				let project = Projects.findOne({_id: this.projectId});
+				if (project) {
+					return project.isStepRating;
+				}
+			},
+			isStepDescription() {
+				let project = Projects.findOne({_id: this.projectId});
+				if (project) {
+					return project.isStepDescription;
+				}
+			},
 			isMyProject() {
 				let project = Projects.findOne({_id: this.projectId});
 				if (project) {
 					return Meteor.userId() === project.owner;
 				}
 			},
+			// responses() {
+			// 	return Responses.find({project: this.projectId});
+			// },
 			responses() {
-				return Responses.find({project: this.projectId});
+				let responses = Responses.find({project: this.projectId}).fetch();
+				if (responses) {
+					let users =Meteor.users.find({})
+					responses.forEach((r, index, responsesArray) => {
+						users.forEach((u) => {
+							if (r.owner === u._id) {
+								responsesArray[index].ownerName = u.profile.name + ' ' + u.profile.forName;
+							}
+						});
+					});
+					return responses;
+				}
 			},
 			isResponsed() {
 				return Responses.find({project: this.projectId, owner: Meteor.userId()});
+			},
+			ownerFullname() {
+
+			},
+			color() {
+				let project = Projects.findOne({_id: this.projectId});
+				if (project) {
+					let isMyProject = Meteor.userId() === project.owner;
+					return (isMyProject) ? 'yellow' : 'green';
+				}
 			}
+
 		});
 
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
 			{
-				field: "owner",
+				field: "_id",
+				show: true,
+				title: "Actions",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/details/responses/{{row._id}}">View</a>`),
+			},
+			{
+				field: "ownerName",
 				show: true,
 				title: "Presented",
-				sortable: "owner",
-				filter: {owner: "text"},
+				sortable: "ownerName",
+				filter: {ownerName: "text"},
 				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`<a href="users/{{row.owner}}/details">{{row.owner}}</a>`),
+				interpolateExpr: $interpolate(`<a href="users/{{row.owner}}/details">{{row.ownerName}}</a>`),
 			},
 			{
 				field: "steps",
@@ -78,7 +128,9 @@ class ProjectDetails {
 	addNew() {
 		this.response.steps.push({
 			movieTag: this.temp.movieTag,
-			movieURL: this.temp.movieURL
+			movieURL: this.temp.movieURL,
+			stars: this.temp.stars,
+			description: this.temp.description,
 		});
 		this.reset();
 	}
