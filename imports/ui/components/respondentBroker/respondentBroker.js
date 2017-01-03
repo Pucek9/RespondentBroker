@@ -26,6 +26,7 @@ import {name as UsersTab} from '../usersTab/usersTab';
 import {name as UserEdit} from '../userEdit/userEdit';
 import {name as UserDetails} from '../userDetails/userDetails';
 import {name as LeftPanel} from '../leftPanel/leftPanel';
+import {name as ResponseView} from '../responseView/responseView';
 
 class RespondentBroker {
 
@@ -53,6 +54,7 @@ export default angular.module(name, [
 	UserEdit,
 	UserDetails,
 	LeftPanel,
+	ResponseView,
 	'angular-input-stars',
 	'ngSanitize',
 	'ngMaterial',

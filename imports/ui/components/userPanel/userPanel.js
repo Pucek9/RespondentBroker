@@ -31,6 +31,7 @@ class UserPanel {
 	setDisplayNameToEmail(email) {
 		this.$timeout(() => {
 			let display = angular.element(document).find('#login-name-link');
+			console.log(display)
 			display.text(email + ' ▾');
 		}, 100);
 	}

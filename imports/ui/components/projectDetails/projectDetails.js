@@ -18,13 +18,6 @@ class ProjectDetails {
 
 		this.pageTitle = 'Project details';
 		this.icon = 'check-square-o';
-		// this.color = 'yellow';
-
-		// var el = angular.element(document).find('#el');
-		// var currentRating = 0;
-		// var maxRating= 5;
-		// var callback = function(rating) { alert(rating); };
-		// var myRating = rating(el, currentRating, maxRating, callback);
 
 		this.response = {};
 		this.response.steps = [];
@@ -93,7 +86,7 @@ class ProjectDetails {
 				show: true,
 				title: "Actions",
 				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/details/responses/{{row._id}}">View</a>`),
+				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/responses/{{row._id}}">View</a>`),
 			},
 			{
 				field: "ownerName",
