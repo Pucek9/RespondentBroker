@@ -22,18 +22,17 @@
 				<div ng-if="step.description">
 					<textarea ng-model="step.description" disabled="true"></textarea>
 				</div>
-				<video
-						id="video0"
-						width="270" height="480"
-						controls crossOrigin="anonymous">
-					<source ng-src="{{step.movieURL}}" type="video/mp4">
-				</video>
-				<canvas ng-init="responseView.processor.doLoad()"
-				        width="540" height="960"
-				        id="canvas0"
-				></canvas><!--id="{{'canvas'+$index}}" id="{{'video'+$index}}" -->
+					<video
+							id="{{'video'+$index}}"
+							width="270" height="480"
+							controls crossOrigin="anonymous">
+						<source ng-src="{{step.movieURL}}" type="video/mp4">
+					</video>
+					<canvas ng-init="responseView.start()"
+					        width="270" height="480"
+					        id="{{'canvas'+$index}}">
+					</canvas>
 			</div>
 		</div>
-
 	</div>
 </div>
