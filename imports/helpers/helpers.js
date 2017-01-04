@@ -19,4 +19,8 @@ function interpolatedValue($scope, row) {
 	});
 }
 
-export {randomDateString, dateNowString, interpolatedValue}
+function isOwner(userId, object) {
+	return userId && object.owner === userId
+}
+
+export {randomDateString, dateNowString, interpolatedValue, isOwner}

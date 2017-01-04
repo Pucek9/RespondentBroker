@@ -27,6 +27,7 @@ import {name as UserEdit} from '../userEdit/userEdit';
 import {name as UserDetails} from '../userDetails/userDetails';
 import {name as LeftPanel} from '../leftPanel/leftPanel';
 import {name as ResponseView} from '../responseView/responseView';
+import {name as StepView} from '../stepView/stepView';
 
 class RespondentBroker {
 
@@ -55,6 +56,7 @@ export default angular.module(name, [
 	UserDetails,
 	LeftPanel,
 	ResponseView,
+	StepView,
 	'angular-input-stars',
 	'ngSanitize',
 	'ngMaterial',

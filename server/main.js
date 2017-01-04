@@ -6,8 +6,19 @@ import {Responses} from '../imports/api/responses';
 import {PROJECTS, RESPONSES} from '../imports/helpers/seedData';
 
 ownsDocument = function (userId, doc) {
-	console.log('ownsDocument: ',doc && doc._id === userId);
 	return doc && doc._id === userId;
+};
+
+points = function (userId, doc, fields, modifier) {
+	if (modifier.$inc !== undefined) {
+		return Object.keys(modifier.$inc).toString() === 'profile.points';
+	} else {
+		return false;
+	}
+};
+
+allowUpdate = function (userId, doc, fields, modifier) {
+	return ownsDocument(userId, doc) || points(userId, doc, fields, modifier);
 };
 
 Meteor.startup(() => {
@@ -28,7 +39,7 @@ Meteor.startup(() => {
 	}
 
 	Meteor.users.allow({
-		update: ownsDocument
+		update: allowUpdate
 	});
 
 	Accounts.onCreateUser(function (options, user) {
