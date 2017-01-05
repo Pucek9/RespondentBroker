@@ -15,20 +15,21 @@ class ResponseView {
 		this.projectId = $stateParams.projectId;
 		this.responseId = $stateParams.responseId;
 		this.$timeout = $timeout;
-		// this.$state = $state;
 		this.notification = notification;
 
 		this.pageTitle = 'Response View';
 		this.icon = 'check-square-o';
 		this.color = 'yellow';
 
-		this.points = 1;
-
 		this.helpers({
 			project() {
-				return Projects.findOne({
+				let p = Projects.findOne({
 					_id: this.projectId
 				});
+				if (p) {
+					this.points = p.minPoints;
+					return p;}
+
 			},
 			response() {
 				return Responses.findOne({
@@ -77,40 +78,36 @@ class ResponseView {
 		});
 	}
 
+	payForUser(response) {
+		let owner = Meteor.users.findOne({
+			_id: response.owner
+		});
+		Meteor.users.update({
+			_id: owner._id
+		}, {
+			$inc: {
+				'profile.points': this.points,
+				'profile.level': 1,
+			}
+		}, (error) => {
+			if (error) {
+				this.notification.error('Oops, unable to add poitns for User... Error: ' + error.message);
+				console.log(error);
+			} else {
+				this.setPaid(response);
+			}
+		});
+	}
+
 	submit() {
 		let response = Responses.findOne({
 			_id: this.responseId
 		});
-
 		if (response && this.validatePoints()) {
-			let owner = Meteor.users.findOne({
-				_id: response.owner
-			});
-			console.log(this.points);
-			Meteor.users.update({
-				_id: owner._id
-			}, {
-				$inc: {
-					'profile.points': this.points,
-				}
-			}, (error) => {
-				if (error) {
-					this.notification.error('Oops, unable to add poitns for User... Error: ' + error.message);
-					console.log(error);
-				} else {
-					this.setPaid(response);
-				}
-			});
+			this.payForUser(response);
 		}
 	}
 
-	//
-	// $onInit() {
-	// 	let p = Projects.findOne({
-	// 		_id: this.projectId
-	// 	});
-	// 	if (this.p) {this.points = p.minPoints;}
-	// }
 }
 
 const name = 'responseView';
@@ -132,14 +129,14 @@ function config($stateProvider) {
 	$stateProvider.state('responseView', {
 		url: '/projects/:projectId/responses/:responseId',
 		template: '<response-view></response-view>',
-		// resolve: {
-		// 	currentUser($q) {
-		// 		if (Meteor.userId() === null) {
-		// 			return $q.reject('AUTH_REQUIRED');
-		// 		} else {
-		// 			return $q.resolve();
-		// 		}
-		// 	}
-		// }
+		resolve: {
+			currentUser($q) {
+				if (Meteor.userId() === null) {
+					return $q.reject('AUTH_REQUIRED');
+				} else {
+					return $q.resolve();
+				}
+			}
+		}
 	});
 }

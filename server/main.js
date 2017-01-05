@@ -11,7 +11,7 @@ ownsDocument = function (userId, doc) {
 
 points = function (userId, doc, fields, modifier) {
 	if (modifier.$inc !== undefined) {
-		return Object.keys(modifier.$inc).toString() === 'profile.points';
+		return Object.keys(modifier.$inc)[0] === 'profile.points' && Object.keys(modifier.$inc)[1] === 'profile.level'
 	} else {
 		return false;
 	}
