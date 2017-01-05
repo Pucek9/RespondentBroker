@@ -128,3 +128,15 @@ button.md-action.md-button.ng-scope.md-default-theme.md-ink-ripple {
 	text-shadow: black 0 0 1px, 0 0 1px ;
 
 }
+
+div.w3-container {
+	overflow: auto;
+}
+
+input.w3-input {
+	width:96%
+}
+
+textarea.w3-input {
+	width:96%
+}

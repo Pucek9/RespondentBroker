@@ -11,17 +11,17 @@
 		<form class="w3-container w3-pale-{{userEdit.color}} w3-border-{{userEdit.color}} w3-leftbar w3-rightbar w3-bottombar">
 
 			<p> User Name
-				<input class="w3-input w3-animate-input" type="text" style="width:60%" ng-model="userEdit.user.profile.name"
+				<input class="w3-input " type="text" ng-model="userEdit.user.profile.name"
 				       placeholder="User Name"></p>
 			<p> User Forname
-				<input class="w3-input w3-animate-input" type="text" style="width:60%" ng-model="userEdit.user.profile.forName"
+				<input class="w3-input " type="text" ng-model="userEdit.user.profile.forName"
 				       placeholder="User Forname"></p>
 			<p> Avatar
 			<div><img ng-src="{{userEdit.user.profile.avatar}}"  style="width:100px"></div>
-				<input class="w3-input w3-animate-input" type="text" style="width:60%" ng-model="userEdit.user.profile.avatar"
+				<input class="w3-input " type="text" ng-model="userEdit.user.profile.avatar"
 				       placeholder="Avatar URL"></p>
 			<p> Email
-				<input class="w3-input w3-animate-input" type="email" style="width:60%"
+				<input class="w3-input " type="email"
 				       ng-model="userEdit.user.profile.email"
 				       placeholder="Email"></p>
 			<button class="w3-btn w3-ripple w3-left w3-border w3-{{userEdit.color}}" ng-click="userEdit.confirm()">
