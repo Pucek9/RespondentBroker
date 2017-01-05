@@ -17,7 +17,7 @@ class Navigation {
 				let userId = Meteor.userId();
 				return [
 					{
-						name: 'Dashboard', icon: 'dashboard', href: '/',
+						name: 'Dashboard', icon: 'line-chart', href: '/',
 					},
 					{
 						name: 'My Projects', icon: 'dashboard', href: '/projects/my',
@@ -25,9 +25,9 @@ class Navigation {
 					{
 						name: 'Projects', icon: 'search', href: '/projects',
 					},
-					{
-						name: 'History', icon: 'history', href: '/history',
-					},
+					// {
+					// 	name: 'History', icon: 'history', href: '/history',
+					// },
 					{
 						name: 'Users', icon: 'users', href: '/users',
 					},

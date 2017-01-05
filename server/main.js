@@ -50,7 +50,7 @@ Meteor.startup(() => {
 			avatar: '/images/avatar2.png',
 			responses: [],
 			level: 0,
-			points: 0,
+			points: 1,
 		};
 		console.log('Registered new user: ', user);
 		return user;

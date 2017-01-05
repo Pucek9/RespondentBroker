@@ -21,6 +21,21 @@ class ProjectsTab {
 			projects() {
 				return Projects.find({});
 			},
+			// projects() {
+			// 	let projects = Projects.find({}).fetch();
+			// 	if (projects) {
+			// 		let users = Meteor.users.find({});
+			// 		projects.forEach((p, index, projectsArray) => {
+			// 			// projectsArray[index].responsesLength = p.responses.length;
+			// 			users.forEach((u) => {
+			// 				if (p.owner === u._id) {
+			// 					projectsArray[index].ownerName = u.profile.name + ' ' + u.profile.forName;
+			// 				}
+			// 			});
+			// 		});
+			// 		return projects;
+			// 	}
+			// },
 		});
 
 		this.columns = [
@@ -31,9 +46,19 @@ class ProjectsTab {
 			},
 			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Created"},
 			{field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
-			{field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"},
+			{field: "owner", filter: {owner: "text"}, show: false, sortable: "owner", title: "Owner"},
+			// {
+			// 	field: "ownerName",
+			// 	show: true,
+			// 	title: "Owner",
+			// 	sortable: "ownerName",
+			// 	filter: {ownerName: "text"},
+			// 	getValue: interpolatedValue,
+			// 	interpolateExpr: $interpolate(`<a href="users/{{row.owner}}/details">{{row.ownerName}}</a>`),
+			// },
 			{field: "minPoints", filter: {minPoints: "number"}, show: true, sortable: "minPoints", title: "Min points"},
 			{field: "maxPoints", filter: {maxPoints: "number"}, show: true, sortable: "maxPoints", title: "Max points"},
+			// {field: "responsesLength", filter: {responsesLength: "number"}, show: true, sortable: "responsesLength", title: "Replies"},
 			{
 				field: "responses",
 				show: true,

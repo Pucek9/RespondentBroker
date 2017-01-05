@@ -11,7 +11,8 @@ class Dashboard {
 		$reactive(this).attach($scope);
 
 		this.pageTitle = 'Dashboard';
-		this.icon = 'dashboard';
+		this.color = 'yellow';
+		this.icon = 'line-chart';
 
 	}
 }

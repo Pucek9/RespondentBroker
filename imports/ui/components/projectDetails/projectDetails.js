@@ -52,7 +52,7 @@ class ProjectDetails {
 			responses() {
 				let responses = Responses.find({project: this.projectId}).fetch();
 				if (responses) {
-					let users =Meteor.users.find({})
+					let users = Meteor.users.find({})
 					responses.forEach((r, index, responsesArray) => {
 						users.forEach((u) => {
 							if (r.owner === u._id) {

@@ -9,9 +9,9 @@
 	<div class="w3-col s8">
 		<span>Welcome, <strong>{{(userPanel.user ? userPanel.user.profile.name : 'Guest')}}</strong></span><br/>
 		<login-buttons ng-init="userPanel.email()"></login-buttons><br/>
-		<a ng-click="userPanel.myFunc()" href="#" class="w3-hover-none w3-hover-text-red w3-show-inline-block"><i class="fa fa-envelope"></i></a>
-		<a href="#" class="w3-hover-none w3-hover-text-green w3-show-inline-block"><i class="fa fa-user"></i></a>
-		<a href="#" class="w3-hover-none w3-hover-text-yellow w3-show-inline-block"><i class="fa fa-cog"></i></a>
+		<a href="mailto:?subject=RespondentBroker&body=sent from Respondent Broker" class="w3-hover-none w3-hover-text-red w3-show-inline-block"><i class="fa fa-envelope"></i></a>
+		<a href="/users/{{userPanel.user._id}}/details" class="w3-hover-none w3-hover-text-green w3-show-inline-block"><i class="fa fa-user"></i></a>
+		<a href="/users/{{userPanel.user._id}}/edit" class="w3-hover-none w3-hover-text-yellow w3-show-inline-block"><i class="fa fa-cog"></i></a>
 		<a href="#" class="w3-hover-none w3-hover-text-blue w3-show-inline-block"><i class="fa fa-language"></i></a>
 	</div>
 <h1></h1>
