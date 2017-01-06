@@ -25,22 +25,22 @@ class SingleFileUpload {
 
 			const reader = new FileReader;
 			reader.onload = this.$bindToContext((e) => {
-				this.imageToUpload = e.target.result;
+				this.fileToUpload = e.target.result;
 			});
 
 			reader.readAsDataURL(files[0]);
-			this.$scope.$apply();
+
 		} else {
-			this.imageToUpload = undefined;
+			this.fileToUpload = undefined;
 		}
 	}
 
 	save() {
-		upload(this.imageToUpload, this.currentFile.name, this.$bindToContext((file) => {
+		upload(this.fileToUpload, this.currentFile.name, this.$bindToContext((file) => {
 			this.uploaded.push(file);
 			console.log('got file',file);
 			this.file = file.path;
-
+			this.$scope.$apply();
 			this.reset();
 		}), (e) => {
 			console.log('Oops, something went wrong', e);
@@ -48,7 +48,7 @@ class SingleFileUpload {
 	}
 
 	reset() {
-		this.imageToUpload = undefined;
+		this.fileToUpload = undefined;
 	}
 }
 

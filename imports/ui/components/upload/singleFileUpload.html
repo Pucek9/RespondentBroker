@@ -8,14 +8,14 @@
 	     ngf-allow-dir="false"
 	     ngf-accept="'image/*'"
 	     ngf-drop-available="true"
-	     ng-hide="singleFileUpload.imageToUpload">
+	     ng-hide="singleFileUpload.fileToUpload">
 		<div>Click here to select image</div>
 		<div>
 			<strong>OR</strong>
 		</div>
 		<div>You can also drop image to here</div>
 	</div>
-	<div ng-show="singleFileUpload.imageToUpload" layout="column" class="ng-crop">
+	<div ng-show="singleFileUpload.fileToUpload" layout="column" class="ng-crop">
 		<div>
 			<h3>Edit &amp; crop</h3>
 			<md-button ng-click="singleFileUpload.save()" class="md-primary">
@@ -25,9 +25,11 @@
 				Cancel
 			</md-button>
 		</div>
-		<div class="ng-crop-container">{{singleFileUpload.imageToUpload}}
-			<img ng-src="{{singleFileUpload.imageToUpload}}"/>
-			<!--<img-crop image="partyUpload.cropImgSrc" result-image="partyUpload.myCroppedImage" area-type="square"></img-crop>-->
+		<div>
+			Choosen avatar:
+			<div class="ng-crop-container w3-row">
+				<img ng-src="{{singleFileUpload.fileToUpload}}" style="width:100px"/>
+			</div>
 		</div>
 	</div>
 </div>
