@@ -24,13 +24,13 @@ class ResponseView {
 
 		this.helpers({
 			project() {
-				let p = Projects.findOne({
+				const project = Projects.findOne({
 					_id: this.projectId
 				});
-				if (p) {
-					this.points = p.minPoints;
-					return p;}
-
+				if (project) {
+					this.points = project.minPoints;
+					return project;
+				}
 			},
 			response() {
 				return Responses.findOne({
@@ -46,11 +46,17 @@ class ResponseView {
 						_id: response.owner
 					})
 				}
+			},
+			projectOwner() {
+				const project = Projects.findOne({_id: this.projectId});
+				const userId = Meteor.userId();
+				if (project && userId) {
+					return project.owner === userId;
+				}
+
 			}
 		});
 	}
-
-
 
 	setPaid(response) {
 		Responses.update({
