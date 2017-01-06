@@ -24,7 +24,7 @@
 				<input class="w3-input" type="text" ng-model="userEdit.user.profile.avatar" name="avatar"
 				       placeholder="Avatar URL"></label>
 				<img ng-src="{{userEdit.user.profile.avatar}}" style="width:100px"></label>
-				<single-file-upload file="userEdit.user.profile.avatar"></single-file-upload>
+				<single-file-upload file="userEdit.user.profile.avatar" type="'image/*'"></single-file-upload>
 			</p>
 			<p><label>Email
 				<input class="w3-input" type="email" name="email" required

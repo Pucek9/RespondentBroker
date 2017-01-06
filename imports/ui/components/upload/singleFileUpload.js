@@ -1,20 +1,16 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import {Meteor} from 'meteor/meteor';
 import ngFileUpload from 'ng-file-upload';
-// import 'ng-img-crop/compile/minified/ng-img-crop';
-// import 'ng-img-crop/compile/minified/ng-img-crop.css';
-
-
-import { Meteor } from 'meteor/meteor';
 
 import template from './singleFileUpload.html';
-import { upload } from '../../../api/files';
-
+import {ImagesStore, upload} from '../../../api/files';
 
 class SingleFileUpload {
-	constructor($scope, $reactive, $rootScope) {
+	constructor($scope, $reactive, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.notification = notification;
 		this.$scope = $scope;
 		this.uploaded = [];
 	}
@@ -22,27 +18,25 @@ class SingleFileUpload {
 	addFiles(files) {
 		if (files.length) {
 			this.currentFile = files[0];
-
 			const reader = new FileReader;
 			reader.onload = this.$bindToContext((e) => {
 				this.fileToUpload = e.target.result;
 			});
-
 			reader.readAsDataURL(files[0]);
-
 		} else {
 			this.fileToUpload = undefined;
 		}
 	}
 
 	save() {
-		upload(this.fileToUpload, this.currentFile.name, this.$bindToContext((file) => {
+		upload(this.fileToUpload, this.currentFile.name, ImagesStore, this.$bindToContext((file) => {
 			this.uploaded.push(file);
-			console.log('got file',file);
+			console.log('got file', file);
 			this.file = file.path;
 			this.$scope.$apply();
 			this.reset();
 		}), (e) => {
+			this.notification.error('Oops, something went wrong' + e);
 			console.log('Oops, something went wrong', e);
 		});
 	}
@@ -50,6 +44,27 @@ class SingleFileUpload {
 	reset() {
 		this.fileToUpload = undefined;
 	}
+
+	isImage() {
+		return this.type.split('/')[0] === 'image';
+	}
+
+	isApplication() {
+		return this.type.split('/')[0] === 'application';
+	}
+
+	isAudio() {
+		return this.type.split('/')[0] === 'audio';
+	}
+
+	isText() {
+		return this.type.split('/')[0] === 'text';
+	}
+
+	isVideo() {
+		return this.type.split('/')[0] === 'video';
+	}
+
 }
 
 const name = 'singleFileUpload';
@@ -63,6 +78,7 @@ export default angular.module(name, [
 	controllerAs: name,
 	controller: SingleFileUpload,
 	bindings: {
-		file: '='
+		file: '=',
+		type: '='
 	},
 });

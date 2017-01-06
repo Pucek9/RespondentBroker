@@ -8,7 +8,7 @@ function loggedIn(userId) {
 
 const Images = new Mongo.Collection('images');
 
-export const ImagesStore = new UploadFS.store.GridFS({
+const ImagesStore = new UploadFS.store.GridFS({
 	collection: Images,
 	name: 'images',
 	filter: new UploadFS.Filter({
@@ -53,7 +53,6 @@ function dataURLToBlob(dataURL) {
 	return new Blob([uInt8Array], {type: contentType});
 }
 
-
 /**
  * Uploads a new file
  *
@@ -62,18 +61,18 @@ function dataURLToBlob(dataURL) {
  * @param  {Function} resolve [description]
  * @param  {Function} reject  [description]
  */
-export function upload(dataUrl, name, resolve, reject) {
+function upload(dataUrl, name, Store, resolve, reject) {
 	const blob = dataURLToBlob(dataUrl);
 	blob.name = name;
 	const file = _.pick(blob, 'name', 'type', 'size');
 	const upload = new UploadFS.Uploader({
 		data: blob,
 		file: file,
-		store: ImagesStore,
+		store: Store,
 		onError: reject,
 		onComplete: resolve
 	});
 	upload.start();
 }
 
-export {Images, dataURLToBlob, upload}
+export {Images, ImagesStore, upload}
