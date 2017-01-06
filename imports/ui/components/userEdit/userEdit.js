@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 import template from './userEdit.html';
 import {dateNowString} from '../../../helpers/helpers';
+import { name as SingleFileUpload } from '../upload/singleFileUpload';
 
 class UserEdit {
 	constructor($stateParams, $scope, $reactive, $state, notification) {
@@ -58,7 +59,8 @@ const name = 'userEdit';
 // create a module
 export default angular.module(name, [
 	angularMeteor,
-	uiRouter
+	uiRouter,
+	SingleFileUpload
 ]).component(name, {
 	template,
 	controllerAs: name,

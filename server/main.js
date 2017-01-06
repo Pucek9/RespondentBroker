@@ -2,6 +2,7 @@ import {Meteor} from 'meteor/meteor';
 import {Accounts} from 'meteor/accounts-base'
 import {Projects} from '../imports/api/projects';
 import {Responses} from '../imports/api/responses';
+import {Images} from'../imports/api/files';
 
 import {PROJECTS, RESPONSES} from '../imports/helpers/seedData';
 

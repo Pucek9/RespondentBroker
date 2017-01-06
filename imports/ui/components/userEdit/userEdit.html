@@ -19,11 +19,15 @@
 				<input class="w3-input" type="text" ng-model="userEdit.user.profile.forName" name="forName" required
 				       ng-class="{'w3-border-red w3-pale-red': !form.forName.$valid }"
 				       placeholder="User Forname"></label></p>
-			<p><label>Avatar
-
+			<p>
+				<label>Avatar
 				<input class="w3-input" type="text" ng-model="userEdit.user.profile.avatar" name="avatar"
 				       placeholder="Avatar URL"></label>
 				<img ng-src="{{userEdit.user.profile.avatar}}" style="width:100px">
+				</label>
+				<br/>
+				<!--<single-file-upload file="userEdit.user.profile.avatar"></single-file-upload>-->
+				<single-file-upload file="userEdit.user.profile.avatar"></single-file-upload>
 			</p>
 			<p><label>Email
 				<input class="w3-input" type="email" name="email" required

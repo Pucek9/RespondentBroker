@@ -62,6 +62,9 @@ class ProjectAdd {
 		}
 	}
 
+	test(a) {
+		console.log(a)
+	}
 }
 
 const name = 'projectAdd';

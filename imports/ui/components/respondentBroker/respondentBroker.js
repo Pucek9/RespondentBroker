@@ -9,6 +9,7 @@ import ngMaterial from 'angular-material';
 import ngAria from 'angular-aria';
 import ngAnimate from 'angular-animate';
 import inputStars from 'angular-input-stars';
+import ngFileUpload from 'ng-file-upload';
 
 import dataTableFormatter from '../../services/data-format-factory'
 import notification from '../../services/notification-factory'
@@ -58,6 +59,7 @@ export default angular.module(name, [
 	LeftPanel,
 	ResponseView,
 	StepView,
+	ngFileUpload,
 	'angular-input-stars',
 	'ngSanitize',
 	'ngMaterial',
