@@ -7,13 +7,14 @@ import template from './projectEdit.html';
 import {dateNowString} from '../../../helpers/helpers';
 
 class ProjectEdit {
-	constructor($stateParams, $scope, $reactive, $state, notification) {
+	constructor($stateParams, $scope, $reactive, $state, notification, validator) {
 
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
 		this.$state = $state;
 		this.notification = notification;
+		this.validator = validator;
 
 		this.pageTitle = 'Update your project ';
 		this.icon = 'refresh';
@@ -28,7 +29,7 @@ class ProjectEdit {
 		});
 	}
 
-	confirm() {
+	updateProject() {
 		Projects.update({
 			_id: this.project._id
 		}, {
@@ -48,10 +49,17 @@ class ProjectEdit {
 				this.notification.error('Oops, unable to update the project...');
 			} else {
 				this.$state.go('myProjects');
-					this.notification.success('Your project was updated successfully!');
+				this.notification.success('Your project was updated successfully!');
 			}
 
 		});
+	}
+
+	confirm() {
+		const user = Meteor.user();
+		if (this.validator.project(this.project, user)) {
+			this.updateProject();
+		}
 	}
 }
 

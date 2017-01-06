@@ -39,7 +39,6 @@ class StepView {
 					_id: this.responseId
 				});
 				if (responses) {
-					console.log(responses.steps[this.stepId])
 					return responses.steps[this.stepId];
 				}
 			}

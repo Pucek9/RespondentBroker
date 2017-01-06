@@ -7,10 +7,11 @@ import {dateNowString} from '../../../helpers/helpers';
 import template from './projectAdd.html';
 
 class ProjectAdd {
-	constructor($state, notification) {
+	constructor($state, notification, validator) {
 		'ngInject';
 		this.$state = $state;
 		this.notification = notification;
+		this.validator = validator;
 		this.project = {};
 
 		this.pageTitle = 'Add new project ';
@@ -18,27 +19,23 @@ class ProjectAdd {
 		this.color = 'green';
 	}
 
-	checkPoints () {
-		const user = Meteor.user();
-		return user.profile.points >= this.project.maxPoints;
-	}
 
 	decreasePoints(id) {
-			Meteor.users.update({
-				_id: this.project.owner
-			}, {
-				$inc: {
-					'profile.points': -this.project.maxPoints,
-				}
-			}, (error) => {
-				if (error) {
-					this.notification.error('Oops, unable to remove poitns for User... Error: ' + error.message);
-					console.log(error);
-				} else {
-					this.notification.success('Your project was added successfully!');
-					this.$state.go('projectDetails', {projectId: id});
-				}
-			});
+		Meteor.users.update({
+			_id: this.project.owner
+		}, {
+			$inc: {
+				'profile.points': -this.project.maxPoints,
+			}
+		}, (error) => {
+			if (error) {
+				this.notification.error('Oops, unable to remove poitns for User... Error: ' + error.message);
+				console.log(error);
+			} else {
+				this.notification.success('Your project was added successfully!');
+				this.$state.go('projectDetails', {projectId: id});
+			}
+		});
 	}
 
 	addProject() {
@@ -59,16 +56,12 @@ class ProjectAdd {
 	}
 
 	submit() {
-		if (this.checkPoints()) {
+		const user = Meteor.user();
+		if (this.validator.project(this.project, user)) {
 			this.addProject();
-		} else {
-			this.notification.error('You have not enough points. Reduce the max points or earn new points');
 		}
 	}
-	//
-	// reset() {
-	// 	this.project = {};
-	// }
+
 }
 
 const name = 'projectAdd';

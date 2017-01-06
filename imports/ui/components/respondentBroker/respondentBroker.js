@@ -12,6 +12,7 @@ import inputStars from 'angular-input-stars';
 
 import dataTableFormatter from '../../services/data-format-factory'
 import notification from '../../services/notification-factory'
+import validator from '../../services/validator'
 
 import template from './respondentBroker.html';
 import {name as DynamicTable} from '../dynamicTable/dynamicTable';
@@ -72,7 +73,8 @@ export default angular.module(name, [
 	.config(config)
 	.run(run)
 	.factory('dataTableFormatter', dataTableFormatter)
-	.factory('notification', notification);
+	.factory('notification', notification)
+	.factory('validator', validator);
 
 function config($locationProvider, $urlRouterProvider) {
 	'ngInject';

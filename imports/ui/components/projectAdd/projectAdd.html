@@ -8,10 +8,12 @@
 		</h5>
 	</header>
 	<div class="w3-container" style="padding: 0px">
-		<form
-				class="w3-container w3-pale-{{projectAdd.color}} w3-leftbar w3-rightbar w3-bottombar w3-border-{{projectAdd.color}}">
+		<form name="form"
+		      class="w3-container w3-pale-{{projectAdd.color}} w3-leftbar w3-rightbar w3-bottombar w3-border-{{projectAdd.color}}">
 			<p> Project Name
-				<input class="w3-input" type="text" ng-model="projectAdd.project.name"
+				<input class="w3-input" type="text"
+				       name="name" ng-class="{'w3-border-red w3-pale-red': !form.name.$valid }" required
+				       ng-model="projectAdd.project.name"
 				       placeholder="Project Name">
 			</p>
 			<p> Description
@@ -20,7 +22,9 @@
 				          placeholder="Instruction how must do your respondent."></textarea>
 			</p>
 			<p>Upload your application
-				<input class="w3-input" type="file" ng-model="projectAdd.project.application"
+				<input class="w3-input" type="file"
+				       name="application" ng-class="{'w3-border-red w3-pale-red': !form.application.$valid }"
+				       ng-model="projectAdd.project.application"
 				       placeholder="Application">
 			</p>
 			<p>Add URL to your survey
@@ -31,9 +35,11 @@
 				How many points will you give for respondent?
 			<div class="w3-row">
 				<input class="w3-input w3-left" style="width:47.1%" type="number" ng-model="projectAdd.project.minPoints"
-				       placeholder="from">
+				       placeholder="from"
+				       name="minPoints" ng-class="{'w3-border-red w3-pale-red': !form.minPoints.$valid }" required>
 				<input class="w3-input w3-left" style="width:47.1%" type="number" ng-model="projectAdd.project.maxPoints"
-				       placeholder="to">
+				       placeholder="to" name="maxPoints" ng-class="{'w3-border-red w3-pale-red': !form.maxPoints.$valid }"
+				       required>
 			</div>
 			</p>
 			<p>
@@ -45,7 +51,8 @@
 				<label>Add description to step</label>
 			</p>
 			<p>
-				<button class="w3-btn w3-ripple w3-left w3-border w3-{{projectAdd.color}}" ng-click="projectAdd.submit()">
+				<button class="w3-btn w3-ripple w3-left w3-border w3-{{projectAdd.color}}"
+				        ng-click="projectAdd.submit()" ng-disabled="!form.$valid">
 					<i class="fa fa-{{projectAdd.icon}}"></i> Confirm
 				</button>
 			</p>
