@@ -9,13 +9,14 @@ import {interpolatedValue} from '../../../helpers/helpers';
 import template from './responseView.html';
 
 class ResponseView {
-	constructor($stateParams, $scope, $reactive, $timeout, notification) {
+	constructor($stateParams, $scope, $reactive, $timeout, notification, validator) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
 		this.responseId = $stateParams.responseId;
 		this.$timeout = $timeout;
 		this.notification = notification;
+		this.validator = validator;
 
 		this.pageTitle = 'Response View';
 		this.icon = 'check-square-o';
@@ -49,17 +50,7 @@ class ResponseView {
 		});
 	}
 
-	validatePoints() {
-		let project = Projects.findOne({
-			_id: this.projectId
-		});
-		if (this.points >= project.minPoints && this.points <= project.maxPoints) {
-			return true;
-		} else {
-			this.notification.error(`You set points not in range ${project.minPoints}-${project.maxPoints}. Change value.`);
-			return false;
-		}
-	}
+
 
 	setPaid(response) {
 		Responses.update({
@@ -100,10 +91,13 @@ class ResponseView {
 	}
 
 	submit() {
-		let response = Responses.findOne({
+		const response = Responses.findOne({
 			_id: this.responseId
 		});
-		if (response && this.validatePoints()) {
+		const project = Projects.findOne({
+			_id: this.projectId
+		});
+		if (this.validator.payPoints(project, this.points)) {
 			this.payForUser(response);
 		}
 	}

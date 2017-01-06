@@ -16,8 +16,7 @@ export default (notification) => {
 			};
 
 			validateMinMaxPoints = () => {
-				if (project.minPoints && project.maxPoints &&
-					project.minPoints <= project.maxPoints) {
+				if (project.minPoints <= project.maxPoints) {
 					return true;
 				}
 				else {
@@ -37,6 +36,15 @@ export default (notification) => {
 			};
 
 			return checkUserPoints() && validateMinMaxPoints() && validateMinPoints();
+		},
+
+		payPoints(project, points) {
+			if (points >= project.minPoints && points <= project.maxPoints) {
+				return true;
+			} else {
+				notification.error(`You set points not in range ${project.minPoints}-${project.maxPoints}. Change value.`);
+				return false;
+			}
 		}
 	}
 };
