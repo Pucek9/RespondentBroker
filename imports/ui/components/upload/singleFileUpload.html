@@ -1,29 +1,27 @@
 <div layout="column">
 	<div ngf-drop
 	     ngf-select
-	     ngf-change="singleFileUpload.addImages($files)"
+	     ngf-change="singleFileUpload.addFiles($files)"
 	     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
 	     class="drop-box"
 	     ngf-multiple="false"
 	     ngf-allow-dir="false"
 	     ngf-accept="'image/*'"
 	     ngf-drop-available="true"
-	     ng-hide="singleFileUpload.cropImgSrc">
+	     ng-hide="singleFileUpload.imageToUpload">
 		<div>Click here to select image</div>
 		<div>
 			<strong>OR</strong>
 		</div>
 		<div>You can also drop image to here</div>
 	</div>
-	{{singleFileUpload.uploaded}}
-	<img ng-src="{{singleFileUpload.file.path}}"/>
 	<div ng-show="singleFileUpload.imageToUpload" layout="column" class="ng-crop">
 		<div>
 			<h3>Edit &amp; crop</h3>
 			<md-button ng-click="singleFileUpload.save()" class="md-primary">
 				Save Image
 			</md-button>
-			<md-button ng-click="partyUpload.reset()">
+			<md-button ng-click="singleFileUpload.reset()">
 				Cancel
 			</md-button>
 		</div>

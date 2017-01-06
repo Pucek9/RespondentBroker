@@ -2,23 +2,22 @@ import {Meteor} from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 import {UploadFS} from 'meteor/jalik:ufs';
 
-const Images = new Mongo.Collection('images');
-
 function loggedIn(userId) {
 	return !!userId;
 }
 
-Images.allow({
-	insert: loggedIn,
-	update: loggedIn,
-	remove: loggedIn
-});
+const Images = new Mongo.Collection('images');
 
 export const ImagesStore = new UploadFS.store.GridFS({
 	collection: Images,
 	name: 'images',
 	filter: new UploadFS.Filter({
 		contentTypes: ['image/*']
+	}),
+	permissions: new UploadFS.StorePermissions({
+		insert: loggedIn,
+		update: loggedIn,
+		remove: loggedIn
 	})
 });
 

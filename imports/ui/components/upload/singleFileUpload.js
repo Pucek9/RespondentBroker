@@ -12,14 +12,14 @@ import { upload } from '../../../api/files';
 
 
 class SingleFileUpload {
-	constructor($scope, $reactive) {
+	constructor($scope, $reactive, $rootScope) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.$scope = $scope;
 		this.uploaded = [];
 	}
 
-	addImages(files) {
-		// console.log(files)
+	addFiles(files) {
 		if (files.length) {
 			this.currentFile = files[0];
 
@@ -29,6 +29,7 @@ class SingleFileUpload {
 			});
 
 			reader.readAsDataURL(files[0]);
+			this.$scope.$apply();
 		} else {
 			this.imageToUpload = undefined;
 		}

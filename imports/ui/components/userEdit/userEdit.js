@@ -14,7 +14,7 @@ class UserEdit {
 		this.userId = $stateParams.userId;
 		this.$state = $state;
 		this.notification = notification;
-
+this.$scope = $scope;
 		this.pageTitle = 'Update your Account ';
 		this.icon = 'refresh';
 		this.color = 'blue';
@@ -23,9 +23,6 @@ class UserEdit {
 
 			user() {
 				return Meteor.user();
-				// return Meteor.users.findOne({
-				// 	_id: this.userId
-				// });
 			}
 		});
 	}
