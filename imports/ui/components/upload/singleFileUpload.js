@@ -1,10 +1,10 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import {Meteor} from 'meteor/meteor';
+import {upload} from '../../../api/files';
 import ngFileUpload from 'ng-file-upload';
 
 import template from './singleFileUpload.html';
-import {ImagesStore, upload} from '../../../api/files';
 
 class SingleFileUpload {
 	constructor($scope, $reactive, notification) {
@@ -18,6 +18,8 @@ class SingleFileUpload {
 	addFiles(files) {
 		if (files.length) {
 			this.currentFile = files[0];
+			// console.log('currentFile', this.currentFile);
+
 			const reader = new FileReader;
 			reader.onload = this.$bindToContext((e) => {
 				this.fileToUpload = e.target.result;
@@ -29,7 +31,7 @@ class SingleFileUpload {
 	}
 
 	save() {
-		upload(this.fileToUpload, this.currentFile.name, ImagesStore, this.$bindToContext((file) => {
+		upload(this.fileToUpload, this.currentFile.name, this.store, this.$bindToContext((file) => {
 			this.uploaded.push(file);
 			console.log('got file', file);
 			this.file = file.path;
@@ -50,7 +52,7 @@ class SingleFileUpload {
 	}
 
 	isApplication() {
-		return this.type.split('/')[0] === 'application';
+		return this.type === '';
 	}
 
 	isAudio() {
@@ -64,7 +66,6 @@ class SingleFileUpload {
 	isVideo() {
 		return this.type.split('/')[0] === 'video';
 	}
-
 }
 
 const name = 'singleFileUpload';
@@ -79,6 +80,7 @@ export default angular.module(name, [
 	controller: SingleFileUpload,
 	bindings: {
 		file: '=',
-		type: '='
+		type: '=',
+		store: '='
 	},
 });

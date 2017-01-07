@@ -7,7 +7,6 @@ function loggedIn(userId) {
 }
 
 const Images = new Mongo.Collection('images');
-
 const ImagesStore = new UploadFS.store.GridFS({
 	collection: Images,
 	name: 'images',
@@ -20,6 +19,35 @@ const ImagesStore = new UploadFS.store.GridFS({
 		remove: loggedIn
 	})
 });
+
+const Videos = new Mongo.Collection('videos');
+const VideosStore = new UploadFS.store.GridFS({
+	collection: Videos,
+	name: 'videos',
+	filter: new UploadFS.Filter({
+		contentTypes: ['video/*']
+	}),
+	permissions: new UploadFS.StorePermissions({
+		insert: loggedIn,
+		update: loggedIn,
+		remove: loggedIn
+	})
+});
+
+const Applications = new Mongo.Collection('applications');
+const ApplicationsStore = new UploadFS.store.GridFS({
+	collection: Applications,
+	name: 'applications',
+	filter: new UploadFS.Filter({
+		contentTypes: ['application/*']
+	}),
+	permissions: new UploadFS.StorePermissions({
+		insert: loggedIn,
+		update: loggedIn,
+		remove: loggedIn
+	})
+});
+
 
 /**
  * Converts DataURL to Blob object
@@ -58,21 +86,22 @@ function dataURLToBlob(dataURL) {
  *
  * @param  {String}   dataUrl [description]
  * @param  {String}   name    [description]
+ * @param  {function}   store    [description]
  * @param  {Function} resolve [description]
  * @param  {Function} reject  [description]
  */
-function upload(dataUrl, name, Store, resolve, reject) {
+function upload(dataUrl, name, store, resolve, reject) {
 	const blob = dataURLToBlob(dataUrl);
 	blob.name = name;
 	const file = _.pick(blob, 'name', 'type', 'size');
 	const upload = new UploadFS.Uploader({
 		data: blob,
 		file: file,
-		store: Store,
+		store: store,
 		onError: reject,
 		onComplete: resolve
 	});
 	upload.start();
 }
 
-export {Images, ImagesStore, upload}
+export {Images, ImagesStore, Videos, VideosStore, Applications, ApplicationsStore, upload}

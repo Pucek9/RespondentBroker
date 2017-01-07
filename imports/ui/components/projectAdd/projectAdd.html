@@ -21,10 +21,13 @@
 				          ng-model="projectAdd.project.description"
 				          placeholder="Instruction how must do your respondent."></textarea></label>
 			</p>
-			<p><label>Upload your application
-				<input class="w3-input" type="file"
-				       name="application" ng-class="{'w3-border-red w3-pale-red': !form.application.$valid }"
-				       ng-model="projectAdd.project.application"></label>
+			<p>
+			<label>Upload your application
+				<single-file-upload file="projectAdd.project.application" type="''" store="projectAdd.ApplicationsStore"></single-file-upload>
+				<!--<input class="w3-input" type="file"-->
+				       <!--name="application" ng-class="{'w3-border-red w3-pale-red': !form.application.$valid }"-->
+				       <!--ng-model="projectAdd.project.application">-->
+			</label>
 			</p>
 
 			<p><label>Add URL to your survey

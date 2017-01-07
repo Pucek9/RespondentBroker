@@ -4,7 +4,8 @@ import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 import template from './userEdit.html';
 import {dateNowString} from '../../../helpers/helpers';
-import { name as SingleFileUpload } from '../upload/singleFileUpload';
+import {ImagesStore} from '../../../api/files';
+import {name as SingleFileUpload} from '../upload/singleFileUpload';
 
 class UserEdit {
 	constructor($stateParams, $scope, $reactive, $state, notification) {
@@ -14,11 +15,11 @@ class UserEdit {
 		this.userId = $stateParams.userId;
 		this.$state = $state;
 		this.notification = notification;
-this.$scope = $scope;
+		this.$scope = $scope;
 		this.pageTitle = 'Update your Account ';
 		this.icon = 'refresh';
 		this.color = 'blue';
-
+		this.ImageStore = ImagesStore;
 		this.helpers({
 
 			user() {

@@ -28,7 +28,7 @@
 			<p>Already answered on this project.</p>
 		</div>
 		<h2>1. Please download and install
-			<a href={{projectDetails.project.application}}>{{projectDetails.project.name}}</a> application.
+			<a target="_self" ng-href={{projectDetails.project.application}}>{{projectDetails.project.name}}</a> application.
 		</h2>
 
 		<h2>2. Please download and install <a href="https://lookback.io/download">LookBack</a> application.</h2>
@@ -50,6 +50,7 @@
 				       class="w3-input" type="text"
 				       ng-model="projectDetails.temp.movieURL"
 				       placeholder="Movie URL">
+				<single-file-upload file="projectDetails.temp.movieURL" type="'video/*'" store="projectDetails.VideosStore"></single-file-upload>
 				<!--<input ng-disabled="projectDetails.isMyProject" class="w3-input" type="file" style="width:30%"-->
 				<!--placeholder="Movie">-->
 				<!--<star-rating stars="5" actual=""></star-rating>-->

@@ -4,6 +4,8 @@ import {Meteor} from 'meteor/meteor';
 import {Projects} from '../../../api/projects';
 
 import {dateNowString} from '../../../helpers/helpers';
+import {ApplicationsStore} from '../../../api/files';
+import {name as SingleFileUpload} from '../upload/singleFileUpload';
 import template from './projectAdd.html';
 
 class ProjectAdd {
@@ -11,6 +13,7 @@ class ProjectAdd {
 		'ngInject';
 		this.$state = $state;
 		this.notification = notification;
+		this.ApplicationsStore = ApplicationsStore;
 		this.validator = validator;
 		this.project = {};
 
@@ -61,17 +64,14 @@ class ProjectAdd {
 			this.addProject();
 		}
 	}
-
-	test(a) {
-		console.log(a)
-	}
 }
 
 const name = 'projectAdd';
 
 // create a module
 export default angular.module(name, [
-	angularMeteor
+	angularMeteor,
+	SingleFileUpload
 ]).component(name, {
 	template,
 	controllerAs: name,

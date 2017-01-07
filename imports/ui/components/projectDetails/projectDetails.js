@@ -4,6 +4,8 @@ import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 import {Projects} from '../../../api/projects';
 import {Responses} from '../../../api/responses';
+import {VideosStore} from '../../../api/files';
+import {name as SingleFileUpload} from '../upload/singleFileUpload';
 
 import {interpolatedValue} from '../../../helpers/helpers';
 import template from './projectDetails.html';
@@ -15,6 +17,7 @@ class ProjectDetails {
 		this.projectId = $stateParams.projectId;
 		this.$state = $state;
 		this.notification = notification;
+		this.VideosStore = VideosStore;
 
 		this.pageTitle = 'Project details';
 		this.icon = 'check-square-o';
@@ -188,6 +191,7 @@ const name = 'projectDetails';
 export default angular.module(name, [
 	angularMeteor,
 	uiRouter,
+	SingleFileUpload
 ]).component(name, {
 	template,
 	controllerAs: name,
