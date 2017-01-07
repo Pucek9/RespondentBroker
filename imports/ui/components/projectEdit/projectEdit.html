@@ -36,10 +36,11 @@
 			<div class="w3-row">
 				<input class="w3-input w3-left" style="width:47.1%" type="number" ng-model="projectEdit.project.minPoints"
 				       placeholder="from"
-				       name="minPoints" ng-class="{'w3-border-red w3-pale-red': !form.minPoints.$valid }" required>
+				       name="minPoints" ng-class="{'w3-border-red w3-pale-red': !form.minPoints.$valid }" min="0"
+				       max="{{projectEdit.project.maxPoints}}" required>
 				<input class="w3-input w3-left" style="width:47.1%" type="number" ng-model="projectEdit.project.maxPoints"
 				       placeholder="to" name="maxPoints" ng-class="{'w3-border-red w3-pale-red': !form.maxPoints.$valid }"
-				       required>
+				       min="{{projectEdit.project.minPoints}}" max="{{projectAdd.userPoints}}" required>
 			</div>
 			</p>
 			<p><label>
@@ -52,9 +53,10 @@
 			</p>
 			<p>
 				<button class="w3-btn w3-ripple w3-left w3-border w3-{{projectEdit.color}}"
-				        ng-click="projectEdit.confirm()" ng-disabled="!form.$valid">
+				        ng-click="projectEdit.confirm(form.$valid)">
 					<i class="fa fa-{{projectEdit.icon}}"></i> Confirm
 				</button>
+				<!--ng-disabled="!form.$valid"-->
 			</p>
 
 		</form>

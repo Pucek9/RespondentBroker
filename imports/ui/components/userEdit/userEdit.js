@@ -28,7 +28,7 @@ class UserEdit {
 		});
 	}
 
-	confirm() {
+	updateUser() {
 		Meteor.users.update({
 			_id: this.user._id
 		}, {
@@ -49,6 +49,14 @@ class UserEdit {
 			}
 
 		});
+	}
+	confirm(valid) {
+		if(valid){
+			this.updateUser();
+		}
+		else {
+			this.notification.error('Your form is not valid');
+		}
 	}
 }
 

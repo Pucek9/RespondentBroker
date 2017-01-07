@@ -142,7 +142,6 @@ class ProjectDetails {
 			if (error) {
 				this.notification.error('There is problem with add your response to user! Error: ' + error);
 			} else {
-
 				this.notification.success('Your response was updated successfully!');
 				this.$state.go('projects');
 			}

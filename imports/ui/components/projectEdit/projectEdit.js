@@ -25,7 +25,13 @@ class ProjectEdit {
 				return Projects.findOne({
 					_id: $stateParams.projectId
 				});
-			}
+			},
+			// userPoints(){
+			// 	const user = Meteor.user();
+			// 	if(user){
+			// 		return user.profile.points;
+			// 	}
+			// }
 		});
 	}
 
@@ -55,10 +61,15 @@ class ProjectEdit {
 		});
 	}
 
-	confirm() {
+	confirm(isValid) {
 		const user = Meteor.user();
-		if (this.validator.project(this.project, user)) {
-			this.updateProject();
+		if (isValid) {
+			if (this.validator.project(this.project, user)) {
+				this.updateProject();
+			}
+		}
+		 else {
+			this.notification.error('Your form is not valid');
 		}
 	}
 }

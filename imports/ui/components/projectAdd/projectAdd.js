@@ -9,17 +9,29 @@ import {name as SingleFileUpload} from '../upload/singleFileUpload';
 import template from './projectAdd.html';
 
 class ProjectAdd {
-	constructor($state, notification, validator) {
+	constructor($scope, $reactive, $state, notification, validator) {
 		'ngInject';
+		$reactive(this).attach($scope);
 		this.$state = $state;
 		this.notification = notification;
 		this.ApplicationsStore = ApplicationsStore;
 		this.validator = validator;
-		this.project = {};
 
 		this.pageTitle = 'Add new project ';
 		this.icon = 'plus-circle';
 		this.color = 'green';
+
+		this.project = {};
+
+		this.helpers({
+			userPoints(){
+				const user = Meteor.user();
+				if(user){
+					return user.profile.points;
+				}
+			}
+		});
+
 	}
 
 
