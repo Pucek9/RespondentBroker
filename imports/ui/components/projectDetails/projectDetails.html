@@ -41,6 +41,9 @@
 		<h2>5. Please upload your videos and tag them.</h2>
 
 		<fieldset>
+			<legend>				<button ng-click="projectDetails.addNew()"
+			                        ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">Add step
+			</button></legend>
 			<form class="w3-container">
 				<input ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
 				       class="w3-input" type="text"
@@ -50,8 +53,42 @@
 				       class="w3-input" type="text"
 				       ng-model="projectDetails.temp.movieURL"
 				       placeholder="Movie URL" disabled>
-<button ng-click="projectDetails.parseLookbackUrl()">tu klik</button>
-				<single-file-upload file="projectDetails.temp.movieURL" type="'video/*'" store="projectDetails.VideosStore"></single-file-upload>
+
+
+				<div>
+					<ul class="w3-navbar w3-light-green w3-border-bottom intronav">
+						<li><a class="testbtn" ng-class="{'w3-green': projectDetails.importTab}" href="#"
+						       ng-click="projectDetails.chooseTab('importTab')">Import from Lookback</a></li>
+						<li><a class="testbtn" ng-class="{'w3-green': projectDetails.uploadTab}" href="#"
+						       ng-click="projectDetails.chooseTab('uploadTab')">Upload from device</a></li>
+					</ul>
+
+					<div id="lookback" class="w3-container w3-light-grey" ng-show="projectDetails.importTab">
+						<div class="w3-accordion w3-light-grey" style="overflow: hidden">
+							<button ng-click="projectDetails.tipToggleSlide()" class="w3-btn-block w3-orange">
+								Show tip
+							</button>
+							<div id="tip" class="w3-accordion-content w3-center" ng-class="{'w3-show': projectDetails.tip}">
+								<img style="width: 100%; height: auto;" src="/images/lookbackInstruction.png">
+							</div>
+						</div>
+
+						<input ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
+						       class="w3-input" type="text"
+						       ng-model="projectDetails.temp.movieImportURL"
+						       placeholder="Import Movie URL">
+						<button ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
+						        ng-click="projectDetails.importFromURL()">Upload
+						</button>
+					</div>
+
+					<div id="device" class="w3-container w3-light-grey" ng-show="projectDetails.uploadTab">
+						<single-file-upload file="projectDetails.temp.movieURL" type="'video/*'" store="projectDetails.VideosStore"
+						                    disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"></single-file-upload>
+					</div>
+
+				</div>
+
 
 				<div ng-if="projectDetails.isStepRating">
 					Evaluation of usability.
@@ -71,9 +108,9 @@
 					          ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"></textarea>
 				</div>
 
-				<button ng-click="projectDetails.addNew()"
-				        ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">Add new
-				</button>
+				<!--<button ng-click="projectDetails.addNew()"-->
+				        <!--ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">Add step-->
+				<!--</button>-->
 			</form>
 		</fieldset>
 

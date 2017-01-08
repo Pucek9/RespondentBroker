@@ -6,6 +6,13 @@ function loggedIn(userId) {
 	return !!userId;
 }
 
+function isFromURL(userId, file) {
+	// Check if the file is imported from a URL
+	if (typeof file.originalUrl === 'string') {
+		return true;
+	}
+}
+
 const Images = new Mongo.Collection('images');
 const ImagesStore = new UploadFS.store.GridFS({
 	collection: Images,
@@ -24,11 +31,14 @@ const Videos = new Mongo.Collection('videos');
 const VideosStore = new UploadFS.store.GridFS({
 	collection: Videos,
 	name: 'videos',
-	filter: new UploadFS.Filter({
-		contentTypes: ['video/*']
-	}),
+	// filter: new UploadFS.Filter({
+	// 	contentTypes: ['video/*']
+	// }),
 	permissions: new UploadFS.StorePermissions({
-		insert: loggedIn,
+
+		insert: function(userId, file) {
+			return loggedIn(userId) || isFromURL(userId, file);
+		},
 		update: loggedIn,
 		remove: loggedIn
 	})

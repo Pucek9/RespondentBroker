@@ -88,6 +88,7 @@ export default angular.module(name, [
 	bindings: {
 		file: '=',
 		type: '=',
-		store: '='
+		store: '=',
+		disabled: '='
 	},
 });

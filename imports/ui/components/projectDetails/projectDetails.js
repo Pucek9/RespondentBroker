@@ -6,6 +6,7 @@ import {Projects} from '../../../api/projects';
 import {Responses} from '../../../api/responses';
 import {VideosStore} from '../../../api/files';
 import {name as SingleFileUpload} from '../upload/singleFileUpload';
+import {UploadFS} from 'meteor/jalik:ufs';
 
 import {interpolatedValue} from '../../../helpers/helpers';
 import template from './projectDetails.html';
@@ -24,6 +25,9 @@ class ProjectDetails {
 
 		this.response = {};
 		this.response.steps = [];
+		this.importTab = true;
+		this.uploadTab = false;
+		this.tip = false;
 
 		this.helpers({
 			project() {
@@ -110,6 +114,31 @@ class ProjectDetails {
 			},
 			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
 		];
+	}
+
+	chooseTab(tab) {
+		this.uploadTab = false;
+		this.importTab = false;
+		this[tab] = true;
+	}
+
+	tipToggleSlide() {
+		this.tip = !this.tip;
+	}
+
+	callback(error, response) {
+		if (error) {
+			console.log('error', error.message);
+			this.notification.error('Problem with upload files.', error.message);
+		}
+		else {
+			this.projectDetails.temp.movieURL = response.path;
+		}
+	}
+
+	importFromURL() {
+		let attr = {name: 'importFromURL.m4v', description: 'Video imported from url'};
+		UploadFS.importFromURL(this.temp.movieImportURL, attr, this.VideosStore, this.$bindToContext(this.callback));
 	}
 
 	reset() {

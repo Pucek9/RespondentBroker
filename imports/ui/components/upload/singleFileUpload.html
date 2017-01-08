@@ -1,6 +1,7 @@
 <div layout="column">
 	<!--ng-hide="singleFileUpload.fileToUpload"-->
 	<input class="w3-input" type="file" name="file"
+	       ng-disabled="singleFileUpload.disabled"
 	       ngf-drop
 	       ngf-select
 	       ngf-change="singleFileUpload.addFiles($files)"
@@ -43,10 +44,10 @@
 		</div>
 
 		<div>
-			<md-button ng-click="singleFileUpload.save()" class="md-primary">
+			<md-button ng-disabled="singleFileUpload.disabled" ng-click="singleFileUpload.save()" class="md-primary">
 				Save
 			</md-button>
-			<md-button ng-click="singleFileUpload.reset()">
+			<md-button ng-disabled="singleFileUpload.disabled" ng-click="singleFileUpload.reset()">
 				Cancel
 			</md-button>
 		</div>
