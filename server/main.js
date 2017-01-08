@@ -38,7 +38,7 @@ Meteor.startup(() => {
 	});
 
 // Use HTTPS in URLs
-	UploadFS.config.https = true;
+// 	UploadFS.config.https = true;
 //
 // // Activate simulation for slowing file reading
 // 	UploadFS.config.simulateReadDelay = 1000; // 1 sec
@@ -52,14 +52,14 @@ Meteor.startup(() => {
 // // This path will be appended to the site URL, be sure to not put a "/" as first character
 // // for example, a PNG file with the _id 12345 in the "photos" store will be available via this URL :
 // // http://www.yourdomain.com/uploads/photos/12345.png
-	UploadFS.config.storesPath = 'ufs';
-
-// Set the temporary directory where uploading files will be saved
-// before sent to the store.
-	UploadFS.config.tmpDir = '/tmp/ufs';
+// 	UploadFS.config.storesPath = 'ufs';
 //
-// // Set the temporary directory permissions.
-	UploadFS.config.tmpDirPermissions = '0700';
+// // Set the temporary directory where uploading files will be saved
+// // before sent to the store.
+// 	UploadFS.config.tmpDir = '/tmp/ufs';
+// //
+// // // Set the temporary directory permissions.
+// 	UploadFS.config.tmpDirPermissions = '0700';
 
 	if (Projects.find().count() === 0) {
 		const projects = PROJECTS;
