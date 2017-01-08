@@ -45,7 +45,6 @@ class SingleFileUpload {
 		},(file, progress) => {
 			this.progress = (progress*100).toFixed();
 			this.$scope.$apply();
-				// console.log(file.name + ' ' + (progress*100) + '% uploaded');
 			}
 		)
 	}

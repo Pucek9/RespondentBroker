@@ -49,11 +49,10 @@
 				<input ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
 				       class="w3-input" type="text"
 				       ng-model="projectDetails.temp.movieURL"
-				       placeholder="Movie URL">
+				       placeholder="Movie URL" disabled>
+<button ng-click="projectDetails.parseLookbackUrl()">tu klik</button>
 				<single-file-upload file="projectDetails.temp.movieURL" type="'video/*'" store="projectDetails.VideosStore"></single-file-upload>
-				<!--<input ng-disabled="projectDetails.isMyProject" class="w3-input" type="file" style="width:30%"-->
-				<!--placeholder="Movie">-->
-				<!--<star-rating stars="5" actual=""></star-rating>-->
+
 				<div ng-if="projectDetails.isStepRating">
 					Evaluation of usability.
 					<div ng-if="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">
