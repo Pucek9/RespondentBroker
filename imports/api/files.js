@@ -90,16 +90,19 @@ function dataURLToBlob(dataURL) {
  * @param  {Function} resolve [description]
  * @param  {Function} reject  [description]
  */
-function upload(dataUrl, name, store, resolve, reject) {
+function upload(dataUrl, name, store, resolve, reject, progress) {
+
 	const blob = dataURLToBlob(dataUrl);
 	blob.name = name;
 	const file = _.pick(blob, 'name', 'type', 'size');
+	console.log('file,',file, store);
 	const upload = new UploadFS.Uploader({
 		data: blob,
 		file: file,
 		store: store,
 		onError: reject,
-		onComplete: resolve
+		onComplete: resolve,
+		onProgress: progress
 	});
 	upload.start();
 }

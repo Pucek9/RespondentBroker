@@ -12,7 +12,9 @@ class SingleFileUpload {
 		$reactive(this).attach($scope);
 		this.notification = notification;
 		this.$scope = $scope;
+
 		this.uploaded = [];
+		this.progress=0;
 	}
 
 	addFiles(files) {
@@ -40,10 +42,16 @@ class SingleFileUpload {
 		}), (e) => {
 			this.notification.error('Oops, something went wrong' + e);
 			console.log('Oops, something went wrong', e);
-		});
+		},(file, progress) => {
+			this.progress = (progress*100).toFixed();
+			this.$scope.$apply();
+				// console.log(file.name + ' ' + (progress*100) + '% uploaded');
+			}
+		)
 	}
 
 	reset() {
+		this.progress=0;
 		this.fileToUpload = undefined;
 	}
 

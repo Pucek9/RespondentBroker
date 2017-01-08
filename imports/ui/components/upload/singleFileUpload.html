@@ -12,6 +12,12 @@
 	       ngf-drop-available="true">
 	<div ng-show="singleFileUpload.fileToUpload" layout="column" class="ng-crop w3-border">
 
+		<div class="w3-progress-container">
+			<div id="myBar" class="w3-progressbar w3-green" style="width:{{singleFileUpload.progress}}%">
+				<div class="w3-text-white">{{singleFileUpload.progress}}%</div>
+			</div>
+		</div>
+
 		<div ng-if="singleFileUpload.isImage()">
 			Choosen image:
 			<div class="ng-crop-container w3-row">
