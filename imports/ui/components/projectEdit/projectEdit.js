@@ -62,8 +62,8 @@ class ProjectEdit {
 	}
 
 	confirm(isValid) {
-		const user = Meteor.user();
 		if (isValid) {
+			const user = Meteor.user();
 			if (this.validator.project(this.project, user)) {
 				this.updateProject();
 			}

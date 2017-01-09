@@ -26,7 +26,7 @@ class ProjectAdd {
 		this.helpers({
 			userPoints(){
 				const user = Meteor.user();
-				if(user){
+				if (user) {
 					return user.profile.points;
 				}
 			}
@@ -70,11 +70,16 @@ class ProjectAdd {
 		);
 	}
 
-	submit() {
-		const user = Meteor.user();
-		if (this.validator.project(this.project, user)) {
-			this.addProject();
+	submit(valid) {
+		if (valid) {
+			const user = Meteor.user();
+			if (this.validator.project(this.project, user)) {
+				this.addProject();
+			}
+		} else {
+			this.notification.error('Your form is not valid');
 		}
+
 	}
 }
 

@@ -56,7 +56,7 @@
 			</p>
 			<p>
 				<button class="w3-btn w3-ripple w3-left w3-border w3-{{projectAdd.color}}"
-				        ng-click="projectAdd.submit()" >
+				        ng-click="projectAdd.submit(form.$valid)" >
 					<i class="fa fa-{{projectAdd.icon}}"></i> Confirm
 				</button>
 				<!--ng-disabled="!form.$valid"-->
