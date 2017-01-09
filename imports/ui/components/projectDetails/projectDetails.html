@@ -66,13 +66,15 @@
 
 					<div id="lookback" class="w3-light-grey" ng-show="projectDetails.importTab">
 
-						<div class="w3-row">
+						<div class="w3-row w3-input" style="padding-bottom:0;padding-right:0; width: inherit">
 							<button class="w3-button w3-col s3"
+							        style="margin-right:8px;"
 							        ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
 							        ng-click="projectDetails.importFromURL()" style="float: left">Upload
 							</button>
 							<input ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
 							       class="w3-padding w3-col s6" type="text"
+							       style="margin-top:-8px;"
 							       ng-model="projectDetails.temp.movieImportURL"
 							       placeholder="Import Movie URL">
 						</div>
@@ -93,12 +95,9 @@
 						<single-file-upload file="projectDetails.temp.movieURL" type="'video/*'" store="projectDetails.VideosStore"
 						                    disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"></single-file-upload>
 					</div>
-
 				</div>
 
-
 				<div ng-if="projectDetails.isStepRating">
-					<p>
 						Evaluation of usability.
 					<div ng-if="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">
 						<input-stars max="5" ng-model="projectDetails.temp.stars"
@@ -107,7 +106,7 @@
 					<div ng-if="!projectDetails.isMyProject && projectDetails.isResponsed.length == 0">
 						<input-stars max="5" ng-model="projectDetails.temp.stars"></input-stars>
 					</div>
-					</p>
+
 				</div>
 				<div ng-if="projectDetails.isStepDescription">
 					<!--<textarea ng-model="step.description"></textarea>-->
@@ -116,10 +115,6 @@
 					          placeholder="Tell me your opinion about this step."
 					          ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"></textarea>
 				</div>
-
-				<!--<button ng-click="projectDetails.addNew()"-->
-				<!--ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">Add step-->
-				<!--</button>-->
 			</form>
 		</fieldset>
 
@@ -137,7 +132,7 @@
 				<div ng-if="projectDetails.isStepDescription">
 					<textarea ng-model="step.description" disabled="true"></textarea>
 				</div>
-				<video id="v" width="270" height="480"
+				<video id="v" width="100%" height="auto"
 				       controls crossOrigin="anonymous"
 				>
 					<source ng-src="{{step.movieURL}}">
