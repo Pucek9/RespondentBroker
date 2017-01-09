@@ -40,13 +40,16 @@
 		<h2>4. Please complete the <a ng-href="{{projectDetails.project.surveyURL}}">survey</a> and sign it.</h2>
 		<h2>5. Please upload your videos and tag them.</h2>
 
-		<fieldset>
-			<legend>
-				<button ng-click="projectDetails.addNew()"
-				        ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">Add step
-				</button>
-			</legend>
-			<form class="w3-container w3-padding-0">
+		<form name="form" class="w3-container w3-padding-0">
+			<fieldset>
+				<legend>
+					<button class="w3-btn w3-ripple w3-border w3-{{projectDetails.color}}"
+					        ng-click="projectDetails.addNew()"
+					        ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">
+						<i class="fa fa-plus"></i> Add step
+					</button>
+				</legend>
+
 				<input ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
 				       class="w3-input" type="text"
 				       ng-model="projectDetails.temp.movieTag"
@@ -98,7 +101,7 @@
 				</div>
 
 				<div ng-if="projectDetails.isStepRating">
-						Evaluation of usability.
+					Evaluation of usability.
 					<div ng-if="projectDetails.isMyProject || projectDetails.isResponsed.length > 0">
 						<input-stars max="5" ng-model="projectDetails.temp.stars"
 						             readonly></input-stars>
@@ -115,9 +118,8 @@
 					          placeholder="Tell me your opinion about this step."
 					          ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"></textarea>
 				</div>
-			</form>
-		</fieldset>
-
+			</fieldset>
+		</form>
 
 		<div class="w3-container" ng-if="!projectDetails.isMyProject || projectDetails.isResponsed.length === 0">
 			<div ng-repeat="step in projectDetails.response.steps" class="w3-card-4">
@@ -141,9 +143,10 @@
 		</div>
 
 		<div>
-			<button ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
-			        class="w3-btn w3-ripple w3-border w3-{{projectDetails.color}}"
-			        ng-click="projectDetails.confirm()">
+			<button
+					ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0 || projectDetails.response.steps.length === 0"
+					class="w3-btn w3-ripple w3-border w3-{{projectDetails.color}}"
+					ng-click="projectDetails.confirm()">
 				<i class="fa fa-{{projectDetails.icon}}"></i> Confirm
 			</button>
 		</div>
