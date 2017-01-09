@@ -22,7 +22,7 @@ class MyProjectsTab {
 
 		this.helpers({
 			projects() {
-				return Projects.find({owner: this.userId});
+				return Projects.find({owner: this.userId}, {sort: {name: 1}});
 			}
 		});
 

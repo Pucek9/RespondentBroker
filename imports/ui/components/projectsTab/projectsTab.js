@@ -18,7 +18,7 @@ class ProjectsTab {
 
 		this.helpers({
 			projects() {
-				return Projects.find({});
+				return Projects.find({},{sort: {name: 1}});
 			},
 			// projects() {
 			// 	let projects = Projects.find({}).fetch();

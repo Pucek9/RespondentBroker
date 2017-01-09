@@ -26,5 +26,10 @@
 		        width="270" height="480"
 		        id="canvas">
 		</canvas>
+		<div id="console">
+			<span ng-repeat="action in stepView.actions">
+				{{action.time}} {{action.type}}
+			</span>
+		</div>
 	</div>
 </div>

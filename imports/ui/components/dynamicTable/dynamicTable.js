@@ -5,9 +5,10 @@ import template from './dynamicTable.html';
 
 class DynamicTable {
 
-	constructor($scope, $reactive, NgTableParams) {
+	constructor($scope, $timeout, $reactive, NgTableParams) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.$timeout = $timeout;
 
 		this.dataSet = new NgTableParams({
 			count: 10
@@ -19,6 +20,7 @@ class DynamicTable {
 
 	$onInit() {
 		this.renderTable();
+		this.$timeout(this.clickOnHeader, 500);
 	};
 
 	renderTable() {
@@ -26,6 +28,13 @@ class DynamicTable {
 			dataset: this.data
 		});
 	};
+
+	clickOnHeader() {
+		let headerSelector = 'dynamic-table > div > table > thead > tr.ng-table-sort-header > th:nth-child(1) > div';
+		let header = angular.element(document).find(headerSelector)[0];
+		header.click();
+		header.click();
+	}
 
 }
 

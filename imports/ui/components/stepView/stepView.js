@@ -23,6 +23,8 @@ class StepView {
 		this.icon = 'check-square-o';
 		this.color = 'yellow';
 
+		this.actions = [];
+
 		this.helpers({
 			project() {
 				return Projects.findOne({
