@@ -5,9 +5,10 @@ import template from './dynamicTable.html';
 
 class DynamicTable {
 
-	constructor($scope,$reactive,NgTableParams) {
+	constructor($scope, $reactive, NgTableParams) {
 		'ngInject';
 		$reactive(this).attach($scope);
+
 		this.dataSet = new NgTableParams({
 			count: 10
 		}, {
@@ -23,7 +24,7 @@ class DynamicTable {
 	renderTable() {
 		this.dataSet.settings({
 			dataset: this.data
-			});
+		});
 	};
 
 }

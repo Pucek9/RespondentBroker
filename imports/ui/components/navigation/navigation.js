@@ -6,41 +6,48 @@ import template from './navigation.html';
 
 class Navigation {
 
-	constructor($scope, $reactive) {
+	constructor($scope, $reactive, $timeout, $state) {
 		'ngInject';
 		$reactive(this).attach($scope);
-
-		this.index = 0;
-
+		this.$state = $state;
+this.$timeout = $timeout;
 		this.helpers({
 			positions() {
 				let userId = Meteor.userId();
 				return [
 					{
-						name: 'Dashboard', icon: 'line-chart', href: '/',
+						name: 'Dashboard', icon: 'line-chart', state: 'dashboard', href: '/',
 					},
 					{
-						name: 'My Projects', icon: 'dashboard', href: '/projects/my',
+						name: 'My Projects', icon: 'dashboard', state: 'myProjects', href: '/projects/my',
 					},
 					{
-						name: 'Projects', icon: 'search', href: '/projects',
+						name: 'Projects', icon: 'search', state: 'projects', href: '/projects',
 					},
 					// {
 					// 	name: 'History', icon: 'history', href: '/history',
 					// },
 					{
-						name: 'Users', icon: 'users', href: '/users',
+						name: 'Users', icon: 'users', state: 'users', href: '/users',
 					},
 					{
-						name: 'Account', icon: 'address-card-o', href: '/users/' + userId + '/details',
+						name: 'Account', icon: 'address-card-o', state: 'userDetails', href: '/users/' + userId + '/details',
 					},
 					{
-						name: 'Settings', icon: 'cog', href: '/users/' + userId + '/edit',
+						name: 'Settings', icon: 'cog', state: 'userEdit', href: '/users/' + userId + '/edit',
 					}
 				]
 			}
 		});
 
+	};
+
+	checkState(position, index) {
+		this.$timeout(()=>{
+			if (this.$state.current.name === position.state) {
+				this.setActive(index);
+			}
+		},100);
 	};
 
 	setActive(index) {

@@ -12,7 +12,6 @@ import {interpolatedValue} from '../../../helpers/helpers';
 
 class UserDetails {
 	constructor($stateParams, $scope, $reactive, $state, $interpolate, notification) {
-
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.userId = $stateParams.userId;
@@ -34,7 +33,14 @@ class UserDetails {
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/details">{{row.projectName}}</a>`),
 			},
-			{field: "points", filter: {points: "number"}, show: true, sortable: "points", title: "Points"},
+			{
+				field: "minPoints",
+				show: true,
+				title: "Points",
+				sortable: "minPoints",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.minPoints}}-{{row.maxPoints}}`)
+			},
 			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
 			// {field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
 			// {field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
@@ -63,7 +69,8 @@ class UserDetails {
 						projects.forEach((p) => {
 							if (r.project === p._id) {
 								responsesArray[index].projectName = p.name;
-								responsesArray[index].points = p.points;
+								responsesArray[index].maxPoints = p.maxPoints;
+								responsesArray[index].minPoints = p.minPoints;
 							}
 						});
 					});
@@ -89,7 +96,6 @@ export default angular.module(name, [
 
 function config($stateProvider) {
 	'ngInject';
-
 	$stateProvider.state('userDetails', {
 		url: '/users/:userId/details',
 		template: '<user-Details></user-Details>',

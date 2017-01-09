@@ -1,8 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
-import {Meteor} from 'meteor/meteor';
-
 import template from './projectsTab.html';
 import {Projects} from '../../../api/projects';
 
@@ -13,6 +11,7 @@ class ProjectsTab {
 	constructor($scope, $reactive, $interpolate) {
 		'ngInject';
 		$reactive(this).attach($scope);
+
 		this.pageTitle = 'Projects ';
 		this.icon = 'search';
 		this.color = 'yellow';
