@@ -16,7 +16,7 @@ class StepView {
 		this.responseId = $stateParams.responseId;
 		this.stepId = $stateParams.stepId;
 		this.$timeout = $timeout;
-		// this.$state = $state;
+		this.$scope = $scope;
 		this.notification = notification;
 
 		this.pageTitle = 'Response View';
@@ -46,121 +46,138 @@ class StepView {
 			}
 		});
 
-		this.processor = {
+		this.fps = 16;// 16 roughly 60 frames per second
+		this.greyRange = 15;
+		this.symilarRange = 20;
+		this.min = 130;
+		this.max = 250;
 
-			fps: 16,// 16 roughly 60 frames per second
-			greyRange: 15,
-			symilarRange: 20,
-			min: 130,
-			max: 250,
+		// this.processor = {
 
-			isInRange: function (b, g, r) {
-				if (b >= this.min && g >= this.min && r >= this.min
-					&& b <= this.max && g <= this.max && r <= this.max) {
-					if (Math.abs(b - g) < this.greyRange && Math.abs(r - g) < this.greyRange && Math.abs(b - r) < this.greyRange) {
-						return true;
-					}
-				}
-				return false;
-			},
 
-			isSimilarTo: function (el1, el2) {
-				return Math.abs(el1 - el2) < this.symilarRange;
-			},
-
-			doLoad: function () {
-				const self = this;
-				this.frameNumber = 0;
-
-				this.video = angular.element(document).find('#video')[0];
-
-				this.c1 = document.createElement("canvas");
-				this.c1.id = "c";
-				this.ctx1 = this.c1.getContext("2d");
-				this.c1.width = 270;
-				this.c1.height = 480;
-
-				this.c2 = document.createElement("canvas");
-				this.c2.id = "c2";
-				this.ctx2 = this.c2.getContext("2d");
-
-				this.c3 = angular.element(document).find('#canvas')[0];
-				this.ctx3 = this.c3.getContext("2d");
-
-				this.video.addEventListener("play", function () {
-					self.width = self.video.width;
-					self.height = self.video.height;
-					self.timerCallback();
-				}, false);
-			},
-
-			timerCallback: function () {
-
-				if (this.video.paused || this.video.ended) {
-					return;
-				}
-				this.computeFrame();
-
-				const self = this;
-				setTimeout(function () {
-					self.timerCallback();
-				}, this.fps);
-			},
-
-			computeFrame: function () {
-
-				this.ctx1.drawImage(this.video, 0, 0, this.width, this.height);
-				let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
-				let l = frame.data.length / 4;
-
-				for (let i = 0; i < l; i++) {
-					let ir = i * 4;
-					let ig = i * 4 + 1;
-					let ib = i * 4 + 2;
-
-					if (typeof this.lastFrame != 'undefined' && typeof this.mixFrame != 'undefined') {
-						// && this.isInRange(frame.data[ir],frame.data[ig],frame.data[ib])) {
-						this.mixFrame.data[ir] = 0;
-						this.mixFrame.data[ig] = 0;
-						this.mixFrame.data[ib] = 0;
-
-						if (this.isSimilarTo(this.lastFrame.data[ir], frame.data[ir])
-							&& this.isSimilarTo(this.lastFrame.data[ig], frame.data[ig])
-							&& this.isSimilarTo(this.lastFrame.data[ib], frame.data[ib])
-						) {
-							// 	if(
-							// && this.isInRange(frame.data[ir],frame.data[ig],frame.data[ib])) {
-							this.mixFrame.data[ir] = 255;
-							this.mixFrame.data[ig] = 255;
-							this.mixFrame.data[ib] = 255;
-							// }
-
-						}
-
-					}
-				}
-				this.ctx1.putImageData(frame, 0, 0);
-
-				if (typeof this.lastFrame != 'undefined') {
-					this.ctx2.putImageData(this.lastFrame, 0, 0);
-					if (typeof this.mixFrame != 'undefined')
-						this.ctx3.putImageData(this.mixFrame, 0, 0);
-				}
-				this.mixFrame = this.lastFrame;
-				this.lastFrame = frame;
-
-				// console.log(this.frameNumber)
-				this.frameNumber++;
-				return;
-			}
-		};
-
-		this.start = function () {
+		this.start = () => {
 			this.$timeout(() => {
-				this.processor.doLoad();
+				this.doLoad();
 			}, 200);
 		};
 	}
+
+	isInRange = (b, g, r) => {
+		if (b >= this.min && g >= this.min && r >= this.min
+			&& b <= this.max && g <= this.max && r <= this.max) {
+			if (Math.abs(b - g) < this.greyRange && Math.abs(r - g) < this.greyRange && Math.abs(b - r) < this.greyRange) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+
+	isSimilarTo = (el1, el2) => {
+		return Math.abs(el1 - el2) < this.symilarRange;
+	};
+
+
+	timerCallback = () => {
+
+		if (this.video.paused || this.video.ended) {
+			return;
+		}
+
+		this.computeFrame();
+
+		// const self = this;
+		setTimeout(() => {
+			this.timerCallback();
+
+		}, this.fps);
+	};
+
+
+	doLoad = () => {
+		const self = this;
+		this.frameNumber = 0;
+
+		this.video = angular.element(document).find('#video')[0];
+		this.temp = 'sdasdas';
+
+		this.c1 = document.createElement("canvas");
+		this.c1.id = "c";
+		this.ctx1 = this.c1.getContext("2d");
+		this.c1.width = 270;
+		this.c1.height = 480;
+
+		this.c2 = document.createElement("canvas");
+		this.c2.id = "c2";
+		this.ctx2 = this.c2.getContext("2d");
+
+		this.c3 = angular.element(document).find('#canvas')[0];
+		this.ctx3 = this.c3.getContext("2d");
+
+		this.video.addEventListener("play", () => {
+			this.width = this.video.width;
+			this.height = this.video.height;
+			this.timerCallback();
+		}, false);
+
+		this.video.addEventListener("pause", () => {
+			let action = {
+				time: this.video.currentTime,
+				name: ''
+			};
+			this.actions.push(action);
+			this.$scope.$apply();
+			console.log(this.actions)
+		}, false);
+	};
+
+
+	computeFrame = () => {
+
+		this.ctx1.drawImage(this.video, 0, 0, this.width, this.height);
+		let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
+		let l = frame.data.length / 4;
+
+		for (let i = 0; i < l; i++) {
+			let ir = i * 4;
+			let ig = i * 4 + 1;
+			let ib = i * 4 + 2;
+
+			if (typeof this.lastFrame != 'undefined' && typeof this.mixFrame != 'undefined') {
+				// && this.isInRange(frame.data[ir],frame.data[ig],frame.data[ib])) {
+				this.mixFrame.data[ir] = 0;
+				this.mixFrame.data[ig] = 0;
+				this.mixFrame.data[ib] = 0;
+
+				if (this.isSimilarTo(this.lastFrame.data[ir], frame.data[ir])
+					&& this.isSimilarTo(this.lastFrame.data[ig], frame.data[ig])
+					&& this.isSimilarTo(this.lastFrame.data[ib], frame.data[ib])
+				) {
+					// 	if(
+					// && this.isInRange(frame.data[ir],frame.data[ig],frame.data[ib])) {
+					this.mixFrame.data[ir] = 255;
+					this.mixFrame.data[ig] = 255;
+					this.mixFrame.data[ib] = 255;
+					// }
+
+				}
+
+			}
+		}
+		this.ctx1.putImageData(frame, 0, 0);
+
+		if (typeof this.lastFrame != 'undefined') {
+			this.ctx2.putImageData(this.lastFrame, 0, 0);
+			if (typeof this.mixFrame != 'undefined')
+				this.ctx3.putImageData(this.mixFrame, 0, 0);
+		}
+		this.mixFrame = this.lastFrame;
+		this.lastFrame = frame;
+
+		// console.log(this.frameNumber)
+		this.frameNumber++;
+		return;
+	};
 
 }
 

@@ -17,19 +17,28 @@
 		<div ng-if="step.description">
 			<textarea ng-model="stepView.step.description" disabled="true"></textarea>
 		</div>
-		<video
-				id="video"
-				width="270" height="480" controls>
-			<source ng-src="{{stepView.step.movieURL}}">
-		</video>
-		<canvas ng-init="stepView.start()"
-		        width="270" height="480"
-		        id="canvas">
-		</canvas>
-		<div id="console">
-			<span ng-repeat="action in stepView.actions">
-				{{action.time}} {{action.type}}
-			</span>
+		<div class="w3-col s4">
+			<video
+					id="video"
+					width="270" height="480" controls>
+				<source ng-src="{{stepView.step.movieURL}}">
+			</video>
+		</div>
+		<div class="w3-col s4">
+			<canvas ng-init="stepView.start()"
+			        width="270" height="480"
+			        id="canvas">
+			</canvas>
+		</div>
+		<div class="w3-col s4" style="max-height:{{stepView.video.height}}" id="console">
+			<!--<button ng-click="stepView.action()">Add action</button>-->
+			<div ng-repeat="action in stepView.actions">
+				<label class="w3-col w3-half">Name:<input class="w3-input" style="width:80%" type="text" ng-model="action.name"
+				                                          placeholder="name"/></label>
+				<label class="w3-col w3-half">Time:<input class="w3-input" style="width:80%" type="number"
+				                                          ng-model="action.time" placeholder="time"/></label>
+
+			</div>
 		</div>
 	</div>
 </div>
