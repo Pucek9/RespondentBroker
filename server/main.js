@@ -81,6 +81,28 @@ Meteor.startup(() => {
 		update: allowUpdate
 	});
 
+	Meteor.methods({
+		addActions: function (response, stepId, actions) {
+			console.log(response.steps[stepId].movieTag, actions);
+			Responses.update({
+				_id: response._id, 'steps.movieTag': response.steps[stepId].movieTag
+			}, {
+				$push: {
+					'steps.$.actions': {
+						$each: actions
+					}
+				}
+			}, function (error, affectedDocs) {
+				console.log(affectedDocs)
+				if (error) {
+					throw new Meteor.Error(500, error.message);
+				} else {
+					return "Update Successful";
+				}
+			});
+		}
+	});
+
 	Accounts.onCreateUser(function (options, user) {
 		user.profile = {
 			email: user.emails[0].address,

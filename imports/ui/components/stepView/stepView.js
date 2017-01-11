@@ -57,33 +57,19 @@ class StepView {
 	}
 
 	actionsUpdate() {
-		// let actitionsRow = 'steps.$.movieTag': response.steps[this.stepId].movieTag
 		const response = Responses.findOne({
 			_id: this.responseId
 		});
 		if (response) {
-			// let stepTag = response.steps[this.stepId].movieTag;
-			// console.log(stepTag)
-
-			Responses.update({
-				_id: response._id,
-			}, {
-				$push: {
-					'steps.0.actions': {
-						$each :this.actions
-					}
-				}
-			}, (error) => {
+			Meteor.call('addActions', response, this.stepId, this.actions, (error) => {
 				if (error) {
-					console.log(error)
+					console.log(error);
 					this.notification.error('Oops, unable to update the step...', error.message);
 				} else {
 					this.notification.success('Your step was updated successfully!');
 				}
-
 			});
 		}
-
 	}
 
 	save() {
@@ -213,23 +199,32 @@ class StepView {
 
 }
 
-const name = 'stepView';
+const
+	name = 'stepView';
 
 // create a module
-export default angular.module(name, [
-	angularMeteor,
-	uiRouter,
-]).component(name, {
-	template,
-	controllerAs: name,
-	controller: StepView,
-	// bindings: {
-	// 	'step': '=',
-	// },
-})
+export
+default
+angular
+	.module(name, [
+		angularMeteor,
+		uiRouter,
+	])
+
+	.component(name, {
+		template,
+		controllerAs: name,
+		controller: StepView,
+		// bindings: {
+		// 	'step': '=',
+		// },
+	})
+
 	.config(config);
 
-function config($stateProvider) {
+function
+
+config($stateProvider) {
 	'ngInject';
 
 	$stateProvider.state('stepView', {
