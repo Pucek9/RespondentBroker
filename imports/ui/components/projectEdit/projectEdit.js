@@ -52,7 +52,7 @@ class ProjectEdit {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('Oops, unable to update the project...');
+				this.notification.error('Oops, unable to update the project...', error.message);
 			} else {
 				this.$state.go('myProjects');
 				this.notification.success('Your project was updated successfully!');
@@ -68,7 +68,7 @@ class ProjectEdit {
 				this.updateProject();
 			}
 		}
-		 else {
+		else {
 			this.notification.error('Your form is not valid');
 		}
 	}

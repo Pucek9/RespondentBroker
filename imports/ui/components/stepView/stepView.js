@@ -37,11 +37,11 @@ class StepView {
 				})
 			},
 			step() {
-				let responses = Responses.findOne({
+				let response = Responses.findOne({
 					_id: this.responseId
 				});
-				if (responses) {
-					return responses.steps[this.stepId];
+				if (response) {
+					return response.steps[this.stepId];
 				}
 			}
 		});
@@ -54,13 +54,47 @@ class StepView {
 
 		// this.processor = {
 
-
-		this.start = () => {
-			this.$timeout(() => {
-				this.doLoad();
-			}, 200);
-		};
 	}
+
+	actionsUpdate() {
+		// let actitionsRow = 'steps.$.movieTag': response.steps[this.stepId].movieTag
+		const response = Responses.findOne({
+			_id: this.responseId
+		});
+		if (response) {
+			// let stepTag = response.steps[this.stepId].movieTag;
+			// console.log(stepTag)
+
+			Responses.update({
+				_id: response._id,
+			}, {
+				$push: {
+					'steps.0.actions': {
+						$each :this.actions
+					}
+				}
+			}, (error) => {
+				if (error) {
+					console.log(error)
+					this.notification.error('Oops, unable to update the step...', error.message);
+				} else {
+					this.notification.success('Your step was updated successfully!');
+				}
+
+			});
+		}
+
+	}
+
+	save() {
+		this.actionsUpdate();
+	}
+
+	start = () => {
+		this.$timeout(() => {
+			this.doLoad();
+		}, 200);
+	};
 
 	isInRange = (b, g, r) => {
 		if (b >= this.min && g >= this.min && r >= this.min
@@ -89,7 +123,6 @@ class StepView {
 		// const self = this;
 		setTimeout(() => {
 			this.timerCallback();
-
 		}, this.fps);
 	};
 
@@ -130,7 +163,6 @@ class StepView {
 			console.log(this.actions)
 		}, false);
 	};
-
 
 	computeFrame = () => {
 

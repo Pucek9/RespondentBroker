@@ -11,12 +11,7 @@
 	</header>
 	<div class="w3-container w3-pale-{{stepView.color}} w3-border-{{stepView.color}} w3-leftbar w3-rightbar w3-bottombar"
 	     style="padding: 0px">
-		<div ng-if="stepView.step.stars">
-			<input-stars max="5" ng-model="stepView.step.stars" readonly></input-stars>
-		</div>
-		<div ng-if="step.description">
-			<textarea ng-model="stepView.step.description" disabled="true"></textarea>
-		</div>
+
 		<div class="w3-col s4">
 			<video
 					id="video"
@@ -30,15 +25,36 @@
 			        id="canvas">
 			</canvas>
 		</div>
-		<div class="w3-col s4" style="max-height:{{stepView.video.height}}" id="console">
+		<div class="w3-col s4" style="height:{{stepView.video.height}}px; overflow-y: auto; overflow-x: hidden" id="console">
 			<!--<button ng-click="stepView.action()">Add action</button>-->
-			<div ng-repeat="action in stepView.actions">
-				<label class="w3-col w3-half">Name:<input class="w3-input" style="width:80%" type="text" ng-model="action.name"
-				                                          placeholder="name"/></label>
-				<label class="w3-col w3-half">Time:<input class="w3-input" style="width:80%" type="number"
-				                                          ng-model="action.time" placeholder="time"/></label>
+			<table class="table w3-table w3-table-all w3-hoverable">
 
-			</div>
+				<tr>
+					<th>Name</th>
+					<th>Time</th>
+				</tr>
+
+				<tr ng-repeat="action in stepView.actions track by $index">
+					<td><input class="w3-input" style="width:80%" type="text" ng-model="action.name"
+					           placeholder="name"/></td>
+					<td><input class="w3-input" style="width:80%" type="number"
+					           ng-model="action.time" placeholder="time"/></td>
+				</tr>
+
+			</table>
 		</div>
+
+		<button class="w3-btn w3-ripple w3-left w3-border w3-blue"
+		        ng-click="stepView.save()" >
+			<i class="fa fa-plus"></i> Save actions
+		</button>
+
+		<div ng-if="stepView.step.stars">
+			<input-stars max="5" ng-model="stepView.step.stars" readonly></input-stars>
+		</div>
+		<div ng-if="step.description">
+			<textarea ng-model="stepView.step.description" disabled="true"></textarea>
+		</div>
+
 	</div>
 </div>

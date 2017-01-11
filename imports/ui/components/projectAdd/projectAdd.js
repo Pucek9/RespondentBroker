@@ -61,7 +61,7 @@ class ProjectAdd {
 		Projects.insert(this.project,
 			(error, id) => {
 				if (error) {
-					this.notification.error('There is problem with add your project! Error: ' + error);
+					this.notification.error('There is problem with add your project! Error: ' + error.message);
 				}
 				else {
 					this.decreasePoints(id);
