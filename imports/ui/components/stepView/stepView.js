@@ -57,8 +57,11 @@ class StepView {
 		this.symilarRange = 20;
 		this.min = 130;
 		this.max = 250;
+	}
 
-
+	removeAction(action) {
+		let index = this.actions.indexOf(action);
+		this.actions.splice(index, 1);
 	}
 
 	actionsUpdate() {

@@ -125,7 +125,7 @@
 			<div ng-repeat="step in projectDetails.response.steps" class="w3-card-4">
 				<header class="w3-container w3-{{projectDetails.color}}">
 					<h3>{{step.movieTag}}
-						<button ng-click="projectDetails.remove(step)">x</button>
+						<button class="w3-right w3-red" ng-click="projectDetails.remove(step)">x</button>
 					</h3>
 				</header>
 				<div ng-if="projectDetails.isStepRating">

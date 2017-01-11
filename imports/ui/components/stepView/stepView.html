@@ -32,6 +32,7 @@
 				<tr>
 					<th>Name</th>
 					<th>Time</th>
+					<th>Del.</th>
 				</tr>
 
 				<tr ng-repeat="action in stepView.actions track by $index">
@@ -39,8 +40,8 @@
 					           placeholder="name"/></td>
 					<td><input class="w3-input" style="width:80%" type="number"
 					           ng-model="action.time" placeholder="time"/></td>
+					<td><button class="w3-red" ng-click="stepView.removeAction(action)">x</button></td>
 				</tr>
-
 			</table>
 		</div>
 
