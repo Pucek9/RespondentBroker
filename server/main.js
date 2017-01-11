@@ -87,13 +87,10 @@ Meteor.startup(() => {
 			Responses.update({
 				_id: response._id, 'steps.movieTag': response.steps[stepId].movieTag
 			}, {
-				$push: {
-					'steps.$.actions': {
-						$each: actions
-					}
+				$set: {
+					'steps.$.actions':  actions
 				}
 			}, function (error, affectedDocs) {
-				console.log(affectedDocs)
 				if (error) {
 					throw new Meteor.Error(500, error.message);
 				} else {

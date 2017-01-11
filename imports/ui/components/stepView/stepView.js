@@ -23,8 +23,6 @@ class StepView {
 		this.icon = 'check-square-o';
 		this.color = 'yellow';
 
-		this.actions = [];
-
 		this.helpers({
 			project() {
 				return Projects.findOne({
@@ -43,7 +41,15 @@ class StepView {
 				if (response) {
 					return response.steps[this.stepId];
 				}
-			}
+			},
+			actions() {
+				let response = Responses.findOne({
+					_id: this.responseId
+				});
+				if (response) {
+					return response.steps[this.stepId].actions;
+				}
+			},
 		});
 
 		this.fps = 16;// 16 roughly 60 frames per second
@@ -52,7 +58,6 @@ class StepView {
 		this.min = 130;
 		this.max = 250;
 
-		// this.processor = {
 
 	}
 

@@ -156,6 +156,7 @@ class ProjectDetails {
 			movieURL: this.temp.movieURL,
 			stars: this.temp.stars,
 			description: this.temp.description,
+			actions: []
 		});
 		this.reset();
 	}
