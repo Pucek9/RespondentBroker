@@ -89,7 +89,7 @@
 								                                                                       aria-hidden="true"></i>
 							</button>
 							<div id="tip" class="w3-accordion-content w3-center" ng-class="{'w3-show': projectDetails.tip}">
-								<img style="width: 100%; height: auto;" src="/images/lookbackInstruction.png">
+								<img style="max-width: 100%; max-height: {{projectDetails.screenHeight}}px;" src="/images/lookbackInstruction.png">
 							</div>
 						</div>
 					</div>
@@ -134,7 +134,7 @@
 				<div ng-if="projectDetails.isStepDescription">
 					<textarea ng-model="step.description" disabled="true"></textarea>
 				</div>
-				<video id="v" width="100%" height="auto"
+				<video id="v" width="100%" height="{{projectDetails.screenHeight}}px"
 				       controls crossOrigin="anonymous"
 				>
 					<source ng-src="{{step.movieURL}}">

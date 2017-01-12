@@ -12,20 +12,21 @@
 	<div class="w3-container w3-pale-{{stepView.color}} w3-border-{{stepView.color}} w3-leftbar w3-rightbar w3-bottombar"
 	     style="padding: 0px">
 
-		<div class="w3-col s4">
+		<div class="w3-col m4">
 			<video
 					id="video"
 					width="270" height="480" controls>
 				<source ng-src="{{stepView.step.movieURL}}">
 			</video>
 		</div>
-		<div class="w3-col s4">
+		<div class="w3-col m4">
 			<canvas ng-init="stepView.start()"
 			        width="270" height="480"
 			        id="canvas">
 			</canvas>
 		</div>
-		<div class="w3-col s4" style="height:{{stepView.video.height}}px; overflow-y: auto; overflow-x: hidden" id="console">
+		<div class="w3-col m4"
+		     style="height:{{stepView.video.height}}px; overflow-y: auto; overflow-x: hidden" id="console">
 			<!--<button ng-click="stepView.action()">Add action</button>-->
 			<table class="table w3-table w3-table-all w3-hoverable">
 
@@ -50,10 +51,10 @@
 			<i class="fa fa-plus"></i> Save actions
 		</button>
 
-		<div ng-if="stepView.step.stars">
+		<div class="w3-content" ng-if="stepView.step.stars">
 			<input-stars max="5" ng-model="stepView.step.stars" readonly></input-stars>
 		</div>
-		<div ng-if="step.description">
+		<div class="w3-content" ng-if="step.description">
 			<textarea ng-model="stepView.step.description" disabled="true"></textarea>
 		</div>
 

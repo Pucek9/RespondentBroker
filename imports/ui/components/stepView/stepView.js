@@ -126,7 +126,6 @@ class StepView {
 		this.frameNumber = 0;
 
 		this.video = angular.element(document).find('#video')[0];
-		this.temp = 'sdasdas';
 
 		this.c1 = document.createElement("canvas");
 		this.c1.id = "c";

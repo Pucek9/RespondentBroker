@@ -12,7 +12,7 @@ import {interpolatedValue} from '../../../helpers/helpers';
 import template from './projectDetails.html';
 
 class ProjectDetails {
-	constructor($stateParams, $scope, $reactive, $state, $interpolate, notification) {
+	constructor($stateParams, $scope, $reactive, $state, $interpolate, $window, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
@@ -22,6 +22,7 @@ class ProjectDetails {
 
 		this.pageTitle = 'Project details';
 		this.icon = 'check-square-o';
+		this.screenHeight = $window.innerHeight;
 
 		this.response = {};
 		this.response.steps = [];
