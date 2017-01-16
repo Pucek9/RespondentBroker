@@ -5,12 +5,12 @@ function randomDate() {
 	return new Date(Math.floor(Math.random() * new Date()));
 }
 
-function randomDateString() {
-	return moment(randomDate()).format(DATE_MASK);
+function randomDateString(dateMask = DATE_MASK) {
+	return moment(randomDate()).format(dateMask);
 }
 
-function dateNowString() {
-	return moment().format(DATE_MASK);
+function dateNowString(dateMask = DATE_MASK) {
+	return moment().format(dateMask);
 }
 
 function interpolatedValue($scope, row) {

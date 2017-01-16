@@ -11,20 +11,40 @@
 		<form name="form"
 		      class="w3-container w3-pale-{{userEdit.color}} w3-border-{{userEdit.color}} w3-leftbar w3-rightbar w3-bottombar">
 
-			<p><label>User Name
+			<p><label>Name
 				<input class="w3-input" type="text" ng-model="userEdit.user.profile.name" name="name" required
 				       ng-class="{'w3-border-red w3-pale-red': !form.name.$valid }"
 				       placeholder="User Name"></label></p>
-			<p><label>User Forname
+			<p><label>Forname
 				<input class="w3-input" type="text" ng-model="userEdit.user.profile.forName" name="forName" required
 				       ng-class="{'w3-border-red w3-pale-red': !form.forName.$valid }"
 				       placeholder="User Forname"></label></p>
+			<p><label>Birth date
+				<input class="w3-input" type="date" name="birthDate" ng-model="userEdit.user.profile.birthDate"
+				       ng-class="{'w3-border-red w3-pale-red': !form.birthDate.$valid }"
+				       placeholder="yyyy-MM-dd" min="1900-01-01" max="{{userEdit.currentDate}}"/></label></p>
+			<p><label>Gender
+				<select class="w3-input" name="gender" ng-model="userEdit.user.profile.gender">
+					<option value="">---Please select---</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select></label></p>
+			<p>
+			<p><label>Education
+				<select class="w3-input" name="education" ng-model="userEdit.user.profile.education">
+					<option value="">---Please select---</option>
+					<option value="male">Higher</option>
+					<option value="female">Secondary education</option>
+					<option value="female">Professional</option>
+					<option value="female">Basics</option>
+				</select></label></p>
 			<p>
 				<label>Avatar
-				<input class="w3-input" type="text" ng-model="userEdit.user.profile.avatar" name="avatar"
-				       placeholder="Avatar URL"></label>
+					<input class="w3-input" type="text" ng-model="userEdit.user.profile.avatar" name="avatar"
+					       placeholder="Avatar URL"></label>
 				<img ng-src="{{userEdit.user.profile.avatar}}" style="width:100px"></label>
-				<single-file-upload file="userEdit.user.profile.avatar" type="'image/*'" store="userEdit.ImageStore"></single-file-upload>
+				<single-file-upload file="userEdit.user.profile.avatar" type="'image/*'"
+				                    store="userEdit.ImageStore"></single-file-upload>
 			</p>
 			<p><label>Email
 				<input class="w3-input" type="email" name="email" required

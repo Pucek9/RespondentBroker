@@ -22,15 +22,22 @@
 				          placeholder="Instruction how must do your respondent."></textarea></label>
 			</p>
 			<p>
-			<label>Upload your application
-				<single-file-upload file="projectAdd.project.application" type="''" store="projectAdd.ApplicationsStore"></single-file-upload>
-				<!--<input class="w3-input" type="file"-->
-				       <!--name="application" ng-class="{'w3-border-red w3-pale-red': !form.application.$valid }"-->
-				       <!--ng-model="projectAdd.project.application">-->
-			</label>
+				<label>Upload your application
+					<single-file-upload file="projectAdd.project.application" type="''"
+					                    store="projectAdd.ApplicationsStore"></single-file-upload>
+					<!--<input class="w3-input" type="file"-->
+					<!--name="application" ng-class="{'w3-border-red w3-pale-red': !form.application.$valid }"-->
+					<!--ng-model="projectAdd.project.application">-->
+				</label>
 			</p>
 
-			<p><label>Add URL to your <a href="https://www.surveymonkey.com" target="_blank">survey</a>
+			<p><label>
+				<span class="w3-tooltip">Add URL to your survey
+					<span class="w3-text">
+						<a href="https://www.surveymonkey.com" target="_blank">SurveyMonkey</a>
+						<a href="https://www.esurveycreator.com" target="_blank">eSurveyCreator</a>
+					</span>
+				</span>
 				<input class="w3-input" type="url" ng-model="projectAdd.project.surveyURL"
 				       placeholder="URL to survey"></label>
 			</p>
@@ -56,7 +63,7 @@
 			</p>
 			<p>
 				<button class="w3-btn w3-ripple w3-left w3-border w3-{{projectAdd.color}}"
-				        ng-click="projectAdd.submit(form.$valid)" >
+				        ng-click="projectAdd.submit(form.$valid)">
 					<i class="fa fa-{{projectAdd.icon}}"></i> Confirm
 				</button>
 				<!--ng-disabled="!form.$valid"-->

@@ -16,10 +16,15 @@ class UserEdit {
 		this.$state = $state;
 		this.notification = notification;
 		this.$scope = $scope;
+		this.ImageStore = ImagesStore;
+
 		this.pageTitle = 'Update your Account ';
 		this.icon = 'refresh';
 		this.color = 'blue';
-		this.ImageStore = ImagesStore;
+
+		this.currentDate = dateNowString('YYYY-MM-DD');
+
+
 		this.helpers({
 
 			user() {
@@ -35,6 +40,9 @@ class UserEdit {
 			$set: {
 				'profile.name': this.user.profile.name,
 				'profile.forName': this.user.profile.forName,
+				'profile.birthDate': this.user.profile.birthDate,
+				'profile.gender': this.user.profile.gender,
+				'profile.education': this.user.profile.education,
 				'profile.avatar': this.user.profile.avatar,
 				'profile.email': this.user.profile.email,
 				'emails.0.address': this.user.profile.email,
