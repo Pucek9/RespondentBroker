@@ -11,4 +11,5 @@ Linux:
     export ROOT_URL=http://MY_IP_ADDRESS:3000
     meteor run --mobile-server=http://MY_IP_ADDRESS:3000
    
-
+set ROOT_URL=http://192.168.0.143:3000
+meteor run --mobile-server=http://192.168.0.143:3000

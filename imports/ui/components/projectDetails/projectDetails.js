@@ -133,13 +133,13 @@ class ProjectDetails {
 			this.notification.error('Problem with upload files.', error.message);
 		}
 		else {
-			this.projectDetails.temp.movieURL = response.path;
+			this.projectDetails.temp.videoURL = response.path;
 		}
 	}
 
 	importFromURL() {
 		let attr = {name: 'importFromURL.m4v', description: 'Video imported from url'};
-		UploadFS.importFromURL(this.temp.movieImportURL, attr, this.VideosStore, this.$bindToContext(this.callback));
+		UploadFS.importFromURL(this.temp.videoImportURL, attr, this.VideosStore, this.$bindToContext(this.callback));
 	}
 
 	reset() {
@@ -153,8 +153,8 @@ class ProjectDetails {
 
 	addNew() {
 		this.response.steps.push({
-			movieTag: this.temp.movieTag,
-			movieURL: this.temp.movieURL,
+			tag: this.temp.tag,
+			videoURL: this.temp.videoURL,
 			stars: this.temp.stars,
 			description: this.temp.description,
 			actions: []

@@ -107,8 +107,8 @@ const RESPONSES = [
 		project: "3P3DpFLCp6ubrTC54",
 		isPaid: false,
 		steps: [{
-			movieTag: "First Task",
-			movieURL: "/screen.m4v",
+			tag: "First Task",
+			videoURL: "/screen.m4v",
 			rating: 4,
 			description: 'was nice'
 		}]

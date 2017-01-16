@@ -6,7 +6,7 @@
 				<i class="fa fa-chevron-circle-left"></i> Back
 			</a>
 			<i class="fa fa-{{stepView.icon}} fa-fw"></i>
-			{{stepView.step.movieTag}}
+			{{stepView.step.tag}}
 		</h5>
 	</header>
 	<div class="w3-container w3-pale-{{stepView.color}} w3-border-{{stepView.color}} w3-leftbar w3-rightbar w3-bottombar"
@@ -16,7 +16,7 @@
 			<video
 					id="video"
 					width="270" height="480" controls>
-				<source ng-src="{{stepView.step.movieURL}}">
+				<source ng-src="{{stepView.step.videoURL}}">
 			</video>
 		</div>
 		<div class="w3-col m4">
@@ -36,7 +36,7 @@
 					<th>Del.</th>
 				</tr>
 
-				<tr ng-repeat="action in stepView.actions track by $index">
+				<tr ng-repeat="action in stepView.actions | orderBy : 'time' track by $index ">
 					<td><input class="w3-input" style="width:80%" type="text" ng-model="action.name"
 					           placeholder="name"/></td>
 					<td><input class="w3-input" style="width:80%" type="number"

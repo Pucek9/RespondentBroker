@@ -83,9 +83,9 @@ Meteor.startup(() => {
 
 	Meteor.methods({
 		addActions: function (response, stepId, actions) {
-			console.log(response.steps[stepId].movieTag, actions);
+			console.log(response.steps[stepId].tag, actions);
 			Responses.update({
-				_id: response._id, 'steps.movieTag': response.steps[stepId].movieTag
+				_id: response._id, 'steps.tag': response.steps[stepId].tag
 			}, {
 				$set: {
 					'steps.$.actions':  actions

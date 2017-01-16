@@ -52,11 +52,12 @@
 
 				<input ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
 				       class="w3-input" type="text"
-				       ng-model="projectDetails.temp.movieTag"
-				       placeholder="Movie tag">
+				       ng-model="projectDetails.temp.tag"
+				       placeholder="Video tag"
+				       required>
 				<input class="w3-input" type="text"
-				       ng-model="projectDetails.temp.movieURL"
-				       placeholder="Movie URL" disabled>
+				       ng-model="projectDetails.temp.videoURL"
+				       placeholder="Video URL" disabled>
 
 				<div class="w3-padding-0">
 
@@ -78,8 +79,8 @@
 							<input ng-disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"
 							       class="w3-padding w3-col s6" type="text"
 							       style="margin-top:-8px;"
-							       ng-model="projectDetails.temp.movieImportURL"
-							       placeholder="Import Movie URL">
+							       ng-model="projectDetails.temp.videoImportURL"
+							       placeholder="Import Video URL">
 						</div>
 
 						<div class="w3-accordion w3-light-grey">
@@ -89,13 +90,14 @@
 								                                                                       aria-hidden="true"></i>
 							</button>
 							<div id="tip" class="w3-accordion-content w3-center" ng-class="{'w3-show': projectDetails.tip}">
-								<img style="max-width: 100%; max-height: {{projectDetails.screenHeight}}px;" src="/images/lookbackInstruction.png">
+								<img style="max-width: 100%; max-height: {{projectDetails.screenHeight}}px;"
+								     src="/images/lookbackInstruction.png">
 							</div>
 						</div>
 					</div>
 
 					<div id="device" class="w3-container w3-padding-0 w3-light-grey" ng-show="projectDetails.uploadTab">
-						<single-file-upload file="projectDetails.temp.movieURL" type="'video/*'" store="projectDetails.VideosStore"
+						<single-file-upload file="projectDetails.temp.videoURL" type="'video/*'" store="projectDetails.VideosStore"
 						                    disabled="projectDetails.isMyProject || projectDetails.isResponsed.length > 0"></single-file-upload>
 					</div>
 				</div>
@@ -124,7 +126,7 @@
 		<div class="w3-container" ng-if="!projectDetails.isMyProject || projectDetails.isResponsed.length === 0">
 			<div ng-repeat="step in projectDetails.response.steps" class="w3-card-4">
 				<header class="w3-container w3-{{projectDetails.color}}">
-					<h3>{{step.movieTag}}
+					<h3>{{step.tag}}
 						<button class="w3-right w3-red" ng-click="projectDetails.remove(step)">x</button>
 					</h3>
 				</header>
@@ -137,7 +139,7 @@
 				<video id="v" width="100%" height="{{projectDetails.screenHeight}}px"
 				       controls crossOrigin="anonymous"
 				>
-					<source ng-src="{{step.movieURL}}">
+					<source ng-src="{{step.videoURL}}">
 				</video>
 			</div>
 		</div>
@@ -154,9 +156,10 @@
 		<p>
 		<div>
 			<header class="w3-container w3-{{projectDetails.color}}">
-				Responses:
+				Responses ({{projectDetails.responses.length}})
 			</header>
-			<dynamic-table data="projectDetails.responses" columns="projectDetails.columns"></dynamic-table>
+			<dynamic-table ng-show="projectDetails.isMyProject"
+			               data="projectDetails.responses" columns="projectDetails.columns"></dynamic-table>
 		</div>
 		</p>
 
