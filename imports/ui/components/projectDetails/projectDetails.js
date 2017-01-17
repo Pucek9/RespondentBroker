@@ -30,26 +30,42 @@ class ProjectDetails {
 		this.uploadTab = false;
 		this.tip = false;
 
+		this.getCurrentProject = () => {
+			return Projects.findOne({_id: this.projectId});
+		};
+
+		this.canReply = () => {
+			let project = this.getCurrentProject();
+			let responses = Responses.find({project: this.projectId, owner: Meteor.userId()}).fetch();
+			if (project && responses) {
+				return Meteor.userId() !== project.owner && (responses.length === 0 || project.multipleResponses) && project.statusActive;
+			}
+		};
+
 		this.helpers({
 			project() {
-				return Projects.findOne({
-					_id: this.projectId
-				});
+				return this.getCurrentProject();
 			},
 			isStepRating() {
-				let project = Projects.findOne({_id: this.projectId});
+				let project = this.getCurrentProject();
 				if (project) {
 					return project.isStepRating;
 				}
 			},
+			isStatusActive() {
+				let project = this.getCurrentProject();
+				if (project) {
+					return project.statusActive;
+				}
+			},
 			isStepDescription() {
-				let project = Projects.findOne({_id: this.projectId});
+				let project = this.getCurrentProject();
 				if (project) {
 					return project.isStepDescription;
 				}
 			},
 			isMyProject() {
-				let project = Projects.findOne({_id: this.projectId});
+				let project = this.getCurrentProject();
 				if (project) {
 					return Meteor.userId() === project.owner;
 				}
@@ -74,15 +90,21 @@ class ProjectDetails {
 			isResponsed() {
 				return Responses.find({project: this.projectId, owner: Meteor.userId()});
 			},
+			canResponse() {
+				let responses = Responses.find({project: this.projectId, owner: Meteor.userId()}).fetch();
+				let project = this.getCurrentProject();
+				if (responses && project) {
+					return responses.length === 0 || project.multipleResponses;
+				}
+			},
+			isEnabled() {
+				return this.canReply();
+			},
 			ownerFullname() {
 
 			},
 			color() {
-				let project = Projects.findOne({_id: this.projectId});
-				if (project) {
-					let isMyProject = Meteor.userId() === project.owner;
-					return (isMyProject) ? 'yellow' : 'green';
-				}
+				return (this.canReply()) ? 'green' : 'yellow';
 			}
 
 		});
@@ -162,6 +184,33 @@ class ProjectDetails {
 		this.reset();
 	}
 
+	checkAndDeactivateProject() {
+		let success = () => {
+			this.notification.success('Your response was updated successfully!');
+			this.$state.go('projects');
+		};
+		let project = Projects.findOne({_id: this.projectId});
+		if (project) {
+			let status = project.autoDeactivate && project.responses.length + 1 >= project.autoDeactivateCount;
+			Projects.update({
+				_id: this.project._id
+			}, {
+				$set: {
+					statusActive: !status,
+				},
+			}, (error) => {
+				if (error) {
+					this.notification.error('There is problem with update project! ' + error.message);
+					console.log(error)
+				} else {
+					success()
+				}
+			});
+		} else {
+			success()
+		}
+	}
+
 	addToUser(id) {
 		Meteor.users.update({
 			_id: Meteor.userId()
@@ -173,8 +222,7 @@ class ProjectDetails {
 			if (error) {
 				this.notification.error('There is problem with add your response to user! Error: ' + error);
 			} else {
-				this.notification.success('Your response was updated successfully!');
-				this.$state.go('projects');
+				this.checkAndDeactivateProject();
 			}
 		});
 	}
@@ -188,7 +236,8 @@ class ProjectDetails {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('There is problem with add your response to project! ' + error);
+				this.notification.error('There is problem with add your response to project! ' + error.message);
+				console.log(error)
 			} else {
 				this.addToUser(id);
 

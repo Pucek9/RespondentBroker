@@ -54,12 +54,37 @@
 			</div>
 			</p>
 			<p><label>
+				<input type="checkbox" class="w3-check" ng-model="projectAdd.project.multipleResponses">
+				Allow for multiple responses from one user</label>
+			</p>
+
+			<p><label>
+				<input type="checkbox" class="w3-check" ng-model="projectAdd.project.autoDeactivate">
+				Automatic deactivate research after {{projectAdd.project.autoDeactivateCount}} responses</label>
+
+				<input ng-show="projectAdd.project.autoDeactivate"
+				       class="w3-input" type="number" min="1"
+				       name="autoDeactivateCount" ng-class="{'w3-border-red w3-pale-red': !form.autoDeactivateCount.$valid }"
+				       ng-required="projectAdd.project.autoDeactivate"
+				       ng-model="projectAdd.project.autoDeactivateCount"
+				       placeholder="count">
+			</p>
+			<p><label>
 				<input type="checkbox" class="w3-check" ng-model="projectAdd.project.isStepRating">
 				Add rating to step</label>
 			</p>
+			<p ng-show="projectAdd.project.isStepRating">
+				<label>Rating title
+				<input ng-show="projectAdd.project.isStepRating"
+				       class="w3-input" type="text"
+				       name="ratingTitle" ng-class="{'w3-border-red w3-pale-red': !form.ratingTitle.$valid }"
+				       ng-required="projectAdd.project.isStepRating"
+				       ng-model="projectAdd.project.ratingTitle"
+				       placeholder="title"></label>
+			</p>
 			<p><label>
 				<input type="checkbox" class="w3-check" ng-model="projectAdd.project.isStepDescription">
-				Add description to step</label>
+				Add text area to step</label>
 			</p>
 			<p>
 				<button class="w3-btn w3-ripple w3-left w3-border w3-{{projectAdd.color}}"

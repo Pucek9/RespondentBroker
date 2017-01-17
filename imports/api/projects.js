@@ -8,12 +8,13 @@ Projects.allow({
 	},
 	update(userId, object, fields, modifier) {
 		if (userId) {
-			if (fields == 'responses') {return true;}
+			if (fields == 'responses' || fields == 'statusActive') {
+				return true;
+			}
 			else {
 				return isOwner(userId, object);
 			}
-		};
-
+		}
 	},
 	remove(userId, object) {
 		return isOwner(userId, object);

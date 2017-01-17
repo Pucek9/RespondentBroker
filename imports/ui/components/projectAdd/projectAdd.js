@@ -54,6 +54,7 @@ class ProjectAdd {
 	}
 
 	addProject() {
+		this.project.statusActive = true;
 		this.project.owner = Meteor.userId();
 		this.project.responses = [];
 		this.project.created = dateNowString();
