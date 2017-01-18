@@ -29,7 +29,7 @@ const DASHBOARD = {
 
 const MY_PROJECTS_TAB = {
 	pageTitle: 'My Projects ',
-	icon: 'search',
+	icon: 'dashboard',
 	color: 'blue',
 	name: 'myProjectsTab',
 	url: '/projects/my',
@@ -92,7 +92,7 @@ const PROJECTS_TAB = {
 
 const RESPONSE_VIEW = {
 	pageTitle: 'Response View ',
-	icon: 'check-square-o',
+	icon: 'list',
 	color: 'yellow',
 	name: 'responseView',
 	url: '/projects/:projectId/responses/:responseId',
@@ -102,8 +102,8 @@ const RESPONSE_VIEW = {
 
 const STEP_VIEW = {
 	pageTitle: 'Step View ',
-	icon: 'check-square-o',
-	color: 'yellow',
+	icon: 'video-camera',
+	color: 'blue',
 	name: 'stepView',
 	url: '/projects/:projectId/responses/:responseId/steps/:stepId',
 	template: '<step-view></step-view>'
@@ -131,9 +131,9 @@ const USERS_TAB = {
 	pageTitle: 'Users ',
 	icon: 'users',
 	color: 'yellow',
-	name: 'users',
+	name: 'usersTab',
 	url: '/users',
-	template: '<users-tab>'
+	template: '<users-tab></users-tab>'
 };
 
 export {
