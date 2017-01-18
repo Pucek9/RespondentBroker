@@ -4,75 +4,48 @@ import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 import {Projects} from '../../../api/projects';
 import {Responses} from '../../../api/responses';
-import {VideosStore} from '../../../api/files';
-import {name as SingleFileUpload} from '../upload/singleFileUpload';
-import {UploadFS} from 'meteor/jalik:ufs';
 
 import {interpolatedValue} from '../../../helpers/helpers';
+import {PROJECT_DETAILS as PAGE} from '../../../helpers/constants';
 import template from './projectDetails.html';
 
-class ProjectDetails {
-	constructor($stateParams, $scope, $reactive, $state, $interpolate, $window, notification) {
+class Controller {
+	constructor($stateParams, $scope, $reactive, $state, $interpolate) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
 		this.$state = $state;
-		this.notification = notification;
-		this.VideosStore = VideosStore;
-
-		this.pageTitle = 'Project details';
-		this.icon = 'check-square-o';
-		this.screenHeight = $window.innerHeight;
-
-		this.response = {};
-		this.response.steps = [];
-		this.importTab = true;
-		this.uploadTab = false;
-		this.tip = false;
+		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 
 		this.getCurrentProject = () => {
 			return Projects.findOne({_id: this.projectId});
-		};
-
-		this.canReply = () => {
-			let project = this.getCurrentProject();
-			let responses = Responses.find({project: this.projectId, owner: Meteor.userId()}).fetch();
-			if (project && responses) {
-				return Meteor.userId() !== project.owner && (responses.length === 0 || project.multipleResponses) && project.statusActive;
-			}
 		};
 
 		this.helpers({
 			project() {
 				return this.getCurrentProject();
 			},
-			isStepRating() {
-				let project = this.getCurrentProject();
-				if (project) {
-					return project.isStepRating;
-				}
-			},
-			isStatusActive() {
-				let project = this.getCurrentProject();
-				if (project) {
-					return project.statusActive;
-				}
-			},
-			isStepDescription() {
-				let project = this.getCurrentProject();
-				if (project) {
-					return project.isStepDescription;
-				}
-			},
+
 			isMyProject() {
 				let project = this.getCurrentProject();
 				if (project) {
 					return Meteor.userId() === project.owner;
 				}
 			},
-			// responses() {
-			// 	return Responses.find({project: this.projectId});
-			// },
+			backState() {
+				let project = this.getCurrentProject();
+				if (project) {
+					if(Meteor.userId() === project.owner) {
+						return 'projects/my';
+					}
+					else if (!project.statusActive) {
+						return 'archive';
+					}
+					else {
+						return 'projects';
+					}
+				}
+			},
 			responses() {
 				let responses = Responses.find({project: this.projectId}).fetch();
 				if (responses) {
@@ -87,26 +60,9 @@ class ProjectDetails {
 					return responses;
 				}
 			},
-			isResponsed() {
-				return Responses.find({project: this.projectId, owner: Meteor.userId()});
-			},
-			canResponse() {
-				let responses = Responses.find({project: this.projectId, owner: Meteor.userId()}).fetch();
-				let project = this.getCurrentProject();
-				if (responses && project) {
-					return responses.length === 0 || project.multipleResponses;
-				}
-			},
-			isEnabled() {
-				return this.canReply();
-			},
 			ownerFullname() {
 
 			},
-			color() {
-				return (this.canReply()) ? 'green' : 'yellow';
-			}
-
 		});
 
 		this.columns = [
@@ -139,151 +95,25 @@ class ProjectDetails {
 		];
 	}
 
-	chooseTab(tab) {
-		this.uploadTab = false;
-		this.importTab = false;
-		this[tab] = true;
-	}
-
-	tipToggleSlide() {
-		this.tip = !this.tip;
-	}
-
-	callback(error, response) {
-		if (error) {
-			console.log('error', error.message);
-			this.notification.error('Problem with upload files.', error.message);
-		}
-		else {
-			this.projectDetails.temp.videoURL = response.path;
-		}
-	}
-
-	importFromURL() {
-		let attr = {name: 'importFromURL.m4v', description: 'Video imported from url'};
-		UploadFS.importFromURL(this.temp.videoImportURL, attr, this.VideosStore, this.$bindToContext(this.callback));
-	}
-
-	reset() {
-		this.temp = {};
-	}
-
-	remove(step) {
-		let index = this.response.steps.indexOf(step);
-		this.response.steps.splice(index, 1);
-	}
-
-	addNew() {
-		this.response.steps.push({
-			tag: this.temp.tag,
-			videoURL: this.temp.videoURL,
-			stars: this.temp.stars,
-			description: this.temp.description,
-			actions: []
-		});
-		this.reset();
-	}
-
-	checkAndDeactivateProject() {
-		let success = () => {
-			this.notification.success('Your response was updated successfully!');
-			this.$state.go('projects');
-		};
-		let project = Projects.findOne({_id: this.projectId});
-		if (project) {
-			let status = project.autoDeactivate && project.responses.length + 1 >= project.autoDeactivateCount;
-			Projects.update({
-				_id: this.project._id
-			}, {
-				$set: {
-					statusActive: !status,
-				},
-			}, (error) => {
-				if (error) {
-					this.notification.error('There is problem with update project! ' + error.message);
-					console.log(error)
-				} else {
-					success()
-				}
-			});
-		} else {
-			success()
-		}
-	}
-
-	addToUser(id) {
-		Meteor.users.update({
-			_id: Meteor.userId()
-		}, {
-			$push: {
-				'profile.responses': id,
-			}
-		}, (error) => {
-			if (error) {
-				this.notification.error('There is problem with add your response to user! Error: ' + error);
-			} else {
-				this.checkAndDeactivateProject();
-			}
-		});
-	}
-
-	addToProject(id) {
-		Projects.update({
-			_id: this.project._id
-		}, {
-			$push: {
-				responses: id,
-			}
-		}, (error) => {
-			if (error) {
-				this.notification.error('There is problem with add your response to project! ' + error.message);
-				console.log(error)
-			} else {
-				this.addToUser(id);
-
-			}
-		});
-	}
-
-	confirm() {
-		this.response.owner = Meteor.userId();
-		this.response.project = this.projectId;
-		this.response.isPaid = false;
-		Responses.insert(angular.copy(this.response),
-			(error, id) => {
-				if (error) {
-					this.notification.error('There is problem with add your response! ' + error);
-				}
-				else {
-					this.addToProject(id);
-				}
-			}
-		);
-
-	}
-
 }
 
-const name = 'projectDetails';
-
-// create a module
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor,
 	uiRouter,
-	SingleFileUpload
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	controllerAs: name,
-	controller: ProjectDetails
+	controllerAs: PAGE.name,
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
 
-	$stateProvider.state('projectDetails', {
-		url: '/projects/:projectId/details',
-		template: '<project-details></project-details>',
+	$stateProvider
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
 		resolve: {
 			currentUser($q) {
 				if (Meteor.userId() === null) {

@@ -3,21 +3,20 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 import {Projects} from '../../../api/projects';
-
+import {MY_PROJECTS_TAB as PAGE} from '../../../helpers/constants';
 import {interpolatedValue} from '../../../helpers/helpers';
 import {name as DynamicTable} from '../dynamicTable/dynamicTable';
+
 import template from './myProjectsTab.html';
 import actionsTemplate from './actions.html';
 
-class MyProjectsTab {
+class Controller {
 
 	constructor($scope, $reactive, $interpolate, NgTableParams) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.NgTableParams = NgTableParams;
-		this.pageTitle = 'My Projects ';
-		this.icon = 'search';
-		this.color = 'blue';
+		[this.pageTitle,this.icon,this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 		this.userId = Meteor.userId();
 
 		this.helpers({
@@ -36,6 +35,7 @@ class MyProjectsTab {
 			{field: "maxPoints", filter: {maxPoints: "number"}, show: true, sortable: "maxPoints", title: "Max points"},
 			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Created"},
 			{field: "updated", filter: {created: "text"}, show: true, sortable: "updated", title: "Updated"},
+			{field: "statusActive", filter: {statusActive: "text"}, show: true, sortable: "statusActive", title: "Active"},
 			{
 				field: "responses",
 				show: true,
@@ -57,24 +57,22 @@ class MyProjectsTab {
 
 }
 
-const name = 'myProjectsTab';
-
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor,
 	uiRouter,
 	DynamicTable
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	controllerAs: name,
-	controller: MyProjectsTab
+	controllerAs: PAGE.name,
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
 	$stateProvider
-		.state('myProjects', {
-			url: '/projects/my',
-			template: '<my-projects-tab></my-projects-tab>'
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template
 		});
 }

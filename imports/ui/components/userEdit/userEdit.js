@@ -2,12 +2,13 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
+import {USER_EDIT as PAGE} from '../../../helpers/constants';
 import template from './userEdit.html';
 import {dateNowString} from '../../../helpers/helpers';
 import {ImagesStore} from '../../../api/files';
 import {name as SingleFileUpload} from '../upload/singleFileUpload';
 
-class UserEdit {
+class Controller {
 	constructor($stateParams, $scope, $reactive, $state, notification) {
 
 		'ngInject';
@@ -17,13 +18,8 @@ class UserEdit {
 		this.notification = notification;
 		this.$scope = $scope;
 		this.ImageStore = ImagesStore;
-
-		this.pageTitle = 'Update your Account ';
-		this.icon = 'refresh';
-		this.color = 'blue';
-
+		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 		this.currentDate = dateNowString('YYYY-MM-DD');
-
 
 		this.helpers({
 
@@ -58,8 +54,9 @@ class UserEdit {
 
 		});
 	}
+
 	confirm(valid) {
-		if(valid){
+		if (valid) {
 			this.updateUser();
 		}
 		else {
@@ -68,34 +65,31 @@ class UserEdit {
 	}
 }
 
-const name = 'userEdit';
-
-// create a module
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor,
 	uiRouter,
 	SingleFileUpload
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	controllerAs: name,
-	controller: UserEdit
+	controllerAs: PAGE.name,
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
-
-	$stateProvider.state('userEdit', {
-		url: '/users/:userId/edit',
-		template: '<user-edit></user-edit>',
-		resolve: {
-			currentUser($q) {
-				if (Meteor.userId() === null) {
-					return $q.reject('AUTH_REQUIRED');
-				} else {
-					return $q.resolve();
+	$stateProvider
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
+			resolve: {
+				currentUser($q) {
+					if (Meteor.userId() === null) {
+						return $q.reject('AUTH_REQUIRED');
+					} else {
+						return $q.resolve();
+					}
 				}
 			}
-		}
-	});
+		});
 }

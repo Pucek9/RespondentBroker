@@ -2,7 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
-
+import {USER_DETAILS as PAGE} from '../../../helpers/constants';
 import template from './userDetails.html';
 
 import {Responses} from '../../../api/responses';
@@ -10,17 +10,14 @@ import {Projects} from '../../../api/projects';
 
 import {interpolatedValue} from '../../../helpers/helpers';
 
-class UserDetails {
+class Controller {
 	constructor($stateParams, $scope, $reactive, $state, $interpolate, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.userId = $stateParams.userId;
 		this.$state = $state;
 		this.notification = notification;
-
-		this.pageTitle = 'Account Details ';
-		this.icon = 'user-circle-o';
-		this.color = 'yellow';
+		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
@@ -81,32 +78,30 @@ class UserDetails {
 	}
 }
 
-const name = 'userDetails';
-
-// create a module
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor,
 	uiRouter
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	controllerAs: name,
-	controller: UserDetails
+	controllerAs: PAGE.name,
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
-	$stateProvider.state('userDetails', {
-		url: '/users/:userId/details',
-		template: '<user-Details></user-Details>',
-		resolve: {
-			currentUser($q) {
-				if (Meteor.userId() === null) {
-					return $q.reject('AUTH_REQUIRED');
-				} else {
-					return $q.resolve();
+	$stateProvider
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
+			resolve: {
+				currentUser($q) {
+					if (Meteor.userId() === null) {
+						return $q.reject('AUTH_REQUIRED');
+					} else {
+						return $q.resolve();
+					}
 				}
 			}
-		}
-	});
+		});
 }

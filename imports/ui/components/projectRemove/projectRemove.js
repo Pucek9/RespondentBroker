@@ -1,18 +1,16 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-
+import {PROJECT_REMOVE as PAGE} from '../../../helpers/constants';
 import template from './projectRemove.html';
 import {Projects} from '../../../api/projects';
 
-class ProjectRemove {
-	constructor($stateParams,$scope, $reactive, $state, notification) {
+class Controller {
+	constructor($stateParams, $scope, $reactive, $state, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.$state = $state;
 		this.notification = notification;
-		this.pageTitle = 'Remove project:';
-		this.icon = 'remove';
-		this.color = 'red';
+		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 
 		this.helpers({
 			project() {
@@ -32,35 +30,30 @@ class ProjectRemove {
 	}
 }
 
-const name = 'projectRemove';
-
-// create a module
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	// bindings: {
-	// 	project: '='
-	// },
-	controllerAs: name,
-	controller: ProjectRemove
+	controllerAs: PAGE.name,
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
 
-	$stateProvider.state('projectRemove', {
-		url: '/projects/:projectId/remove',
-		template: '<project-remove></project-remove>',
-		resolve: {
-			currentUser($q) {
-				if (Meteor.userId() === null) {
-					return $q.reject('AUTH_REQUIRED');
-				} else {
-					return $q.resolve();
+	$stateProvider
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
+			resolve: {
+				currentUser($q) {
+					if (Meteor.userId() === null) {
+						return $q.reject('AUTH_REQUIRED');
+					} else {
+						return $q.resolve();
+					}
 				}
 			}
-		}
-	});
+		});
 }

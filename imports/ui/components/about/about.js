@@ -1,8 +1,8 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
-import {DASHBOARD as PAGE} from '../../../helpers/constants';
-import template from './dashboard.html';
+import {ABOUT as PAGE} from '../../../helpers/constants';
+import template from './about.html';
 
 class Controller {
 
@@ -16,7 +16,6 @@ class Controller {
 export default angular.module(PAGE.name, [
 	angularMeteor,
 	uiRouter,
-
 ]).component(PAGE.name, {
 	template,
 	controllerAs: PAGE.name,

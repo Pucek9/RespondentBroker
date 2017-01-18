@@ -26,7 +26,7 @@
 			</canvas>
 		</div>
 		<div class="w3-col m4"
-		     style="height:{{stepView.video.height}}px; overflow-y: auto; overflow-x: hidden" id="console">
+		     style="height:{{stepView.video.height}}px; overflow-y: auto; overflow-x: hidden">
 			<!--<button ng-click="stepView.action()">Add action</button>-->
 			<table class="table w3-table w3-table-all w3-hoverable">
 
@@ -41,22 +41,30 @@
 					           placeholder="name"/></td>
 					<td><input class="w3-input" style="width:80%" type="number"
 					           ng-model="action.time" placeholder="time"/></td>
-					<td><button class="w3-red" ng-click="stepView.removeAction(action)">x</button></td>
+					<td>
+						<button class="w3-red" ng-click="stepView.removeAction(action)">x</button>
+					</td>
 				</tr>
 			</table>
 		</div>
 
-		<button class="w3-btn w3-ripple w3-left w3-border w3-blue"
-		        ng-click="stepView.save()" >
-			<i class="fa fa-plus"></i> Save actions
-		</button>
-
-		<div class="w3-content" ng-if="stepView.step.stars">
-			<input-stars max="5" ng-model="stepView.step.stars" readonly></input-stars>
+		<div class="w3-col">
+			<div class="w3-content" ng-if="stepView.step.stars">
+				<input-stars max="5" ng-model="stepView.step.stars" readonly></input-stars>
+			</div>
+			<div class="w3-content" ng-if="stepView.step.description">
+				<textarea ng-model="stepView.step.description" disabled="true"></textarea>
+			</div>
+			<p><label>
+				<input type="checkbox" class="w3-check" ng-model="stepView.isComplete">
+				The task is fully completed?</label>
+			</p>
+			<button class="w3-btn w3-ripple w3-left w3-border w3-blue"
+			        ng-click="stepView.save()">
+				<i class="fa fa-plus"></i> Save actions
+			</button>
 		</div>
-		<div class="w3-content" ng-if="step.description">
-			<textarea ng-model="stepView.step.description" disabled="true"></textarea>
-		</div>
-
 	</div>
+
+
 </div>

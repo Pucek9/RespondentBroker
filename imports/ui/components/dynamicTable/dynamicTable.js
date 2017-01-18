@@ -1,9 +1,8 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-
 import template from './dynamicTable.html';
 
-class DynamicTable {
+class Controller {
 
 	constructor($scope, $timeout, $reactive, NgTableParams) {
 		'ngInject';
@@ -45,7 +44,7 @@ export default angular.module(name, [
 ]).component(name, {
 	template,
 	controllerAs: name,
-	controller: DynamicTable,
+	controller: Controller,
 	bindings: {
 		'columns': '=',
 		'data': '=',

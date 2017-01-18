@@ -17,12 +17,15 @@ import validator from '../../services/validator'
 
 import template from './respondentBroker.html';
 import {name as DynamicTable} from '../dynamicTable/dynamicTable';
+import {name as About} from '../about/about';
 import {name as Dashboard} from '../dashboard/dashboard';
 import {name as MyProjectsTab} from '../myProjectsTab/myProjectsTab';
 import {name as ProjectsTab} from '../projectsTab/projectsTab';
+import {name as Archive} from '../archive/archive';
 import {name as ProjectAdd} from '../projectAdd/projectAdd';
 import {name as ProjectRemove} from '../projectRemove/projectRemove';
 import {name as ProjectEdit} from '../projectEdit/projectEdit';
+import {name as ProjectPreview} from '../projectPreview/projectPreview';
 import {name as ProjectDetails} from '../projectDetails/projectDetails';
 import {name as UsersTab} from '../usersTab/usersTab';
 import {name as UserEdit} from '../userEdit/userEdit';
@@ -45,13 +48,16 @@ const name = 'respondentBroker';
 export default angular.module(name, [
 	angularMeteor,
 	uiRouter,
+	About,
 	Dashboard,
 	DynamicTable,
 	MyProjectsTab,
 	ProjectsTab,
+	Archive,
 	ProjectAdd,
 	ProjectRemove,
 	ProjectEdit,
+	ProjectPreview,
 	ProjectDetails,
 	UsersTab,
 	UserEdit,

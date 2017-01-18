@@ -3,10 +3,11 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 import {Projects} from '../../../api/projects';
+import {PROJECT_EDIT as PAGE} from '../../../helpers/constants';
 import template from './projectEdit.html';
 import {dateNowString} from '../../../helpers/helpers';
 
-class ProjectEdit {
+class Controller {
 	constructor($stateParams, $scope, $reactive, $state, notification, validator) {
 
 		'ngInject';
@@ -15,10 +16,7 @@ class ProjectEdit {
 		this.$state = $state;
 		this.notification = notification;
 		this.validator = validator;
-
-		this.pageTitle = 'Update your project ';
-		this.icon = 'refresh';
-		this.color = 'blue';
+		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 
 		this.helpers({
 			project() {
@@ -26,12 +24,6 @@ class ProjectEdit {
 					_id: $stateParams.projectId
 				});
 			},
-			// userPoints(){
-			// 	const user = Meteor.user();
-			// 	if(user){
-			// 		return user.profile.points;
-			// 	}
-			// }
 		});
 	}
 
@@ -74,33 +66,31 @@ class ProjectEdit {
 	}
 }
 
-const name = 'projectEdit';
-
-// create a module
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor,
 	uiRouter
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	controllerAs: name,
-	controller: ProjectEdit
+	controllerAs: PAGE.name,
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
 
-	$stateProvider.state('projectEdit', {
-		url: '/projects/:projectId/edit',
-		template: '<project-edit></project-edit>',
-		resolve: {
-			currentUser($q) {
-				if (Meteor.userId() === null) {
-					return $q.reject('AUTH_REQUIRED');
-				} else {
-					return $q.resolve();
+	$stateProvider
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
+			resolve: {
+				currentUser($q) {
+					if (Meteor.userId() === null) {
+						return $q.reject('AUTH_REQUIRED');
+					} else {
+						return $q.resolve();
+					}
 				}
 			}
-		}
-	});
+		});
 }

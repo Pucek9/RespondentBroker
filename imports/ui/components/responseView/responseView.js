@@ -4,11 +4,11 @@ import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 import {Projects} from '../../../api/projects';
 import {Responses} from '../../../api/responses';
-
 import {interpolatedValue} from '../../../helpers/helpers';
+import {RESPONSE_VIEW as PAGE} from '../../../helpers/constants';
 import template from './responseView.html';
 
-class ResponseView {
+class Controller {
 	constructor($stateParams, $scope, $reactive, $timeout, notification, validator) {
 		'ngInject';
 		$reactive(this).attach($scope);
@@ -17,10 +17,7 @@ class ResponseView {
 		this.$timeout = $timeout;
 		this.notification = notification;
 		this.validator = validator;
-
-		this.pageTitle = 'Response View';
-		this.icon = 'check-square-o';
-		this.color = 'yellow';
+		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 
 		this.helpers({
 			project() {
@@ -110,25 +107,22 @@ class ResponseView {
 
 }
 
-const name = 'responseView';
-
-// create a module
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor,
 	uiRouter,
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	controllerAs: name,
-	controller: ResponseView
+	controllerAs: PAGE.name,
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
-
-	$stateProvider.state('responseView', {
-		url: '/projects/:projectId/responses/:responseId',
-		template: '<response-view></response-view>',
+	$stateProvider
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
 		resolve: {
 			currentUser($q) {
 				if (Meteor.userId() === null) {

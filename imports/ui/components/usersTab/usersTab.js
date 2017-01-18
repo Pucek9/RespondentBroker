@@ -2,25 +2,19 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
-
+import {USERS_TAB as PAGE} from '../../../helpers/constants';
 import template from './usersTab.html';
 import {interpolatedValue} from '../../../helpers/helpers';
 
-class UsersTab {
+class Controller {
 	constructor($scope, $reactive, $interpolate) {
 		'ngInject';
 		$reactive(this).attach($scope);
-
-		this.pageTitle = 'Users';
-		this.icon = 'users';
-		this.color = 'yellow';
+		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 
 		this.helpers({
-
 			users() {
-				// let usr = Meteor.users.find({}).fetch();
 				return Meteor.users.find({})
-
 			}
 		});
 
@@ -66,31 +60,25 @@ class UsersTab {
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.profile.points}}`)
 			},
-
 		];
 	}
-
-
 }
 
-const name = 'usersTab';
-
-// create a module
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor,
 	uiRouter
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	controllerAs: name,
-	controller: UsersTab
+	controllerAs: PAGE.name,
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
 	$stateProvider
-		.state('users', {
-			url: '/users',
-			template: '<users-tab></users-tab>'
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
 		});
 }

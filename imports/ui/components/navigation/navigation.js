@@ -1,7 +1,23 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import {Meteor} from 'meteor/meteor';
-
+import {
+	ABOUT,
+	ARCHIVE,
+	DASHBOARD,
+	MY_PROJECTS_TAB,
+	PROJECT_ADD,
+	PROJECT_DETAILS,
+	PROJECT_EDIT,
+	PROJECT_PREVIEW,
+	PROJECT_REMOVE,
+	PROJECTS_TAB,
+	RESPONSE_VIEW,
+	STEP_VIEW,
+	USER_DETAILS,
+	USER_EDIT,
+	USERS_TAB
+} from '../../../helpers/constants';;
 import template from './navigation.html';
 
 class Navigation {
@@ -16,26 +32,29 @@ this.$timeout = $timeout;
 				let userId = Meteor.userId();
 				return [
 					{
-						name: 'Dashboard', icon: 'line-chart', state: 'dashboard', href: '/',
+						name: ABOUT.pageTitle, icon: ABOUT.icon, state: ABOUT.state, href: ABOUT.url,
 					},
 					{
-						name: 'My Projects', icon: 'dashboard', state: 'myProjects', href: '/projects/my',
+						name: DASHBOARD.pageTitle, icon: DASHBOARD.icon, state: DASHBOARD.state, href: DASHBOARD.url,
 					},
 					{
-						name: 'Projects', icon: 'search', state: 'projects', href: '/projects',
-					},
-					// {
-					// 	name: 'History', icon: 'history', href: '/history',
-					// },
-					{
-						name: 'Users', icon: 'users', state: 'users', href: '/users',
+						name: MY_PROJECTS_TAB.pageTitle, icon: MY_PROJECTS_TAB.icon, state: MY_PROJECTS_TAB.state, href: MY_PROJECTS_TAB.url,
 					},
 					{
-						name: 'Account', icon: 'address-card-o', state: 'userDetails', href: '/users/' + userId + '/details',
+						name: PROJECTS_TAB.pageTitle, icon: PROJECTS_TAB.icon, state: PROJECTS_TAB.state, href: PROJECTS_TAB.url,
 					},
 					{
-						name: 'Settings', icon: 'cog', state: 'userEdit', href: '/users/' + userId + '/edit',
-					}
+						name: ARCHIVE.pageTitle, icon: ARCHIVE.icon, state: ARCHIVE.state, href: ARCHIVE.url,
+					},
+					{
+						name: USERS_TAB.pageTitle, icon: USERS_TAB.icon, state: USERS_TAB.state, href: USERS_TAB.url,
+					},
+					{
+						name: USER_DETAILS.pageTitle, icon: USER_DETAILS.icon, state: USER_DETAILS.state, href: '/users/' + userId + '/details',
+					},
+					{
+						name: USER_EDIT.pageTitle, icon: USER_EDIT.icon, state: USER_EDIT.state, href: '/users/' + userId + '/edit',
+					},
 				]
 			}
 		});

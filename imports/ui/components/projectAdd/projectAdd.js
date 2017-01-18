@@ -6,9 +6,10 @@ import {Projects} from '../../../api/projects';
 import {dateNowString} from '../../../helpers/helpers';
 import {ApplicationsStore} from '../../../api/files';
 import {name as SingleFileUpload} from '../upload/singleFileUpload';
+import {PROJECT_ADD as PAGE} from '../../../helpers/constants';
 import template from './projectAdd.html';
 
-class ProjectAdd {
+class Controller {
 	constructor($scope, $reactive, $state, notification, validator) {
 		'ngInject';
 		$reactive(this).attach($scope);
@@ -16,10 +17,7 @@ class ProjectAdd {
 		this.notification = notification;
 		this.ApplicationsStore = ApplicationsStore;
 		this.validator = validator;
-
-		this.pageTitle = 'Add new project ';
-		this.icon = 'plus-circle';
-		this.color = 'green';
+		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 
 		this.project = {};
 
@@ -84,25 +82,22 @@ class ProjectAdd {
 	}
 }
 
-const name = 'projectAdd';
-
-// create a module
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor,
 	SingleFileUpload
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	controllerAs: name,
-	controller: ProjectAdd
+	controllerAs: PAGE.name,
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
 	$stateProvider
-		.state('projectAdd', {
-			url: '/projects/new',
-			template: '<project-add></project-add>',
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
 			resolve: {
 				currentUser($q) {
 					if (Meteor.userId() === null) {

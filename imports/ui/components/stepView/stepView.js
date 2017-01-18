@@ -4,11 +4,11 @@ import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 import {Projects} from '../../../api/projects';
 import {Responses} from '../../../api/responses';
-
 import {interpolatedValue} from '../../../helpers/helpers';
+import {STEP_VIEW as PAGE} from '../../../helpers/constants';
 import template from './stepView.html';
 
-class StepView {
+class Controller {
 	constructor($stateParams, $scope, $reactive, $timeout, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
@@ -19,9 +19,7 @@ class StepView {
 		this.$scope = $scope;
 		this.notification = notification;
 
-		this.pageTitle = 'Response View';
-		this.icon = 'check-square-o';
-		this.color = 'yellow';
+		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 
 		this.helpers({
 			project() {
@@ -206,45 +204,31 @@ class StepView {
 
 }
 
-const
-	name = 'stepView';
-
-// create a module
-export
-default
-angular
-	.module(name, [
-		angularMeteor,
-		uiRouter,
-	])
-
-	.component(name, {
+export default angular.module(PAGE.name, [
+	angularMeteor,
+	uiRouter,
+])
+	.component(PAGE.name, {
 		template,
-		controllerAs: name,
-		controller: StepView,
-		// bindings: {
-		// 	'step': '=',
-		// },
+		controllerAs: PAGE.name,
+		controller: Controller,
 	})
-
 	.config(config);
 
-function
-
-config($stateProvider) {
+function config($stateProvider) {
 	'ngInject';
-
-	$stateProvider.state('stepView', {
-		url: '/projects/:projectId/responses/:responseId/steps/:stepId',
-		template: '<step-view></step-view>',
-		resolve: {
-			currentUser($q) {
-				if (Meteor.userId() === null) {
-					return $q.reject('AUTH_REQUIRED');
-				} else {
-					return $q.resolve();
+	$stateProvider
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
+			resolve: {
+				currentUser($q) {
+					if (Meteor.userId() === null) {
+						return $q.reject('AUTH_REQUIRED');
+					} else {
+						return $q.resolve();
+					}
 				}
 			}
-		}
-	});
+		});
 }
