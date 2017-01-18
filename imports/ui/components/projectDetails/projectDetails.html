@@ -160,7 +160,7 @@
 		<p>
 		<div>
 			<header class="w3-container w3-{{projectDetails.color}}">
-				Responses ({{projectDetails.responses.length}})
+				Responses ({{projectDetails.responses.length}}{{projectDetails.project.autoDeactivate ? '/'+projectDetails.project.autoDeactivateCount.toString() : ''}})
 			</header>
 			<dynamic-table ng-show="projectDetails.isMyProject"
 			               data="projectDetails.responses" columns="projectDetails.columns"></dynamic-table>

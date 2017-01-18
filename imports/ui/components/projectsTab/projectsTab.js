@@ -64,7 +64,7 @@ class ProjectsTab {
 				title: "Replies",
 				sortable: "responses.length",
 				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`{{row.responses.length}}`)
+				interpolateExpr: $interpolate(`{{row.responses.length}} {{ row.autoDeactivate ? '/'+row.autoDeactivateCount.toString() : ''}}`)
 			},
 		];
 	}

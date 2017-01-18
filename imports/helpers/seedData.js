@@ -14,7 +14,12 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		isStepDescription: true,
 		maxPoints: 9, minPoints: 6,
 		application: '',
-		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
+		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ',
+		ratingTitle: 'You had the pleasure of performing this task?',
+		statusActive: true,
+		autoDeactivate: false,
+		autoDeactivateCount: null,
+		multipleResponses: false
 	},
 	{
 		name: 'Simon',
@@ -27,7 +32,12 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		isStepDescription: true,
 		maxPoints: 10, minPoints: 4,
 		application: '',
-		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ'
+		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ',
+		ratingTitle: 'You had the pleasure of performing this task?',
+		statusActive: true,
+		autoDeactivate: true,
+		autoDeactivateCount: 10,
+		multipleResponses: false
 	},
 	{
 		name: 'Jacob',
@@ -40,7 +50,12 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		isStepDescription: true,
 		maxPoints: 12, minPoints: 8,
 		application: '',
-		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ'
+		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ',
+		ratingTitle: 'You had the pleasure of performing this task?',
+		statusActive: true,
+		autoDeactivate: true,
+		autoDeactivateCount: 10,
+		multipleResponses: false
 	},
 	{
 		name: 'Nephi',
@@ -53,7 +68,12 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		isStepDescription: true,
 		maxPoints: 16, minPoints: 7,
 		application: '',
-		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
+		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ',
+		ratingTitle: 'You had the pleasure of performing this task?',
+		statusActive: true,
+		autoDeactivate: true,
+		autoDeactivateCount: 10,
+		multipleResponses: false
 	},
 	{
 		name: 'Christian',
@@ -79,7 +99,11 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		isStepDescription: true,
 		maxPoints: 18, minPoints: 3,
 		application: '',
-		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
+		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ',
+		ratingTitle: 'You had the pleasure of performing this task?',
+		statusActive: true,
+		autoDeactivate: false,
+		multipleResponses: false
 	},
 	{
 		name: 'Jacob',
@@ -96,7 +120,12 @@ Proin convallis nunc at justo sodales aliquam. Aliquam ullamcorper ligula ligula
 		isStepDescription: true,
 		maxPoints: 10, minPoints: 2,
 		application: '',
-		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ'
+		surveyURL: 'https://www.surveymonkey.com/r/89BPNCJ',
+		ratingTitle: 'You had the pleasure of performing this task?',
+		statusActive: true,
+		autoDeactivate: true,
+		autoDeactivateCount: 8,
+		multipleResponses: false
 	}
 ];
 
