@@ -10,12 +10,8 @@ class Controller {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.$timeout = $timeout;
-
-		this.language = 'en';
+		this.$translate = $translate;
 		this.languages = ['en', 'pl'];
-		this.updateLanguage = function(language) {
-			$translate.use(language);
-		};
 
 		this.guestAvatar = '/images/avatar1.png';
 
@@ -29,14 +25,44 @@ class Controller {
 					let email = user.profile.email;
 					this.setDisplayNameToEmail(email);
 				}
+			},
+		});
+	}
+
+	updateLanguage = function (language) {
+		this.language = language;
+		this.$translate.use(this.language);
+		this.updateUser()
+	};
+
+	updateUser() {
+		Meteor.users.update({
+			_id: this.user._id
+		}, {
+			$set: {
+				'profile.language': this.language,
+			}
+		}, (error) => {
+			if (error) {
+				this.notification.error('Oops, unable to update language... Error: ' + error.message);
+				console.log(error);
 			}
 		});
+	}
+
+	initLanguage() {
+		let user = Meteor.user();
+		if (user) {
+			let language = user.profile.language;
+			this.updateLanguage(language);
+		}
 	}
 
 	setDisplayNameToEmail(email) {
 		this.$timeout(() => {
 			let display = angular.element(document).find('#login-name-link');
 			display.text(email + ' ▾');
+			this.initLanguage();
 		}, 100);
 	}
 

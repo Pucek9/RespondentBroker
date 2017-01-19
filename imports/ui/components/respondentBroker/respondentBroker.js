@@ -9,7 +9,11 @@ import ngMaterial from 'angular-material';
 import ngAria from 'angular-aria';
 import ngAnimate from 'angular-animate';
 import inputStars from 'angular-input-stars';
+
 import ngTranslate from 'angular-translate';
+// import ngCookies from 'angular-cookies';
+// import ngTranslateLocal from 'angular-translate-storage-local';
+// import ngTranslateCookie from 'angular-translate-storage-cookie';
 
 import ngFileUpload from 'ng-file-upload';
 import dataTableFormatter from '../../services/data-format-factory'
@@ -96,7 +100,8 @@ function config($locationProvider, $urlRouterProvider, $translateProvider) {
 	$translateProvider
 		.translations('pl', pl)
 		.translations('en', en)
-		.preferredLanguage('en');
+		.preferredLanguage('en')
+		// .useLocalStorage();
 }
 
 function run($rootScope, $state) {

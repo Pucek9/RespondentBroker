@@ -17,25 +17,15 @@
 				class="fa fa-user"></i></a>
 		<a href="/users/{{$ctrl.user._id}}/edit" class="w3-hover-none w3-hover-text-yellow w3-show-inline-block"><i
 				class="fa fa-cog"></i></a>
-		<!--<a href="#" class="w3-hover-none w3-hover-text-blue w3-show-inline-block"><i class="fa fa-language"></i></a>-->
 
 		<div class="w3-dropdown-hover" style="width: 25px;">
-			<!--style="width:25px;"-->
 			<a class="w3-hover-none w3-hover-text-blue w3-show-inline-block"><i class="fa fa-language"></i></a>
 			<div class="w3-dropdown-content w3-border">
 				<a href="#" ng-repeat="language in $ctrl.languages" ng-click="$ctrl.updateLanguage(language)">
 					<img style="max-height: 25px" src="images/{{language}}.png" class="flag flag-pl"/>{{language | translate}}
 				</a>
-
-
-				<!--<select ng-options="language for language in $ctrl.languages" ng-model="$ctrl.language"-->
-				<!--ng-change="$ctrl.updateLanguage()">-->
-				<!--</select>-->
 			</div>
 		</div>
-
-		<!--<select ng-options="language for language in $ctrl.languages" ng-model="$ctrl.language" ng-change="$ctrl.updateLanguage()">-->
-		<!--</select>-->
 	</div>
 	<h1></h1>
 </div>
