@@ -14,7 +14,7 @@ class Controller {
 
 		this.helpers({
 			users() {
-				return Meteor.users.find({})
+				return Meteor.users.find({},{sort: {'profile.name': 1}})
 			}
 		});
 

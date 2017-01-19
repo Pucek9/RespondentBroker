@@ -19,34 +19,40 @@ class Navigation {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.$state = $state;
-this.$timeout = $timeout;
+		this.$timeout = $timeout;
 		this.helpers({
 			positions() {
 				let userId = Meteor.userId();
 				return [
 					{
-						name: ABOUT.pageTitle, icon: ABOUT.icon, state: ABOUT.state, href: ABOUT.url,
+						name: ABOUT.pageTitle, icon: ABOUT.icon, state: ABOUT.name, href: ABOUT.url,
 					},
 					{
-						name: DASHBOARD.pageTitle, icon: DASHBOARD.icon, state: DASHBOARD.state, href: DASHBOARD.url,
+						name: DASHBOARD.pageTitle, icon: DASHBOARD.icon, state: DASHBOARD.name, href: DASHBOARD.url,
 					},
 					{
-						name: PROJECTS_MY.pageTitle, icon: PROJECTS_MY.icon, state: PROJECTS_MY.state, href: PROJECTS_MY.url,
+						name: PROJECTS_MY.pageTitle, icon: PROJECTS_MY.icon, state: PROJECTS_MY.name, href: PROJECTS_MY.url,
 					},
 					{
-						name: PROJECTS.pageTitle, icon: PROJECTS.icon, state: PROJECTS.state, href: PROJECTS.url,
+						name: PROJECTS.pageTitle, icon: PROJECTS.icon, state: PROJECTS.name, href: PROJECTS.url,
 					},
 					{
-						name: PROJECTS_ARCHIVE.pageTitle, icon: PROJECTS_ARCHIVE.icon, state: PROJECTS_ARCHIVE.state, href: PROJECTS_ARCHIVE.url,
+						name: PROJECTS_ARCHIVE.pageTitle,
+						icon: PROJECTS_ARCHIVE.icon,
+						state: PROJECTS_ARCHIVE.name,
+						href: PROJECTS_ARCHIVE.url,
 					},
 					{
-						name: USERS.pageTitle, icon: USERS.icon, state: USERS.state, href: USERS.url,
+						name: USERS.pageTitle, icon: USERS.icon, state: USERS.name, href: USERS.url,
 					},
 					{
-						name: USER_DETAILS.pageTitle, icon: USER_DETAILS.icon, state: USER_DETAILS.state, href: '/users/' + userId + '/details',
+						name: USER_DETAILS.pageTitle,
+						icon: USER_DETAILS.icon,
+						state: USER_DETAILS.name,
+						href: '/users/' + userId + '/details',
 					},
 					{
-						name: USER_EDIT.pageTitle, icon: USER_EDIT.icon, state: USER_EDIT.state, href: '/users/' + userId + '/edit',
+						name: USER_EDIT.pageTitle, icon: USER_EDIT.icon, state: USER_EDIT.name, href: '/users/' + userId + '/edit',
 					},
 				]
 			}
@@ -55,11 +61,12 @@ this.$timeout = $timeout;
 	};
 
 	checkState(position, index) {
-		this.$timeout(()=>{
+		this.$timeout(() => {
+			console.log(this.$state.current.name,position.state, position, index )
 			if (this.$state.current.name === position.state) {
 				this.setActive(index);
 			}
-		},100);
+		}, 100);
 	};
 
 	setActive(index) {
