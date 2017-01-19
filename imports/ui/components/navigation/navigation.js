@@ -62,7 +62,6 @@ class Navigation {
 
 	checkState(position, index) {
 		this.$timeout(() => {
-			console.log(this.$state.current.name,position.state, position, index )
 			if (this.$state.current.name === position.state) {
 				this.setActive(index);
 			}

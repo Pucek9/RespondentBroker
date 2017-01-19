@@ -13,8 +13,8 @@ class Controller {
 
 		this.language = 'en';
 		this.languages = ['en', 'pl'];
-		this.updateLanguage = function() {
-			$translate.use(this.language);
+		this.updateLanguage = function(language) {
+			$translate.use(language);
 		};
 
 		this.guestAvatar = '/images/avatar1.png';
