@@ -1,10 +1,10 @@
 <div class="w3-card-4">
-	<header class="w3-container w3-{{dashboard.color}}">
+	<header class="w3-container w3-{{$ctrl.color}}">
 		<h5>
-			<i class="fa fa-{{dashboard.icon}} "></i> {{dashboard.pageTitle}}
+			<i class="fa fa-{{$ctrl.icon}} "></i> {{$ctrl.pageTitle | translate}}
 		</h5>
 	</header>
-	<div class="w3-container w3-pale-{{dashboard.color}} w3-border-{{dashboard.color}} w3-leftbar w3-rightbar w3-bottombar"
+	<div class="w3-container w3-pale-{{$ctrl.color}} w3-border-{{$ctrl.color}} w3-leftbar w3-rightbar w3-bottombar"
 	     style="padding: 0px">
 		content page
 	</div>

@@ -1,10 +1,10 @@
 <div class="w3-card-4">
-	<header class="w3-container w3-{{usersTab.color}}">
-		<h5><i class="fa fa-{{usersTab.icon}} fa-fw"></i>{{usersTab.pageTitle}} ({{usersTab.users.length}})</h5>
+	<header class="w3-container w3-{{$ctrl.color}}">
+		<h5><i class="fa fa-{{$ctrl.icon}} fa-fw"></i>{{$ctrl.pageTitle | translate}} ({{$ctrl.users.length}})</h5>
 	</header>
 	<div
-			class="w3-container w3-pale-{{usersTab.color}} w3-border-{{usersTab.color}} w3-leftbar w3-rightbar w3-bottombar"
+			class="w3-container w3-pale-{{$ctrl.color}} w3-border-{{$ctrl.color}} w3-leftbar w3-rightbar w3-bottombar"
 			style="padding: 0px">
-		<dynamic-table data="usersTab.users" columns="usersTab.columns"></dynamic-table>
+		<dynamic-table data="$ctrl.users" columns="$ctrl.columns"></dynamic-table>
 	</div>
 </div>

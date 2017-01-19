@@ -3,7 +3,7 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
 import {Projects} from '../../../api/projects';
-import {MY_PROJECTS_TAB as PAGE} from '../../../helpers/constants';
+import {PROJECTS_MY as PAGE} from '../../../helpers/constants';
 import {interpolatedValue} from '../../../helpers/helpers';
 import {name as DynamicTable} from '../dynamicTable/dynamicTable';
 
@@ -63,7 +63,6 @@ export default angular.module(PAGE.name, [
 	DynamicTable
 ]).component(PAGE.name, {
 	template,
-	controllerAs: PAGE.name,
 	controller: Controller
 })
 	.config(config);

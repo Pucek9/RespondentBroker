@@ -1,15 +1,15 @@
 <div class="w3-card-4">
-	<header class="w3-container w3-{{myProjectsTab.color}}">
+	<header class="w3-container w3-{{$ctrl.color}}">
 		<h5>
 			<button class="w3-btn w3-ripple w3-right w3-border w3-green header-button" ui-sref="projectAdd">
-				<i class="fa fa-plus "></i> Add new
+				<i class="fa fa-plus "></i> {{'ADD_NEW' | translate }}
 			</button>
-			<i class="fa fa-{{myProjectsTab.icon}} "></i> {{myProjectsTab.pageTitle}} ({{myProjectsTab.projects.length}})
+			<i class="fa fa-{{$ctrl.icon}} "></i> {{$ctrl.pageTitle | translate}} ({{$ctrl.projects.length}})
 		</h5>
 	</header>
-	<div class="w3-container w3-pale-{{myProjectsTab.color}} w3-border-{{myProjectsTab.color}} w3-leftbar w3-rightbar w3-bottombar"
+	<div class="w3-container w3-pale-{{$ctrl.color}} w3-border-{{$ctrl.color}} w3-leftbar w3-rightbar w3-bottombar"
 	     style="padding: 0px">
-		<dynamic-table data="myProjectsTab.projects" columns="myProjectsTab.columns"></dynamic-table>
+		<dynamic-table data="$ctrl.projects" columns="$ctrl.columns"></dynamic-table>
 	</div>
 </div>
 

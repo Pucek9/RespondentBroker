@@ -19,8 +19,9 @@ class Controller {
 		this.validator = validator;
 		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
 
-		this.project = {};
-
+		this.project = {
+			statusActive: true
+		};
 		this.helpers({
 			userPoints(){
 				const user = Meteor.user();
@@ -29,9 +30,7 @@ class Controller {
 				}
 			}
 		});
-
 	}
-
 
 	decreasePoints(id) {
 		Meteor.users.update({
@@ -52,7 +51,6 @@ class Controller {
 	}
 
 	addProject() {
-		this.project.statusActive = true;
 		this.project.owner = Meteor.userId();
 		this.project.responses = [];
 		this.project.created = dateNowString();
@@ -69,7 +67,7 @@ class Controller {
 		);
 	}
 
-	submit(valid) {
+	confirm(valid) {
 		if (valid) {
 			const user = Meteor.user();
 			if (this.validator.project(this.project, user)) {
@@ -87,7 +85,6 @@ export default angular.module(PAGE.name, [
 	SingleFileUpload
 ]).component(PAGE.name, {
 	template,
-	controllerAs: PAGE.name,
 	controller: Controller
 })
 	.config(config);

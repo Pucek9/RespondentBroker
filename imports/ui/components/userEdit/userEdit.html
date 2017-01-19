@@ -1,59 +1,59 @@
 <div class="w3-card-4">
-	<header class="w3-container w3-{{userEdit.color}}">
+	<header class="w3-container w3-{{$ctrl.color}}">
 		<h5>
 			<!--<button class="w3-btn w3-ripple w3-right w3-border w3-black header-button" ui-sref="users">-->
 			<!--<i class="fa fa-chevron-circle-left"></i> Back-->
 			<!--</button>-->
-			<h5><i class="fa fa-{{userEdit.icon}} "></i> {{userEdit.pageTitle}}</h5>
+			<h5><i class="fa fa-{{$ctrl.icon}} "></i> {{$ctrl.pageTitle | translate}}</h5>
 		</h5>
 	</header>
 	<div class="w3-container" style="padding: 0px">
 		<form name="form"
-		      class="w3-container w3-pale-{{userEdit.color}} w3-border-{{userEdit.color}} w3-leftbar w3-rightbar w3-bottombar">
+		      class="w3-container w3-pale-{{$ctrl.color}} w3-border-{{$ctrl.color}} w3-leftbar w3-rightbar w3-bottombar">
 
-			<p><label>Name
-				<input class="w3-input" type="text" ng-model="userEdit.user.profile.name" name="name" required
+			<p><label>{{'USER.NAME' | translate}}
+				<input class="w3-input" type="text" ng-model="$ctrl.user.profile.name" name="name" required
 				       ng-class="{'w3-border-red w3-pale-red': !form.name.$valid }"
-				       placeholder="User Name"></label></p>
-			<p><label>Forname
-				<input class="w3-input" type="text" ng-model="userEdit.user.profile.forName" name="forName" required
+				       placeholder="{{'USER.NAME' | translate}}"></label></p>
+			<p><label>{{'USER.FORNAME' | translate}}
+				<input class="w3-input" type="text" ng-model="$ctrl.user.profile.forName" name="forName" required
 				       ng-class="{'w3-border-red w3-pale-red': !form.forName.$valid }"
-				       placeholder="User Forname"></label></p>
-			<p><label>Birth date
-				<input class="w3-input" type="date" name="birthDate" ng-model="userEdit.user.profile.birthDate"
+				       placeholder="{{'USER.FORNAME' | translate}}"></label></p>
+			<p><label>{{'USER.BIRTHDATE' | translate}}
+				<input class="w3-input" type="date" name="birthDate" ng-model="$ctrl.user.profile.birthDate"
 				       ng-class="{'w3-border-red w3-pale-red': !form.birthDate.$valid }"
-				       placeholder="yyyy-MM-dd" min="1900-01-01" max="{{userEdit.currentDate}}"/></label></p>
-			<p><label>Gender
-				<select class="w3-input" name="gender" ng-model="userEdit.user.profile.gender">
-					<option value="">---Please select---</option>
-					<option value="male">Male</option>
-					<option value="female">Female</option>
+				       placeholder="yyyy-MM-dd" min="1900-01-01" max="{{$ctrl.currentDate}}"/></label></p>
+			<p><label>{{'USER.GENDER' | translate}}
+				<select class="w3-input" name="gender" ng-model="$ctrl.user.profile.gender">
+					<option value="">{{'CHOICE' | translate}}</option>
+					<option value="male">{{'USER.MALE' | translate}}</option>
+					<option value="female">{{'USER.FEMALE' | translate}}</option>
 				</select></label></p>
 			<p>
-			<p><label>Education
-				<select class="w3-input" name="education" ng-model="userEdit.user.profile.education">
-					<option value="">---Please select---</option>
-					<option value="male">Higher</option>
-					<option value="female">Secondary education</option>
-					<option value="female">Professional</option>
-					<option value="female">Basics</option>
+			<p><label>{{'USER.EDUCATION' | translate}}
+				<select class="w3-input" name="education" ng-model="$ctrl.user.profile.education">
+					<option value="">{{'CHOICE' | translate}}</option>
+					<option value="male">{{'USER.HIGHER' | translate}}</option>
+					<option value="female">{{'USER.SECONDARY' | translate}}</option>
+					<option value="female">{{'USER.PROFESSIONAL' | translate}}</option>
+					<option value="female">{{'USER.BASICS' | translate}}</option>
 				</select></label></p>
 			<p>
-				<label>Avatar
-					<input class="w3-input" type="text" ng-model="userEdit.user.profile.avatar" name="avatar"
-					       placeholder="Avatar URL"></label>
-				<img ng-src="{{userEdit.user.profile.avatar}}" style="width:100px"></label>
-				<single-file-upload file="userEdit.user.profile.avatar" type="'image/*'"
-				                    store="userEdit.ImageStore"></single-file-upload>
+				<label>{{'USER.AVATAR' | translate}}
+					<input class="w3-input" type="text" ng-model="$ctrl.user.profile.avatar" name="avatar"
+					       placeholder="{{'USER.AVATAR_URL' | translate}}"></label>
+				<img ng-src="{{$ctrl.user.profile.avatar}}" style="width:100px"></label>
+				<single-file-upload file="$ctrl.user.profile.avatar" type="'image/*'"
+				                    store="$ctrl.ImageStore"></single-file-upload>
 			</p>
-			<p><label>Email
+			<p><label>{{'EMAIL' | translate}}
 				<input class="w3-input" type="email" name="email" required
 				       ng-class="{'w3-border-red w3-pale-red': !form.email.$valid }"
-				       ng-model="userEdit.user.profile.email"
-				       placeholder="Email"></label></p>
-			<button class="w3-btn w3-ripple w3-left w3-border w3-{{userEdit.color}}"
-			        ng-click="userEdit.confirm(form.$valid)">
-				<i class="fa fa-{{userEdit.icon}}"></i> Confirm
+				       ng-model="$ctrl.user.profile.email"
+				       placeholder="{{'EMAIL' | translate}}"></label></p>
+			<button class="w3-btn w3-ripple w3-left w3-border w3-{{$ctrl.color}}"
+			        ng-click="$ctrl.confirm(form.$valid)">
+				<i class="fa fa-{{$ctrl.icon}}"></i> {{'CONFIRM' | translate}}
 			</button>
 			</p>
 		</form>

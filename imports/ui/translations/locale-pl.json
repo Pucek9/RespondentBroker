@@ -1,0 +1,145 @@
+{
+	"BACK": "Wstecz",
+	"FROM": "od",
+	"TO": "do",
+	"TITLE": "Tytuł",
+	"COUNT": "Ilość",
+	"CONFIRM": "Potwierdź",
+	"DESCRIPTION": "Opis",
+	"UPLOAD": "Prześlij",
+	"POINTS": "Punkty",
+	"LEVEL": "Poziom",
+	"EMAIL": "Email",
+	"RESPONSES": "Odpowiedzi",
+	"STEPS": "Zadania",
+	"VIEW": "Oglądaj",
+	"CREATE_DATE": "Data utworzenia",
+	"LAST_UPDATE": "Data aktualizacji",
+	"OWNER":"Właściciel",
+	"DETAILS": "Szczegóły",
+	"PREVIEW": "Podgląd",
+	"EDIT": "Edycja",
+	"REMOVE": "Usuń",
+	"ADD_NEW": "Dodaj nowy",
+	"CLOSE": "Zamknij Menu",
+	"WELCOME": "Witaj",
+	"CHOICE": "---Proszę wybrać---",
+	"PROJECT": {
+		"NAME": "Nazwa projektu",
+		"DESCRIPTION_PLACEHOLDER": "Opisz warunki wykonania zadania",
+		"UPLOAD": "Prześlij swoją aplikację",
+		"SURVEY": "Dodaj adres URL swojej ankiety",
+		"SURVEY_PLACEHOLDER": "URL ankiety",
+		"POINTS": "Ile punktów przydzielisz osobie, która odpowie?",
+		"MULTIPLE": "Pozwól użytkownikowi na wiele odpowiedzi",
+		"DEACTIVATE": "Dezaktywuj projekt automatycznie po",
+		"RESPONSES": "odpowiedziach",
+		"RATING": "Dodaj ocenę do zadania",
+		"TEXTAREA": "Dodaj pole komentarza do zadania",
+		"ACTIVESTATUS": "Status aktywny",
+		"PROJECT_TITLE": "Tytuł projektu",
+		"ADD": {
+			"TITLE": "Dodaj nowy projekt "
+		},
+		"ARCHIVE": {
+			"TITLE": "Archiwum "
+		},
+		"TAB": {
+			"TITLE": "Projekty "
+		},
+		"MY": {
+			"TITLE": "Moje projekty "
+		},
+		"DETAILS": {
+			"TITLE": "Szczegóły projektu "
+		},
+		"EDIT": {
+			"TITLE": "Aktualizuj swój projekt "
+		},
+		"PREVIEW": {
+			"TITLE": "Podgląd projektu ",
+			"POINTS": "points",
+			"PREVIEW_ONLY": "Tylko przeglądanie",
+			"IS_MY_PROJECT": "Jako właściciel nie możesz odpowiadać na własny projekt.",
+			"CANT_RESPONSE": "Już odpowiadałeś na ten projekt.",
+			"ISNT_ACTIVE": "Projekt jest nieaktywny.",
+			"DOWNLOAD": "Proszę pobrać i zainstalować aplikację ",
+			"FOLLOW_INSTRUCTIONS": "Proszę wykonywać kroki instrukcji i nagrywać filmy",
+			"COMPLETE": "Proszę uzupełnić ",
+			"SURVEY": "ankietę",
+			"SIGN_IT": "i ją podpisać.",
+			"UPLOAD_VIDEOS": "Proszę przesłać filmy i je oznakować.",
+			"ADD_STEP": "Dodaj zadanie",
+			"VIDEO_TAG": "Oznaczenie filmu",
+			"VIDEO_URL": "URL filmu",
+			"IMPORT_FROM_SERVER": "Importuj z Lookback",
+			"UPLOAD_FROM_DEVICE": "Prześlij z urządzenia",
+			"IMPORT_VIDEO_URL": "Import Video URL",
+			"SHOW_TIP": " Pokaz wskazówkę ",
+			"GIVE_ME_OPINION": "Napisz komentarz o tym zadaniu."
+		},
+		"REMOVE": {
+			"TITLE": "Usuń projekt ",
+			"QUESTION": "Czy jesteś pewny, że chcesz usunać ten projekt?"
+		}
+	},
+	"USER": {
+		"NAME": "Imię",
+		"FORNAME": "Nazwisko",
+		"BIRTH_DATE": "Data urodzenia",
+		"GENDER": "Płec",
+		"MALE": "Mężczyzna ",
+		"FEMALE": "Kobieta ",
+		"EDUCATION": "Wykształcenie",
+		"HIGHER": "Wyższe",
+		"SECONDARY": "Średnie",
+		"PROFESSIONAL": "Zawodowe",
+		"BASICS": "Podstawowe",
+		"AVATAR": "Awatar ",
+		"AVATAR_URL": "URL awatara",
+		"DETAILS": {
+			"TITLE": "Szczegóły konta "
+		},
+		"EDIT": {
+			"TITLE": "Aktualizuj profil "
+		},
+		"TAB": {
+			"TITLE": "Użytkownicy "
+		}
+	},
+	"RESPONSE_VIEW": {
+		"TITLE": "Odpowiedzi ",
+		"PAY_FOR": "Zapłać użytkownikowi ",
+		"PAY": "Płać"
+	},
+	"STEP_VIEW": {
+		"TITLE": "Przegląd zadania",
+		"COMPLETED": "Czy zadanie jest całkowicie ukończone?",
+		"NAME": "Nazwa",
+		"TIME": "Czas",
+		"REMOVE": "Usuń"
+
+	},
+	"DASHBOARD": {
+		"TITLE": "Panel główny "
+	},
+	"ABOUT": {
+		"TITLE": "O narzędziu ",
+		"PROLOG": "Badanie projektu za pomocą tego narzędzia odbywa się poprzez:",
+		"1": "Założenie konta na stronie webowej Respondent Broker.",
+		"2": "Uzupełnienie swojego profilu o brakujące dane.",
+		"3": "W zależności od posiadanej ilości punktów:",
+		"3a": "W przypadku braku odpowiedniej ilości punktów, potrzebnych by znaleźć chętnych do przeprowadzenia badania należy je zdobyć. Odbywa się to poprzez bycie uczestnikiem badania użyteczności czyjejś aplikacji i przesłaniu wygenerowanych danych i subiektywnych ocen, wtedy ta osoba przyznaje nam punkty za dobrze wykonane zadanie.",
+		"3b": "Jeżeli konto użytkownika zawiera odpowiednią w jego ocenie ilość punktów, aby znaleźć chętnych do przeprowadzenia badania można stworzyć nowy projekt.",
+		"4": "Stworzenie nowego projektu i uzupełnienie go o:",
+		"4a": "Tytuł.",
+		"4b": "Warunki, instrukcje i spis zadań do wykonania.",
+		"4c": "Plik instalacyjny aplikacji.",
+		"4d": "Link do przygotowanej ankiety.",
+		"4e": "Zakres punktów możliwy do przyznania uczestnikom, gdzie maksymalna kwota nie może być większa niż liczba punktów",
+		"4f": "Ustawienia konfiguracyjne dodatkowych parametrów mogących się przydać w badaniu jak włączenie komentarza czy oceny dla zadania.",
+		"5": "Po odpowiedzeniu przez zadowalającą liczbę respondentów – przejrzenie odpowiedzi wygenerowanie czasów interakcji.",
+		"6": "Opracowanie wyników w oparciu o wygenerowane dane.",
+		"7": "Przyznanie punktów użytkownikom za poświęcony czas."
+	}
+}

@@ -6,10 +6,16 @@ import template from './userPanel.html';
 
 class Controller {
 
-	constructor($scope, $reactive, $timeout) {
+	constructor($scope, $reactive, $timeout, $translate) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.$timeout = $timeout;
+
+		this.language = 'en';
+		this.languages = ['en', 'pl'];
+		this.updateLanguage = function() {
+			$translate.use(this.language);
+		};
 
 		this.guestAvatar = '/images/avatar1.png';
 
@@ -41,6 +47,5 @@ export default angular.module(name, [
 	angularMeteor,
 ]).component(name, {
 	template,
-	controllerAs: name,
 	controller: Controller
 })

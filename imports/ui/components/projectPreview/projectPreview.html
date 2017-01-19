@@ -1,147 +1,144 @@
 <div class="w3-card-4">
-	<header class="w3-container w3-{{projectPreview.color}}">
+	<header class="w3-container w3-{{$ctrl.color}}">
 		<h5>
 			<a class="w3-btn w3-ripple w3-right w3-border w3-black header-button"
-			        href="/{{projectPreview.backState}}">
-				<i class="fa fa-chevron-circle-left"></i> Back
+			        href="/{{$ctrl.backState}}">
+				<i class="fa fa-chevron-circle-left"></i> {{'BACK' | translate}}
 			</a>
 			<a class="w3-btn w3-ripple w3-yellow w3-right w3-border header-button"
-			         href="/projects/{{projectPreview.projectId}}/details">
-				<i class="fa fa-line-chart"></i> Details
+			         href="/projects/{{$ctrl.projectId}}/details">
+				<i class="fa fa-line-chart"></i> {{'DETAILS' | translate}}
 			</a>
 
-			<i class="fa fa-{{projectPreview.icon}} fa-fw"></i>
-			{{projectPreview.pageTitle}} {{projectPreview.project.name}} ({{projectPreview.project.minPoints}}
-			-{{projectPreview.project.maxPoints}} points)
+			<i class="fa fa-{{$ctrl.icon}} fa-fw"></i>
+			{{$ctrl.pageTitle | translate}} {{$ctrl.project.name}} ({{$ctrl.project.minPoints}}
+			-{{$ctrl.project.maxPoints}} {{'PROJECT.PREVIEW.POINTS' | translate }})
 		</h5>
 	</header>
 	<div
-			class="w3-container w3-pale-{{projectPreview.color}} w3-border-{{projectPreview.color}} w3-leftbar w3-rightbar w3-bottombar">
+			class="w3-container w3-pale-{{$ctrl.color}} w3-border-{{$ctrl.color}} w3-leftbar w3-rightbar w3-bottombar">
 		<div
-				ng-if="!projectPreview.isEnabled"
+				ng-if="!$ctrl.isEnabled"
 				class="w3-panel w3-orange w3-card-8">
-			<h3>Preview only</h3>
-			<p ng-if="projectPreview.isMyProject">As owner you cannot reply for own project.</p>
-			<p ng-if="!projectPreview.canResponse">Already answered on this project.</p>
-			<p ng-if="!projectPreview.isStatusActive">Project was deactivated.</p>
+			<h3>{{'PROJECT.PREVIEW.PREVIEW_ONLY' | translate}}</h3>
+			<p ng-if="$ctrl.isMyProject">{{'PROJECT.PREVIEW.IS_MY_PROJECT' | translate}}</p>
+			<p ng-if="!$ctrl.canResponse">{{'PROJECT.PREVIEW.CANT_RESPONSE' | translate}}</p>
+			<p ng-if="!$ctrl.isStatusActive">{{'PROJECT.PREVIEW.ISNT_ACTIVE' | translate}}</p>
 		</div>
-		<h2>1. Please download and install
-			<a target="_self" ng-href={{projectPreview.project.application}}>{{projectPreview.project.name}}</a> application.
+		<h2>1. {{'PROJECT.PREVIEW.DOWNLOAD' | translate}}
+			<a target="_self" ng-href={{$ctrl.project.application}}>{{$ctrl.project.name}}</a>.
 		</h2>
 
-		<h2>2. Please download and install <a href="https://lookback.io/download">LookBack</a> application.</h2>
+		<h2>2. {{'PROJECT.PREVIEW.DOWNLOAD' | translate}} <a href="https://lookback.io/download">LookBack</a>.</h2>
 
-		<h2>3. Please follow instructions and make videos:</h2>
+		<h2>3. {{'PROJECT.PREVIEW.FOLLOW_INSTRUCTIONS' | translate}}</h2>
 		<textarea class="w3-input" disabled="true" rows="10"
-		          ng-model="projectPreview.project.description">
+		          ng-model="$ctrl.project.description">
 		</textarea>
-		<h2>4. Please complete the <a ng-href="{{projectPreview.project.surveyURL}}">survey</a> and sign it.</h2>
-		<h2>5. Please upload your videos and tag them.</h2>
+		<h2>4. {{'PROJECT.PREVIEW.COMPLETE' | translate}} <a ng-href="{{$ctrl.project.surveyURL}}">{{'PROJECT.PREVIEW.SURVEY' | translate}}</a> {{'PROJECT.PREVIEW.SIGN_IT' | translate}}</h2>
+		<h2>5. {{'PROJECT.PREVIEW.UPLOAD_VIDEOS' | translate}}</h2>
 
 		<form name="form" class="w3-container w3-padding-0">
 			<fieldset>
 				<legend>
-					<button class="w3-btn w3-ripple w3-border w3-{{projectPreview.color}}"
-					        ng-click="projectPreview.addNew()"
-					        ng-disabled="!projectPreview.isEnabled">
-						<i class="fa fa-plus"></i> Add step
+					<button class="w3-btn w3-ripple w3-border w3-{{$ctrl.color}}"
+					        ng-click="$ctrl.addNew()"
+					        ng-disabled="!$ctrl.isEnabled">
+						<i class="fa fa-plus"></i> {{'PROJECT.PREVIEW.ADD_STEP' | translate}}
 					</button>
 				</legend>
-				{{projectPreview.isEnabled}}
 				<input
-						ng-disabled="!projectPreview.isEnabled"
+						ng-disabled="!$ctrl.isEnabled"
 						class="w3-input" type="text"
-						ng-model="projectPreview.temp.tag"
-						placeholder="Video tag"
+						ng-model="$ctrl.temp.tag"
+						placeholder="{{'PROJECT.PREVIEW.VIDEO_TAG' | translate}}"
 						required>
 				<input class="w3-input" type="text"
-				       ng-model="projectPreview.temp.videoURL"
-				       placeholder="Video URL" disabled>
+				       ng-model="$ctrl.temp.videoURL"
+				       placeholder="{{'PROJECT.PREVIEW.VIDEO_URL' | translate}}" disabled>
 
 				<div class="w3-padding-0">
 
 					<ul class="w3-navbar w3-light-green w3-border-bottom intronav">
-						<li><a class="testbtn" ng-class="{'w3-green': projectPreview.importTab}" href="#"
-						       ng-click="projectPreview.chooseTab('importTab')">Import from Lookback</a></li>
-						<li><a class="testbtn" ng-class="{'w3-green': projectPreview.uploadTab}" href="#"
-						       ng-click="projectPreview.chooseTab('uploadTab')">Upload from device</a></li>
+						<li><a class="testbtn" ng-class="{'w3-green': $ctrl.importTab}" href="#"
+						       ng-click="$ctrl.chooseTab('importTab')">{{'PROJECT.PREVIEW.IMPORT_FROM_SERVER' | translate}}</a></li>
+						<li><a class="testbtn" ng-class="{'w3-green': $ctrl.uploadTab}" href="#"
+						       ng-click="$ctrl.chooseTab('uploadTab')">{{'PROJECT.PREVIEW.UPLOAD_FROM_DEVICE' | translate}}</a></li>
 					</ul>
 
-					<div id="lookback" class="w3-light-grey" ng-show="projectPreview.importTab">
+					<div id="lookback" class="w3-light-grey" ng-show="$ctrl.importTab">
 
 						<div class="w3-row w3-input" style="padding-bottom:0;padding-right:0; width: inherit">
 							<button class="w3-button w3-col s3"
 							        style="margin-right:8px;"
-							        ng-disabled="!projectPreview.isEnabled"
-							        ng-click="projectPreview.importFromURL()" style="float: left">Upload
+							        ng-disabled="!$ctrl.isEnabled"
+							        ng-click="$ctrl.importFromURL()" style="float: left">{{'UPLOAD' | translate}}
 							</button>
 							<input
-									ng-disabled="!projectPreview.isEnabled"
+									ng-disabled="!$ctrl.isEnabled"
 									class="w3-padding w3-col s6" type="text"
 									style="margin-top:-8px;"
-									ng-model="projectPreview.temp.videoImportURL"
-									placeholder="Import Video URL">
+									ng-model="$ctrl.temp.videoImportURL"
+									placeholder="{{'PROJECT.PREVIEW.IMPORT_VIDEO_URL' | translate}}">
 						</div>
 
 						<div class="w3-accordion w3-light-grey">
-							<button ng-click="projectPreview.tipToggleSlide()" class="w3-btn-block w3-orange"
+							<button ng-click="$ctrl.tipToggleSlide()" class="w3-btn-block w3-orange"
 							        style="padding-left: 0px; padding-right: 0px">
-								<i class="fa fa-angle-double-down" aria-hidden="true"></i> Show tip <i class="fa fa-angle-double-down"
+								<i class="fa fa-angle-double-down" aria-hidden="true"></i>{{'PROJECT.PREVIEW.SHOW_TIP' | translate}}<i class="fa fa-angle-double-down"
 								                                                                       aria-hidden="true"></i>
 							</button>
-							<div id="tip" class="w3-accordion-content w3-center" ng-class="{'w3-show': projectPreview.tip}">
-								<img style="max-width: 100%; max-height: {{projectPreview.screenHeight}}px;"
+							<div id="tip" class="w3-accordion-content w3-center" ng-class="{'w3-show': $ctrl.tip}">
+								<img style="max-width: 100%; max-height: {{$ctrl.screenHeight}}px;"
 								     src="/images/lookbackInstruction.png">
 							</div>
 						</div>
 					</div>
 
-					<div id="device" class="w3-container w3-padding-0 w3-light-grey" ng-show="projectPreview.uploadTab">
-						<single-file-upload file="projectPreview.temp.videoURL" type="'video/*'" store="projectPreview.VideosStore"
-						                    disabled="!projectPreview.isEnabled"></single-file-upload>
+					<div id="device" class="w3-container w3-padding-0 w3-light-grey" ng-show="$ctrl.uploadTab">
+						<single-file-upload file="$ctrl.temp.videoURL" type="'video/*'" store="$ctrl.VideosStore"
+						                    disabled="!$ctrl.isEnabled"></single-file-upload>
 					</div>
 				</div>
 
-				<div ng-if="projectPreview.isStepRating">
-					{{projectPreview.project.ratingTitle}}
+				<div ng-if="$ctrl.isStepRating">
+					{{$ctrl.project.ratingTitle}}
 					<div
-							ng-if="!projectPreview.isEnabled">
-						<input-stars max="5" ng-model="projectPreview.temp.stars"
+							ng-if="!$ctrl.isEnabled">
+						<input-stars max="5" ng-model="$ctrl.temp.stars"
 						             readonly></input-stars>
 					</div>
 					<div
-							ng-if="projectPreview.isEnabled">
-						<input-stars max="5" ng-model="projectPreview.temp.stars"></input-stars>
+							ng-if="$ctrl.isEnabled">
+						<input-stars max="5" ng-model="$ctrl.temp.stars"></input-stars>
 					</div>
 
 				</div>
-				<div ng-if="projectPreview.isStepDescription">
-					<!--<textarea ng-model="step.description"></textarea>-->
+				<div ng-if="$ctrl.isStepDescription">
 					<textarea class="w3-input" rows="10"
-					          ng-model="projectPreview.temp.description"
-					          placeholder="Tell me your opinion about this step."
-					          ng-disabled="!projectPreview.isEnabled">
+					          ng-model="$ctrl.temp.description"
+					          placeholder="{{'PROJECT.PREVIEW.GIVE_ME_OPINION' | translate}}"
+					          ng-disabled="!$ctrl.isEnabled">
 					</textarea>
 				</div>
 			</fieldset>
 		</form>
 
-		<div class="w3-container"
-		     ng-if="projectPreview.isEnabled">
-			<div ng-repeat="step in projectPreview.response.steps" class="w3-card-4">
-				<header class="w3-container w3-{{projectPreview.color}}">
+		<div class="w3-container" ng-if="$ctrl.isEnabled">
+			<div ng-repeat="step in $ctrl.response.steps" class="w3-card-4">
+				<header class="w3-container w3-{{$ctrl.color}}">
 					<h3>{{step.tag}}
-						<button class="w3-right w3-red" ng-click="projectPreview.remove(step)">x</button>
+						<button class="w3-right w3-red" ng-click="$ctrl.remove(step)">x</button>
 					</h3>
 				</header>
-				<div ng-if="projectPreview.isStepRating">
-					{{projectPreview.project.ratingTitle}}
+				<div ng-if="$ctrl.isStepRating">
+					{{$ctrl.project.ratingTitle}}
 					<input-stars max="5" ng-model="step.stars" readonly></input-stars>
 				</div>
-				<div ng-if="projectPreview.isStepDescription">
+				<div ng-if="$ctrl.isStepDescription">
 					<textarea ng-model="step.description" disabled="true"></textarea>
 				</div>
-				<video id="v" width="100%" height="{{projectPreview.screenHeight}}px"
+				<video id="v" width="100%" height="{{$ctrl.screenHeight}}px"
 				       controls crossOrigin="anonymous"
 				>
 					<source ng-src="{{step.videoURL}}">
@@ -151,10 +148,10 @@
 
 		<div>
 			<button
-					ng-disabled="!projectPreview.isEnabled || projectPreview.response.steps.length === 0"
-					class="w3-btn w3-ripple w3-border w3-{{projectPreview.color}}"
-					ng-click="projectPreview.confirm()">
-				<i class="fa fa-{{projectPreview.icon}}"></i> Confirm
+					ng-disabled="!$ctrl.isEnabled || $ctrl.response.steps.length === 0"
+					class="w3-btn w3-ripple w3-border w3-{{$ctrl.color}}"
+					ng-click="$ctrl.confirm()">
+				<i class="fa fa-{{$ctrl.icon}}"></i> {{'CONFIRM' | translate}}
 			</button>
 		</div>
 

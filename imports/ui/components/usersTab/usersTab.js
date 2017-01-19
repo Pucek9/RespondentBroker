@@ -2,7 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 import {Meteor} from 'meteor/meteor';
-import {USERS_TAB as PAGE} from '../../../helpers/constants';
+import {USERS as PAGE} from '../../../helpers/constants';
 import template from './usersTab.html';
 import {interpolatedValue} from '../../../helpers/helpers';
 
@@ -69,7 +69,6 @@ export default angular.module(PAGE.name, [
 	uiRouter
 ]).component(PAGE.name, {
 	template,
-	controllerAs: PAGE.name,
 	controller: Controller
 })
 	.config(config);

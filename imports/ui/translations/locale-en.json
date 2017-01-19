@@ -1,0 +1,145 @@
+{
+	"BACK": "Back",
+	"FROM": "from",
+	"TO": "to",
+	"TITLE": "Title",
+	"COUNT": "Count",
+	"CONFIRM": "Confirm",
+	"DESCRIPTION": "Description",
+	"UPLOAD": "Upload",
+	"POINTS": "Points",
+	"LEVEL": "Level",
+	"EMAIL": "Email ",
+	"RESPONSES": "Responses",
+	"STEPS": "Steps",
+	"VIEW": "View",
+	"CREATE_DATE": "Create date",
+	"LAST_UPDATE": "Last update date",
+	"OWNER": "Owner",
+	"DETAILS": "Details",
+	"PREVIEW": "Preview",
+	"EDIT": "Edit",
+	"REMOVE": "Remove",
+	"ADD_NEW": "Add new",
+	"CLOSE": "Close Menu",
+	"WELCOME": "Welcome",
+	"CHOICE": "---Please select---",
+	"PROJECT": {
+		"NAME": "Project Name",
+		"DESCRIPTION_PLACEHOLDER": "Instruction how must do your respondent",
+		"UPLOAD": "Upload your application",
+		"SURVEY": "Add URL to your survey",
+		"SURVEY_PLACEHOLDER": "URL to survey",
+		"POINTS": "How many points will you give for respondent?",
+		"MULTIPLE": "Allow for multiple responses from one user",
+		"DEACTIVATE": "Automatic deactivate research after",
+		"RESPONSES": "resposes",
+		"RATING": "Add rating to step",
+		"TEXTAREA": "Add text area to step",
+		"ACTIVESTATUS": "Active status",
+		"PROJECT_TITLE": "Project title",
+		"ADD": {
+			"TITLE": "Add new project "
+		},
+		"ARCHIVE": {
+			"TITLE": "Archive "
+		},
+		"TAB": {
+			"TITLE": "Projects "
+		},
+		"MY": {
+			"TITLE": "My Projects "
+		},
+		"DETAILS": {
+			"TITLE": "Project details "
+		},
+		"EDIT": {
+			"TITLE": "Update your project "
+		},
+		"PREVIEW": {
+			"TITLE": "Project preview ",
+			"POINTS": "points",
+			"PREVIEW_ONLY": "Preview only",
+			"IS_MY_PROJECT": "As owner you cannot reply for own project.",
+			"CANT_RESPONSE": "Already answered on this project.",
+			"ISNT_ACTIVE": "Project was deactivated.",
+			"DOWNLOAD": "Please download and install application",
+			"FOLLOW_INSTRUCTIONS": "Please follow instructions and make videos",
+			"COMPLETE": "Please complete the ",
+			"SURVEY": "survey",
+			"SIGN_IT": "and sign it.",
+			"UPLOAD_VIDEOS": "Please upload your videos and tag them.",
+			"ADD_STEP": "Add step",
+			"VIDEO_TAG": "Video tag",
+			"VIDEO_URL": "Video URL",
+			"IMPORT_FROM_SERVER": "Import from Lookback",
+			"UPLOAD_FROM_DEVICE": "Upload from device",
+			"IMPORT_VIDEO_URL": "Import Video URL",
+			"SHOW_TIP": " Show tip  ",
+			"GIVE_ME_OPINION": "Tell me your opinion about this step."
+		},
+		"REMOVE": {
+			"TITLE": "Remove project ",
+			"QUESTION": "Are you sure to remove that project?"
+		}
+	},
+	"USER": {
+		"NAME": "Name",
+		"FORNAME": "Forname",
+		"BIRTH_DATE": "Birth date",
+		"GENDER": "Gender",
+		"MALE": "Male ",
+		"FEMALE": "Female ",
+		"EDUCATION": "Education",
+		"HIGHER": "Higher",
+		"SECONDARY": "Secondary education",
+		"PROFESSIONAL": "Professional",
+		"BASICS": "Basics",
+		"AVATAR": "Avatar ",
+		"AVATAR_URL": "Avatar URL",
+		"DETAILS": {
+			"TITLE": "Account Details "
+		},
+		"EDIT": {
+			"TITLE": "Update Account "
+		},
+		"TAB": {
+			"TITLE": "Users "
+		}
+	},
+	"RESPONSE_VIEW": {
+		"TITLE": "Response View ",
+		"PAY_FOR": "Pay for user",
+		"PAY": "Pay"
+	},
+	"STEP_VIEW": {
+		"TITLE": "Step View ",
+		"COMPLETED": "The task is fully completed?",
+		"NAME": "Name",
+		"TIME": "Time",
+		"REMOVE": "Del."
+
+	},
+	"DASHBOARD": {
+		"TITLE": "Dashboard "
+	},
+	"ABOUT": {
+		"TITLE": "About ",
+		"PROLOG": "To research your project by using this tool you should:",
+		"1": "Register new account.",
+		"2": "Complete your accont.",
+		"3": "In depends of your points:",
+		"3a": "W przypadku braku odpowiedniej ilości punktów, potrzebnych by znaleźć chętnych do przeprowadzenia badania należy je zdobyć. Odbywa się to poprzez bycie uczestnikiem badania użyteczności czyjejś aplikacji i przesłaniu wygenerowanych danych i subiektywnych ocen, wtedy ta osoba przyznaje nam punkty za dobrze wykonane zadanie.",
+		"3b": "Jeżeli konto użytkownika zawiera odpowiednią w jego ocenie ilość punktów, aby znaleźć chętnych do przeprowadzenia badania można stworzyć nowy projekt.",
+		"4": "Create new project and type:",
+		"4a": "Title.",
+		"4b": "Instructions and list of tasks.",
+		"4c": "Application file.",
+		"4d": "URL to survey.",
+		"4e": "Range of points for respondent, max used points can't be greather than your points",
+		"4f": "Set configs additional parameters like add comment field, star rating to all steps.",
+		"5": "After responses preview responses from respondents. Watch videos by using achromatic view and stop to log actions.",
+		"6": "Get data and and use it to make results.",
+		"7": "Give points for respondends for help."
+	}
+}

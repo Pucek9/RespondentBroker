@@ -9,8 +9,9 @@ import ngMaterial from 'angular-material';
 import ngAria from 'angular-aria';
 import ngAnimate from 'angular-animate';
 import inputStars from 'angular-input-stars';
-import ngFileUpload from 'ng-file-upload';
+import ngTranslate from 'angular-translate';
 
+import ngFileUpload from 'ng-file-upload';
 import dataTableFormatter from '../../services/data-format-factory'
 import notification from '../../services/notification-factory'
 import validator from '../../services/validator'
@@ -66,6 +67,7 @@ export default angular.module(name, [
 	ResponseView,
 	StepView,
 	ngFileUpload,
+	'pascalprecht.translate',
 	'angular-input-stars',
 	'ngSanitize',
 	'ngMaterial',
@@ -84,10 +86,17 @@ export default angular.module(name, [
 	.factory('notification', notification)
 	.factory('validator', validator);
 
-function config($locationProvider, $urlRouterProvider) {
+function config($locationProvider, $urlRouterProvider, $translateProvider) {
 	'ngInject';
 	$locationProvider.html5Mode(true);
 	$urlRouterProvider.otherwise('/dashboard');
+	const pl = require('../../translations/locale-pl.json');
+	const en = require('../../translations/locale-en.json');
+
+	$translateProvider
+		.translations('pl', pl)
+		.translations('en', en)
+		.preferredLanguage('en');
 }
 
 function run($rootScope, $state) {

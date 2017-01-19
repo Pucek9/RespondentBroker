@@ -1,7 +1,7 @@
 const DATE_MASK = 'YYYY/MM/DD HH:mm';
 
 const ABOUT = {
-	pageTitle: 'About',
+	pageTitle: 'ABOUT.TITLE',
 	icon: 'info-circle',
 	color: 'yellow',
 	name: 'about',
@@ -9,17 +9,8 @@ const ABOUT = {
 	template: '<about></about>'
 };
 
-const ARCHIVE = {
-	pageTitle: 'Archive',
-	icon: 'history',
-	color: 'yellow',
-	name: 'archive',
-	url: '/archive',
-	template: '<archive></archive>'
-};
-
 const DASHBOARD = {
-	pageTitle: 'Dashboard',
+	pageTitle: 'DASHBOARD.TITLE',
 	icon: 'line-chart',
 	color: 'yellow',
 	name: 'dashboard',
@@ -27,17 +18,27 @@ const DASHBOARD = {
 	template: '<dashboard></dashboard>'
 };
 
-const MY_PROJECTS_TAB = {
-	pageTitle: 'My Projects ',
+const PROJECTS_ARCHIVE = {
+	pageTitle: 'PROJECT.ARCHIVE.TITLE',
+	icon: 'history',
+	color: 'yellow',
+	name: 'projectsArchive',
+	url: '/projects/archive',
+	template: '<projects-archive></projects-archive>'
+};
+
+
+const PROJECTS_MY = {
+	pageTitle: 'PROJECT.MY.TITLE',
 	icon: 'dashboard',
 	color: 'blue',
-	name: 'myProjectsTab',
+	name: 'projectsMy',
 	url: '/projects/my',
-	template: '<my-projects-tab></my-projects-tab>'
+	template: '<projects-my></projects-my>'
 };
 
 const PROJECT_ADD = {
-	pageTitle: 'Add new project ',
+	pageTitle: 'PROJECT.ADD.TITLE',
 	icon: 'plus-circle',
 	color: 'green',
 	name: 'projectAdd',
@@ -46,7 +47,7 @@ const PROJECT_ADD = {
 };
 
 const PROJECT_DETAILS = {
-	pageTitle: 'Project details ',
+	pageTitle: 'PROJECT.DETAILS.TITLE',
 	icon: 'line-chart',
 	color: 'yellow',
 	name: 'projectDetails',
@@ -55,7 +56,7 @@ const PROJECT_DETAILS = {
 };
 
 const PROJECT_EDIT = {
-	pageTitle: 'Update your project ',
+	pageTitle: 'PROJECT.EDIT.TITLE',
 	icon: 'refresh',
 	color: 'blue',
 	name: 'projectEdit',
@@ -64,7 +65,7 @@ const PROJECT_EDIT = {
 };
 
 const PROJECT_PREVIEW = {
-	pageTitle: 'Project preview ',
+	pageTitle: 'PROJECT.PREVIEW.TITLE',
 	icon: 'check-square-o',
 	color: 'green',
 	name: 'projectPreview',
@@ -73,7 +74,7 @@ const PROJECT_PREVIEW = {
 };
 
 const PROJECT_REMOVE = {
-	pageTitle: 'Remove project: ',
+	pageTitle: 'PROJECT.REMOVE.TITLE',
 	icon: 'remove',
 	color: 'red',
 	name: 'projectRemove',
@@ -81,17 +82,17 @@ const PROJECT_REMOVE = {
 	template: '<project-remove></project-remove>'
 };
 
-const PROJECTS_TAB = {
-	pageTitle: 'Projects ',
+const PROJECTS = {
+	pageTitle: 'PROJECT.TAB.TITLE',
 	icon: 'search',
 	color: 'yellow',
-	name: 'projectsTab',
+	name: 'projects',
 	url: '/projects',
-	template: '<projects-tab></projects-tab>'
+	template: '<projects></projects>'
 };
 
 const RESPONSE_VIEW = {
-	pageTitle: 'Response View ',
+	pageTitle: 'RESPONSE_VIEW.TITLE',
 	icon: 'list',
 	color: 'yellow',
 	name: 'responseView',
@@ -101,7 +102,7 @@ const RESPONSE_VIEW = {
 
 
 const STEP_VIEW = {
-	pageTitle: 'Step View ',
+	pageTitle: 'STEP_VIEW.TITLE',
 	icon: 'video-camera',
 	color: 'blue',
 	name: 'stepView',
@@ -110,7 +111,7 @@ const STEP_VIEW = {
 };
 
 const USER_DETAILS = {
-	pageTitle: 'Account Details ',
+	pageTitle: 'USER.DETAILS.TITLE',
 	icon: 'user-circle-o',
 	color: 'yellow',
 	name: 'userDetails',
@@ -119,7 +120,7 @@ const USER_DETAILS = {
 };
 
 const USER_EDIT = {
-	pageTitle: 'Update Account ',
+	pageTitle: 'USER.EDIT.TITLE',
 	icon: 'refresh',
 	color: 'blue',
 	name: 'userEdit',
@@ -127,30 +128,30 @@ const USER_EDIT = {
 	template: '<user-edit></user-edit>'
 };
 
-const USERS_TAB = {
-	pageTitle: 'Users ',
+const USERS = {
+	pageTitle: 'USER.TAB.TITLE',
 	icon: 'users',
 	color: 'yellow',
-	name: 'usersTab',
+	name: 'users',
 	url: '/users',
-	template: '<users-tab></users-tab>'
+	template: '<users></users>'
 };
 
 export {
 	DATE_MASK,
 	ABOUT,
-	ARCHIVE,
 	DASHBOARD,
-	MY_PROJECTS_TAB,
 	PROJECT_ADD,
 	PROJECT_DETAILS,
 	PROJECT_EDIT,
 	PROJECT_PREVIEW,
 	PROJECT_REMOVE,
-	PROJECTS_TAB,
+	PROJECTS_ARCHIVE,
+	PROJECTS_MY,
+	PROJECTS,
 	RESPONSE_VIEW,
 	STEP_VIEW,
 	USER_DETAILS,
 	USER_EDIT,
-	USERS_TAB
+	USERS
 };

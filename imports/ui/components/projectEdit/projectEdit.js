@@ -40,6 +40,11 @@ class Controller {
 				isStepDescription: this.project.isStepDescription,
 				surveyURL: this.project.surveyURL,
 				application: this.project.application,
+				ratingTitle: this.project.ratingTitle,
+				statusActive: this.project.statusActive,
+				autoDeactivate:this.project.autoDeactivate,
+				autoDeactivateCount:this.project.autoDeactivateCount,
+				multipleResponses:this.project.multipleResponses,
 				updated: dateNowString()
 			}
 		}, (error) => {
@@ -71,7 +76,6 @@ export default angular.module(PAGE.name, [
 	uiRouter
 ]).component(PAGE.name, {
 	template,
-	controllerAs: PAGE.name,
 	controller: Controller
 })
 	.config(config);

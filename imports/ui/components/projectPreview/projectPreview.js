@@ -236,7 +236,6 @@ export default angular.module(PAGE.name, [
 	SingleFileUpload
 ]).component(PAGE.name, {
 	template,
-	controllerAs: PAGE.name,
 	controller: Controller
 })
 	.config(config);

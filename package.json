@@ -35,5 +35,8 @@
     "ng-file-upload": "^12.2.13",
     "ng-table": "^2.2.0",
     "typings": "^2.1.0"
+  },
+  "devDependencies": {
+    "angular-translate": "^2.13.1"
   }
 }

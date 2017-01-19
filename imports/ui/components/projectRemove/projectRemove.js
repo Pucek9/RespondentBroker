@@ -34,7 +34,6 @@ export default angular.module(PAGE.name, [
 	angularMeteor
 ]).component(PAGE.name, {
 	template,
-	controllerAs: PAGE.name,
 	controller: Controller
 })
 	.config(config);

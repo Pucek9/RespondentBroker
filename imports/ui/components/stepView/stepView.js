@@ -78,7 +78,7 @@ class Controller {
 		}
 	}
 
-	save() {
+	confirm() {
 		this.actionsUpdate();
 	}
 
@@ -210,7 +210,6 @@ export default angular.module(PAGE.name, [
 ])
 	.component(PAGE.name, {
 		template,
-		controllerAs: PAGE.name,
 		controller: Controller,
 	})
 	.config(config);

@@ -3,21 +3,14 @@ import angularMeteor from 'angular-meteor';
 import {Meteor} from 'meteor/meteor';
 import {
 	ABOUT,
-	ARCHIVE,
 	DASHBOARD,
-	MY_PROJECTS_TAB,
-	PROJECT_ADD,
-	PROJECT_DETAILS,
-	PROJECT_EDIT,
-	PROJECT_PREVIEW,
-	PROJECT_REMOVE,
-	PROJECTS_TAB,
-	RESPONSE_VIEW,
-	STEP_VIEW,
+	PROJECTS_ARCHIVE,
+	PROJECTS_MY,
+	PROJECTS,
 	USER_DETAILS,
 	USER_EDIT,
-	USERS_TAB
-} from '../../../helpers/constants';;
+	USERS
+} from '../../../helpers/constants';
 import template from './navigation.html';
 
 class Navigation {
@@ -38,16 +31,16 @@ this.$timeout = $timeout;
 						name: DASHBOARD.pageTitle, icon: DASHBOARD.icon, state: DASHBOARD.state, href: DASHBOARD.url,
 					},
 					{
-						name: MY_PROJECTS_TAB.pageTitle, icon: MY_PROJECTS_TAB.icon, state: MY_PROJECTS_TAB.state, href: MY_PROJECTS_TAB.url,
+						name: PROJECTS_MY.pageTitle, icon: PROJECTS_MY.icon, state: PROJECTS_MY.state, href: PROJECTS_MY.url,
 					},
 					{
-						name: PROJECTS_TAB.pageTitle, icon: PROJECTS_TAB.icon, state: PROJECTS_TAB.state, href: PROJECTS_TAB.url,
+						name: PROJECTS.pageTitle, icon: PROJECTS.icon, state: PROJECTS.state, href: PROJECTS.url,
 					},
 					{
-						name: ARCHIVE.pageTitle, icon: ARCHIVE.icon, state: ARCHIVE.state, href: ARCHIVE.url,
+						name: PROJECTS_ARCHIVE.pageTitle, icon: PROJECTS_ARCHIVE.icon, state: PROJECTS_ARCHIVE.state, href: PROJECTS_ARCHIVE.url,
 					},
 					{
-						name: USERS_TAB.pageTitle, icon: USERS_TAB.icon, state: USERS_TAB.state, href: USERS_TAB.url,
+						name: USERS.pageTitle, icon: USERS.icon, state: USERS.state, href: USERS.url,
 					},
 					{
 						name: USER_DETAILS.pageTitle, icon: USER_DETAILS.icon, state: USER_DETAILS.state, href: '/users/' + userId + '/details',

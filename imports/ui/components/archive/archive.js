@@ -5,7 +5,7 @@ import template from './archive.html';
 import {Projects} from '../../../api/projects';
 
 import {name as DynamicTable} from '../dynamicTable/dynamicTable';
-import {ARCHIVE as PAGE} from '../../../helpers/constants';
+import {PROJECTS_ARCHIVE as PAGE} from '../../../helpers/constants';
 import {interpolatedValue} from '../../../helpers/helpers';
 
 class Controller {
@@ -28,7 +28,7 @@ class Controller {
 			},
 			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Created"},
 			{field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
-			{field: "owner", filter: {owner: "text"}, show: false, sortable: "owner", title: "Owner"},
+			{field: "owner", filter: {owner: "text"}, show: false, sortable: "owner", title: "OWNER"},
 			{field: "minPoints", filter: {minPoints: "number"}, show: true, sortable: "minPoints", title: "Min points"},
 			{field: "maxPoints", filter: {maxPoints: "number"}, show: true, sortable: "maxPoints", title: "Max points"},
 			{
@@ -49,7 +49,6 @@ export default angular.module(PAGE.name, [
 	DynamicTable
 ]).component(PAGE.name, {
 	template,
-	controllerAs: PAGE.name,
 	controller: Controller
 })
 	.config(config);

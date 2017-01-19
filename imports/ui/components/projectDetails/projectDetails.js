@@ -72,7 +72,7 @@ class Controller {
 				show: true,
 				title: "Actions",
 				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/responses/{{row._id}}">View</a>`),
+				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/responses/{{row._id}}">{{'VIEW' | translate}}</a>`),
 			},
 			{
 				field: "ownerName",
@@ -102,7 +102,6 @@ export default angular.module(PAGE.name, [
 	uiRouter,
 ]).component(PAGE.name, {
 	template,
-	controllerAs: PAGE.name,
 	controller: Controller
 })
 	.config(config);
