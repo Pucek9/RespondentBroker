@@ -10,7 +10,11 @@
 	<div class="w3-container" style="padding: 0px">
 		<form name="form"
 		      class="w3-container w3-pale-{{$ctrl.color}} w3-border-{{$ctrl.color}} w3-leftbar w3-rightbar w3-bottombar">
-
+			<p><label>{{'LANGUAGE' | translate}}
+				<select class="w3-input" name="gender" ng-model="$ctrl.user.profile.language">
+					<option value="en">{{'en' | translate}}</option>
+					<option value="pl">{{'pl' | translate}}</option>
+				</select></label></p>
 			<p><label>{{'USER.NAME' | translate}}
 				<input class="w3-input" type="text" ng-model="$ctrl.user.profile.name" name="name" required
 				       ng-class="{'w3-border-red w3-pale-red': !form.name.$valid }"

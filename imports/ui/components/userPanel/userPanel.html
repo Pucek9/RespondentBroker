@@ -21,9 +21,9 @@
 		<div class="w3-dropdown-hover" style="width: 25px;">
 			<a class="w3-hover-none w3-hover-text-blue w3-show-inline-block"><i class="fa fa-language"></i></a>
 			<div class="w3-dropdown-content w3-border">
-				<a href="#" ng-repeat="language in $ctrl.languages" ng-click="$ctrl.updateLanguage(language)">
+				<button ng-repeat="language in $ctrl.languages" ng-click="$ctrl.updateLanguage(language)">
 					<img style="max-height: 25px" src="images/{{language}}.png" class="flag flag-pl"/>{{language | translate}}
-				</a>
+				</button>
 			</div>
 		</div>
 	</div>

@@ -34,6 +34,7 @@ class Controller {
 			_id: this.user._id
 		}, {
 			$set: {
+				'profile.language': this.user.profile.language,
 				'profile.name': this.user.profile.name,
 				'profile.forName': this.user.profile.forName,
 				'profile.birthDate': this.user.profile.birthDate,
