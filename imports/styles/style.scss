@@ -51,13 +51,33 @@ projects-tab h5{
   }
 }
 
+.w3-panel  {
+  margin-top: 0px!important;
+}
+
 .sidenav{
-  background: #424242;
+  background: #34495e;
   color: #ccc;
 }
 
 .w3-blue{
+  background-color: #2980b9 !important;
+}
+
+.w3-light-blue{
   background-color: #3498db !important;
+}
+
+.w3-green {
+  background-color: #27ae60 !important;
+}
+
+.w3.red {
+  background-color: #c0392b !important;
+}
+
+.w3-tip {
+  background-color: #34495e !important;
 }
 
 .w3-sidenav a:hover{

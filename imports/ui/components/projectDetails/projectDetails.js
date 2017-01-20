@@ -15,7 +15,7 @@ class Controller {
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
 		this.$state = $state;
-		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.getCurrentProject = () => {
 			return Projects.findOne({_id: this.projectId});
@@ -35,11 +35,11 @@ class Controller {
 			backState() {
 				let project = this.getCurrentProject();
 				if (project) {
-					if(Meteor.userId() === project.owner) {
+					if (Meteor.userId() === project.owner) {
 						return 'projects/my';
 					}
 					else if (!project.statusActive) {
-						return 'archive';
+						return 'projects/archive';
 					}
 					else {
 						return 'projects';
@@ -113,14 +113,14 @@ function config($stateProvider) {
 		.state(PAGE.name, {
 			url: PAGE.url,
 			template: PAGE.template,
-		resolve: {
-			currentUser($q) {
-				if (Meteor.userId() === null) {
-					return $q.reject('AUTH_REQUIRED');
-				} else {
-					return $q.resolve();
+			resolve: {
+				currentUser($q) {
+					if (Meteor.userId() === null) {
+						return $q.reject('AUTH_REQUIRED');
+					} else {
+						return $q.resolve();
+					}
 				}
 			}
-		}
-	});
+		});
 }

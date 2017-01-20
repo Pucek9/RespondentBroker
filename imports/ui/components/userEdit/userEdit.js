@@ -18,7 +18,7 @@ class Controller {
 		this.notification = notification;
 		this.$scope = $scope;
 		this.ImageStore = ImagesStore;
-		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 		this.currentDate = dateNowString('YYYY-MM-DD');
 
 		this.helpers({

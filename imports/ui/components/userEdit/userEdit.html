@@ -10,11 +10,7 @@
 	<div class="w3-container" >
 		<form name="form"
 		      class="w3-container">
-			<p><label>{{'LANGUAGE' | translate}}
-				<select class="w3-input" name="gender" ng-model="$ctrl.user.profile.language">
-					<option value="en">{{'en' | translate}}</option>
-					<option value="pl">{{'pl' | translate}}</option>
-				</select></label></p>
+
 			<p><label>{{'USER.NAME' | translate}}
 				<input class="w3-input" type="text" ng-model="$ctrl.user.profile.name" name="name" required
 				       ng-class="{'w3-border-red w3-pale-red': !form.name.$valid }"
@@ -55,7 +51,13 @@
 				       ng-class="{'w3-border-red w3-pale-red': !form.email.$valid }"
 				       ng-model="$ctrl.user.profile.email"
 				       placeholder="{{'EMAIL' | translate}}"></label></p>
-			<button class="w3-btn w3-ripple w3-left w3-border "
+			<p><label>{{'LANGUAGE' | translate}}
+				<select class="w3-input" name="gender" ng-model="$ctrl.user.profile.language">
+					<option value="en">{{'en' | translate}}</option>
+					<option value="pl">{{'pl' | translate}}</option>
+				</select></label></p>
+
+			<button class="w3-btn w3-blue w3-left w3-border "
 			        ng-click="$ctrl.confirm(form.$valid)">
 				<i class="fa fa-{{$ctrl.icon}}"></i> {{'CONFIRM' | translate}}
 			</button>

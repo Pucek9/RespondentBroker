@@ -19,7 +19,7 @@ class Controller {
 		this.$scope = $scope;
 		this.notification = notification;
 
-		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.helpers({
 			project() {

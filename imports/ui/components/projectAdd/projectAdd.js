@@ -17,7 +17,7 @@ class Controller {
 		this.notification = notification;
 		this.ApplicationsStore = ApplicationsStore;
 		this.validator = validator;
-		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.project = {
 			statusActive: true

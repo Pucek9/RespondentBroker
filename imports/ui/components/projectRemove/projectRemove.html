@@ -7,8 +7,11 @@
 			<i class="fa fa-{{$ctrl.icon}}"></i> {{$ctrl.pageTitle | translate}} {{$ctrl.project.name}}
 		</h5>
 	</header>
-	<div class="w3-container   w3-leftbar w3-rightbar w3-bottombar">
-		<h2>{{'PROJECT.REMOVE.QUESTION' | translate }}</h2>
+	<div class="w3-container">
+		<div class="w3-panel w3-red w3-card-8">
+			<h2>{{'PROJECT.REMOVE.QUESTION' | translate }}</h2>
+		</div>
+
 		<h4><b>{{'PROJECT.PROJECT_TITLE' | translate }}</b> {{$ctrl.project.name}}</h4>
 		<h4><b>{{'POINTS' | translate }}:</b> {{$ctrl.project.minPoints}} - {{$ctrl.project.maxPoints}}</h4>
 		<h4><b>{{'RESPONSES' | translate }}:</b> {{$ctrl.project.responses.length}}</h4>
@@ -17,7 +20,7 @@
 		<h4><b>{{'DESCRIPTION' | translate }}:</b></h4>
 		<textarea class="w3-input" disabled="true" rows="5"
 		          ng-model="$ctrl.project.description"></textarea>
-		<button class="w3-btn w3-ripple w3-left w3-border " ng-click="$ctrl.confirm()">
+		<button class="w3-btn w3-red w3-left w3-border " ng-click="$ctrl.confirm()">
 			<i class="fa fa-{{$ctrl.icon}}"></i> {{'CONFIRM' | translate }}
 		</button>
 	</div>

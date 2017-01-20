@@ -13,18 +13,23 @@
 			{{$ctrl.pageTitle | translate}} {{$ctrl.project.name}}
 		</h5>
 	</header>
-	<div
-			class="w3-container   w3-leftbar w3-rightbar w3-bottombar">
-		<p>
+	<div class="w3-container">
 		<div>
-			<header class="w3-container ">
-				{{ 'RESPONSES' | translate }} ({{$ctrl.responses.length}}
-				{{$ctrl.project.autoDeactivate ?  '/' + $ctrl.project.autoDeactivateCount.toString() : ''}})
+			<header class="w3-container w3-blue">
+				<h6>{{ 'STATISTICS' | translate }}</h6>
 			</header>
+			<div class="w3-container">
+				charts will be here
+			</div>
+		</div>
+		<div>
+			<header class="w3-container w3-blue">
+				<h6>{{ 'RESPONSES' | translate }} ({{$ctrl.responses.length}}
+					{{$ctrl.project.autoDeactivate ?  '/' + $ctrl.project.autoDeactivateCount.toString() : ''}})
+				</h6></header>
 			<dynamic-table ng-show="$ctrl.isMyProject"
 			               data="$ctrl.responses" columns="$ctrl.columns"></dynamic-table>
 		</div>
-		</p>
 
 	</div>
 </div>

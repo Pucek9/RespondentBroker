@@ -10,7 +10,7 @@ class Controller {
 		$reactive(this).attach($scope);
 		this.$state = $state;
 		this.notification = notification;
-		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.helpers({
 			project() {

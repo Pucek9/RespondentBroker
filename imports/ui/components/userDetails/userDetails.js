@@ -17,7 +17,7 @@ class Controller {
 		this.userId = $stateParams.userId;
 		this.$state = $state;
 		this.notification = notification;
-		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},

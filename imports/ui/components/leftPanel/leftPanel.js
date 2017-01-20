@@ -41,6 +41,5 @@ export default angular.module(name, [
 	UserPanel
 ]).component(name, {
 	template,
-	controller: Controller,
-	controllerAs: name
+	controller: Controller
 });

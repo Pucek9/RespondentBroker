@@ -1,10 +1,10 @@
 <!-- Top container -->
 <div class="w3-container navbar w3-top w3-large w3-padding" style="z-index:4; right: 0px">
-	<button id="menuButton" class="w3-btn w3-hide-large w3-padding-0 w3-hover-text-grey" style="margin-left: 30px"
-	        ng-click="leftPanel.w3_open();">
+	<button id="menuButton" class="w3-btn w3-hide-large w3-padding-0 w3-hover-text-grey"
+	        ng-click="$ctrl.w3_open();">
 		<i class="fa fa-bars"></i> Menu
 	</button>
-	<span class="w3-right w3-padding-0">{{leftPanel.logo}}</span>
+	<span class="w3-right w3-padding-0">{{$ctrl.logo}}</span>
 </div>
 
 <!-- Sidenav/menu -->
@@ -13,11 +13,11 @@
 	<hr>
 	<div class="w3-container">
 	</div>
-	<a href="#" class="w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" ng-click="leftPanel.w3_close()"
+	<a href="#" class="w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" ng-click="$ctrl.w3_close()"
 	   title="close menu"><i class="fa fa-remove fa-fw"></i> {{'CLOSE' | translate }}</a>
 	<navigation></navigation>
 </nav>
 
 <!-- Overlay effect when opening sidenav on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" ng-click="leftPanel.w3_close()" style="cursor:pointer"
+<div class="w3-overlay w3-hide-large w3-animate-opacity" ng-click="$ctrl.w3_close()" style="cursor:pointer"
      title="close side menu" id="myOverlay"></div>
