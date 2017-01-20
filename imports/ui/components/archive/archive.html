@@ -2,9 +2,7 @@
 	<header class="w3-container ">
 		<h5><i class="fa fa-{{$ctrl.icon}}"></i> {{$ctrl.pageTitle | translate}} ({{$ctrl.projects.length}})</h5>
 	</header>
-	<div
-			class="w3-container"
-			>
+	<div class="w3-container">
 		<dynamic-table data="$ctrl.projects" columns="$ctrl.columns"></dynamic-table>
 	</div>
 </div>

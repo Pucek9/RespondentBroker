@@ -28,7 +28,7 @@
 			<p>
 				<label>{{'RESPONSE_VIEW.PAY_FOR' | translate}} <a
 						href="users/{{$ctrl.response.owner}}/details">{{$ctrl.owner.profile.name}} {{$ctrl.owner.profile.forName}}</a>
-					{{$ctrl.project.minPoints}}-{{$ctrl.project.maxPoints}} {{'POINTS' | translate}}.
+					{{$ctrl.project.minPoints}}-{{$ctrl.project.maxPoints}} {{'PROJECT.PREVIEW.POINTS' | translate}}.
 				<input class="w3-input" type="number" ng-model="$ctrl.points" name="points" required ng-class="{'w3-border-red w3-pale-red': !form.points.$valid }"
 				       placeholder="points" min="{{$ctrl.project.minPoints}}" max="{{$ctrl.project.maxPoints}}"></label>
 			</p>

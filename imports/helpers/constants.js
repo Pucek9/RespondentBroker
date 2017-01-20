@@ -59,7 +59,7 @@ const PROJECT_EDIT = {
 
 const PROJECT_PREVIEW = {
 	pageTitle: 'PROJECT.PREVIEW.TITLE',
-	icon: 'check-square-o',
+	icon: 'eye',
 	name: 'projectPreview',
 	url: '/projects/:projectId/preview',
 	template: '<project-preview></project-preview>'
@@ -83,7 +83,7 @@ const PROJECTS = {
 
 const RESPONSE_VIEW = {
 	pageTitle: 'RESPONSE_VIEW.TITLE',
-	icon: 'list',
+	icon: 'check-square-o',
 	name: 'responseView',
 	url: '/projects/:projectId/responses/:responseId',
 	template: '<response-view></response-view>'

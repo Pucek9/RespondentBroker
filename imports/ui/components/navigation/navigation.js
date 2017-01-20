@@ -25,10 +25,10 @@ class Navigation {
 				let userId = Meteor.userId();
 				return [
 					{
-						name: ABOUT.pageTitle, icon: ABOUT.icon, state: ABOUT.name, href: ABOUT.url,
+						name: DASHBOARD.pageTitle, icon: DASHBOARD.icon, state: DASHBOARD.name, href: DASHBOARD.url,
 					},
 					{
-						name: DASHBOARD.pageTitle, icon: DASHBOARD.icon, state: DASHBOARD.name, href: DASHBOARD.url,
+						name: ABOUT.pageTitle, icon: ABOUT.icon, state: ABOUT.name, href: ABOUT.url,
 					},
 					{
 						name: PROJECTS_MY.pageTitle, icon: PROJECTS_MY.icon, state: PROJECTS_MY.name, href: PROJECTS_MY.url,

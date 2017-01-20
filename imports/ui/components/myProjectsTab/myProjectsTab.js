@@ -1,7 +1,7 @@
+import {Meteor} from 'meteor/meteor';
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
-import {Meteor} from 'meteor/meteor';
 import {Projects} from '../../../api/projects';
 import {PROJECTS_MY as PAGE} from '../../../helpers/constants';
 import {interpolatedValue} from '../../../helpers/helpers';
@@ -16,8 +16,8 @@ class Controller {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.NgTableParams = NgTableParams;
-		[this.pageTitle,this.icon] = [PAGE.pageTitle, PAGE.icon];
 		this.userId = Meteor.userId();
+		[this.pageTitle,this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.helpers({
 			projects() {

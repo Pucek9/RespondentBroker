@@ -13,6 +13,8 @@
 	"POINTS": "Punkty",
 	"LEVEL": "Poziom",
 	"EMAIL": "Email",
+	"PROJECTS": "Projekty",
+	"USERS": "Użytkownicy",
 	"RESPONSES": "Odpowiedzi",
 	"STEPS": "Zadania",
 	"VIEW": "Oglądaj",
@@ -61,7 +63,7 @@
 		},
 		"PREVIEW": {
 			"TITLE": "Podgląd projektu ",
-			"POINTS": "points",
+			"POINTS": "punkty",
 			"PREVIEW_ONLY": "Tylko przeglądanie",
 			"IS_MY_PROJECT": "Jako właściciel nie możesz odpowiadać na własny projekt.",
 			"CANT_RESPONSE": "Już odpowiadałeś na ten projekt.",
@@ -143,6 +145,7 @@
 		"4f": "Ustawienia konfiguracyjne dodatkowych parametrów mogących się przydać w badaniu jak włączenie komentarza czy oceny dla zadania.",
 		"5": "Po odpowiedzeniu przez zadowalającą liczbę respondentów – przejrzenie odpowiedzi wygenerowanie czasów interakcji.",
 		"6": "Opracowanie wyników w oparciu o wygenerowane dane.",
-		"7": "Przyznanie punktów użytkownikom za poświęcony czas."
+		"7": "Przyznanie punktów użytkownikom za poświęcony czas.",
+		"SYSTEM": "W naszym systemie jest już łącznie:"
 	}
 }

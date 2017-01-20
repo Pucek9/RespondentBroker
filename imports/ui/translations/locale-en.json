@@ -13,6 +13,8 @@
 	"POINTS": "Points",
 	"LEVEL": "Level",
 	"EMAIL": "Email ",
+	"PROJECTS": "Projects",
+	"USERS": "Users",
 	"RESPONSES": "Responses",
 	"STEPS": "Steps",
 	"VIEW": "View",
@@ -143,6 +145,7 @@
 		"4f": "Set configs additional parameters like add comment field, star rating to all steps.",
 		"5": "After responses preview responses from respondents. Watch videos by using achromatic view and stop to log actions.",
 		"6": "Get data and and use it to make results.",
-		"7": "Give points for respondends for help."
+		"7": "Give points for respondends for help.",
+		"SYSTEM": "In our system exists total:"
 	}
 }

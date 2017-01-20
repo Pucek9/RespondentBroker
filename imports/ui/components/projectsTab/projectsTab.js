@@ -1,3 +1,4 @@
+import {Meteor} from 'meteor/meteor';
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
@@ -11,11 +12,12 @@ class Controller {
 	constructor($scope, $reactive, $interpolate) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.userId = Meteor.userId();
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.helpers({
 			projects() {
-				return Projects.find({statusActive: true},{sort: {name: 1}});
+				return Projects.find({statusActive: true, owner: {$not: this.userId}}, {sort: {name: 1}});
 			},
 			// projects() {
 			// 	let projects = Projects.find({}).fetch();
@@ -37,8 +39,13 @@ class Controller {
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
 			{
-				field: "name", filter: {name: "text"}, show: true, sortable: "name", title: "Project Name",
-				getValue: interpolatedValue, interpolateExpr: $interpolate('<a href="projects/{{row._id}}/preview">{{row.name}}</a>')
+				field: "name",
+				filter: {name: "text"},
+				show: true,
+				sortable: "name",
+				title: "Project Name",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate('<a href="projects/{{row._id}}/preview">{{row.name}}</a>')
 			},
 			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Created"},
 			{field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
@@ -80,8 +87,8 @@ export default angular.module(PAGE.name, [
 function config($stateProvider) {
 	'ngInject';
 	$stateProvider
-			.state(PAGE.name, {
-				url: PAGE.url,
-				template: PAGE.template,
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template,
 		});
 }

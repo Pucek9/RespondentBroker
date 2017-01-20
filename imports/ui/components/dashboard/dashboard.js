@@ -10,6 +10,27 @@ class Controller {
 		'ngInject';
 		$reactive(this).attach($scope);
 		[this.pageTitle,this.icon] = [PAGE.pageTitle, PAGE.icon];
+		this.userId = Meteor.userId();
+
+		this.helpers({
+			users() {
+				return Meteor.users.find({});
+			},
+			projects() {
+				return Projects.find({owner: this.userId});
+			},
+			responses() {
+				return Responses.find({});
+			},
+			points() {
+				let users = Meteor.users.find({});
+				var sum=0;
+				users.forEach(function(user){
+					sum = sum + user.profile.points;
+				});
+				return sum;
+			},
+		});
 	}
 }
 
