@@ -1,14 +1,15 @@
 <!-- Top container -->
 <div class="w3-container navbar w3-top w3-large w3-padding" style="z-index:4; right: 0px">
 	<button id="menuButton" class="w3-btn w3-hide-large w3-padding-0 w3-hover-text-grey"
-	        ng-click="$ctrl.w3_open();">
+	        ng-click="$ctrl.w3_open();" ng-mouseover="$ctrl.w3_open();">
 		<i class="fa fa-bars"></i> Menu
 	</button>
 	<span class="w3-right w3-padding-0">{{$ctrl.logo}}</span>
 </div>
 
 <!-- Sidenav/menu -->
-<nav class="w3-sidenav w3-collapse sidenav w3-animate-left" style="z-index:3;width:300px;" id="mySidenav"><br>
+<nav class="w3-sidenav w3-collapse sidenav w3-animate-left" style="z-index:3;width:300px;" id="mySidenav"
+     ng-mouseleave="$ctrl.w3_close();"><br>
 	<user-panel></user-panel>
 	<hr>
 	<div class="w3-container">

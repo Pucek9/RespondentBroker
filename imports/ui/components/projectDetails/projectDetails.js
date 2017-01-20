@@ -60,8 +60,23 @@ class Controller {
 					return responses;
 				}
 			},
-			ownerFullname() {
-
+			usersData() {
+				let responses = Responses.find({project: this.projectId});
+				let users = new Set();
+				if (responses) {
+					let allUsers = Meteor.users.find({}).fetch();
+					responses.forEach((r) => {
+						allUsers.forEach((u) => {
+							if (r.owner === u._id) {
+								// if (users.indexOf(u) === -1) {
+									users.add(u);
+								// }
+							}
+						});
+					});
+					console.log([...users]);
+					return users;
+				}
 			},
 		});
 
