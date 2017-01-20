@@ -1,0 +1,88 @@
+html, body, .w3-main, .w3-row-padding, .w3-card-4{
+ min-height: 100% !important;
+}
+
+.w3-sidenav{
+  overflow: visible;
+}
+
+*, *:before, *:after{
+  box-sizing: border-box;
+}
+
+.w3-main > .w3-row-padding{
+  padding: 10px;
+}
+
+dynamic-table > .w3-container{
+  padding: 0;
+}
+
+projects-tab h5{
+  i {
+    margin-right: 5px;
+  }
+
+}
+
+.w3-btn{
+  margin-bottom: 10px;
+}
+
+.navbar {
+  background: #212121;
+  color: #ccc;
+
+  .w3-btn{
+    background: transparent;
+  }
+}
+
+.w3-card-4{
+  background: white;
+
+  & > header.w3-container{
+    background: #2980b9;
+    color: white;
+  }
+
+  & > div.w3-container{
+    padding: 10px;
+  }
+}
+
+.w3-panel  {
+  margin-top: 0px!important;
+}
+
+.sidenav{
+  background: #34495e;
+  color: #ccc;
+}
+
+.w3-blue{
+  background-color: #2980b9 !important;
+}
+
+.w3-light-blue{
+  background-color: #3498db !important;
+}
+
+.w3-green {
+  background-color: #27ae60 !important;
+}
+
+.w3.red {
+  background-color: #c0392b !important;
+}
+
+.w3-tip {
+  background-color: #34495e !important;
+}
+
+.w3-sidenav a:hover{
+  color: black;
+}
+.w3-btn{
+  margin: 0;
+}

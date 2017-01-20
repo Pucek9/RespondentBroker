@@ -16,7 +16,7 @@ class Controller {
 		this.$state = $state;
 		this.notification = notification;
 		this.validator = validator;
-		[this.pageTitle, this.icon, this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.helpers({
 			project() {
@@ -42,9 +42,9 @@ class Controller {
 				application: this.project.application,
 				ratingTitle: this.project.ratingTitle,
 				statusActive: this.project.statusActive,
-				autoDeactivate:this.project.autoDeactivate,
-				autoDeactivateCount:this.project.autoDeactivateCount,
-				multipleResponses:this.project.multipleResponses,
+				autoDeactivate: this.project.autoDeactivate,
+				autoDeactivateCount: this.project.autoDeactivateCount,
+				multipleResponses: this.project.multipleResponses,
 				updated: dateNowString()
 			}
 		}, (error) => {

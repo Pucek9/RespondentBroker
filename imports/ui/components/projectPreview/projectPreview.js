@@ -95,13 +95,6 @@ class Controller {
 			isEnabled() {
 				return this.canReply();
 			},
-			ownerFullname() {
-
-			},
-			color() {
-				return (this.canReply()) ? 'green' : 'yellow';
-			}
-
 		});
 	}
 

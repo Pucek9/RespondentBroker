@@ -1,5 +1,5 @@
 <div class="w3-card-4">
-	<header class="w3-container w3-{{$ctrl.color}}">
+	<header class="w3-container ">
 		<h5>
 			<a class="button w3-btn w3-ripple w3-right w3-border w3-black header-button"
 			   href="/projects/{{$ctrl.projectId}}/details">
@@ -11,11 +11,11 @@
 	</header>
 
 	<div
-			class="w3-container w3-pale-{{$ctrl.color}} w3-border-{{$ctrl.color}} w3-leftbar w3-rightbar w3-bottombar">
+			class="w3-container">
 		<h5>{{'STEPS' | translate}}:</h5>
-		<div ng-repeat="step in $ctrl.response.steps" class="w3-card-4 w3-{{$ctrl.color}}">
+		<div ng-repeat="step in $ctrl.response.steps" class="w3-card-4 ">
 			<h5>
-				<a class="w3-btn-block w3-{{$ctrl.color}}" style="padding-left: 0px; padding-right: 0px"
+				<a class="w3-btn-block " style="padding-left: 0px; padding-right: 0px"
 				   href="/projects/{{$ctrl.projectId}}/responses/{{$ctrl.responseId}}/steps/{{$index}}">
 					{{step.tag}}
 				</a>
@@ -23,7 +23,7 @@
 		</div>
 	</div>
 
-	<footer class="w3-container w3-pale-green" ng-if="!$ctrl.response.isPaid && $ctrl.projectOwner">
+	<footer class="w3-container" ng-if="!$ctrl.response.isPaid && $ctrl.projectOwner">
 		<form name="form">
 			<p>
 				<label>{{'RESPONSE_VIEW.PAY_FOR' | translate}} <a
@@ -40,7 +40,7 @@
 		</form>
 	</footer>
 
-	<footer class="w3-container w3-{{$ctrl.color}}" ng-if="$ctrl.response.isPaid">
+	<footer class="w3-container " ng-if="$ctrl.response.isPaid">
 		<p>Already paid for user <a
 				href="users/{{$ctrl.response.owner}}/details">{{$ctrl.owner.profile.name}} {{$ctrl.owner.profile.forName}}</a>
 		</p>

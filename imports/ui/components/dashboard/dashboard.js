@@ -9,7 +9,7 @@ class Controller {
 	constructor($scope, $reactive) {
 		'ngInject';
 		$reactive(this).attach($scope);
-		[this.pageTitle,this.icon,this.color] = [PAGE.pageTitle, PAGE.icon, PAGE.color];
+		[this.pageTitle,this.icon] = [PAGE.pageTitle, PAGE.icon];
 	}
 }
 
