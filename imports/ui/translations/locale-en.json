@@ -126,7 +126,15 @@
 
 	},
 	"DASHBOARD": {
-		"TITLE": "Dashboard "
+		"TITLE": "Dashboard ",
+		"RESPONSES_TO_PAY": "Responses to pay",
+		"RESPONSES_IN_MY_PROJECTS": "Responses",
+		"MY_PROJECTS": "My research projects",
+		"USERS_RESPONDED": "Users responded",
+		"GO_TO_PAY": "Go to pay",
+		"GO_TO_SEE_RESPONSE": "See response",
+		"GO_TO_PROJECT": "Go to project",
+		"SEE_USER": "See user"
 	},
 	"ABOUT": {
 		"TITLE": "About ",

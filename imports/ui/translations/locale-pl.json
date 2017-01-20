@@ -126,7 +126,15 @@
 
 	},
 	"DASHBOARD": {
-		"TITLE": "Panel główny "
+		"TITLE": "Panel główny ",
+		"RESPONSES_TO_PAY": "Odpowiedzi do zapłaty",
+		"RESPONSES_IN_MY_PROJECTS": "Wszystkie dpowiedzi",
+		"MY_PROJECTS": "Moje projekty",
+		"USERS_RESPONDED": "Użytkownicy odpowiedający",
+		"GO_TO_PAY": "Przejdź by zapłacić",
+		"GO_TO_SEE_RESPONSE": "Zobacz odpowiedź",
+		"GO_TO_PROJECT": "Zobacz projekt",
+		"SEE_USER": "Zobacz użytkownika"
 	},
 	"ABOUT": {
 		"TITLE": "O narzędziu ",

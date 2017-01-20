@@ -12,33 +12,46 @@ class Controller {
 	constructor($scope, $reactive) {
 		'ngInject';
 		$reactive(this).attach($scope);
-		[this.pageTitle,this.icon] = [PAGE.pageTitle, PAGE.icon];
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 		this.userId = Meteor.userId();
 
 		this.helpers({
-			users() {
-				return Meteor.users.find({});
+			usersResponded() {
+				let users = [];
+				let projects = Projects.find({owner: this.userId});
+				projects.forEach(function (project) {
+					let responses = Responses.find({project: project._id});
+					responses.forEach(function (response) {
+						if (users.indexOf(response.owner) === -1) {
+							users.push(response.owner);
+						}
+					});
+				});
+				return users;
 			},
 			myProjects() {
 				return Projects.find({owner: this.userId});
 			},
 			myProjectsResponses() {
-				let sum=0;
+				let responses = [];
 				let projects = Projects.find({owner: this.userId});
-				projects.forEach(function(project){
-					sum = sum + project.responses.length;
+				projects.forEach(project =>{
+					project.responses.forEach(response => {
+						responses.push({project: project._id, response: response});
+					});
 				});
-				return sum;
+				return responses;
 			},
 			responsesWithoutPay() {
-				let sum=0;
+				let responses = [];
 				let projects = Projects.find({owner: this.userId});
-				projects.forEach(function(project){
-					let responses = Responses.find({project: project._id, isPaid: false}).fetch();
-					console.log(responses)
-					sum = sum + responses.length
+				projects.forEach(function (project) {
+					let responsesWithoutPay = Responses.find({project: project._id, isPaid: false}).fetch();
+					responsesWithoutPay.forEach(function (response) {
+						responses.push(response)
+					});
 				});
-				return sum;
+				return responses;
 			}
 		});
 	}
