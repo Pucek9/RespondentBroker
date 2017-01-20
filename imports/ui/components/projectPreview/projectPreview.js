@@ -51,7 +51,7 @@ class Controller {
 						return 'projects/my';
 					}
 					else if (!project.statusActive) {
-						return 'archive';
+						return 'projects/archive';
 					}
 					else {
 						return 'projects';
