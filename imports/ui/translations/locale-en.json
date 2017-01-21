@@ -37,6 +37,7 @@
 	"CHOICE": "---Please select---",
 	"PROJECT": {
 		"NAME": "Project Name",
+		"IS_PAID": "Is paid",
 		"DESCRIPTION_PLACEHOLDER": "Instruction how must do your respondent",
 		"UPLOAD": "Upload your application",
 		"SURVEY": "Add URL to your survey",

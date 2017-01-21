@@ -21,6 +21,20 @@
 				          ng-model="$ctrl.project.description"
 				          placeholder="{{ 'PROJECT.DESCRIPTION_PLACEHOLDER' | translate }}"></textarea></label>
 			</p>
+			<!---->
+			<!--<fieldset>-->
+				<!--<legend>-->
+					<!--<button class="w3-btn w3-ripple w3-border "-->
+					        <!--ng-click="$ctrl.addNew()"-->
+					        <!--ng-disabled="!$ctrl.isEnabled">-->
+						<!--<i class="fa fa-plus"></i> {{'PROJECT.PREVIEW.ADD_STEP' | translate}}-->
+					<!--</button>-->
+				<!--</legend>-->
+
+			<!--</fieldset>-->
+
+
+			<!---->
 			<p>
 				<label>{{ 'PROJECT.UPLOAD' | translate }}
 					<single-file-upload file="$ctrl.project.application" type="''"

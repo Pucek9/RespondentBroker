@@ -11,12 +11,13 @@ import {Projects} from '../../../api/projects';
 import {interpolatedValue} from '../../../helpers/helpers';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $interpolate, notification) {
+	constructor($stateParams, $scope, $reactive, $state, $interpolate, $filter, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.userId = $stateParams.userId;
 		this.$state = $state;
 		this.notification = notification;
+		this.translate = $filter('translate');
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.columns = [
@@ -24,7 +25,7 @@ class Controller {
 			{
 				field: "projectName",
 				show: true,
-				title: "Project Name",
+				title: this.translate('PROJECT.NAME'),
 				sortable: "projectName",
 				filter: {projectName: "text"},
 				getValue: interpolatedValue,
@@ -38,14 +39,14 @@ class Controller {
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.minPoints}}-{{row.maxPoints}}`)
 			},
-			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
+			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: this.translate('PROJECT.IS_PAID')},
 			// {field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
 			// {field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
 			// {field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"},
 			{
 				field: "steps",
 				show: true,
-				title: "Steps",
+				title: this.translate('STEPS'),
 				sortable: "steps.length",
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.steps.length}}`)

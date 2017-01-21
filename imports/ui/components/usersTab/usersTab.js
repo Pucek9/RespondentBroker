@@ -7,11 +7,11 @@ import template from './usersTab.html';
 import {interpolatedValue} from '../../../helpers/helpers';
 
 class Controller {
-	constructor($scope, $reactive, $interpolate) {
+	constructor($scope, $reactive, $interpolate,$filter) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
-
+		this.translate = $filter('translate');
 		this.helpers({
 			users() {
 				return Meteor.users.find({},{sort: {'profile.name': 1}})
@@ -22,7 +22,7 @@ class Controller {
 			{
 				field: 'profile',
 				show: true,
-				title: 'Name',
+				title: this.translate('USER.NAME'),
 				sortable: 'profile.name',
 				filter: {'profile.name': 'text'},
 				getValue: interpolatedValue,
@@ -31,7 +31,7 @@ class Controller {
 			{
 				field: "profile",
 				show: true,
-				title: "Forname",
+				title: this.translate('USER.FORNAME'),
 				sortable: 'profile.forName',
 				filter: {'profile.forName': "text"},
 				getValue: interpolatedValue,
@@ -40,7 +40,7 @@ class Controller {
 			{
 				field: "emails",
 				show: true,
-				title: "Email",
+				title: this.translate('EMAIL'),
 				sortable: "profile.email",
 				filter: {'profile.email': "text"},
 				getValue: interpolatedValue,
@@ -51,12 +51,12 @@ class Controller {
 				filter: {'profile.level': "number"},
 				show: true,
 				sortable: "profile.level",
-				title: "Level",
+				title: this.translate('LEVEL'),
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.profile.level}}`)
 			},
 			{
-				field: "profile", filter: {'profile.points': "number"}, show: true, sortable: "profile.points", title: "Points",
+				field: "profile", filter: {'profile.points': "number"}, show: true, sortable: "profile.points", title: this.translate('POINTS'),
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.profile.points}}`)
 			},

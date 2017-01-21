@@ -37,6 +37,7 @@
 	"CHOICE": "---Proszę wybrać---",
 	"PROJECT": {
 		"NAME": "Nazwa projektu",
+		"IS_PAID": "Zapłacone",
 		"DESCRIPTION_PLACEHOLDER": "Opisz warunki wykonania badania",
 		"UPLOAD": "Prześlij swoją aplikację",
 		"SURVEY": "Dodaj adres URL swojej ankiety",
