@@ -8,6 +8,7 @@
 	"TITLE": "Tytuł",
 	"COUNT": "Ilość",
 	"CONFIRM": "Potwierdź",
+	"STATISTICS": "Statystyki",
 	"DESCRIPTION": "Opis",
 	"UPLOAD": "Prześlij",
 	"POINTS": "Punkty",
@@ -91,7 +92,9 @@
 	"USER": {
 		"NAME": "Imię",
 		"FORNAME": "Nazwisko",
-		"BIRTH_DATE": "Data urodzenia",
+		"BIRTHDATE": "Data urodzenia",
+		"AGE": "Wiek",
+		"LANGUAGE": "Język",
 		"GENDER": "Płec",
 		"MALE": "Mężczyzna ",
 		"FEMALE": "Kobieta ",

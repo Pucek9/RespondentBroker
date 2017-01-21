@@ -102,7 +102,6 @@ Meteor.startup(() => {
 
 	Accounts.onCreateUser(function (options, user) {
 		user.profile = {
-			language: 'en',
 			email: user.emails[0].address,
 			name: 'User',
 			forName: '',
@@ -110,6 +109,10 @@ Meteor.startup(() => {
 			responses: [],
 			level: 0,
 			points: 1,
+			language: 'en',
+			gender: '',
+			'birthDate': '',
+			education: ''
 		};
 		console.log('Registered new user: ', user);
 		return user;

@@ -8,6 +8,7 @@
 	"TITLE": "Title",
 	"COUNT": "Count",
 	"CONFIRM": "Confirm",
+	"STATISTICS": "Statistics",
 	"DESCRIPTION": "Description",
 	"UPLOAD": "Upload",
 	"POINTS": "Points",
@@ -91,7 +92,9 @@
 	"USER": {
 		"NAME": "Name",
 		"FORNAME": "Forname",
-		"BIRTH_DATE": "Birth date",
+		"BIRTHDATE": "Birth date",
+		"AGE": "Age",
+		"LANGUAGE": "Language",
 		"GENDER": "Gender",
 		"MALE": "Male ",
 		"FEMALE": "Female ",

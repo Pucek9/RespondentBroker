@@ -19,15 +19,50 @@
 				<h6>{{ 'STATISTICS' | translate }}</h6>
 			</header>
 			<div class="w3-container">
-				charts will be here {{$ctrl.usersData.education}} {{Object.keys($ctrl.usersData.education)}}
-				<!--<canvas id="charts" ></canvas>-->
-				<div style="width:400px; height: 300px">
-					<canvas id="pie" class="chart chart-pie" width="320" height="240"
-					        style="display: block; width: 400px; height: 300px;"
-					        chart-data="Object.values($ctrl.usersData.education)" chart-labels="Object.keys($ctrl.usersData.education)" chart-options="{}">
-					</canvas>
+				<div class="w3-quarter">
+					<h6>{{ 'USER.EDUCATION' | translate }}</h6>
+					<div style="width:250px; height: 250px">
+						<canvas class="chart chart-pie" width="250" height="250"
+						        style="display: block; width: 250px; height: 250px;"
+						        chart-data="$ctrl.usersData.education.values" chart-labels="$ctrl.usersData.education.keys"
+						        chart-options="{legend: {display: true, position: 'bottom',	padding: 5}}">
+						</canvas>
+					</div>
 				</div>
-				<!--Object.values($ctrl.usersData.education)-->
+
+				<div class="w3-quarter">
+					<h6>{{ 'USER.LANGUAGE' | translate }}</h6>
+					<div style="width:250px; height: 250px">
+						<canvas class="chart chart-pie" width="250" height="250"
+						        style="display: block; width: 250px; height: 250px;"
+						        chart-data="$ctrl.usersData.language.values" chart-labels="$ctrl.usersData.language.keys"
+						        chart-options="{legend: {display: true, position: 'bottom',	padding: 5}}">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-quarter">
+					<h6>{{ 'USER.AGE' | translate }}</h6>
+					<div style="width:250px; height: 250px">
+						<canvas class="chart chart-pie" width="250" height="250"
+						        style="display: block; width: 250px; height: 250px;"
+						        chart-data="$ctrl.usersData.age.values" chart-labels="$ctrl.usersData.age.keys"
+						        chart-options="{legend: {display: true, position: 'bottom',	padding: 5}}">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-quarter">
+					<h6>{{ 'USER.GENDER' | translate }}</h6>
+					<div style="width:250px; height: 250px">
+						<canvas class="chart chart-pie" width="250" height="250"
+						        style="display: block; width: 250px; height: 250px;"
+						        chart-data="$ctrl.usersData.gender.values" chart-labels="$ctrl.usersData.gender.keys"
+						        chart-options="{legend: {display: true, position: 'bottom',	padding: 5}}">
+						</canvas>
+					</div>
+				</div>
+
 			</div>
 		</div>
 		<div>
@@ -35,9 +70,10 @@
 				<h6>{{ 'RESPONSES' | translate }} ({{$ctrl.responses.length}}
 					{{$ctrl.project.autoDeactivate ?  '/' + $ctrl.project.autoDeactivateCount.toString() : ''}})
 				</h6></header>
-			<!--<dynamic-table ng-show="$ctrl.isMyProject"-->
-			<!--data="$ctrl.responses" columns="$ctrl.columns"></dynamic-table>-->
+			<dynamic-table ng-show="$ctrl.isMyProject"
+			data="$ctrl.responses" columns="$ctrl.columns"></dynamic-table>
 		</div>
 
 	</div>
 </div>
+

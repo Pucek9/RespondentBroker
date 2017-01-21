@@ -6,6 +6,8 @@ import {Projects} from '../../../api/projects';
 import {Responses} from '../../../api/responses';
 
 import {interpolatedValue} from '../../../helpers/helpers';
+import {getAge} from '../../../helpers/helpers';
+
 import {PROJECT_DETAILS as PAGE} from '../../../helpers/constants';
 import template from './projectDetails.html';
 
@@ -17,9 +19,34 @@ class Controller {
 		this.$state = $state;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
-		this.getCurrentProject = () => {
-			return Projects.findOne({_id: this.projectId});
-		};
+		this.columns = [
+			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
+			{
+				field: "_id",
+				show: true,
+				title: "Actions",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/responses/{{row._id}}">{{'VIEW' | translate}}</a>`),
+			},
+			{
+				field: "ownerName",
+				show: true,
+				title: "Presented",
+				sortable: "ownerName",
+				filter: {ownerName: "text"},
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`<a href="users/{{row.owner}}/details">{{row.ownerName}}</a>`),
+			},
+			{
+				field: "steps",
+				show: true,
+				title: "Steps",
+				sortable: "steps.length",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.steps.length}}`)
+			},
+			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
+		];
 
 		this.helpers({
 			project() {
@@ -62,26 +89,26 @@ class Controller {
 			},
 			usersData() {
 				let users = this.getUsers();
-				let statisticsArray = {
-					birthDate: [], language: [], education: []
+				let statistics = {
+					age: [], language: [], education: [], gender: []
 				};
 				users.forEach(u => {
-					statisticsArray.birthDate.push(u.profile.birthDate);
-					statisticsArray.language.push(u.profile.language);
-					statisticsArray.education.push(u.profile.education);
+					statistics.age.push(getAge(u.profile.birthDate));
+					statistics.language.push(u.profile.language);
+					statistics.education.push(u.profile.education);
+					statistics.gender.push(u.profile.gender);
 				});
-				const statistics = {};
-				[statistics.birthDate, statistics.language, statistics.education] = Object.values(statisticsArray).map(s => this.convertToStats(s));
-				console.log(Object.values(statistics.education));
-				console.log(Object.keys(statistics.education));
+				[statistics.age, statistics.language, statistics.education, statistics.gender] = Object.values(statistics).map(this.convertToObject);
+				console.log(statistics);
 				return statistics;
 			}
 		});
 
-		this.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-		this.data = [300, 500, 100];
-
 	}
+
+	getCurrentProject = () => {
+		return Projects.findOne({_id: this.projectId});
+	};
 
 	getUsers = () => {
 		let responses = Responses.find({project: this.projectId});
@@ -97,35 +124,15 @@ class Controller {
 			});
 			return ([...users]);
 		}
-		this.columns = [
-			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
-			{
-				field: "_id",
-				show: true,
-				title: "Actions",
-				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/responses/{{row._id}}">{{'VIEW' | translate}}</a>`),
-			},
-			{
-				field: "ownerName",
-				show: true,
-				title: "Presented",
-				sortable: "ownerName",
-				filter: {ownerName: "text"},
-				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`<a href="users/{{row.owner}}/details">{{row.ownerName}}</a>`),
-			},
-			{
-				field: "steps",
-				show: true,
-				title: "Steps",
-				sortable: "steps.length",
-				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`{{row.steps.length}}`)
-			},
-			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
-		];
-	}
+
+	};
+
+	convertToObject = (s) => {
+		let convertedData = this.convertToStats(s);
+		s = {};
+		[s.keys, s.values] = [Object.keys(convertedData), Object.values(convertedData)];
+		return s;
+	};
 
 	convertToStats = (array) => {
 		let obj = {};
@@ -138,7 +145,9 @@ class Controller {
 			}
 		}
 		return obj;
-	}
+	};
+
+
 }
 
 export default angular.module(PAGE.name, [
