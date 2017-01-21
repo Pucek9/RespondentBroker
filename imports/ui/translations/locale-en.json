@@ -9,6 +9,7 @@
 	"COUNT": "Count",
 	"CONFIRM": "Confirm",
 	"STATISTICS": "Statistics",
+	"USER_STATISTICS": "Respondents diagrams",
 	"DESCRIPTION": "Description",
 	"UPLOAD": "Upload",
 	"POINTS": "Points",
@@ -81,7 +82,7 @@
 			"IMPORT_FROM_SERVER": "Import from Lookback",
 			"UPLOAD_FROM_DEVICE": "Upload from device",
 			"IMPORT_VIDEO_URL": "Import Video URL",
-			"SHOW_TIP": " Show tip  ",
+			"TIP": " Tip ",
 			"GIVE_ME_OPINION": "Tell me your opinion about this step."
 		},
 		"REMOVE": {

@@ -24,9 +24,8 @@ class Controller {
 
 		this.response = {};
 		this.response.steps = [];
-		this.importTab = true;
-		this.uploadTab = false;
-		this.tip = false;
+		this.importTab = false;
+		this.uploadTab = true;
 
 		this.getCurrentProject = () => {
 			return Projects.findOne({_id: this.projectId});
@@ -102,10 +101,6 @@ class Controller {
 		this.uploadTab = false;
 		this.importTab = false;
 		this[tab] = true;
-	}
-
-	tipToggleSlide() {
-		this.tip = !this.tip;
 	}
 
 	callback(error, response) {

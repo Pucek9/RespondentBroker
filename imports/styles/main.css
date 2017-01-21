@@ -89,18 +89,13 @@ md-toast.md-info-toast-theme div.md-toast-content{
 }
 
 button.md-action.md-button.ng-scope.md-default-theme.md-ink-ripple {
-	margin-left: 30px;
 	background-color: darkred;
-	width: 9px;
-	height: 20px;
 }
 
 .md-ripple-container  {
 	display:none;
 }
 
-
-/* <input-star></input-star> directive */
 .angular-input-stars {
 	margin-top: 0px;
 	display: inline-block;

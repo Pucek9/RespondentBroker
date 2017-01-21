@@ -48,6 +48,21 @@ class Controller {
 			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
 		];
 
+		this.tooltips = {
+			callbacks: {
+				label: function (tooltipItem, data) {
+					let dataset = data.datasets[tooltipItem.datasetIndex];
+					let total = dataset.data.reduce(function (previousValue, currentValue, currentIndex, array) {
+						return previousValue + currentValue;
+					});
+					let currentValue = dataset.data[tooltipItem.index];
+					let precentage = Math.floor(((currentValue / total) * 100) + 0.5);
+					return `${data.labels[tooltipItem.index]}: ${currentValue} (${precentage}%)`;
+				}
+			}
+		};
+		this.legend = {display: true, position: 'bottom',	padding: 5};
+		
 		this.helpers({
 			project() {
 				return this.getCurrentProject();

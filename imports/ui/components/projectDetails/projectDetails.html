@@ -7,25 +7,29 @@
 			</a>
 			<a class="w3-btn w3-ripple w3-right w3-border header-button"
 			   href="/projects/{{$ctrl.projectId}}/preview">
-				<i class="fa fa-check-square-o"></i> {{'PREVIEW' | translate}}
+				<i class="fa fa-eye"></i> {{'PREVIEW' | translate}}
 			</a>
 			<i class="fa fa-{{$ctrl.icon}} fa-fw"></i>
 			{{$ctrl.pageTitle | translate}} {{$ctrl.project.name}}
 		</h5>
 	</header>
+
 	<div class="w3-container">
-		<div>
-			<header class="w3-container w3-blue">
-				<h6>{{ 'STATISTICS' | translate }}</h6>
-			</header>
-			<div class="w3-container">
+
+		<div class="w3-accordion">
+			<button ng-click="userStats = !userStats" ng-init="userStats=true" class="w3-btn-block w3-left-align w3-asphalt">
+				{{ 'USER_STATISTICS' | translate }} <i class="fa fa-angle-double-down" aria-hidden="true"
+				                                       ng-if="!userStats"></i>
+				<i class="fa fa-angle-double-up" aria-hidden="true" ng-if="userStats"></i>
+			</button>
+			<div class="w3-accordion-content w3-animate-slide" ng-class="{'w3-show': userStats}">
 				<div class="w3-quarter">
 					<h6>{{ 'USER.EDUCATION' | translate }}</h6>
 					<div style="width:250px; height: 250px">
 						<canvas class="chart chart-pie" width="250" height="250"
 						        style="display: block; width: 250px; height: 250px;"
 						        chart-data="$ctrl.usersData.education.values" chart-labels="$ctrl.usersData.education.keys"
-						        chart-options="{legend: {display: true, position: 'bottom',	padding: 5}}">
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltips}">
 						</canvas>
 					</div>
 				</div>
@@ -36,7 +40,7 @@
 						<canvas class="chart chart-pie" width="250" height="250"
 						        style="display: block; width: 250px; height: 250px;"
 						        chart-data="$ctrl.usersData.language.values" chart-labels="$ctrl.usersData.language.keys"
-						        chart-options="{legend: {display: true, position: 'bottom',	padding: 5}}">
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltips}">
 						</canvas>
 					</div>
 				</div>
@@ -47,7 +51,7 @@
 						<canvas class="chart chart-pie" width="250" height="250"
 						        style="display: block; width: 250px; height: 250px;"
 						        chart-data="$ctrl.usersData.age.values" chart-labels="$ctrl.usersData.age.keys"
-						        chart-options="{legend: {display: true, position: 'bottom',	padding: 5}}">
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltips}">
 						</canvas>
 					</div>
 				</div>
@@ -58,22 +62,31 @@
 						<canvas class="chart chart-pie" width="250" height="250"
 						        style="display: block; width: 250px; height: 250px;"
 						        chart-data="$ctrl.usersData.gender.values" chart-labels="$ctrl.usersData.gender.keys"
-						        chart-options="{legend: {display: true, position: 'bottom',	padding: 5}}">
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltips}">
 						</canvas>
 					</div>
 				</div>
 
 			</div>
 		</div>
-		<div>
-			<header class="w3-container w3-blue">
-				<h6>{{ 'RESPONSES' | translate }} ({{$ctrl.responses.length}}
-					{{$ctrl.project.autoDeactivate ?  '/' + $ctrl.project.autoDeactivateCount.toString() : ''}})
-				</h6></header>
-			<dynamic-table ng-show="$ctrl.isMyProject"
-			data="$ctrl.responses" columns="$ctrl.columns"></dynamic-table>
+
+	</div>
+	<div class="w3-container">
+
+		<div class="w3-accordion">
+			<button ng-click="table = !table" ng-init="table=true" class="w3-btn-block w3-left-align w3-asphalt">
+				{{ 'RESPONSES' | translate }} ({{$ctrl.responses.length}}
+				{{$ctrl.project.autoDeactivate ?  '/' + $ctrl.project.autoDeactivateCount.toString() : ''}})
+				<i class="fa fa-angle-double-down" aria-hidden="true"
+				   ng-if="!table"></i>
+				<i class="fa fa-angle-double-up" aria-hidden="true" ng-if="table"></i>
+			</button>
+			<div class="w3-accordion-content w3-animate-slide" ng-class="{'w3-show': table}">
+
+				<dynamic-table ng-show="$ctrl.isMyProject"
+				               data="$ctrl.responses" columns="$ctrl.columns"></dynamic-table>
+			</div>
 		</div>
 
 	</div>
 </div>
-

@@ -9,6 +9,7 @@
 	"COUNT": "Ilość",
 	"CONFIRM": "Potwierdź",
 	"STATISTICS": "Statystyki",
+	"USER_STATISTICS": "Wykresy uczęstników",
 	"DESCRIPTION": "Opis",
 	"UPLOAD": "Prześlij",
 	"POINTS": "Punkty",
@@ -81,7 +82,7 @@
 			"IMPORT_FROM_SERVER": "Importuj z Lookback",
 			"UPLOAD_FROM_DEVICE": "Prześlij z urządzenia",
 			"IMPORT_VIDEO_URL": "Import Video URL",
-			"SHOW_TIP": " Pokaz wskazówkę ",
+			"TIP": " Wskazówka ",
 			"GIVE_ME_OPINION": "Napisz komentarz o tym zadaniu."
 		},
 		"REMOVE": {
