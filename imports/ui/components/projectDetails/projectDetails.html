@@ -19,11 +19,15 @@
 				<h6>{{ 'STATISTICS' | translate }}</h6>
 			</header>
 			<div class="w3-container">
-				charts will be here
-
-
-
-
+				charts will be here {{$ctrl.usersData.education}} {{Object.keys($ctrl.usersData.education)}}
+				<!--<canvas id="charts" ></canvas>-->
+				<div style="width:400px; height: 300px">
+					<canvas id="pie" class="chart chart-pie" width="320" height="240"
+					        style="display: block; width: 400px; height: 300px;"
+					        chart-data="Object.values($ctrl.usersData.education)" chart-labels="Object.keys($ctrl.usersData.education)" chart-options="{}">
+					</canvas>
+				</div>
+				<!--Object.values($ctrl.usersData.education)-->
 			</div>
 		</div>
 		<div>
@@ -31,8 +35,8 @@
 				<h6>{{ 'RESPONSES' | translate }} ({{$ctrl.responses.length}}
 					{{$ctrl.project.autoDeactivate ?  '/' + $ctrl.project.autoDeactivateCount.toString() : ''}})
 				</h6></header>
-			<dynamic-table ng-show="$ctrl.isMyProject"
-			               data="$ctrl.responses" columns="$ctrl.columns"></dynamic-table>
+			<!--<dynamic-table ng-show="$ctrl.isMyProject"-->
+			<!--data="$ctrl.responses" columns="$ctrl.columns"></dynamic-table>-->
 		</div>
 
 	</div>

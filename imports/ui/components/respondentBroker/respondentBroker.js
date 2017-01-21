@@ -9,6 +9,8 @@ import ngMaterial from 'angular-material';
 import ngAria from 'angular-aria';
 import ngAnimate from 'angular-animate';
 import inputStars from 'angular-input-stars';
+import Chart from 'chart.js';
+import ngChart from 'angular-chart.js';
 
 import ngTranslate from 'angular-translate';
 // import ngCookies from 'angular-cookies';
@@ -73,6 +75,7 @@ export default angular.module(name, [
 	ngFileUpload,
 	'pascalprecht.translate',
 	'angular-input-stars',
+	'chart.js',
 	'ngSanitize',
 	'ngMaterial',
 	'ngAria',

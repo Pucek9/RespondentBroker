@@ -61,25 +61,42 @@ class Controller {
 				}
 			},
 			usersData() {
-				let responses = Responses.find({project: this.projectId});
-				let users = new Set();
-				if (responses) {
-					let allUsers = Meteor.users.find({}).fetch();
-					responses.forEach((r) => {
-						allUsers.forEach((u) => {
-							if (r.owner === u._id) {
-								// if (users.indexOf(u) === -1) {
-									users.add(u);
-								// }
-							}
-						});
-					});
-					console.log([...users]);
-					return users;
-				}
-			},
+				let users = this.getUsers();
+				let statisticsArray = {
+					birthDate: [], language: [], education: []
+				};
+				users.forEach(u => {
+					statisticsArray.birthDate.push(u.profile.birthDate);
+					statisticsArray.language.push(u.profile.language);
+					statisticsArray.education.push(u.profile.education);
+				});
+				const statistics = {};
+				[statistics.birthDate, statistics.language, statistics.education] = Object.values(statisticsArray).map(s => this.convertToStats(s));
+				console.log(Object.values(statistics.education));
+				console.log(Object.keys(statistics.education));
+				return statistics;
+			}
 		});
 
+		this.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+		this.data = [300, 500, 100];
+
+	}
+
+	getUsers = () => {
+		let responses = Responses.find({project: this.projectId});
+		let users = new Set();
+		if (responses) {
+			let allUsers = Meteor.users.find({}).fetch();
+			responses.forEach((r) => {
+				allUsers.forEach((u) => {
+					if (r.owner === u._id) {
+						users.add(u);
+					}
+				});
+			});
+			return ([...users]);
+		}
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
 			{
@@ -110,6 +127,18 @@ class Controller {
 		];
 	}
 
+	convertToStats = (array) => {
+		let obj = {};
+		for (let i = 0, j = array.length; i < j; i++) {
+			if (obj[array[i]]) {
+				obj[array[i]]++;
+			}
+			else {
+				obj[array[i]] = 1;
+			}
+		}
+		return obj;
+	}
 }
 
 export default angular.module(PAGE.name, [

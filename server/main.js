@@ -102,6 +102,7 @@ Meteor.startup(() => {
 
 	Accounts.onCreateUser(function (options, user) {
 		user.profile = {
+			language: 'en',
 			email: user.emails[0].address,
 			name: 'User',
 			forName: '',
