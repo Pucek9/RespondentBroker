@@ -9,12 +9,12 @@ import {name as DynamicTable} from '../dynamicTable/dynamicTable';
 import {interpolatedValue} from '../../../helpers/helpers';
 
 class Controller {
-	constructor($scope, $reactive, $interpolate) {
+	constructor($scope, $reactive, $interpolate, $filter) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.userId = Meteor.userId();
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
-
+		this.translate = $filter('translate');
 		this.helpers({
 			projects() {
 				return Projects.find({statusActive: true, owner: {$not: this.userId}}, {sort: {name: 1}});
@@ -43,12 +43,12 @@ class Controller {
 				filter: {name: "text"},
 				show: true,
 				sortable: "name",
-				title: "Project Name",
+				title: this.translate('PROJECT.NAME'),
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate('<a href="projects/{{row._id}}/preview">{{row.name}}</a>')
 			},
-			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Created"},
-			{field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
+			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: this.translate('CREATE_DATE')},
+			{field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: this.translate('LAST_UPDATE')},
 			{field: "owner", filter: {owner: "text"}, show: false, sortable: "owner", title: "Owner"},
 			// {
 			// 	field: "ownerName",
@@ -59,13 +59,13 @@ class Controller {
 			// 	getValue: interpolatedValue,
 			// 	interpolateExpr: $interpolate(`<a href="users/{{row.owner}}/details">{{row.ownerName}}</a>`),
 			// },
-			{field: "minPoints", filter: {minPoints: "number"}, show: true, sortable: "minPoints", title: "Min points"},
-			{field: "maxPoints", filter: {maxPoints: "number"}, show: true, sortable: "maxPoints", title: "Max points"},
+			{field: "minPoints", filter: {minPoints: "number"}, show: true, sortable: "minPoints", title: this.translate('MIN_POINTS')},
+			{field: "maxPoints", filter: {maxPoints: "number"}, show: true, sortable: "maxPoints", title: this.translate('MAX_POINTS')},
 			// {field: "responsesLength", filter: {responsesLength: "number"}, show: true, sortable: "responsesLength", title: "Replies"},
 			{
 				field: "responses",
 				show: true,
-				title: "Replies",
+				title: this.translate('RESPONSES'),
 				sortable: "responses.length",
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.responses.length}} {{ row.autoDeactivate ? '/'+row.autoDeactivateCount.toString() : ''}}`)

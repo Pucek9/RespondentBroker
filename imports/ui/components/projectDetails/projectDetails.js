@@ -113,7 +113,7 @@ class Controller {
 					statistics.language.push(this.$filter('translate')(u.profile.language));
 					let education = 'USER.'+ u.profile.education.toUpperCase();
 					statistics.education.push(this.$filter('translate')(education));
-					let gender = 'USER.'+ u.profile.education.toUpperCase();
+					let gender = 'USER.'+ u.profile.gender.toUpperCase();
 					statistics.gender.push(this.$filter('translate')(gender));
 				});
 				[statistics.age, statistics.language, statistics.education, statistics.gender] = Object.values(statistics).map(this.convertToObject);

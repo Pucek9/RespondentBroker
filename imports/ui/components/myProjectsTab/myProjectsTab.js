@@ -18,7 +18,7 @@ class Controller {
 		this.NgTableParams = NgTableParams;
 		this.userId = Meteor.userId();
 		[this.pageTitle,this.icon] = [PAGE.pageTitle, PAGE.icon];
-		this.$filter = $filter;
+		this.translate = $filter('translate');
 
 		this.helpers({
 			projects() {
@@ -29,18 +29,18 @@ class Controller {
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
 			{
-				field: "name", filter: {name: "text"}, show: true, sortable: "name", title: this.$filter('translate')('PROJECT.NAME'),
+				field: "name", filter: {name: "text"}, show: true, sortable: "name", title: this.translate('PROJECT.NAME'),
 				getValue: interpolatedValue, interpolateExpr: $interpolate('<a href="projects/{{row._id}}/details">{{row.name}}</a>')
 			},
-			{field: "minPoints", filter: {minPoints: "number"}, show: true, sortable: "minPoints", title: "Min points"},
-			{field: "maxPoints", filter: {maxPoints: "number"}, show: true, sortable: "maxPoints", title: "Max points"},
-			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: this.$filter('translate')('CREATE_DATE')},
-			{field: "updated", filter: {created: "text"}, show: true, sortable: "updated", title: this.$filter('translate')('LAST_UPDATE')},
-			{field: "statusActive", filter: {statusActive: "text"}, show: true, sortable: "statusActive", title: "Active"},
+			{field: "minPoints", filter: {minPoints: "number"}, show: true, sortable: "minPoints", title: this.translate('MIN_POINTS')},
+			{field: "maxPoints", filter: {maxPoints: "number"}, show: true, sortable: "maxPoints", title: this.translate('MAX_POINTS')},
+			{field: "created", filter: {created: "text"}, show: true, sortable: "created", title: this.translate('CREATE_DATE')},
+			{field: "updated", filter: {created: "text"}, show: true, sortable: "updated", title: this.translate('LAST_UPDATE')},
+			{field: "statusActive", filter: {statusActive: "text"}, show: true, sortable: "statusActive", title: this.translate('ACTIVE')},
 			{
 				field: "responses",
 				show: true,
-				title: "Replies",
+				title: this.translate('RESPONSES'),
 				sortable: "responses.length",
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.responses.length}} {{ row.autoDeactivate ? '/'+row.autoDeactivateCount.toString() : ''}}`)
@@ -48,7 +48,7 @@ class Controller {
 			{
 				field: "_id",
 				show: true,
-				title: "Actions",
+				title: this.translate('ACTIONS'),
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(actionsTemplate)
 			}
