@@ -12,9 +12,10 @@ import {PROJECT_DETAILS as PAGE} from '../../../helpers/constants';
 import template from './projectDetails.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $interpolate) {
+	constructor($stateParams, $scope, $reactive, $state, $interpolate,$filter) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.$filter = $filter;
 		this.projectId = $stateParams.projectId;
 		this.$state = $state;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
@@ -109,9 +110,11 @@ class Controller {
 				};
 				users.forEach(u => {
 					statistics.age.push(getAge(u.profile.birthDate));
-					statistics.language.push(u.profile.language);
-					statistics.education.push(u.profile.education);
-					statistics.gender.push(u.profile.gender);
+					statistics.language.push(this.$filter('translate')(u.profile.language));
+					let education = 'USER.'+ u.profile.education.toUpperCase();
+					statistics.education.push(this.$filter('translate')(education));
+					let gender = 'USER.'+ u.profile.education.toUpperCase();
+					statistics.gender.push(this.$filter('translate')(gender));
 				});
 				[statistics.age, statistics.language, statistics.education, statistics.gender] = Object.values(statistics).map(this.convertToObject);
 				console.log(statistics);
