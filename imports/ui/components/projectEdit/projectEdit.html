@@ -40,9 +40,10 @@
 					       ng-disabled="$ctrl.project.tasks.length <= 1">
 				</legend>
 
-				<input class="w3-input" type="text" id="taskname"
-				       ng-model="$ctrl.project.tasks[$ctrl.project.tasks.indexOf($ctrl.task)].name"
-				       placeholder="{{ 'PROJECT.TASKNAME' | translate }}"></label>
+				<p><label>{{ 'PROJECT.TASKNAME' | translate }}
+					<input class="w3-input" type="text" id="taskname"
+					       ng-model="$ctrl.project.tasks[$ctrl.project.tasks.indexOf($ctrl.task)].name"
+					       placeholder="{{ 'PROJECT.TASKNAME' | translate }}"></label>
 				</p>
 
 				<p><label>{{ 'PROJECT.INSTRUCTIONS' | translate }}

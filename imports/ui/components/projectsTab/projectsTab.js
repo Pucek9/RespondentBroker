@@ -70,6 +70,14 @@ class Controller {
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.responses.length}} {{ row.autoDeactivate ? '/'+row.autoDeactivateCount.toString() : ''}}`)
 			},
+			{
+				field: "tasks",
+				show: true,
+				title: this.translate('STEPS'),
+				sortable: "tasks.length",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.tasks.length}}`)
+			}
 		];
 	}
 }
