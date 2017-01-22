@@ -18,10 +18,15 @@ class Controller {
 		this.ApplicationsStore = ApplicationsStore;
 		this.validator = validator;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
-
 		this.project = {
-			statusActive: true
+			statusActive: true,
+			tasks: [{
+				name: '',
+				description: ''
+			}]
 		};
+		this.task = this.project.tasks[0];
+
 		this.helpers({
 			userPoints(){
 				const user = Meteor.user();
@@ -30,6 +35,18 @@ class Controller {
 				}
 			}
 		});
+	}
+
+	addNewTask() {
+		let task = {name: '', description: ''};
+		this.project.tasks.push(task);
+		this.task = task;
+		angular.element('#taskname').focus();
+	}
+
+	remove(index) {
+		this.project.tasks.splice(index, 1);
+		this.task = this.project.tasks[this.project.tasks.length-1];
 	}
 
 	decreasePoints(id) {
@@ -51,6 +68,7 @@ class Controller {
 	}
 
 	addProject() {
+		console.log(this.project)
 		this.project.owner = Meteor.userId();
 		this.project.responses = [];
 		this.project.created = dateNowString();

@@ -2,7 +2,7 @@
 	"LANGUAGE": "Język",
 	"pl": "Polski",
 	"en": "Angielski",
-	"BACK": "Wstecz",
+	"BACK": "",
 	"FROM": "od",
 	"TO": "do",
 	"TITLE": "Tytuł",
@@ -31,7 +31,7 @@
 	"PREVIEW": "Podgląd",
 	"EDIT": "Edycja",
 	"REMOVE": "Usuń",
-	"ADD_NEW": "Dodaj nowy",
+	"ADD_NEW": "Dodaj",
 	"CLOSE": "Zamknij Menu",
 	"WELCOME": "Witaj",
 	"CHOICE": "---Proszę wybrać---",
@@ -50,6 +50,9 @@
 		"TEXTAREA": "Dodaj pole komentarza do zadania",
 		"ACTIVESTATUS": "Status aktywny",
 		"PROJECT_TITLE": "Tytuł projektu",
+		"TASKNAME": "Nazwa zadania",
+		"INSTRUCTIONS": "Instrukcje do zadania",
+		"INSTRUCTIONS_PLACEHOLDER": "Wyjaśnij wszystkie kroki do wykonania zadania.",
 		"ADD": {
 			"TITLE": "Dodaj nowy projekt "
 		},

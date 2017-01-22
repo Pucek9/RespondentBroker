@@ -22,7 +22,7 @@
 				                                       ng-if="!userStats"></i>
 				<i class="fa fa-angle-double-up" aria-hidden="true" ng-if="userStats"></i>
 			</button>
-			<div class="w3-accordion-content w3-animate-slide" ng-class="{'w3-show': userStats}">
+			<div class="w3-accordion-content w3-animate-zoom" ng-class="{'w3-show': userStats}">
 				<div class="w3-quarter">
 					<h6>{{ 'USER.EDUCATION' | translate }}</h6>
 					<div style="width:250px; height: 250px">
@@ -81,7 +81,7 @@
 				   ng-if="!table"></i>
 				<i class="fa fa-angle-double-up" aria-hidden="true" ng-if="table"></i>
 			</button>
-			<div class="w3-accordion-content w3-animate-slide" ng-class="{'w3-show': table}">
+			<div class="w3-accordion-content w3-animate-zoom" ng-class="{'w3-show': table}">
 
 				<dynamic-table ng-show="$ctrl.isMyProject"
 				               data="$ctrl.responses" columns="$ctrl.columns"></dynamic-table>

@@ -2,7 +2,7 @@
 	"LANGUAGE": "Language",
 	"pl": "Polish",
 	"en": "English",
-	"BACK": "Back",
+	"BACK": "",
 	"FROM": "from",
 	"TO": "to",
 	"TITLE": "Title",
@@ -50,6 +50,9 @@
 		"TEXTAREA": "Add text area to step",
 		"ACTIVESTATUS": "Active status",
 		"PROJECT_TITLE": "Project title",
+		"TASKNAME": "Task name",
+		"INSTRUCTIONS": "Task instructions",
+		"INSTRUCTIONS_PLACEHOLDER": "Describe all steps to finish task.",
 		"ADD": {
 			"TITLE": "Add new project "
 		},
