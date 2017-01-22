@@ -8,7 +8,7 @@ import template from './projectEdit.html';
 import {dateNowString} from '../../../helpers/helpers';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, notification, validator) {
+	constructor($stateParams, $scope, $reactive, $state, $timeout, notification, validator) {
 
 		'ngInject';
 		$reactive(this).attach($scope);
@@ -17,14 +17,24 @@ class Controller {
 		this.notification = notification;
 		this.validator = validator;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
-
+		// this.task = {}
 		this.helpers({
 			project() {
-				return Projects.findOne({
-					_id: $stateParams.projectId
-				});
+				return Projects.findOne({_id: $stateParams.projectId});
 			},
 		});
+	}
+
+	addNewTask() {
+		let task = {name: '', description: ''};
+		this.project.tasks.push(task);
+		this.task = task;
+		angular.element('#taskname').focus();
+	}
+
+	remove(index) {
+		this.project.tasks.splice(index, 1);
+		this.task = this.project.tasks[this.project.tasks.length-1];
 	}
 
 	updateProject() {
@@ -34,6 +44,7 @@ class Controller {
 			$set: {
 				name: this.project.name,
 				description: this.project.description,
+				tasks: JSON.parse(angular.toJson(this.project.tasks)),
 				minPoints: this.project.minPoints,
 				maxPoints: this.project.maxPoints,
 				isStepRating: this.project.isStepRating,
@@ -51,7 +62,7 @@ class Controller {
 			if (error) {
 				this.notification.error('Oops, unable to update the project...', error.message);
 			} else {
-				this.$state.go('myProjects');
+				this.$state.go('projectsMy');
 				this.notification.success('Your project was updated successfully!');
 			}
 

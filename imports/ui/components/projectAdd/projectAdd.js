@@ -62,13 +62,13 @@ class Controller {
 				console.log(error);
 			} else {
 				this.notification.success('Your project was added successfully!');
-				this.$state.go('projectDetails', {projectId: id});
+				this.$state.go('projectPreview', {projectId: id});
 			}
 		});
 	}
 
 	addProject() {
-		console.log(this.project)
+		this.project.tasks = JSON.parse(angular.toJson(this.project.tasks));
 		this.project.owner = Meteor.userId();
 		this.project.responses = [];
 		this.project.created = dateNowString();

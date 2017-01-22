@@ -26,7 +26,7 @@
 				<legend class="w3-center">
 					{{'STEPS' | translate }} ({{$ctrl.project.tasks.length}})
 					<select class="w3-input" style="width:150px; display: inline" ng-model="$ctrl.task"
-					        ng-options="task as task.name for task in $ctrl.project.tasks track by $index">
+					        ng-options="task as task.name for task in $ctrl.project.tasks">
 
 					</select>
 					<a class="w3-btn w3-ripple w3-border w3-green"
@@ -35,7 +35,7 @@
 					</a>
 					<input type="button" value="X" class="w3-btn w3-ripple w3-border w3-red"
 					   ng-click="$ctrl.remove($ctrl.project.tasks.indexOf($ctrl.task))"
-					   ng-disabled="$ctrl.project.tasks.length === 1">
+					   ng-disabled="$ctrl.project.tasks.length <= 1">
 				</legend>
 
 				<p><label>{{ 'PROJECT.TASKNAME' | translate }}
