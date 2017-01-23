@@ -59,23 +59,35 @@ class Controller {
 	}
 
 	isStarted() {
-		let typeMap = this.actions.map(obj => obj.type)
-		console.log('isStarted', typeMap.indexOf('start') )
+		let typeMap = this.actions.map(obj => obj.type);
 		return typeMap.indexOf('start') !== -1;
 	};
 
 	isFaulting() {
-		let typeMap = this.actions.map(obj => obj.type)
-		console.log('isFaulting', typeMap.indexOf('beginFaultyPath') )
-		return typeMap.indexOf('beginFaultyPath') !== -1;
+		let typeMap = this.actions.map(obj => obj.type);
+		let occurencesBeginFaultyPath = typeMap.filter(x => x == 'beginFaultyPath').length;
+		let occurencesFinishFaultyPath = typeMap.filter(x => x == 'finishFaultyPath').length;
+		return (occurencesBeginFaultyPath + occurencesFinishFaultyPath) % 2 == 1;
 	};
 
 	isEnd() {
-		let typeMap = this.actions.map(obj => obj.type)
-		console.log('isEnd', typeMap.indexOf('end') )
+		let typeMap = this.actions.map(obj => obj.type);
 		return typeMap.indexOf('end') !== -1;
 	}
 
+	isValid() {
+		let valid = true;
+		let typeMap = this.actions.map(obj => obj.type);
+		for (let i = 0; i < typeMap.length - 1; i++) {
+			if (typeMap[i] == 'beginFaultyPath') {
+				valid = false;
+			} else if (typeMap[i] == 'finishFaultyPath') {
+				valid = true;
+			}
+		}
+		console.log(typeMap[0] == 'start', typeMap[typeMap.length - 1] =='end', valid)
+		return typeMap[0] == 'start' && typeMap[typeMap.length - 1] == 'end' && valid;
+	}
 
 	// types() {
 	// 	if (this.actions && this.actions.length > 0) {
@@ -120,7 +132,12 @@ class Controller {
 	}
 
 	confirm() {
-		this.actionsUpdate();
+		if(this.isValid()) {
+			this.actionsUpdate();
+		}
+		else {
+			this.notification.error('Actions are not valid. Be sure that queue is like start -> ... -> beginFaultyPath -> .. finishFaultyPath -> ... -> end');
+		}
 	}
 
 	start = () => {
