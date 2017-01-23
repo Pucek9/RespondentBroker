@@ -148,7 +148,8 @@ class Controller {
 				tag: task.name,
 				videoURL: task.videoURL,
 				stars: task.stars || '',
-				comment: task.comment || ''
+				comment: task.comment || '',
+				actions: []
 			};
 			if (step.videoURL !== undefined) {
 				this.response.steps.push(step)
