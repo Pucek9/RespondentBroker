@@ -82,6 +82,7 @@ projects-tab h5{
 
 .w3-darker-asphalt {
    background-color: #2c3e50 !important;
+  color: #ccc;
  }
 
 .w3-sidenav a:hover{
@@ -89,4 +90,24 @@ projects-tab h5{
 }
 .w3-btn{
   margin-bottom: 0px;
+}
+
+.oneline {
+  white-space:nowrap !important;
+};
+
+.text-asphalt {
+  color: #2c3e50 !important;
+}
+
+.text-red {
+  color: #c0392b !important;
+}
+
+.text-blue {
+  color: #2980b9 !important;
+}
+
+.text-green {
+  color: #27ae60 !important;
 }
