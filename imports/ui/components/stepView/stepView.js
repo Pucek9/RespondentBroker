@@ -18,7 +18,6 @@ class Controller {
 		this.$timeout = $timeout;
 		this.$scope = $scope;
 		this.notification = notification;
-
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.helpers({
@@ -40,14 +39,16 @@ class Controller {
 					return response.steps[this.stepId];
 				}
 			},
-			actions() {
+			addActions() {
 				let response = Responses.findOne({
 					_id: this.responseId
 				});
 				if (response) {
-					return response.steps[this.stepId].actions;
+					this.actions = response.steps[this.stepId].actions;
+					// this.typeMap = this.actions.map(obj => obj.type)
 				}
 			},
+
 		});
 
 		this.fps = 16;// 16 roughly 60 frames per second
@@ -56,6 +57,46 @@ class Controller {
 		this.min = 130;
 		this.max = 250;
 	}
+
+	isStarted() {
+		let typeMap = this.actions.map(obj => obj.type)
+		console.log('isStarted', typeMap.indexOf('start') )
+		return typeMap.indexOf('start') !== -1;
+	};
+
+	isFaulting() {
+		let typeMap = this.actions.map(obj => obj.type)
+		console.log('isFaulting', typeMap.indexOf('beginFaultyPath') )
+		return typeMap.indexOf('beginFaultyPath') !== -1;
+	};
+
+	isEnd() {
+		let typeMap = this.actions.map(obj => obj.type)
+		console.log('isEnd', typeMap.indexOf('end') )
+		return typeMap.indexOf('end') !== -1;
+	}
+
+
+	// types() {
+	// 	if (this.actions && this.actions.length > 0) {
+	// 		let typeMap = this.actions.map(obj => obj.type);
+	// 		console.log(typeMap)
+	// 		console.log(typeMap.indexOf('start'), typeMap.indexOf('begin faulty path'), typeMap.indexOf('end'))
+	// 		// if (typeMap.indexOf('start') == -1) {
+	// 		// 	return ['start'];
+	// 		// } else
+	// 			if (typeMap.indexOf('begin faulty path') !== -1) {
+	// 			return [
+	// 				'correct action', 'wrong action', 'finish faulty path', 'end'
+	// 			];
+	// 		} else if (typeMap.indexOf('end') !== -1) {
+	// 			return [];
+	// 		} else {
+	// 			return ['correct action', 'wrong action', 'begin faulty path', 'end']
+	// 		}
+	// 	} else return ['start'];
+	// }
+
 
 	removeAction(action) {
 		let index = this.actions.indexOf(action);
@@ -147,11 +188,12 @@ class Controller {
 		this.video.addEventListener("pause", () => {
 			let action = {
 				time: this.video.currentTime,
-				name: ''
+				name: '',
+				type: ''
 			};
 			this.actions.push(action);
 			this.$scope.$apply();
-			console.log(this.actions)
+			// console.log(this.actions)
 		}, false);
 	};
 

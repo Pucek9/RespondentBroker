@@ -10,7 +10,7 @@
 		</h5>
 	</header>
 	<div class="w3-container"
-	     >
+	>
 
 		<div class="w3-col m4">
 			<video
@@ -31,14 +31,34 @@
 			<table class="table w3-table w3-table-all w3-hoverable">
 
 				<tr>
+					<th>{{'STEP_VIEW.TYPE' | translate}}</th>
 					<th>{{'STEP_VIEW.NAME' | translate}}</th>
 					<th>{{'STEP_VIEW.TIME' | translate}}</th>
 					<th>{{'STEP_VIEW.REMOVE' | translate}}</th>
 				</tr>
 
 				<tr ng-repeat="action in $ctrl.actions | orderBy : 'time' track by $index ">
+					<td>
+						<!--<select class="w3-input"-->
+						<!--ng-model="action.type" ng-options="type for type in $ctrl.types()">-->
+						<!--</select>-->
+						<select class="w3-input" name="education" ng-model="action.type">
+							<option ng-hide="$ctrl.isStarted() || $ctrl.isEnd() || $index !== 0"
+							        value="start">{{'START' | translate}}</option>
+							<option ng-hide="!$ctrl.isStarted() || $ctrl.isEnd() || $index === 0"
+							        value="correctAction">{{'CORRECT_ACTION' | translate}}</option>
+							<option ng-hide="!$ctrl.isStarted() || $ctrl.isEnd() || $index === 0"
+							        value="wrongAction">{{'WRONG_ACTION' | translate}}</option>
+							<option ng-hide="!$ctrl.isStarted() || $ctrl.isEnd() || $ctrl.isFaulting() || $index === 0"
+							        value="beginFaultyPath">{{'START_FAULTY' | translate}}</option>
+							<option ng-hide="!$ctrl.isStarted() || $ctrl.isEnd() || !$ctrl.isFaulting() || $index === 0"
+							        value="finishFaultyPath">{{'FINISH_FAULTY' | translate}}</option>
+							<option ng-hide="!$ctrl.isStarted() || $ctrl.isEnd() || $index === 0"
+							        value="end">{{'END' | translate}}</option>
+						</select>
+					</td>
 					<td><input class="w3-input" style="width:80%" type="text" ng-model="action.name"
-					           placeholder="{{'STEP_VIEW.NAME' | translate}}"/></td>
+					           placeholder="{{'STEP_VIEW.NAME' | translate}} {{$index}}"/></td>
 					<td><input class="w3-input" style="width:80%" type="number"
 					           ng-model="action.time" placeholder="{{'STEP_VIEW.TIME' | translate}}"/></td>
 					<td>
