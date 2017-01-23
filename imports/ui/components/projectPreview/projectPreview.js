@@ -23,7 +23,7 @@ class Controller {
 		this.screenHeight = $window.innerHeight;
 
 		this.response = {};
-		this.response.steps = [];
+		// this.response.steps = [];
 		this.importTab = false;
 		this.uploadTab = true;
 
@@ -33,9 +33,11 @@ class Controller {
 
 		this.canReply = () => {
 			let project = this.getCurrentProject();
-			let responses = Responses.find({project: this.projectId, owner: Meteor.userId()}).fetch();
+			let userId = Meteor.userId();
+			let responses = Responses.find({project: this.projectId, owner: userId }).fetch();
 			if (project && responses) {
-				return Meteor.userId() !== project.owner && (responses.length === 0 || project.multipleResponses) && project.statusActive;
+				console.log( responses.length  , project.multipleResponses);
+				return (userId !== project.owner) && (responses.length === 0 || project.multipleResponses) && project.statusActive;
 			}
 		};
 
@@ -108,34 +110,54 @@ class Controller {
 			console.log('error', error.message);
 			this.notification.error('Problem with upload files.', error.message);
 		}
-		else {
-			this.projectPreview.temp.videoURL = response.path;
-		}
+		// else {
+		// 	this.projectPreview.temp.videoURL = response.path;
+		// }
 	}
 
 	importFromURL() {
 		let attr = {name: 'importFromURL.m4v', description: 'Video imported from url'};
-		UploadFS.importFromURL(this.temp.videoImportURL, attr, this.VideosStore, this.$bindToContext(this.callback));
+		UploadFS.importFromURL(this.project.tasks[this.project.tasks.indexOf(this.task)].videoImportURL, attr, this.VideosStore, this.$bindToContext(this.callback));
 	}
 
-	reset() {
-		this.temp = {};
-	}
+	// reset() {
+	// 	this.temp = {};
+	// }
+	//
+	// remove(step) {
+	// 	let index = this.response.steps.indexOf(step);
+	// 	this.response.steps.splice(index, 1);
+	// }
+	//
+	// addNew() {
+	// 	this.response.steps.push({
+	// 		tag: this.temp.tag,
+	// 		videoURL: this.temp.videoURL,
+	// 		stars: this.temp.stars,
+	// 		description: this.temp.description,
+	// 		actions: []
+	// 	});
+	// 	this.reset();
+	// }
 
-	remove(step) {
-		let index = this.response.steps.indexOf(step);
-		this.response.steps.splice(index, 1);
-	}
-
-	addNew() {
-		this.response.steps.push({
-			tag: this.temp.tag,
-			videoURL: this.temp.videoURL,
-			stars: this.temp.stars,
-			description: this.temp.description,
-			actions: []
+	prepareSteps() {
+		let areAllStepsWithVideo = true;
+		this.response.steps = [];
+		this.project.tasks.forEach(task => {
+			let step = {
+				tag: task.name,
+				videoURL: task.videoURL,
+				stars: task.stars || '',
+				comment: task.comment || ''
+			};
+			if (step.videoURL !== undefined) {
+				this.response.steps.push(step)
+			}
+			else {
+				areAllStepsWithVideo = false;
+			}
 		});
-		this.reset();
+		return areAllStepsWithVideo;
 	}
 
 	checkAndDeactivateProject() {
@@ -155,7 +177,7 @@ class Controller {
 			}, (error) => {
 				if (error) {
 					this.notification.error('There is problem with update project! ' + error.message);
-					console.log(error)
+					console.log(error.message)
 				} else {
 					success()
 				}
@@ -191,7 +213,7 @@ class Controller {
 		}, (error) => {
 			if (error) {
 				this.notification.error('There is problem with add your response to project! ' + error.message);
-				console.log(error)
+				console.log(error.message)
 			} else {
 				this.addToUser(id);
 
@@ -199,10 +221,7 @@ class Controller {
 		});
 	}
 
-	confirm() {
-		this.response.owner = Meteor.userId();
-		this.response.project = this.projectId;
-		this.response.isPaid = false;
+	addResponse() {
 		Responses.insert(angular.copy(this.response),
 			(error, id) => {
 				if (error) {
@@ -213,8 +232,18 @@ class Controller {
 				}
 			}
 		);
+	};
 
-	}
+	confirm() {
+		if (this.prepareSteps()) {
+			this.response.owner = Meteor.userId();
+			this.response.project = this.projectId;
+			this.response.isPaid = false;
+			this.addResponse();
+		} else {
+			this.notification.error('Not all steps are with video.');
+		}
+	};
 
 }
 

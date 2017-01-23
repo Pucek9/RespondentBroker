@@ -19,7 +19,17 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		statusActive: true,
 		autoDeactivate: false,
 		autoDeactivateCount: null,
-		multipleResponses: false
+		multipleResponses: false,
+		tasks: [
+			{
+				name: "task1",
+				description: "description 1"
+			},
+			{
+				name: "task2",
+				description: "description 2"
+			}
+		],
 	},
 	{
 		name: 'Simon',
@@ -37,7 +47,17 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		statusActive: true,
 		autoDeactivate: true,
 		autoDeactivateCount: 10,
-		multipleResponses: false
+		multipleResponses: false,
+		tasks: [
+			{
+				name: "task1",
+				description: "description 1"
+			},
+			{
+				name: "task2",
+				description: "description 2"
+			}
+		],
 	},
 	{
 		name: 'Jacob',
@@ -55,7 +75,17 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		statusActive: true,
 		autoDeactivate: true,
 		autoDeactivateCount: 10,
-		multipleResponses: false
+		multipleResponses: false,
+		tasks: [
+			{
+				name: "task1",
+				description: "description 1"
+			},
+			{
+				name: "task2",
+				description: "description 2"
+			}
+		],
 	},
 	{
 		name: 'Nephi',
@@ -73,7 +103,17 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		statusActive: true,
 		autoDeactivate: true,
 		autoDeactivateCount: 10,
-		multipleResponses: false
+		multipleResponses: false,
+		tasks: [
+			{
+				name: "task1",
+				description: "description 1"
+			},
+			{
+				name: "task2",
+				description: "description 2"
+			}
+		],
 	},
 	{
 		name: 'Christian',
@@ -86,7 +126,22 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		isStepDescription: true,
 		maxPoints: 12, minPoints: 9,
 		application: '',
-		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ'
+		surveyURL: 'https://www.surveymonkey.com/r/HXPCZCZ',
+		ratingTitle: 'You had the pleasure of performing this task?',
+		statusActive: true,
+		autoDeactivate: true,
+		autoDeactivateCount: 10,
+		multipleResponses: false,
+		tasks: [
+			{
+				name: "task1",
+				description: "description 1"
+			},
+			{
+				name: "task2",
+				description: "description 2"
+			}
+		],
 	},
 	{
 		name: 'Tiancum',
@@ -103,7 +158,17 @@ Nullam quis volutpat nunc, vitae imperdiet ex. Praesent placerat lectus id eros 
 		ratingTitle: 'You had the pleasure of performing this task?',
 		statusActive: true,
 		autoDeactivate: false,
-		multipleResponses: false
+		multipleResponses: false,
+		tasks: [
+		{
+			name: "task1",
+			description: "description 1"
+		},
+		{
+			name: "task2",
+			description: "description 2"
+		}
+	],
 	},
 	{
 		name: 'Jacob',
@@ -125,23 +190,65 @@ Proin convallis nunc at justo sodales aliquam. Aliquam ullamcorper ligula ligula
 		statusActive: true,
 		autoDeactivate: true,
 		autoDeactivateCount: 8,
-		multipleResponses: false
-	}
-];
-
-
-const RESPONSES = [
+		multipleResponses: false,
+		tasks: [
+			{
+				name: "task1",
+				description: "description 1"
+			},
+			{
+				name: "task2",
+				description: "description 2"
+			}
+		]
+	},
 	{
+		_id: "Tu4JBbLiaKXM2j3aZ",
+		name: "Jakdojadę",
+		description: "Zadanie przeznaczone jest dla dwóch typów ochotników będących aktualnie we Wrocławiu:\n•\tStacjonarni – przebywający w domowym zaciszu, niepodatni na żadne zakłócenia i czynniki rozpraszające. Osoby takie nagrywają swoją aktywność zgodnie z poniżej zamieszczoną instrukcją. Dla tej grupy osób przewidziana jest nagroda w postaci minimum 7 punktów za wykonanie kompletu zadań.\n•\tMobilni – użytkownicy poruszający się po mieście pieszo lub poprzez korzystanie z komunikacji miejskiej. Ze względu na potrzebę weryfikacji rzeczywistych warunków, proszę uczestników o nagrywanie aktywności wraz z rejestracją wideo przedniej kamery urządzenia. Zamieszczane wideo powinno więc być wygenerowane z serwisu Lookback jako „Combined Video”. Rzetelnie wykonujące zadania osoby z tej grupy zostaną nagrodzone 10 punktami.\n\nWarunki:\n•\tKażde wykonane zadanie powinno być zarejestrowane jako osobny film.\n•\tJako komentarz filmu proszę wpisać typ użytkownika (S – stacjonarny, M – mobilny).\n•\tKażde zadanie zaczyna się od otwarcia głównej aktywności aplikacji, czyli najlepiej zamknąć i uruchomić aplikację od nowa. Dopiero wtedy zacząć nagrywanie. Zakończenie nagrania powinno nastąpić po upewnieniu się, że zadanie zostało zakończone tak, jak przewidział badacz, lub użytkownik nie jest w stanie ukończyć zadania z powodu trudności obsługi aplikacji i zbyt długim błądzeniu.\n•\tW pięciogwiazdkowej skali należy zaznaczyć stopień osobistego odczucia na temat przyswojenia biegłości obsługiwania danej czynności.\n•\tJako komentarz proszę uwzględnić także sugestie odnośnie jakości i ewentualnej poprawy testowanej funkcjonalności, jeśli takie się nasunęły podczas jej używania.\n•\tProszę uzupełnić zamieszczoną ankietę i podpisać ją swoim adresem email jako identyfikatorem.\n\nSurvey for English users:\nhttps://www.esurveycreator.com/s/667d49a",
+		minPoints: 7,
+		maxPoints: 10,
+		isStepRating: true,
+		isStepDescription: true,
 		owner: "9X285yQzusTQwteYv",
-		project: "3P3DpFLCp6ubrTC54",
-		isPaid: false,
-		steps: [{
-			tag: "First Task",
-			videoURL: "/screen.m4v",
-			rating: 4,
-			description: 'was nice'
-		}]
+		responses: [],
+		created: "2017/01/16 02:44",
+		updated: "2017/01/23 04:08",
+		surveyURL: "https://www.esurveycreator.com/s/fe09b6c",
+		ratingTitle: "Jak bardzo zadanie jest nauczalne",
+		statusActive: true,
+		autoDeactivate: true,
+		autoDeactivateCount: 10,
+		multipleResponses: false,
+		tasks: [
+			{
+				name: "1",
+				description: "Wyznacz trasę najbliższego odjazdu z własnej pozycji do „Dworzec PKS Wrocław Główny” i podejrzyj na mapie."
+			},
+			{
+				name: "2",
+				description: "Pokaż odjazdy z trasy „pl. Strzegomski” do „Poczta Główna” (Wrocław) ustawiając następujące parametry: \na.\tOdjazd, data i godzina: Jutro 19:50\nb.\tPołączenie: wygodne\nc.\tUnikaj przesiadek: tak"
+			},
+			{
+				name: "3",
+				description: "Wejdź do „Ostatnio wyszukiwane trasy” i wybierz ostatnio wyszukiwaną trasę.\nNastępnie wybierz Opcje i ustaw parametry:\na.\tPojazdy: Pociąg i Tramwaj\nb.\tPreferowane linie: 2, 10\nc.\tUnikaj linii:1\nd.\tUnikaj autobusów: tak\ne.\tPrzewoźnicy: wszyscy oprócz Bus Marco Polo\nf.\tMinimalny czas na przesiadkę: 5 minut\nNa koniec zamień stację wyjazdu ze stacją docelową i pokaż odjazdy."
+			},
+			{
+				name: "4",
+				description: "Sprawdź rozkład jazdy dla tramwajów linii 2, przystanek Tramwajowa w stronę Krzyki. Wybierz rozkład dla „Jutro”. Dodaj rozkład do zapisanych."
+			},
+			{
+				name: "5",
+				description: "Sprawdź rozkład autobusów nocnych linii 250 z najbliższego przystanku w kierunku Dworzec Nadodrze. Dodaj go do ulubionych. Następnie odnajdź ten rozkład w zapisanych i usuń go."
+			},
+			{
+				name: "6",
+				description: "W ustawieniach zmień miasto na Warszawa, zaznacz Pokazuj mapy od razu."
+			}
+		]
 	}
 ];
+
+const RESPONSES = [];
 
 export {PROJECTS, RESPONSES}
