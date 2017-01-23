@@ -12,7 +12,7 @@ import {PROJECT_DETAILS as PAGE} from '../../../helpers/constants';
 import template from './projectDetails.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $interpolate,$filter) {
+	constructor($stateParams, $scope, $reactive, $state, $interpolate, $filter) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.$filter = $filter;
@@ -49,7 +49,7 @@ class Controller {
 			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
 		];
 
-		this.tooltips = {
+		this.tooltipsPie = {
 			callbacks: {
 				label: function (tooltipItem, data) {
 					let dataset = data.datasets[tooltipItem.datasetIndex];
@@ -62,8 +62,8 @@ class Controller {
 				}
 			}
 		};
-		this.legend = {display: true, position: 'bottom',	padding: 5};
-		
+		this.legendPie = {display: true, position: 'bottom', padding: 5};
+
 		this.helpers({
 			project() {
 				return this.getCurrentProject();
@@ -89,8 +89,8 @@ class Controller {
 					}
 				}
 			},
-			responses() {
-				let responses = Responses.find({project: this.projectId}).fetch();
+			responsesTab() {
+				let responses = this.getResponses().fetch();
 				if (responses) {
 					let users = Meteor.users.find({});
 					responses.forEach((r, index, responsesArray) => {
@@ -111,18 +111,53 @@ class Controller {
 				users.forEach(u => {
 					statistics.age.push(getAge(u.profile.birthDate));
 					statistics.language.push(this.$filter('translate')(u.profile.language));
-					let education = 'USER.'+ u.profile.education.toUpperCase();
+					let education = 'USER.' + u.profile.education.toUpperCase();
 					statistics.education.push(this.$filter('translate')(education));
-					let gender = 'USER.'+ u.profile.gender.toUpperCase();
+					let gender = 'USER.' + u.profile.gender.toUpperCase();
 					statistics.gender.push(this.$filter('translate')(gender));
 				});
 				[statistics.age, statistics.language, statistics.education, statistics.gender] = Object.values(statistics).map(this.convertToObject);
-				console.log(statistics);
+				// console.log(statistics);
 				return statistics;
+			},
+			statistics() {
+				return this.getStatistics()
 			}
 		});
 
 	}
+
+	getStatistics() {
+		let project = this.getCurrentProject();
+		let responses = Responses.find({project: this.projectId});
+		if (project && responses) {
+			let statistics = {
+				names: project.tasks.map(task => task.name),
+				series: [],
+				stars: [],
+				mistakes: []
+			};
+			responses.forEach(response => {
+				statistics.series.push(response._id);
+				statistics.stars.push(
+					response.steps.map(step => step.stars)
+				);
+				statistics.mistakes.push(
+					response.steps.map(step => {
+						let actions = step.actions.filter(a => {return a.type === 'wrongAction'});
+						console.log(actions)
+							return actions.length;
+						}
+					)
+				)
+			});
+			return statistics;
+		}
+	};
+
+	getResponses = () => {
+		return Responses.find({project: this.projectId});
+	};
 
 	getCurrentProject = () => {
 		return Projects.findOne({_id: this.projectId});
@@ -168,13 +203,15 @@ class Controller {
 
 }
 
-export default angular.module(PAGE.name, [
-	angularMeteor,
-	uiRouter,
-]).component(PAGE.name, {
-	template,
-	controller: Controller
-})
+export default angular
+	.module(PAGE.name, [
+		angularMeteor,
+		uiRouter,
+	]).component(PAGE.name, {
+			template,
+			controller: Controller
+		}
+	)
 	.config(config);
 
 function config($stateProvider) {
