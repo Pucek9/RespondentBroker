@@ -47,7 +47,13 @@ class Controller {
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.steps.length}}`)
 			},
-			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: this.translate('PROJECT.IS_PAID')},
+			{
+				field: "isPaid",
+				filter: {isPaid: "text"},
+				show: true,
+				sortable: "isPaid",
+				title: this.translate('PROJECT.IS_PAID')
+			},
 		];
 
 		this.tooltipsPie = {
@@ -69,7 +75,7 @@ class Controller {
 				label: function (tooltipItem, data) {
 					let dataset = data.datasets[tooltipItem.datasetIndex];
 					let currentValue = dataset.data[tooltipItem.index];
-					return currentValue.toFixed(2).toString();
+					return currentValue.toFixed(4).toString();
 				}
 			}
 		};
@@ -143,9 +149,9 @@ class Controller {
 		if (project && responses) {
 			let data = {
 				names: project.tasks.map(task => task.name),
-				series: [this.translate('MEDIAN'),this.translate('AVERAGE'),this.translate('STANDARD_DEVIATION')],
+				series: [this.translate('MEDIAN'), this.translate('AVERAGE'), this.translate('VARIANCE'), this.translate('STANDARD_DEVIATION')],
 				stars: [],
-				starsTranspose: [],
+				actions: [],
 				mistakes: [],
 				times: [],
 				faultyTimes: []
@@ -155,7 +161,9 @@ class Controller {
 				data.stars.push(
 					response.steps.map(step => step.stars),
 				);
-
+				data.actions.push(
+					response.steps.map(step => step.actions.filter(a => a.type === 'action').length)
+				);
 				data.mistakes.push(
 					response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction').length)
 				);
@@ -167,6 +175,7 @@ class Controller {
 				)
 			});
 			data.starsStats = this.transposeToStats(data.stars);
+			data.actionsStats = this.transposeToStats(data.actions);
 			data.mistakesStats = this.transposeToStats(data.mistakes);
 			data.timesStats = this.transposeToStats(data.times);
 			data.faultyTimesStats = this.transposeToStats(data.faultyTimes);
@@ -181,6 +190,7 @@ class Controller {
 			stats.push([
 				this.stats.median(a),
 				this.stats.average(a),
+				this.stats.variance(a),
 				this.stats.standardDeviation(a)
 			])
 		});

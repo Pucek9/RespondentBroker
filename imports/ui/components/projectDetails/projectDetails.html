@@ -92,12 +92,32 @@
 				</div>
 
 				<div class="w3-half">
-					<h6>{{ 'STARS' | translate }} {{'STATS' | translate}}</h6>
+					<h6>{{ 'STARS' | translate }} - {{'STATS' | translate}}</h6>
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.starsStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}"
 						        chart-series="$ctrl.data.series">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
+					<h6>{{ 'ACTIONS' | translate }}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.actions" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar}">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
+					<h6>{{ 'ACTIONS' | translate }} - {{'STATS' | translate}}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.actionsStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}" chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
 				</div>
@@ -113,7 +133,7 @@
 				</div>
 
 				<div class="w3-half">
-					<h6>{{ 'MISTAKES' | translate }} {{'STATS' | translate}}</h6>
+					<h6>{{ 'MISTAKES' | translate }} - {{'STATS' | translate}}</h6>
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
@@ -133,7 +153,7 @@
 				</div>
 
 				<div class="w3-half">
-					<h6>{{ 'TIMES' | translate }} {{'STATS' | translate}}</h6>
+					<h6>{{ 'TIMES' | translate }} - {{'STATS' | translate}}</h6>
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
@@ -154,7 +174,7 @@
 				</div>
 
 				<div class="w3-half">
-					<h6>{{ 'FAULTY_TIMES' | translate }} {{'STATS' | translate}}</h6>
+					<h6>{{ 'FAULTY_TIMES' | translate }} - {{'STATS' | translate}}</h6>
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"

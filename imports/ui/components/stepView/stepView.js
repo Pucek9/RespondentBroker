@@ -89,26 +89,6 @@ class Controller {
 		return typeMap[0] == 'start' && typeMap[typeMap.length - 1] == 'end' && valid;
 	}
 
-	// types() {
-	// 	if (this.actions && this.actions.length > 0) {
-	// 		let typeMap = this.actions.map(obj => obj.type);
-	// 		console.log(typeMap)
-	// 		console.log(typeMap.indexOf('start'), typeMap.indexOf('begin faulty path'), typeMap.indexOf('end'))
-	// 		// if (typeMap.indexOf('start') == -1) {
-	// 		// 	return ['start'];
-	// 		// } else
-	// 			if (typeMap.indexOf('begin faulty path') !== -1) {
-	// 			return [
-	// 				'correct action', 'wrong action', 'finish faulty path', 'end'
-	// 			];
-	// 		} else if (typeMap.indexOf('end') !== -1) {
-	// 			return [];
-	// 		} else {
-	// 			return ['correct action', 'wrong action', 'begin faulty path', 'end']
-	// 		}
-	// 	} else return ['start'];
-	// }
-
 
 	removeAction(action) {
 		let index = this.actions.indexOf(action);
