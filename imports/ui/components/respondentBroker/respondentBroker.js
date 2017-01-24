@@ -21,6 +21,7 @@ import ngFileUpload from 'ng-file-upload';
 import dataTableFormatter from '../../services/data-format-factory'
 import notification from '../../services/notification-factory'
 import validator from '../../services/validator'
+import stats from '../../services/stats'
 
 import template from './respondentBroker.html';
 import {name as DynamicTable} from '../dynamicTable/dynamicTable';
@@ -91,7 +92,8 @@ export default angular.module(name, [
 	.run(run)
 	.factory('dataTableFormatter', dataTableFormatter)
 	.factory('notification', notification)
-	.factory('validator', validator);
+	.factory('validator', validator)
+	.factory('stats', stats)
 
 function config($locationProvider, $urlRouterProvider, $translateProvider) {
 	'ngInject';

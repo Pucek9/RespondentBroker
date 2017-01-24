@@ -29,7 +29,7 @@
 						<canvas class="chart chart-pie" width="250" height="250"
 						        style="display: block; width: 250px; height: 250px;"
 						        chart-data="$ctrl.usersData.education.values" chart-labels="$ctrl.usersData.education.keys"
-						        chart-options="{legend: $ctrl.legendPie, tooltips: $ctrl.tooltipsPie}">
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
 						</canvas>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 						<canvas class="chart chart-pie" width="250" height="250"
 						        style="display: block; width: 250px; height: 250px;"
 						        chart-data="$ctrl.usersData.language.values" chart-labels="$ctrl.usersData.language.keys"
-						        chart-options="{legend: $ctrl.legendPie, tooltips: $ctrl.tooltipsPie}">
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
 						</canvas>
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 						<canvas class="chart chart-pie" width="250" height="250"
 						        style="display: block; width: 250px; height: 250px;"
 						        chart-data="$ctrl.usersData.age.values" chart-labels="$ctrl.usersData.age.keys"
-						        chart-options="{legend: $ctrl.legendPie, tooltips: $ctrl.tooltipsPie}">
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
 						</canvas>
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 						<canvas class="chart chart-pie" width="250" height="250"
 						        style="display: block; width: 250px; height: 250px;"
 						        chart-data="$ctrl.usersData.gender.values" chart-labels="$ctrl.usersData.gender.keys"
-						        chart-options="{legend: $ctrl.legendPie, tooltips: $ctrl.tooltipsPie}">
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
 						</canvas>
 					</div>
 				</div>
@@ -70,7 +70,7 @@
 			</div>
 		</div>
 	</div>
-{{$ctrl.statistics}}
+<!--{{$ctrl.data}}-->
 	<div class="w3-container">
 		<div class="w3-accordion">
 			<button ng-click="tasksStats = !tasksStats" ng-init="tasksStats=true" class="w3-btn-block w3-left-align w3-asphalt">
@@ -82,34 +82,87 @@
 
 				<div class="w3-half">
 					<h6>{{ 'STARS' | translate }}</h6>
-					<div style="width:350px; height: 250px">
-						<canvas class="chart chart-bar" width="350" height="250"
-						        style="width: 350px; height: 250px;"
-						        chart-data="$ctrl.statistics.stars" chart-labels="$ctrl.statistics.names">
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.stars" chart-labels="$ctrl.data.names"
+						        chart-options="{tooltips: $ctrl.tooltipsBar}">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
+					<h6>{{ 'STARS' | translate }} {{'STATS' | translate}}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.starsStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}"
+						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
 				</div>
 
 				<div class="w3-half">
 					<h6>{{ 'MISTAKES' | translate }}</h6>
-					<div style="width:350px; height: 250px">
-						<canvas class="chart chart-bar" width="350" height="250"
-						        style="width: 350px; height: 250px;"
-						        chart-data="$ctrl.statistics.mistakes" chart-labels="$ctrl.statistics.names">
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.mistakes" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar}">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
+					<h6>{{ 'MISTAKES' | translate }} {{'STATS' | translate}}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.mistakesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}" chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
 				</div>
 
 				<div class="w3-half">
 					<h6>{{ 'TIMES' | translate }}</h6>
-					<div style="width:350px; height: 250px">
-						<canvas class="chart chart-bar" width="350" height="250"
-						        style="width: 350px; height: 250px;"
-						        chart-data="$ctrl.statistics.times" chart-labels="$ctrl.statistics.names">
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.times" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar}">
 						</canvas>
 					</div>
 				</div>
 
+				<div class="w3-half">
+					<h6>{{ 'TIMES' | translate }} {{'STATS' | translate}}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.timesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}"
+						        chart-series="$ctrl.data.series">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
+					<h6>{{ 'FAULTY_TIMES' | translate }}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.faultyTimes" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar}">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
+					<h6>{{ 'FAULTY_TIMES' | translate }} {{'STATS' | translate}}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.faultyTimesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}"
+						        chart-series="$ctrl.data.series">
+						</canvas>
+					</div>
+				</div>
 
 			</div>
 		</div>

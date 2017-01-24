@@ -12,12 +12,13 @@ import {PROJECT_DETAILS as PAGE} from '../../../helpers/constants';
 import template from './projectDetails.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $interpolate, $filter) {
+	constructor($stateParams, $scope, $reactive, $state, $interpolate, $filter, stats) {
 		'ngInject';
 		$reactive(this).attach($scope);
-		this.$filter = $filter;
+		this.translate = $filter('translate');
 		this.projectId = $stateParams.projectId;
 		this.$state = $state;
+		this.stats = stats;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 
 		this.columns = [
@@ -25,14 +26,14 @@ class Controller {
 			{
 				field: "_id",
 				show: true,
-				title: "Actions",
+				title: this.translate('ACTIONS'),
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/responses/{{row._id}}">{{'VIEW' | translate}}</a>`),
 			},
 			{
 				field: "ownerName",
 				show: true,
-				title: "Presented",
+				title: this.translate('PRESENTED'),
 				sortable: "ownerName",
 				filter: {ownerName: "text"},
 				getValue: interpolatedValue,
@@ -41,12 +42,12 @@ class Controller {
 			{
 				field: "steps",
 				show: true,
-				title: "Steps",
+				title: this.translate('STEPS'),
 				sortable: "steps.length",
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.steps.length}}`)
 			},
-			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: "Is paid"},
+			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: this.translate('PROJECT.IS_PAID')},
 		];
 
 		this.tooltipsPie = {
@@ -62,13 +63,23 @@ class Controller {
 				}
 			}
 		};
-		this.legendPie = {display: true, position: 'bottom', padding: 5};
+
+		this.tooltipsBar = {
+			callbacks: {
+				label: function (tooltipItem, data) {
+					let dataset = data.datasets[tooltipItem.datasetIndex];
+					let currentValue = dataset.data[tooltipItem.index];
+					return currentValue.toFixed(2).toString();
+				}
+			}
+		};
+
+		this.legend = {display: true, position: 'bottom', padding: 5};
 
 		this.helpers({
 			project() {
 				return this.getCurrentProject();
 			},
-
 			isMyProject() {
 				let project = this.getCurrentProject();
 				if (project) {
@@ -110,48 +121,87 @@ class Controller {
 				};
 				users.forEach(u => {
 					statistics.age.push(getAge(u.profile.birthDate));
-					statistics.language.push(this.$filter('translate')(u.profile.language));
+					statistics.language.push(this.translate(u.profile.language));
 					let education = 'USER.' + u.profile.education.toUpperCase();
-					statistics.education.push(this.$filter('translate')(education));
+					statistics.education.push(this.translate(education));
 					let gender = 'USER.' + u.profile.gender.toUpperCase();
-					statistics.gender.push(this.$filter('translate')(gender));
+					statistics.gender.push(this.translate(gender));
 				});
 				[statistics.age, statistics.language, statistics.education, statistics.gender] = Object.values(statistics).map(this.convertToObject);
 				// console.log(statistics);
 				return statistics;
 			},
-			statistics() {
-				return this.getStatistics()
+			data() {
+				return this.getData()
 			}
 		});
-
 	}
 
-	getStatistics() {
+	getData() {
 		let project = this.getCurrentProject();
 		let responses = Responses.find({project: this.projectId});
 		if (project && responses) {
-			let statistics = {
+			let data = {
 				names: project.tasks.map(task => task.name),
-				series: [],
+				series: [this.translate('MEDIAN'),this.translate('AVERAGE'),this.translate('STANDARD_DEVIATION')],
 				stars: [],
-				mistakes: []
+				starsTranspose: [],
+				mistakes: [],
+				times: [],
+				faultyTimes: []
 			};
 			responses.forEach(response => {
-				statistics.series.push(response._id);
-				statistics.stars.push(
-					response.steps.map(step => step.stars)
+				// statistics.series.push(response._id);
+				data.stars.push(
+					response.steps.map(step => step.stars),
 				);
-				statistics.mistakes.push(
-					response.steps.map(step => {
-						let actions = step.actions.filter(a => {return a.type === 'wrongAction'});
-						console.log(actions)
-							return actions.length;
-						}
-					)
+
+				data.mistakes.push(
+					response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction').length)
+				);
+				data.times.push(
+					response.steps.map(step => this.getTimeFromAction(step.actions))
+				);
+				data.faultyTimes.push(
+					response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
 				)
 			});
-			return statistics;
+			data.starsStats = this.transposeToStats(data.stars);
+			data.mistakesStats = this.transposeToStats(data.mistakes);
+			data.timesStats = this.transposeToStats(data.times);
+			data.faultyTimesStats = this.transposeToStats(data.faultyTimes);
+			return data;
+		}
+	};
+
+	transposeToStats = (arrays) => {
+		const stats = [];
+		const transposed = this.stats.transpose(arrays);
+		transposed.forEach(a => {
+			stats.push([
+				this.stats.median(a),
+				this.stats.average(a),
+				this.stats.standardDeviation(a)
+			])
+		});
+		return this.stats.transpose(stats);
+	};
+
+	getTimeFromAction = (actions) => {
+		let start = actions.find(a => a.type === 'start');
+		let end = actions.find(a => a.type === 'end');
+		return end.time - start.time;
+	};
+
+	getFaultyTimesFromAction = (actions) => {
+		let start = actions.filter(a => a.type === 'beginFaultyPath');
+		let end = actions.filter(a => a.type === 'finishFaultyPath');
+		if (start.length === end.length) {
+			let times = [];
+			for (let i = 0; i < end.length; i++) {
+				times.push(end[i].time - start[i].time)
+			}
+			return times.reduce((a, b) => a + b, 0);
 		}
 	};
 
