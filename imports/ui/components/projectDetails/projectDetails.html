@@ -70,11 +70,11 @@
 			</div>
 		</div>
 	</div>
-	*{{$ctrl.data.completed}}<br/>
-	*{{$ctrl.data.completedTranspoted}}<br/>
+	<!--*{{$ctrl.data.completed}}<br/>-->
+	<!--*{{$ctrl.data.completedTranspoted}}<br/>-->
 	<div class="w3-container">
 		<div class="w3-accordion">
-			<button ng-click="tasksStats = !tasksStats" ng-init="tasksStats=true" class="w3-btn-block w3-left-align w3-asphalt">
+			<button ng-click="tasksStats = !tasksStats" ng-init="tasksStats=false" class="w3-btn-block w3-left-align w3-asphalt">
 				{{ 'TASKS_STATISTICS' | translate }} <i class="fa fa-angle-double-down" aria-hidden="true"
 				                                       ng-if="!tasksStats"></i>
 				<i class="fa fa-angle-double-up" aria-hidden="true" ng-if="tasksStats"></i>
@@ -98,11 +98,10 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.completedTranspoted" chart-labels="$ctrl.data.names"
-						        chart-options="{scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarBinary}" >
+						        chart-options="{scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarPercentage}" >
 						</canvas>
 					</div>
 				</div>
-
 
 				<div class="w3-half">
 					<h6>{{ 'STARS' | translate }}</h6>
@@ -203,6 +202,29 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.faultyTimesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}"
+						        chart-series="$ctrl.data.series">
+						</canvas>
+					</div>
+				</div>
+
+
+
+				<div class="w3-half">
+					<h6>{{ 'PART_FAULTY_TIMES' | translate }}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.partFaultyTimes" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBarPercentage, scales: $ctrl.scales }">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
+					<h6>{{ 'PART_FAULTY_TIMES' | translate }} - {{'STATS' | translate}}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.partFaultyTimesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>

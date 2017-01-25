@@ -65,7 +65,7 @@ class Controller {
 					});
 					let currentValue = dataset.data[tooltipItem.index];
 					let precentage = Math.floor(((currentValue / total) * 100) + 0.5);
-					return `${data.labels[tooltipItem.index]}: ${currentValue} (${precentage}%)`;
+					return `${data.labels[tooltipItem.index]}: ${currentValue.toFixed(2)} (${precentage}%)`;
 				}
 			}
 		};
@@ -80,12 +80,12 @@ class Controller {
 			}
 		};
 
-		this.tooltipsBarBinary = {
+		this.tooltipsBarPercentage = {
 			callbacks: {
 				label: function (tooltipItem, data) {
 					let dataset = data.datasets[tooltipItem.datasetIndex];
 					let currentValue = dataset.data[tooltipItem.index];
-					return `${data.labels[tooltipItem.index]}: ${currentValue}%)`;
+					return `${currentValue.toFixed(2)}%`;
 				}
 			}
 		};
@@ -173,8 +173,8 @@ class Controller {
 				mistakes: [],
 				times: [],
 				faultyTimes: [],
+				partFaultyTimes: [],
 				completed: [],
-				completed2: [],
 				completedAll: []
 
 			};
@@ -195,9 +195,13 @@ class Controller {
 				data.faultyTimes.push(
 					response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
 				);
-				// data.partfaultyTimes.push(
-				// 	response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
-				// );
+				data.partFaultyTimes.push(
+					response.steps.map(step => {
+						let faultyTime = this.getFaultyTimesFromAction(step.actions);
+						let totalTime = this.getTimeFromAction(step.actions);
+						return faultyTime*100/totalTime;
+					})
+				);
 				data.completedAll.push(
 					...response.steps.map(step => step.isComplete),
 				);
@@ -213,6 +217,7 @@ class Controller {
 			data.mistakesStats = this.transposeToStats(data.mistakes);
 			data.timesStats = this.transposeToStats(data.times);
 			data.faultyTimesStats = this.transposeToStats(data.faultyTimes);
+			data.partFaultyTimesStats = this.transposeToStats(data.partFaultyTimes);
 			return data;
 		}
 	};
@@ -222,10 +227,10 @@ class Controller {
 		const transposed = this.stats.transpose(arrays);
 		transposed.forEach(a => {
 			stats.push([
-				this.stats.median(a),
-				this.stats.average(a),
-				this.stats.variance(a),
-				this.stats.standardDeviation(a)
+				this.stats.median(a).toFixed(2),
+				this.stats.average(a).toFixed(2),
+				this.stats.variance(a).toFixed(2),
+				this.stats.standardDeviation(a).toFixed(2)
 			])
 		});
 		return this.stats.transpose(stats);
@@ -234,7 +239,7 @@ class Controller {
 	getBinaryPercentage = (array) => {
 		let length = array.length;
 		let sum = array.reduce((a, b) =>  a + b, 0);
-		return Number(sum/length*100).toFixed(2);
+		return sum/length*100;
 	};
 
 	getTimeFromAction = (actions) => {

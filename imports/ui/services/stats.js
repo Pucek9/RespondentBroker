@@ -7,9 +7,9 @@ export default (precision = 4) => {
 			});
 			let half = Math.floor(values.length / 2);
 			if (values.length % 2)
-				return values[half].toFixed(precision);
+				return values[half];
 			else
-				return Number((values[half - 1] + values[half]) / 2.0).toFixed(precision);
+				return(values[half - 1] + values[half]) / 2.0;
 		},
 
 		average (values) {
@@ -17,7 +17,7 @@ export default (precision = 4) => {
 				let sum = values.reduce(function (a, b) {
 					return a + b;
 				});
-				return Number(sum / values.length).toFixed(precision);
+				return sum / values.length;
 			} else return 0;
 		},
 
@@ -28,13 +28,13 @@ export default (precision = 4) => {
 				return diff * diff;
 			});
 			let avgSquareDiff = this.average(squareDiffs);
-			return Number(avgSquareDiff).toFixed(precision);
+			return avgSquareDiff;
 		},
 
 		standardDeviation (values) {
 			let avgSquareDiff = this.variance(values);
 			let stdDev = Math.sqrt(avgSquareDiff);
-			return Number(stdDev).toFixed(precision);
+			return stdDev;
 		},
 
 		transpose(a) {
