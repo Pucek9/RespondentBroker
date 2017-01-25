@@ -101,8 +101,9 @@ class Controller {
 	}
 
 	downloadText = () => {
-		let text = this.project.description;
-		let data = new this.Blob([text], {type: 'text/plain;charset=utf-8'});
+		let text = this.project.description + `\n\n`;
+		let tasks = this.project.tasks.map(t => `\n ${t.name} \n ${t.description} \n\n`);
+		let data = new this.Blob([text+tasks], {type: 'text/plain;charset=utf-8'});
 		this.FileSaver.saveAs(data, this.project.name +'Description.txt');
 	};
 
