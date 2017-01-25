@@ -93,6 +93,17 @@
 				</div>
 
 				<div class="w3-half">
+					<h6>{{ 'STARS_TOTAL' | translate }}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-pie" width="500" height="250"
+						        style="display: block; width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.starsAll.values" chart-labels="$ctrl.data.starsAll.keys"
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
 					<h6>{{ 'COMPLETED_TASK' | translate }}</h6>
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"

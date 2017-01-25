@@ -169,6 +169,7 @@ class Controller {
 				names: project.tasks.map(task => task.name),
 				series: [this.translate('MEDIAN'), this.translate('AVERAGE'), this.translate('VARIANCE'), this.translate('STANDARD_DEVIATION')],
 				stars: [],
+				starsAll: [],
 				actions: [],
 				mistakes: [],
 				times: [],
@@ -182,6 +183,9 @@ class Controller {
 				// statistics.series.push(response._id);
 				data.stars.push(
 					response.steps.map(step => step.stars),
+				);
+				data.starsAll.push(
+					...response.steps.map(step => step.stars),
 				);
 				data.actions.push(
 					response.steps.map(step => step.actions.filter(a => a.type === 'action').length)
@@ -209,6 +213,7 @@ class Controller {
 					response.steps.map(step => Number(step.isComplete)),
 				);
 			});
+			data.starsAll = this.convertToObject(data.starsAll);
 			data.completedAll = this.convertToObject(data.completedAll);
 			data.completedTranspoted = this.stats.transpose(data.completed).map(this.getBinaryPercentage);
 
@@ -218,6 +223,7 @@ class Controller {
 			data.timesStats = this.transposeToStats(data.times);
 			data.faultyTimesStats = this.transposeToStats(data.faultyTimes);
 			data.partFaultyTimesStats = this.transposeToStats(data.partFaultyTimes);
+			console.log(data.stars, data.starsAll, data.completedAll)
 			return data;
 		}
 	};
