@@ -162,7 +162,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.mistakesStats" chart-labels="$ctrl.data.names"
-						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}" chart-series="$ctrl.data.series">
+						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarStatics}" chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
 				</div>
@@ -184,7 +184,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.timesStats" chart-labels="$ctrl.data.names"
-						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}"
+						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarStatics}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -207,7 +207,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.faultyTimesStats" chart-labels="$ctrl.data.names"
-						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}"
+						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales,  tooltips: $ctrl.tooltipsBarStatics}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -230,7 +230,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.partFaultyTimesStats" chart-labels="$ctrl.data.names"
-						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}"
+						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales,  tooltips: $ctrl.tooltipsBarStatics}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -243,7 +243,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.actionsStatsAll" chart-labels="$ctrl.data.series"
-						        chart-options="{ scales: $ctrl.scales}"
+						        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -255,7 +255,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.mistakesStatsAll" chart-labels="$ctrl.data.series"
-						        chart-options="{ scales: $ctrl.scales}"
+						        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -267,7 +267,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.timesStatsAll" chart-labels="$ctrl.data.series"
-						        chart-options="{ scales: $ctrl.scales}"
+						        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -279,7 +279,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.faultyTimesStatsAll" chart-labels="$ctrl.data.series"
-						        chart-options="{ scales: $ctrl.scales}"
+						        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -291,7 +291,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.partFaultyTimesStatsAll" chart-labels="$ctrl.data.series"
-						        chart-options="{ scales: $ctrl.scales}"
+						        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -329,7 +329,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.starsStatsAll" chart-labels="$ctrl.data.series"
-						        chart-options="{ scales: $ctrl.scales}"
+						        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -352,7 +352,7 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.starsStats" chart-labels="$ctrl.data.names"
-						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}"
+						        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarStatics}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>

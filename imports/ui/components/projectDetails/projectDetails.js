@@ -249,6 +249,7 @@ class Controller {
 			data.timesStatsAll = data.timesStats.map(this.averageMap);
 			data.faultyTimesStatsAll = data.faultyTimesStats.map(this.averageMap);
 			data.partFaultyTimesStatsAll = data.partFaultyTimesStats.map(this.averageMap);
+			// console.log(data, JSON.stringify(data))
 			return data;
 		}
 	};
