@@ -70,7 +70,8 @@
 			</div>
 		</div>
 	</div>
-<!--{{$ctrl.data}}-->
+	*{{$ctrl.data.completed}}<br/>
+	*{{$ctrl.data.completedTranspoted}}<br/>
 	<div class="w3-container">
 		<div class="w3-accordion">
 			<button ng-click="tasksStats = !tasksStats" ng-init="tasksStats=true" class="w3-btn-block w3-left-align w3-asphalt">
@@ -81,12 +82,35 @@
 			<div class="w3-accordion-content" ng-class="{'w3-show': tasksStats}">
 
 				<div class="w3-half">
+					<h6>{{ 'COMPLETED_TOTAL' | translate }}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-pie" width="500" height="250"
+						        style="display: block; width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.completedAll.values" chart-labels="$ctrl.data.completedAll.keys"
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
+					<h6>{{ 'COMPLETED_TASK' | translate }}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.completedTranspoted" chart-labels="$ctrl.data.names"
+						        chart-options="{scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarBinary}" >
+						</canvas>
+					</div>
+				</div>
+
+
+				<div class="w3-half">
 					<h6>{{ 'STARS' | translate }}</h6>
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.stars" chart-labels="$ctrl.data.names"
-						        chart-options="{tooltips: $ctrl.tooltipsBar}">
+						        chart-options="{tooltips: $ctrl.tooltipsBar, scales: $ctrl.scales}">
 						</canvas>
 					</div>
 				</div>
@@ -96,7 +120,7 @@
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
-						        chart-data="$ctrl.data.starsStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}"
+						        chart-data="$ctrl.data.starsStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -107,7 +131,7 @@
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
-						        chart-data="$ctrl.data.actions" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar}">
+						        chart-data="$ctrl.data.actions" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar, scales: $ctrl.scales}">
 						</canvas>
 					</div>
 				</div>
@@ -117,7 +141,7 @@
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
-						        chart-data="$ctrl.data.actionsStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}" chart-series="$ctrl.data.series">
+						        chart-data="$ctrl.data.actionsStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}" chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
 				</div>
@@ -127,7 +151,7 @@
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
-						        chart-data="$ctrl.data.mistakes" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar}">
+						        chart-data="$ctrl.data.mistakes" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar, scales: $ctrl.scales}">
 						</canvas>
 					</div>
 				</div>
@@ -137,7 +161,7 @@
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
-						        chart-data="$ctrl.data.mistakesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}" chart-series="$ctrl.data.series">
+						        chart-data="$ctrl.data.mistakesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}" chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
 				</div>
@@ -147,7 +171,7 @@
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
-						        chart-data="$ctrl.data.times" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar}">
+						        chart-data="$ctrl.data.times" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar, scales: $ctrl.scales}">
 						</canvas>
 					</div>
 				</div>
@@ -157,7 +181,7 @@
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
-						        chart-data="$ctrl.data.timesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}"
+						        chart-data="$ctrl.data.timesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>
@@ -168,7 +192,7 @@
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
-						        chart-data="$ctrl.data.faultyTimes" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar}">
+						        chart-data="$ctrl.data.faultyTimes" chart-labels="$ctrl.data.names" chart-options="{tooltips: $ctrl.tooltipsBar, scales: $ctrl.scales}">
 						</canvas>
 					</div>
 				</div>
@@ -178,7 +202,7 @@
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
-						        chart-data="$ctrl.data.faultyTimesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend}"
+						        chart-data="$ctrl.data.faultyTimesStats" chart-labels="$ctrl.data.names" chart-options="{legend: $ctrl.legend, scales: $ctrl.scales}"
 						        chart-series="$ctrl.data.series">
 						</canvas>
 					</div>

@@ -37,6 +37,8 @@
 	"MISTAKES": "Błędy",
 	"TIMES": "Czasy",
 	"FAULTY_TIMES": "Czasy błądzenia",
+	"COMPLETED_TOTAL": "Całkowity binarny wskaźnik efektywności",
+	"COMPLETED_TASK": "Binarny wskaźnik efektywności w obrębie zadania",
 	"DETAILS": "Szczegóły",
 	"PREVIEW": "Podgląd",
 	"EDIT": "Edycja",

@@ -19,6 +19,9 @@ class Controller {
 		this.$scope = $scope;
 		this.notification = notification;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
+		// this.isComplete = Responses.findOne({
+		// 	_id: this.responseId
+		// }).isComplete;
 
 		this.helpers({
 			project() {
@@ -85,7 +88,7 @@ class Controller {
 				valid = true;
 			}
 		}
-		console.log(typeMap[0] == 'start', typeMap[typeMap.length - 1] =='end', valid)
+		console.log(typeMap[0] == 'start', typeMap[typeMap.length - 1] == 'end', valid)
 		return typeMap[0] == 'start' && typeMap[typeMap.length - 1] == 'end' && valid;
 	}
 
@@ -100,7 +103,8 @@ class Controller {
 			_id: this.responseId
 		});
 		if (response) {
-			Meteor.call('addActions', response, this.stepId, this.actions, (error) => {
+
+			Meteor.call('addActions', response, this.stepId, this.actions, this.step.isComplete, (error) => {
 				if (error) {
 					console.log(error);
 					this.notification.error('Oops, unable to update the step...', error.message);
@@ -112,7 +116,7 @@ class Controller {
 	}
 
 	confirm() {
-		if(this.isValid()) {
+		if (this.isValid()) {
 			this.actionsUpdate();
 		}
 		else {

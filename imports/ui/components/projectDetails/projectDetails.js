@@ -75,12 +75,30 @@ class Controller {
 				label: function (tooltipItem, data) {
 					let dataset = data.datasets[tooltipItem.datasetIndex];
 					let currentValue = dataset.data[tooltipItem.index];
-					return currentValue.toFixed(4).toString();
+					return currentValue.toFixed(2).toString();
+				}
+			}
+		};
+
+		this.tooltipsBarBinary = {
+			callbacks: {
+				label: function (tooltipItem, data) {
+					let dataset = data.datasets[tooltipItem.datasetIndex];
+					let currentValue = dataset.data[tooltipItem.index];
+					return `${data.labels[tooltipItem.index]}: ${currentValue}%)`;
 				}
 			}
 		};
 
 		this.legend = {display: true, position: 'bottom', padding: 5};
+
+		this.scales= {
+			yAxes: [{
+				ticks: {
+					beginAtZero: true
+				}
+			}]
+		};
 
 		this.helpers({
 			project() {
@@ -154,7 +172,11 @@ class Controller {
 				actions: [],
 				mistakes: [],
 				times: [],
-				faultyTimes: []
+				faultyTimes: [],
+				completed: [],
+				completed2: [],
+				completedAll: []
+
 			};
 			responses.forEach(response => {
 				// statistics.series.push(response._id);
@@ -172,8 +194,20 @@ class Controller {
 				);
 				data.faultyTimes.push(
 					response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
-				)
+				);
+				// data.partfaultyTimes.push(
+				// 	response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
+				// );
+				data.completedAll.push(
+					...response.steps.map(step => step.isComplete),
+				);
+				data.completed.push(
+					response.steps.map(step => Number(step.isComplete)),
+				);
 			});
+			data.completedAll = this.convertToObject(data.completedAll);
+			data.completedTranspoted = this.stats.transpose(data.completed).map(this.getBinaryPercentage);
+
 			data.starsStats = this.transposeToStats(data.stars);
 			data.actionsStats = this.transposeToStats(data.actions);
 			data.mistakesStats = this.transposeToStats(data.mistakes);
@@ -195,6 +229,12 @@ class Controller {
 			])
 		});
 		return this.stats.transpose(stats);
+	};
+
+	getBinaryPercentage = (array) => {
+		let length = array.length;
+		let sum = array.reduce((a, b) =>  a + b, 0);
+		return Number(sum/length*100).toFixed(2);
 	};
 
 	getTimeFromAction = (actions) => {

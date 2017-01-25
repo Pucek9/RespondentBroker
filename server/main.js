@@ -82,12 +82,13 @@ Meteor.startup(() => {
 	});
 
 	Meteor.methods({
-		addActions: function (response, stepId, actions) {
+		addActions: function (response, stepId, actions, isComplete) {
 			console.log(response.steps[stepId].tag, actions);
 			Responses.update({
 				_id: response._id, 'steps.tag': response.steps[stepId].tag
 			}, {
 				$set: {
+					'steps.$.isComplete': isComplete,
 					'steps.$.actions':  actions
 				}
 			}, function (error, affectedDocs) {
