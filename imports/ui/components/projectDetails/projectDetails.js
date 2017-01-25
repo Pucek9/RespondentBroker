@@ -52,7 +52,9 @@ class Controller {
 				filter: {isPaid: "text"},
 				show: true,
 				sortable: "isPaid",
-				title: this.translate('PROJECT.IS_PAID')
+				title: this.translate('PROJECT.IS_PAID'),
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.isPaid | translate}}`),
 			},
 		];
 
@@ -66,6 +68,16 @@ class Controller {
 					let currentValue = dataset.data[tooltipItem.index];
 					let precentage = Math.floor(((currentValue / total) * 100) + 0.5);
 					return `${data.labels[tooltipItem.index]}: ${currentValue.toFixed(2)} (${precentage}%)`;
+				}
+			}
+		};
+
+		this.tooltipsBarStatics = {
+			callbacks: {
+				label: function (tooltipItem, data) {
+					let dataset = data.datasets[tooltipItem.datasetIndex];
+					let currentValue = dataset.data[tooltipItem.index];
+					return `${dataset.label}: ${currentValue.toFixed(2)}`;
 				}
 			}
 		};
@@ -92,7 +104,7 @@ class Controller {
 
 		this.legend = {display: true, position: 'bottom', padding: 5};
 
-		this.scales= {
+		this.scales = {
 			yAxes: [{
 				ticks: {
 					beginAtZero: true
@@ -138,6 +150,13 @@ class Controller {
 					return responses;
 				}
 			},
+			allUserPaid() {
+				let responses = this.getResponses().fetch();
+				if (responses) {
+					let unpaid = responses.filter(r => r.isPaid === false);
+					return unpaid.length === 0;
+				}
+			},
 			usersData() {
 				let users = this.getUsers();
 				let statistics = {
@@ -163,7 +182,7 @@ class Controller {
 
 	getData() {
 		let project = this.getCurrentProject();
-		let responses = Responses.find({project: this.projectId});
+		let responses = Responses.find({project: this.projectId, isPaid: true});
 		if (project && responses) {
 			let data = {
 				names: project.tasks.map(task => task.name),
@@ -203,7 +222,7 @@ class Controller {
 					response.steps.map(step => {
 						let faultyTime = this.getFaultyTimesFromAction(step.actions);
 						let totalTime = this.getTimeFromAction(step.actions);
-						return faultyTime*100/totalTime;
+						return faultyTime * 100 / totalTime;
 					})
 				);
 				data.completedAll.push(
@@ -223,20 +242,28 @@ class Controller {
 			data.timesStats = this.transposeToStats(data.times);
 			data.faultyTimesStats = this.transposeToStats(data.faultyTimes);
 			data.partFaultyTimesStats = this.transposeToStats(data.partFaultyTimes);
-			console.log(data.stars, data.starsAll, data.completedAll)
+
+			data.starsStatsAll = data.starsStats.map(this.averageMap);
+			data.actionsStatsAll = data.actionsStats.map(this.averageMap);
+			data.mistakesStatsAll = data.mistakesStats.map(this.averageMap);
+			data.timesStatsAll = data.timesStats.map(this.averageMap);
+			data.faultyTimesStatsAll = data.faultyTimesStats.map(this.averageMap);
+			data.partFaultyTimesStatsAll = data.partFaultyTimesStats.map(this.averageMap);
 			return data;
 		}
 	};
+
+	averageMap = (array => this.stats.average(array));
 
 	transposeToStats = (arrays) => {
 		const stats = [];
 		const transposed = this.stats.transpose(arrays);
 		transposed.forEach(a => {
 			stats.push([
-				this.stats.median(a).toFixed(2),
-				this.stats.average(a).toFixed(2),
-				this.stats.variance(a).toFixed(2),
-				this.stats.standardDeviation(a).toFixed(2)
+				this.stats.median(a),
+				this.stats.average(a),
+				this.stats.variance(a),
+				this.stats.standardDeviation(a)
 			])
 		});
 		return this.stats.transpose(stats);
@@ -244,8 +271,8 @@ class Controller {
 
 	getBinaryPercentage = (array) => {
 		let length = array.length;
-		let sum = array.reduce((a, b) =>  a + b, 0);
-		return sum/length*100;
+		let sum = array.reduce((a, b) => a + b, 0);
+		return sum / length * 100;
 	};
 
 	getTimeFromAction = (actions) => {
@@ -275,7 +302,7 @@ class Controller {
 	};
 
 	getUsers = () => {
-		let responses = Responses.find({project: this.projectId});
+		let responses = Responses.find({project: this.projectId, isPaid: true});
 		let users = new Set();
 		if (responses) {
 			let allUsers = Meteor.users.find({}).fetch();

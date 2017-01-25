@@ -34,12 +34,14 @@ class Controller {
 			{
 				field: "minPoints",
 				show: true,
-				title: "Points",
+				title: this.translate('POINTS'),
 				sortable: "minPoints",
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`{{row.minPoints}}-{{row.maxPoints}}`)
 			},
-			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: this.translate('PROJECT.IS_PAID')},
+			{field: "isPaid", filter: {isPaid: "text"}, show: true, sortable: "isPaid", title: this.translate('PROJECT.IS_PAID'),
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.isPaid | translate}}`)},
 			// {field: "created", filter: {created: "text"}, show: true, sortable: "created", title: "Creatd"},
 			// {field: "updated", filter: {updated: "text"}, show: true, sortable: "updated", title: "Updated"},
 			// {field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"},
