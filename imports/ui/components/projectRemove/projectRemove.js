@@ -5,10 +5,11 @@ import template from './projectRemove.html';
 import {Projects} from '../../../api/projects';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, notification) {
+	constructor($stateParams, $scope, $reactive, $state, $window, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.$state = $state;
+		this.bigScreen = $window.innerWidth >= 768;
 		this.notification = notification;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 

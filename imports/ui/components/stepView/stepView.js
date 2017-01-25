@@ -9,7 +9,7 @@ import {STEP_VIEW as PAGE} from '../../../helpers/constants';
 import template from './stepView.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $timeout, notification) {
+	constructor($stateParams, $scope, $reactive, $timeout, $window, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
@@ -17,6 +17,7 @@ class Controller {
 		this.stepId = $stateParams.stepId;
 		this.$timeout = $timeout;
 		this.$scope = $scope;
+		this.bigScreen = $window.innerWidth >= 768;
 		this.notification = notification;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 		// this.isComplete = Responses.findOne({

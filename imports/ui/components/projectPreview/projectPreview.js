@@ -11,15 +11,17 @@ import {PROJECT_PREVIEW as PAGE} from '../../../helpers/constants';
 import template from './projectPreview.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $window, notification) {
+	constructor($stateParams, $scope, $reactive, $state, $window, FileSaver, Blob, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
 		this.$state = $state;
+		this.Blob = Blob;
+		this.FileSaver = FileSaver;
 		this.notification = notification;
 		this.VideosStore = VideosStore;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
-
+		this.bigScreen = $window.innerWidth >= 768;
 		this.screenHeight = $window.innerHeight;
 
 		this.response = {};
@@ -36,7 +38,6 @@ class Controller {
 			let userId = Meteor.userId();
 			let responses = Responses.find({project: this.projectId, owner: userId }).fetch();
 			if (project && responses) {
-				console.log( responses.length  , project.multipleResponses);
 				return (userId !== project.owner) && (responses.length === 0 || project.multipleResponses) && project.statusActive;
 			}
 		};
@@ -98,6 +99,12 @@ class Controller {
 			},
 		});
 	}
+
+	downloadText = () => {
+		let text = this.project.description;
+		let data = new this.Blob([text], {type: 'text/plain;charset=utf-8'});
+		this.FileSaver.saveAs(data, this.project.name +'Description.txt');
+	};
 
 	chooseTab(tab) {
 		this.uploadTab = false;

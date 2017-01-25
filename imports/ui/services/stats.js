@@ -9,7 +9,7 @@ export default (precision = 4) => {
 			if (values.length % 2)
 				return values[half];
 			else
-				return(values[half - 1] + values[half]) / 2.0;
+				return (values[half - 1] + values[half]) / 2.0;
 		},
 
 		average (values) {
@@ -38,15 +38,12 @@ export default (precision = 4) => {
 		},
 
 		transpose(a) {
-			return Object.keys(a[0]).map(
-				function (c) {
-					return a.map(function (r) {
-						return r[c];
-					});
-				}
-			);
+			if (a[0] )
+			{
+				return Object.keys(a[0]).map(c => a.map(r => r[c]));
+			}
+			else return []
 		}
-
 
 	}
 

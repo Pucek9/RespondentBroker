@@ -9,12 +9,13 @@ import {RESPONSE_VIEW as PAGE} from '../../../helpers/constants';
 import template from './responseView.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $timeout, notification, validator) {
+	constructor($stateParams, $scope, $reactive, $timeout, $window, notification, validator) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
 		this.responseId = $stateParams.responseId;
 		this.$timeout = $timeout;
+		this.bigScreen = $window.innerWidth >= 768;
 		this.notification = notification;
 		this.validator = validator;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];

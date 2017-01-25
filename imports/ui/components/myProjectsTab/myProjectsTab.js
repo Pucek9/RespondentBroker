@@ -12,9 +12,10 @@ import actionsTemplate from './actions.html';
 
 class Controller {
 
-	constructor($scope, $reactive, $interpolate, $filter, NgTableParams) {
+	constructor($scope, $reactive, $interpolate, $filter, $window, NgTableParams) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.bigScreen = $window.innerWidth >= 768;
 		this.NgTableParams = NgTableParams;
 		this.userId = Meteor.userId();
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];

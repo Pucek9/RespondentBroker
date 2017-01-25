@@ -12,15 +12,18 @@ import {PROJECT_DETAILS as PAGE} from '../../../helpers/constants';
 import template from './projectDetails.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $interpolate, $filter, stats) {
+	constructor($stateParams, $scope, $reactive, $state, $interpolate, $filter, $window, FileSaver, Blob, stats) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.translate = $filter('translate');
 		this.projectId = $stateParams.projectId;
 		this.$state = $state;
 		this.stats = stats;
-		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
+		this.FileSaver = FileSaver;
+		this.Blob = Blob;
+		this.bigScreen = $window.innerWidth >= 768;
 
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
 			{
@@ -162,23 +165,31 @@ class Controller {
 				let statistics = {
 					age: [], language: [], education: [], gender: []
 				};
-				users.forEach(u => {
-					statistics.age.push(getAge(u.profile.birthDate));
-					statistics.language.push(this.translate(u.profile.language));
-					let education = 'USER.' + u.profile.education.toUpperCase();
-					statistics.education.push(this.translate(education));
-					let gender = 'USER.' + u.profile.gender.toUpperCase();
-					statistics.gender.push(this.translate(gender));
-				});
-				[statistics.age, statistics.language, statistics.education, statistics.gender] = Object.values(statistics).map(this.convertToObject);
-				// console.log(statistics);
-				return statistics;
+				if (users) {
+					users.forEach(u => {
+						statistics.age.push(getAge(u.profile.birthDate));
+						statistics.language.push(this.translate(u.profile.language));
+						let education = 'USER.' + u.profile.education.toUpperCase();
+						statistics.education.push(this.translate(education));
+						let gender = 'USER.' + u.profile.gender.toUpperCase();
+						statistics.gender.push(this.translate(gender));
+					});
+					[statistics.age, statistics.language, statistics.education, statistics.gender] = Object.values(statistics).map(this.convertToObject);
+					// console.log(statistics);
+					return statistics;
+				}
 			},
 			data() {
 				return this.getData()
 			}
 		});
 	}
+
+	downloadJSON = () => {
+		let statistics = JSON.stringify(this.getData());
+		let data = new this.Blob([statistics], {type: 'text/json;charset=charset=utf-8'});
+		this.FileSaver.saveAs(data, this.project.name + 'Stats.json');
+	};
 
 	getData() {
 		let project = this.getCurrentProject();
@@ -187,6 +198,7 @@ class Controller {
 			let data = {
 				names: project.tasks.map(task => task.name),
 				series: [this.translate('MEDIAN'), this.translate('AVERAGE'), this.translate('VARIANCE'), this.translate('STANDARD_DEVIATION')],
+				dataSeries: [],
 				stars: [],
 				starsAll: [],
 				actions: [],
@@ -199,7 +211,7 @@ class Controller {
 
 			};
 			responses.forEach(response => {
-				// statistics.series.push(response._id);
+				data.dataSeries.push(response._id);
 				data.stars.push(
 					response.steps.map(step => step.stars),
 				);
@@ -249,7 +261,6 @@ class Controller {
 			data.timesStatsAll = data.timesStats.map(this.averageMap);
 			data.faultyTimesStatsAll = data.faultyTimesStats.map(this.averageMap);
 			data.partFaultyTimesStatsAll = data.partFaultyTimesStats.map(this.averageMap);
-			// console.log(data, JSON.stringify(data))
 			return data;
 		}
 	};
@@ -307,16 +318,17 @@ class Controller {
 		let users = new Set();
 		if (responses) {
 			let allUsers = Meteor.users.find({}).fetch();
-			responses.forEach((r) => {
-				allUsers.forEach((u) => {
-					if (r.owner === u._id) {
-						users.add(u);
-					}
+			if (allUsers) {
+				responses.forEach((r) => {
+					allUsers.forEach((u) => {
+						if (r.owner === u._id) {
+							users.add(u);
+						}
+					});
 				});
-			});
-			return ([...users]);
+				return ([...users]);
+			}
 		}
-
 	};
 
 	convertToObject = (s) => {

@@ -11,6 +11,7 @@ import ngAnimate from 'angular-animate';
 import inputStars from 'angular-input-stars';
 import Chart from 'chart.js';
 import ngChart from 'angular-chart.js';
+import ngFileSaver from 'angular-file-saver'
 
 import ngTranslate from 'angular-translate';
 // import ngCookies from 'angular-cookies';
@@ -74,6 +75,7 @@ export default angular.module(name, [
 	ResponseView,
 	StepView,
 	ngFileUpload,
+	'ngFileSaver',
 	'pascalprecht.translate',
 	'angular-input-stars',
 	'chart.js',

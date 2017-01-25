@@ -8,7 +8,7 @@ import template from './projectEdit.html';
 import {dateNowString} from '../../../helpers/helpers';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $timeout, notification, validator) {
+	constructor($stateParams, $scope, $reactive, $state, $window, notification, validator) {
 
 		'ngInject';
 		$reactive(this).attach($scope);
@@ -16,6 +16,7 @@ class Controller {
 		this.$state = $state;
 		this.notification = notification;
 		this.validator = validator;
+		this.bigScreen = $window.innerWidth >= 768;
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 		// this.task = {}
 		this.helpers({

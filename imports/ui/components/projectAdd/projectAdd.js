@@ -10,10 +10,11 @@ import {PROJECT_ADD as PAGE} from '../../../helpers/constants';
 import template from './projectAdd.html';
 
 class Controller {
-	constructor($scope, $reactive, $state, notification, validator) {
+	constructor($scope, $reactive, $state, $window, notification, validator) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.$state = $state;
+		this.bigScreen = $window.innerWidth >= 768;
 		this.notification = notification;
 		this.ApplicationsStore = ApplicationsStore;
 		this.validator = validator;

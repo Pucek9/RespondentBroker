@@ -2,7 +2,8 @@
 	<header class="w3-container ">
 		<h5>
 			<button class="w3-btn w3-ripple w3-right w3-border w3-green header-button" ui-sref="projectAdd">
-				<i class="fa fa-plus "></i> {{'ADD_NEW' | translate }}
+				<i class="fa fa-plus "></i>
+				<span ng-show="$ctrl.bigScreen"> {{'ADD_NEW' | translate }}</span>
 			</button>
 			<i class="fa fa-{{$ctrl.icon}} "></i> {{$ctrl.pageTitle | translate}} ({{$ctrl.projects.length}})
 		</h5>
