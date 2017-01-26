@@ -164,7 +164,7 @@ class Controller {
 
 	doLoad = () => {
 		const self = this;
-		this.frameNumber = 0;
+		// this.frameNumber = 0;
 
 		this.video = angular.element(document).find('#video')[0];
 
@@ -200,35 +200,33 @@ class Controller {
 	};
 
 	computeFrame = () => {
-
 		this.ctx1.drawImage(this.video, 0, 0, this.width, this.height);
-		let frame = this.ctx1.getImageData(0, 0, this.width, this.height);
+		let frame = this.ctx1.getImageData(0, 0, this.width, this.height); //płótno kopiujące obraz z filmu
 		let l = frame.data.length / 4;
 
 		for (let i = 0; i < l; i++) {
+			// pętla przebiegająca po współrzędnych macierzy klatki filmu
 			let ir = i * 4;
 			let ig = i * 4 + 1;
 			let ib = i * 4 + 2;
-
+			// przypisanie do zmiennych składowych wartości koloru pixeli rgb z klatki filmu
 			if (typeof this.lastFrame != 'undefined' && typeof this.mixFrame != 'undefined') {
-				// && this.isInRange(frame.data[ir],frame.data[ig],frame.data[ib])) {
+				// sprawdzenie, czy istnieje poprzednia klatka, a więc film już trwa dłużej niż 1 klatka
 				this.mixFrame.data[ir] = 0;
 				this.mixFrame.data[ig] = 0;
 				this.mixFrame.data[ib] = 0;
-
+				// wyczyszczenie obrazu z płótna pomocniczego
 				if (this.isSimilarTo(this.lastFrame.data[ir], frame.data[ir])
 					&& this.isSimilarTo(this.lastFrame.data[ig], frame.data[ig])
 					&& this.isSimilarTo(this.lastFrame.data[ib], frame.data[ib])
+				// porównanie składowych kolorów, czy nie różnią się znacząco od siebie
+				// return Math.abs(el1 - el2) < this.symilarRange; - gdzie symilarRange - optymalna wartość ustalona na 20
 				) {
-					// 	if(
-					// && this.isInRange(frame.data[ir],frame.data[ig],frame.data[ib])) {
 					this.mixFrame.data[ir] = 255;
 					this.mixFrame.data[ig] = 255;
 					this.mixFrame.data[ib] = 255;
-					// }
-
+					// stworzenie maski poprzez zanegowanie koloru tam, gdzie nie występuje znacząca zmiana koloru pixela
 				}
-
 			}
 		}
 		this.ctx1.putImageData(frame, 0, 0);
@@ -240,10 +238,9 @@ class Controller {
 		}
 		this.mixFrame = this.lastFrame;
 		this.lastFrame = frame;
-
-		// console.log(this.frameNumber)
-		this.frameNumber++;
+		// przypisanie klatek docelowym płótnom, tak aby aktualna klatka z maską została wyświetlona, a aktualna stała się poprzednią
 		return;
+		// kontynuowanie pętli
 	};
 
 }
