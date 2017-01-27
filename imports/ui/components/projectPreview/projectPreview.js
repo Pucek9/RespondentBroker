@@ -28,6 +28,11 @@ class Controller {
 		// this.response.steps = [];
 		this.importTab = false;
 		this.uploadTab = true;
+		this.addVideoToTask = '';
+		$scope.$watch('addVideoToTask', (value) => {
+			this.project.tasks[this.project.tasks.indexOf(this.task)].videoURL = value;
+			this.videoImportURL = '';
+		});
 
 		this.getCurrentProject = () => {
 			return Projects.findOne({_id: this.projectId});
@@ -36,7 +41,7 @@ class Controller {
 		this.canReply = () => {
 			let project = this.getCurrentProject();
 			let userId = Meteor.userId();
-			let responses = Responses.find({project: this.projectId, owner: userId }).fetch();
+			let responses = Responses.find({project: this.projectId, owner: userId}).fetch();
 			if (project && responses) {
 				return (userId !== project.owner) && (responses.length === 0 || project.multipleResponses) && project.statusActive;
 			}
@@ -44,7 +49,10 @@ class Controller {
 
 		this.helpers({
 			project() {
-				return this.getCurrentProject();
+				let project = this.getCurrentProject();
+				if (project) {
+					return this.getCurrentProject();
+				}
 			},
 			backState() {
 				let project = this.getCurrentProject();
@@ -103,8 +111,8 @@ class Controller {
 	downloadText = () => {
 		let text = this.project.description + `\n\n`;
 		let tasks = this.project.tasks.map(t => `\n ${t.name} \n ${t.description} \n\n`);
-		let data = new this.Blob([text+tasks], {type: 'text/plain;charset=utf-8'});
-		this.FileSaver.saveAs(data, this.project.name +'Description.txt');
+		let data = new this.Blob([text + tasks], {type: 'text/plain;charset=utf-8'});
+		this.FileSaver.saveAs(data, this.project.name + 'Description.txt');
 	};
 
 	chooseTab(tab) {
@@ -114,18 +122,30 @@ class Controller {
 	}
 
 	callback(error, response) {
+
+		console.log(response);
+
+
 		if (error) {
 			console.log('error', error.message);
 			this.notification.error('Problem with upload files.', error.message);
 		}
-		// else {
-		// 	this.projectPreview.temp.videoURL = response.path;
-		// }
+		else {
+			// 	this.projectPreview.temp.videoURL = response.path;
+			this.addVideoToTask = response.path;
+			// this.videoImportURL = ''
+		}
 	}
+
+	//
+	// addVideoToTask(path) {
+	// 	console.log(this.project.tasks, this.task)
+	// 	this.project.tasks[this.project.tasks.indexOf(this.task)].videoURL = path;
+	// }
 
 	importFromURL() {
 		let attr = {name: 'importFromURL.m4v', description: 'Video imported from url'};
-		UploadFS.importFromURL(this.project.tasks[this.project.tasks.indexOf(this.task)].videoImportURL, attr, this.VideosStore, this.$bindToContext(this.callback));
+		UploadFS.importFromURL(this.videoImportURL, attr, this.VideosStore, this.$bindToContext(this.callback));
 	}
 
 	// reset() {
@@ -157,6 +177,7 @@ class Controller {
 				videoURL: task.videoURL,
 				stars: task.stars || '',
 				comment: task.comment || '',
+				isComplete: false,
 				actions: []
 			};
 			if (step.videoURL !== undefined) {

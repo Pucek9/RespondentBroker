@@ -60,6 +60,12 @@
 	"CLOSE": "Zamknij Menu",
 	"WELCOME": "Witaj",
 	"CHOICE": "---Proszę wybrać---",
+	"START": "Start",
+	"ACTION": "Interakcja",
+	"WRONG_ACTION": "Błąd",
+	"START_FAULTY": "Rozpoczęcie błądzenia",
+	"FINISH_FAULTY": "Koniec błądzenia",
+	"END": "Koniec",
 	"PROJECT": {
 		"NAME": "Nazwa projektu",
 		"IS_PAID": "Zapłacono",
@@ -161,8 +167,8 @@
 		"COMPLETED": "Czy zadanie jest całkowicie ukończone?",
 		"NAME": "Nazwa",
 		"TIME": "Czas",
-		"REMOVE": "Usuń"
-
+		"REMOVE": "Usuń",
+		"TYPE": "Typ"
 	},
 	"DASHBOARD": {
 		"TITLE": "Panel główny ",

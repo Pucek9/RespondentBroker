@@ -60,6 +60,12 @@
 	"CLOSE": "Close Menu",
 	"WELCOME": "Welcome",
 	"CHOICE": "---Please select---",
+	"START": "Start",
+	"ACTION": "Action",
+	"WRONG_ACTION": "Wrong action",
+	"START_FAULTY": "Start faulty time",
+	"FINISH_FAULTY": "Finish faulty time",
+	"END": "End",
 	"PROJECT": {
 		"NAME": "Project Name",
 		"IS_PAID": "Is paid",
@@ -161,8 +167,8 @@
 		"COMPLETED": "The task is fully completed?",
 		"NAME": "Name",
 		"TIME": "Time",
-		"REMOVE": "Del."
-
+		"REMOVE": "Del.",
+		"TYPE": "Type"
 	},
 	"DASHBOARD": {
 		"TITLE": "Dashboard ",
@@ -179,20 +185,20 @@
 		"TITLE": "About ",
 		"PROLOG": "To research your project by using this tool you should:",
 		"1": "Register new account.",
-		"2": "Complete your accont.",
-		"3": "In depends of your points:",
-		"3a": "In the absence of a sufficient number of points needed to find people willing to perform the test they should get it. This is done by being a participant in the usability test of one's application and sending the generated data and judgments, then this person gives us credit for a job well done.",
-		"3b": "If the user account contains the right in its assessment of the number of points to find people willing to perform the test, you can create a new project.",
+		"2": "Complete your account.",
+		"3": "It depends of your points:",
+		"3a": "In the absence of a sufficient number of points needed to find people those who are willing to perform the test they should get it. This is done by being a participant in the usability test of their application and sending the generated data and judgments, then this person gives us credit for a well done job.",
+		"3b": "If the user account contains the correct assessment of the number of points to find people willing to perform the test, you can create a new project.",
 		"4": "Create new project and type:",
 		"4a": "Title.",
 		"4b": "Instructions and list of tasks.",
 		"4c": "Application file.",
 		"4d": "URL to survey.",
-		"4e": "Range of points for respondent, max used points can't be greather than your points",
+		"4e": "Range of points for respondent, max used points can't be greater than your points",
 		"4f": "Set configs additional parameters like add comment field, star rating to all steps.",
-		"5": "After responses preview responses from respondents. Watch videos by using achromatic view and stop to log actions.",
+		"5": "After receiving responses preview the responses from respondents. Watch videos by using achromatic view and stop to log actions.",
 		"6": "Get data and and use it to make results.",
-		"7": "Give points for respondends for help.",
+		"7": "Give points for respondents to help.",
 		"SYSTEM": "In our system exists total:"
 	}
 }

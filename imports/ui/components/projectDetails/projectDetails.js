@@ -219,10 +219,10 @@ class Controller {
 					...response.steps.map(step => step.stars),
 				);
 				data.actions.push(
-					response.steps.map(step => step.actions.filter(a => a.type === 'action').length)
+					response.steps.map(step => step.actions.filter(a => a.type === 'action' || a.type === 'finishFaultyPath').length)
 				);
 				data.mistakes.push(
-					response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction').length)
+					response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction' || a.type === 'beginFaultyPath').length)
 				);
 				data.times.push(
 					response.steps.map(step => this.getTimeFromAction(step.actions))
