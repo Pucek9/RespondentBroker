@@ -245,12 +245,14 @@ class Controller {
 				);
 			});
 			data.starsAll = this.convertToObject(data.starsAll);
+			data.mistakesRespondents = this.getPercentage(data.mistakes);
 			data.completedAll = this.convertToObject(data.completedAll);
 			data.completedTranspoted = this.stats.transpose(data.completed).map(this.getBinaryPercentage);
 
 			data.starsStats = this.transposeToStats(data.stars);
 			data.actionsStats = this.transposeToStats(data.actions);
 			data.mistakesStats = this.transposeToStats(data.mistakes);
+			data.mistakesRespondentsStats = this.transposeToStats(data.mistakesRespondents);
 			data.timesStats = this.transposeToStats(data.times);
 			data.faultyTimesStats = this.transposeToStats(data.faultyTimes);
 			data.partFaultyTimesStats = this.transposeToStats(data.partFaultyTimes);
@@ -258,6 +260,7 @@ class Controller {
 			data.starsStatsAll = data.starsStats.map(this.averageMap);
 			data.actionsStatsAll = data.actionsStats.map(this.averageMap);
 			data.mistakesStatsAll = data.mistakesStats.map(this.averageMap);
+			data.respondentsMistakesStatsAll = data.mistakesRespondentsStats.map(this.averageMap);
 			data.timesStatsAll = data.timesStats.map(this.averageMap);
 			data.faultyTimesStatsAll = data.faultyTimesStats.map(this.averageMap);
 			data.partFaultyTimesStatsAll = data.partFaultyTimesStats.map(this.averageMap);
@@ -266,6 +269,19 @@ class Controller {
 	};
 
 	averageMap = (array => this.stats.average(array));
+
+	getPercentage(arrays) {
+		const stats = [];
+		const transposed = this.stats.transpose(arrays);
+
+		transposed.forEach(array => {
+			let total = array.length;
+			stats.push([
+				array.filter(element => element === 0).length / total * 100
+			])
+		});
+		return this.stats.transpose(stats);
+	}
 
 	transposeToStats = (arrays) => {
 		const stats = [];

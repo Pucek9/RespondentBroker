@@ -180,6 +180,17 @@
 				</div>
 
 				<div class="w3-half">
+					<h6>{{ 'RESPONSES_WITHOUT_ERRORS' | translate}}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.mistakesRespondents" chart-labels="$ctrl.data.names"
+						        chart-options="{tooltips: $ctrl.tooltipsBarPercentage, scales: $ctrl.scales}">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
 					<h6>{{ 'TIMES' | translate }}</h6>
 					<div style="width:500px; height: 250px">
 						<canvas class="chart chart-bar" width="500" height="250"
@@ -267,6 +278,18 @@
 						<canvas class="chart chart-bar" width="500" height="250"
 						        style="width: 500px; height: 250px;"
 						        chart-data="$ctrl.data.mistakesStatsAll" chart-labels="$ctrl.data.series"
+						        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
+						        chart-series="$ctrl.data.series">
+						</canvas>
+					</div>
+				</div>
+
+				<div class="w3-half">
+					<h6>{{ 'RESPONSES_WITHOUT_ERRORS' | translate }} - {{'AVERAGE' | translate}}</h6>
+					<div style="width:500px; height: 250px">
+						<canvas class="chart chart-bar" width="500" height="250"
+						        style="width: 500px; height: 250px;"
+						        chart-data="$ctrl.data.respondentsMistakesStatsAll" chart-labels="$ctrl.data.series"
 						        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
 						        chart-series="$ctrl.data.series">
 						</canvas>

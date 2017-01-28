@@ -47,6 +47,7 @@
 	"STARS": "Ocena",
 	"OVERALL": "całościowa",
 	"MISTAKES": "Błędy",
+	"RESPONSES_WITHOUT_ERRORS": "Odpowiedzi bezbłędne",
 	"TIMES": "Czasy",
 	"FAULTY_TIMES": "Czasy błądzenia",
 	"PART_FAULTY_TIMES": "Udział czasu błądzenia w czasie całkowitym",
