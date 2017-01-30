@@ -44,6 +44,8 @@
 	"AVERAGE": "Średnia",
 	"VARIANCE": "Wariancja",
 	"STANDARD_DEVIATION": "Odchylenie st.",
+	"MIN": "Minimum",
+	"MAX": "Maksimum",
 	"STARS": "Ocena",
 	"OVERALL": "całościowa",
 	"MISTAKES": "Błędy",

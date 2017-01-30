@@ -31,6 +31,14 @@ export default (precision = 4) => {
 			return avgSquareDiff;
 		},
 
+		min (values) {
+			return Math.min(...values);
+		},
+
+		max (values) {
+			return Math.max(...values);
+		},
+
 		standardDeviation (values) {
 			let avgSquareDiff = this.variance(values);
 			let stdDev = Math.sqrt(avgSquareDiff);

@@ -44,6 +44,8 @@
 	"AVERAGE": "Average",
 	"VARIANCE": "Variance",
 	"STANDARD_DEVIATION": "Standard deviation",
+	"MIN": "Min",
+	"MAX": "Max",
 	"STARS": "Rating",
 	"OVERALL": "Overall",
 	"MISTAKES": "Mistakes",

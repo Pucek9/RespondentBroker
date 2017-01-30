@@ -16,7 +16,8 @@
 		<h5>{{'STEPS' | translate}}:</h5>
 		<div ng-repeat="step in $ctrl.response.steps" class="w3-card-4 ">
 			<h5>
-				<a class="w3-btn-block w3-asphalt" style="padding-left: 0px; padding-right: 0px"
+				<!--style="padding-left: 0px; padding-right: 0px"-->
+				<a class="w3-btn-block w3-asphalt w3-left-align"
 				   href="/projects/{{$ctrl.projectId}}/responses/{{$ctrl.responseId}}/steps/{{$index}}">
 					{{step.tag}}
 				</a>

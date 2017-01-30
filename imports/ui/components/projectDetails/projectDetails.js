@@ -31,7 +31,7 @@ class Controller {
 				show: true,
 				title: this.translate('ACTIONS'),
 				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`<a href="projects/{{row.project}}/responses/{{row._id}}">{{'VIEW' | translate}}</a>`),
+				interpolateExpr: $interpolate(`<span class="oneline"><a href="projects/{{row._id}}/preview"><i class="fa fa-eye text-asphalt" aria-hidden="true"></i> {{'PREVIEW' | translate }}</a></span><br/>`),
 			},
 			{
 				field: "ownerName",
@@ -197,7 +197,14 @@ class Controller {
 		if (project && responses) {
 			let data = {
 				names: project.tasks.map(task => task.name),
-				series: [this.translate('MEDIAN'), this.translate('AVERAGE'), this.translate('VARIANCE'), this.translate('STANDARD_DEVIATION')],
+				series: [
+					this.translate('MEDIAN'),
+					this.translate('AVERAGE'),
+					this.translate('VARIANCE'),
+					this.translate('STANDARD_DEVIATION'),
+					this.translate('MIN'),
+					this.translate('MAX'),
+				],
 				dataSeries: [],
 				stars: [],
 				starsAll: [],
@@ -291,7 +298,9 @@ class Controller {
 				this.stats.median(a),
 				this.stats.average(a),
 				this.stats.variance(a),
-				this.stats.standardDeviation(a)
+				this.stats.standardDeviation(a),
+				this.stats.min(a),
+				this.stats.max(a)
 			])
 		});
 		return this.stats.transpose(stats);

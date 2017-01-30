@@ -19,7 +19,7 @@ class Controller {
 
 	$onInit() {
 		this.renderTable();
-		this.$timeout(this.clickOnHeader, 500);
+		this.$timeout(this.clickOnHeader, 1000);
 	};
 
 	renderTable() {
