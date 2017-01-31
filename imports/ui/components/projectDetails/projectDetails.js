@@ -22,6 +22,12 @@ class Controller {
 		this.FileSaver = FileSaver;
 		this.Blob = Blob;
 		this.bigScreen = $window.innerWidth >= 768;
+		this.screen = {width: $window.innerWidth, height: $window.innerHeight};
+		this.actions = true;
+		this.mistakes = false;
+		this.times = false;
+		this.faultyTimes = false;
+		this.partFaultyTimes = false;
 
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 		this.columns = [
@@ -31,7 +37,7 @@ class Controller {
 				show: true,
 				title: this.translate('ACTIONS'),
 				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`<span class="oneline"><a href="projects/{{row._id}}/preview"><i class="fa fa-eye text-asphalt" aria-hidden="true"></i> {{'PREVIEW' | translate }}</a></span><br/>`),
+				interpolateExpr: $interpolate(`<span class="oneline"><a href="projects/{{row.project}}/responses/{{row._id}}"><i class="fa fa-eye text-asphalt" aria-hidden="true"></i> {{'PREVIEW' | translate }}</a></span><br/>`),
 			},
 			{
 				field: "ownerName",
@@ -269,7 +275,7 @@ class Controller {
 					})
 				);
 				data.completedAll.push(
-					...response.steps.map(step => step.isComplete),
+					...response.steps.map(step => this.translate(step.isComplete)),
 				);
 				data.completed.push(
 					response.steps.map(step => Number(step.isComplete)),
@@ -297,6 +303,15 @@ class Controller {
 			return data;
 		}
 	};
+
+	chooseTab(tab) {
+		this.actions = false;
+		this.mistakes = false;
+		this.times = false;
+		this.faultyTimes = false;
+		this.partFaultyTimes = false;
+		this[tab] = true;
+	}
 
 	averageMap = (array => this.stats.average(array));
 

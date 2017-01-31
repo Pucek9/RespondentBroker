@@ -97,18 +97,21 @@ export default angular.module(name, [
 	.factory('validator', validator)
 	.factory('stats', stats)
 
-function config($locationProvider, $urlRouterProvider, $translateProvider) {
+function config($locationProvider, $urlRouterProvider, $translateProvider, ChartJsProvider) {
 	'ngInject';
 	$locationProvider.html5Mode(true);
 	$urlRouterProvider.otherwise('/dashboard');
+
 	const pl = require('../../translations/locale-pl.json');
 	const en = require('../../translations/locale-en.json');
-
 	$translateProvider
 		.translations('pl', pl)
 		.translations('en', en)
-		.preferredLanguage('en')
+		.preferredLanguage('en');
 		// .useLocalStorage();
+	ChartJsProvider.setOptions({
+		responsive: true,
+	});
 }
 
 function run($rootScope, $state) {

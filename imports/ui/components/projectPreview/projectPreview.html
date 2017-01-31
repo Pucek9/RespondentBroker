@@ -48,8 +48,8 @@
 
 
 		<fieldset>
-			<legend class="w3-center">
-				{{'STEPS' | translate }} ({{$ctrl.project.tasks.length}})
+			<legend class="w3-btn-block w3-left-align w3-asphalt">
+				{{'STEPS' | translate }} ({{$ctrl.project.tasks.length}}):
 				<select class="w3-input" style="width:200px; display: inline"
 				        ng-init="$ctrl.task = $ctrl.project.tasks[0]"
 				        ng-model="$ctrl.task" ng-options="task as task.name for task in $ctrl.project.tasks">
@@ -89,8 +89,7 @@
 					</div>
 
 					<div class="w3-accordion w3-grey">
-						<button ng-click="tip = !tip" ng-init="tip=false" class="w3-btn-block w3-asphalt"
-						        style="padding-left: 0px; padding-right: 0px">
+						<button ng-click="tip = !tip" ng-init="tip=false" class="w3-btn-block w3-left-align w3-asphalt">
 							{{'PROJECT.PREVIEW.TIP' | translate}}<i class="fa fa-angle-double-down" aria-hidden="true"
 							                                        ng-if="!tip"></i>
 							<i class="fa fa-angle-double-up" aria-hidden="true" ng-if="tip"></i>
@@ -103,7 +102,8 @@
 				</div>
 
 				<div id="device" class="w3-container w3-padding-0 w3-light-grey" ng-show="$ctrl.uploadTab">
-					<single-file-upload file="$ctrl.project.tasks[$ctrl.project.tasks.indexOf($ctrl.task)].videoURL" type="'video/*'" store="$ctrl.VideosStore"
+					<single-file-upload file="$ctrl.project.tasks[$ctrl.project.tasks.indexOf($ctrl.task)].videoURL"
+					                    type="'video/*'" store="$ctrl.VideosStore"
 					                    disabled="!$ctrl.isEnabled"></single-file-upload>
 				</div>
 			</div>
