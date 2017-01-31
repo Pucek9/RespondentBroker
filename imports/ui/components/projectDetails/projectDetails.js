@@ -7,7 +7,7 @@ import {Responses} from '../../../api/responses';
 
 import {interpolatedValue} from '../../../helpers/helpers';
 import {getAge} from '../../../helpers/helpers';
-
+import {getAgeRange} from '../../../helpers/helpers';
 import {PROJECT_DETAILS as PAGE} from '../../../helpers/constants';
 import template from './projectDetails.html';
 
@@ -173,7 +173,7 @@ class Controller {
 				};
 				if (users) {
 					users.forEach(u => {
-						statistics.age.push(getAge(u.profile.birthDate));
+						statistics.age.push(getAgeRange(u.profile.birthDate));
 						statistics.language.push(this.translate(u.profile.language));
 						let education = 'USER.' + u.profile.education.toUpperCase();
 						statistics.education.push(this.translate(education));

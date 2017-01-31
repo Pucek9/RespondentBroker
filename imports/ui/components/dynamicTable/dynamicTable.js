@@ -31,8 +31,10 @@ class Controller {
 	clickOnHeader() {
 		let headerSelector = 'dynamic-table > div > table > thead > tr.ng-table-sort-header > th:nth-child(1) > div';
 		let header = angular.element(document).find(headerSelector)[0];
-		header.click();
-		header.click();
+		if (header) {
+			header.click();
+			header.click();
+		}
 	}
 
 }

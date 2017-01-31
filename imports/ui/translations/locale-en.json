@@ -132,7 +132,7 @@
 		},
 		"REMOVE": {
 			"TITLE": "Remove project ",
-			"QUESTION": "Are you sure to remove that project?"
+			"QUESTION": "Are you sure to remove this project?"
 		}
 	},
 	"USER": {

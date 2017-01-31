@@ -24,6 +24,23 @@ function getAge(dateString) {
 	return age;
 }
 
+function getAgeRange(dateString) {
+	let age = getAge(dateString);
+
+	if (age < 20) {
+		return '< 20'
+	}
+	else if (age >= 20 && age <= 35) {
+		return '20-35';
+	}
+	else if (age >= 36 && age <= 55) {
+		return '36-55';
+	}
+	else if (age > 55) {
+		return '55 <';
+	}
+}
+
 function interpolatedValue($scope, row) {
 	return this.interpolateExpr({
 		row: row
@@ -34,4 +51,4 @@ function isOwner(userId, object) {
 	return userId && object.owner === userId
 }
 
-export {randomDateString, dateNowString, getAge, interpolatedValue, isOwner}
+export {randomDateString, dateNowString, getAge, getAgeRange, interpolatedValue, isOwner}
