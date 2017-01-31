@@ -209,10 +209,15 @@ class Controller {
 				stars: [],
 				starsAll: [],
 				actions: [],
+				actionsAll: [],
 				mistakes: [],
+				mistakesAll: [],
 				times: [],
+				timesAll: [],
 				faultyTimes: [],
+				faultyTimesAll: [],
 				partFaultyTimes: [],
+				partFaultyTimesAll: [],
 				completed: [],
 				completedAll: []
 
@@ -228,17 +233,36 @@ class Controller {
 				data.actions.push(
 					response.steps.map(step => step.actions.filter(a => a.type === 'action' || a.type === 'finishFaultyPath').length)
 				);
+				data.actionsAll.push(
+					...response.steps.map(step => step.actions.filter(a => a.type === 'action' || a.type === 'finishFaultyPath').length)
+				);
 				data.mistakes.push(
 					response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction' || a.type === 'beginFaultyPath').length)
+				);
+				data.mistakesAll.push(
+					...response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction' || a.type === 'beginFaultyPath').length)
 				);
 				data.times.push(
 					response.steps.map(step => this.getTimeFromAction(step.actions))
 				);
+				data.timesAll.push(
+					...response.steps.map(step => this.getTimeFromAction(step.actions))
+				);
 				data.faultyTimes.push(
 					response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
 				);
+				data.faultyTimesAll.push(
+					...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
+				);
 				data.partFaultyTimes.push(
 					response.steps.map(step => {
+						let faultyTime = this.getFaultyTimesFromAction(step.actions);
+						let totalTime = this.getTimeFromAction(step.actions);
+						return faultyTime * 100 / totalTime;
+					})
+				);
+				data.partFaultyTimesAll.push(
+					...response.steps.map(step => {
 						let faultyTime = this.getFaultyTimesFromAction(step.actions);
 						let totalTime = this.getTimeFromAction(step.actions);
 						return faultyTime * 100 / totalTime;
@@ -251,6 +275,7 @@ class Controller {
 					response.steps.map(step => Number(step.isComplete)),
 				);
 			});
+			data.starsStatsAll = this.allStats(data.starsAll);
 			data.starsAll = this.convertToObject(data.starsAll);
 			data.mistakesRespondents = this.getPercentage(data.mistakes);
 			data.completedAll = this.convertToObject(data.completedAll);
@@ -264,13 +289,11 @@ class Controller {
 			data.faultyTimesStats = this.transposeToStats(data.faultyTimes);
 			data.partFaultyTimesStats = this.transposeToStats(data.partFaultyTimes);
 
-			data.starsStatsAll = data.starsStats.map(this.averageMap);
-			data.actionsStatsAll = data.actionsStats.map(this.averageMap);
-			data.mistakesStatsAll = data.mistakesStats.map(this.averageMap);
-			data.respondentsMistakesStatsAll = data.mistakesRespondentsStats.map(this.averageMap);
-			data.timesStatsAll = data.timesStats.map(this.averageMap);
-			data.faultyTimesStatsAll = data.faultyTimesStats.map(this.averageMap);
-			data.partFaultyTimesStatsAll = data.partFaultyTimesStats.map(this.averageMap);
+			data.actionsStatsAll = this.allStats(data.actionsAll);
+			data.mistakesStatsAll = this.allStats(data.mistakesAll);
+			data.timesStatsAll = this.allStats(data.timesAll);
+			data.faultyTimesStatsAll =this.allStats(data.faultyTimesAll);
+			data.partFaultyTimesStatsAll =this.allStats(data.partFaultyTimesAll);
 			return data;
 		}
 	};
@@ -290,18 +313,22 @@ class Controller {
 		return this.stats.transpose(stats);
 	}
 
+	allStats = (array) => {
+		return [
+			this.stats.median(array),
+			this.stats.average(array),
+			this.stats.variance(array),
+			this.stats.standardDeviation(array),
+			this.stats.min(array),
+			this.stats.max(array)
+		]
+	};
+
 	transposeToStats = (arrays) => {
 		const stats = [];
 		const transposed = this.stats.transpose(arrays);
 		transposed.forEach(a => {
-			stats.push([
-				this.stats.median(a),
-				this.stats.average(a),
-				this.stats.variance(a),
-				this.stats.standardDeviation(a),
-				this.stats.min(a),
-				this.stats.max(a)
-			])
+			stats.push(this.allStats(a));
 		});
 		return this.stats.transpose(stats);
 	};
