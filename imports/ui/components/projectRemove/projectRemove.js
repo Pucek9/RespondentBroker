@@ -27,7 +27,7 @@ class Controller {
 		if (this.project) {
 			Projects.remove(this.project._id);
 			this.notification.success(this.translate('PROJECT_REMOVE_SUCCESS'));
-			this.$state.go('myProjects');
+			this.$state.go('projectsMy');
 		}
 	}
 }

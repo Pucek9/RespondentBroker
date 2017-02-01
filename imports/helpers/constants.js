@@ -89,7 +89,6 @@ const RESPONSE_VIEW = {
 	template: '<response-view></response-view>'
 };
 
-
 const STEP_VIEW = {
 	pageTitle: 'STEP_VIEW.TITLE',
 	icon: 'video-camera',

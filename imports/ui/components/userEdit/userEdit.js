@@ -36,6 +36,8 @@ class Controller {
 		}, {
 			$set: {
 				'profile.language': this.user.profile.language,
+				'profile.frequencyUseMobileApp': this.user.profile.frequencyUseMobileApp,
+				'profile.howLongUseMobileApp': this.user.profile.howLongUseMobileApp,
 				'profile.name': this.user.profile.name,
 				'profile.forName': this.user.profile.forName,
 				'profile.birthDate': this.user.profile.birthDate,

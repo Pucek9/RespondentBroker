@@ -51,10 +51,27 @@
 				       ng-class="{'w3-border-red w3-pale-red': !form.email.$valid }"
 				       ng-model="$ctrl.user.profile.email"
 				       placeholder="{{'EMAIL' | translate}}"></label></p>
+
 			<p><label>{{'LANGUAGE' | translate}}
 				<select class="w3-input" name="gender" ng-model="$ctrl.user.profile.language">
 					<option value="en">{{'en' | translate}}</option>
 					<option value="pl">{{'pl' | translate}}</option>
+				</select></label></p>
+
+			<p><label>{{'FREQUENCY' | translate}}
+				<select class="w3-input" name="frequency" ng-model="$ctrl.user.profile.frequencyUseMobileApp">
+					<option value="regularly">{{'regularly' | translate}}</option>
+					<option value="often">{{'often' | translate}}</option>
+					<option value="sometimes">{{'sometimes' | translate}}</option>
+					<option value="occasionally">{{'occasionally' | translate}}</option>
+					<option value="rarely">{{'rarely' | translate}}</option>
+				</select></label></p>
+
+			<p><label>{{'HOW_LONG_USE_MOBILE_APP' | translate}}
+				<select class="w3-input" name="howLong" ng-model="$ctrl.user.profile.howLongUseMobileApp">
+					<option value="< 2">&lt; 2 {{'YEARS' | translate}}</option>
+					<option value="2-4">2-4 {{'YEARS' | translate}}</option>
+					<option value="> 4">&gt; 4 {{'YEARS' | translate}}</option>
 				</select></label></p>
 
 			<button class="w3-btn w3-blue w3-left w3-border "

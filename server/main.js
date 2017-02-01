@@ -90,7 +90,9 @@ Meteor.startup(() => {
 			language: 'en',
 			gender: '',
 			'birthDate': '',
-			education: ''
+			education: '',
+			frequencyUseMobileApp: '',
+			howLongUseMobileApp: ''
 		};
 		console.log('Registered new user: ', user);
 		return user;
