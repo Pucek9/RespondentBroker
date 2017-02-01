@@ -10,9 +10,10 @@ import {PROJECT_ADD as PAGE} from '../../../helpers/constants';
 import template from './projectAdd.html';
 
 class Controller {
-	constructor($scope, $reactive, $state, $window, notification, validator) {
+	constructor($scope, $reactive, $state, $window, $filter, notification, validator) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.translate = $filter('translate');
 		this.$state = $state;
 		this.bigScreen = $window.innerWidth >= 768;
 		this.notification = notification;
@@ -59,10 +60,10 @@ class Controller {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('Oops, unable to remove poitns for User... Error: ' + error.message);
+				this.notification.error(this.translate('UNABLE_REMOVE_POINTS') + error.message);
 				console.log(error);
 			} else {
-				this.notification.success('Your project was added successfully!');
+				this.notification.success(this.translate('PROJECT_ADDED_SUCCESS') );
 				this.$state.go('projectPreview', {projectId: id});
 			}
 		});
@@ -77,7 +78,7 @@ class Controller {
 		Projects.insert(this.project,
 			(error, id) => {
 				if (error) {
-					this.notification.error('There is problem with add your project! Error: ' + error.message);
+					this.notification.error(this.translate('PROJECT_ADD_PROBLEM') + error.message);
 				}
 				else {
 					this.decreasePoints(id);
@@ -93,7 +94,7 @@ class Controller {
 				this.addProject();
 			}
 		} else {
-			this.notification.error('Your form is not valid');
+			this.notification.error(this.translate('FORM_INVALID'));
 		}
 
 	}

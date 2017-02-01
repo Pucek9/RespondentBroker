@@ -9,9 +9,10 @@ import {RESPONSE_VIEW as PAGE} from '../../../helpers/constants';
 import template from './responseView.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $timeout, $window, notification, validator) {
+	constructor($stateParams, $scope, $reactive, $timeout, $window, $filter, notification, validator) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.translate = $filter('translate');
 		this.projectId = $stateParams.projectId;
 		this.responseId = $stateParams.responseId;
 		this.$timeout = $timeout;
@@ -65,9 +66,9 @@ class Controller {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('Oops, unable to set Paid this response... Error: ' + error.message);
+				this.notification.error(this.translate('PAY_UNABLE') + error.message);
 			} else {
-				this.notification.success('Your points was added successfully!');
+				this.notification.success(this.translate('PAY_SUCCESS'));
 			}
 
 		});
@@ -86,7 +87,7 @@ class Controller {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('Oops, unable to add poitns for User... Error: ' + error.message);
+				this.notification.error(this.translate('PAY_USER_UNABLE') + error.message);
 				console.log(error);
 			} else {
 				this.setPaid(response);

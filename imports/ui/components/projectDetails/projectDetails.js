@@ -37,7 +37,7 @@ class Controller {
 				show: true,
 				title: this.translate('ACTIONS'),
 				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`<span class="oneline"><a href="projects/{{row.project}}/responses/{{row._id}}"><i class="fa fa-eye text-asphalt" aria-hidden="true"></i> {{'PREVIEW' | translate }}</a></span><br/>`),
+				interpolateExpr: $interpolate(`<span class="oneline link"><a href="projects/{{row.project}}/responses/{{row._id}}"><i class="fa fa-eye text-asphalt" aria-hidden="true"></i> {{'PREVIEW' | translate }}</a></span><br/>`),
 			},
 			{
 				field: "ownerName",
@@ -46,7 +46,7 @@ class Controller {
 				sortable: "ownerName",
 				filter: {ownerName: "text"},
 				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`<a href="users/{{row.owner}}/details">{{row.ownerName}}</a>`),
+				interpolateExpr: $interpolate(`<span class="link"><a href="users/{{row.owner}}/details">{{row.ownerName}}</a></span>`),
 			},
 			{
 				field: "steps",

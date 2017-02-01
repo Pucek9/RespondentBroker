@@ -32,20 +32,16 @@
 		</div>
 
 		<h2>1. {{'PROJECT.PREVIEW.DOWNLOAD' | translate}}
-			<a target="_self" ng-href={{$ctrl.project.application}}>{{$ctrl.project.name}}</a>.
+			<a class="standard" href="https://lookback.io/download">LookBack</a> {{'and' | translate}} <a class="standard"
+			                                                                                              target="_self"
+			                                                                                              ng-href={{$ctrl.project.application}}>{{$ctrl.project.name}}</a>
 		</h2>
 
-		<h2>2. {{'PROJECT.PREVIEW.DOWNLOAD' | translate}} <a href="https://lookback.io/download">LookBack</a>.</h2>
-
-		<h2>3. {{'PROJECT.PREVIEW.FOLLOW_INSTRUCTIONS' | translate}}</h2>
+		<h2>2. {{'PROJECT.PREVIEW.FOLLOW_INSTRUCTIONS' | translate}}</h2>
 		<textarea class="w3-input" disabled="true" rows="10"
 		          ng-model="$ctrl.project.description">
 		</textarea>
-		<h2>4. {{'PROJECT.PREVIEW.COMPLETE' | translate}} <a
-				ng-href="{{$ctrl.project.surveyURL}}">{{'PROJECT.PREVIEW.SURVEY' | translate}}</a> {{'PROJECT.PREVIEW.SIGN_IT' | translate}}
-		</h2>
-		<h2>5. {{'PROJECT.PREVIEW.UPLOAD_VIDEOS' | translate}}</h2>
-
+		<br/>
 
 		<fieldset>
 			<legend class="w3-btn-block w3-left-align w3-asphalt">
@@ -133,6 +129,10 @@
 					</textarea>
 			</div>
 		</fieldset>
+
+		<h2>3. {{'PROJECT.PREVIEW.COMPLETE' | translate}} <a class="standard"
+		                                                     ng-href="{{$ctrl.project.surveyURL}}">{{'PROJECT.PREVIEW.SURVEY' | translate}}</a> {{'PROJECT.PREVIEW.SIGN_IT' | translate}}
+		</h2>
 
 		<div>
 			<button

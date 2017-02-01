@@ -9,9 +9,10 @@ import {STEP_VIEW as PAGE} from '../../../helpers/constants';
 import template from './stepView.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $timeout, $window, notification) {
+	constructor($stateParams, $scope, $reactive, $timeout, $window, $filter, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.translate = $filter('translate');
 		this.projectId = $stateParams.projectId;
 		this.responseId = $stateParams.responseId;
 		this.stepId = $stateParams.stepId;
@@ -108,9 +109,9 @@ class Controller {
 			Meteor.call('addActions', response, this.stepId, this.actions, this.step.isComplete, (error) => {
 				if (error) {
 					console.log(error);
-					this.notification.error('Oops, unable to update the step...', error.message);
+					this.notification.error(this.translate('STEP_UPDATE_UNABLE') + error.message);
 				} else {
-					this.notification.success('Your step was updated successfully!');
+					this.notification.success(this.translate('STEP_UPDATE_SUCCESS'));
 				}
 			});
 		}
@@ -121,7 +122,7 @@ class Controller {
 			this.actionsUpdate();
 		}
 		else {
-			this.notification.error('Actions are not valid. Be sure that queue is like start -> ... -> beginFaultyPath -> .. finishFaultyPath -> ... -> end');
+			this.notification.error(this.translate('ACTIONS_INVALID'));
 		}
 	}
 

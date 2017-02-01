@@ -5,9 +5,10 @@ import template from './projectRemove.html';
 import {Projects} from '../../../api/projects';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $window, notification) {
+	constructor($stateParams, $scope, $reactive, $state, $window, $filter, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.translate = $filter('translate');
 		this.$state = $state;
 		this.bigScreen = $window.innerWidth >= 768;
 		this.notification = notification;
@@ -25,7 +26,7 @@ class Controller {
 	confirm() {
 		if (this.project) {
 			Projects.remove(this.project._id);
-			this.notification.success('Your project was removed successfully!');
+			this.notification.success(this.translate('PROJECT_REMOVE_SUCCESS'));
 			this.$state.go('myProjects');
 		}
 	}

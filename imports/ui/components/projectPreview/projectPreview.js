@@ -11,10 +11,11 @@ import {PROJECT_PREVIEW as PAGE} from '../../../helpers/constants';
 import template from './projectPreview.html';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $window, FileSaver, Blob, notification) {
+	constructor($stateParams, $scope, $reactive, $state, $window, $filter, FileSaver, Blob, notification) {
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
+		this.translate = $filter('translate');
 		this.$state = $state;
 		this.Blob = Blob;
 		this.FileSaver = FileSaver;
@@ -192,7 +193,7 @@ class Controller {
 
 	checkAndDeactivateProject() {
 		let success = () => {
-			this.notification.success('Your response was updated successfully!');
+			this.notification.success(this.translate('RESPONSE_UPDATE_SUCCESS'));
 			this.$state.go('projects');
 		};
 		let project = Projects.findOne({_id: this.projectId});
@@ -206,7 +207,7 @@ class Controller {
 				},
 			}, (error) => {
 				if (error) {
-					this.notification.error('There is problem with update project! ' + error.message);
+					this.notification.error(this.translate('PROJECT_UPDATE_UNABLE') + error.message);
 					console.log(error.message)
 				} else {
 					success()
@@ -226,7 +227,7 @@ class Controller {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('There is problem with add your response to user! Error: ' + error);
+				this.notification.error(this.translate('RESPONSE_ADD_TO_USER_PROBLEM') + error);
 			} else {
 				this.checkAndDeactivateProject();
 			}
@@ -242,7 +243,7 @@ class Controller {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('There is problem with add your response to project! ' + error.message);
+				this.notification.error(this.translate('RESPONSE_ADD_TO_PROJECT_PROBLEM') + error.message);
 				console.log(error.message)
 			} else {
 				this.addToUser(id);
@@ -255,7 +256,7 @@ class Controller {
 		Responses.insert(angular.copy(this.response),
 			(error, id) => {
 				if (error) {
-					this.notification.error('There is problem with add your response! ' + error);
+					this.notification.error(this.translate('RESPONSE_ADD_PROBLEM') + error);
 				}
 				else {
 					this.addToProject(id);
@@ -271,7 +272,7 @@ class Controller {
 			this.response.isPaid = false;
 			this.addResponse();
 		} else {
-			this.notification.error('Not all steps are with video.');
+			this.notification.error(this.translate('STEPS_UNCOMPLETED'));
 		}
 	};
 

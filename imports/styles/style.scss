@@ -117,8 +117,13 @@ projects-tab h5{
   color: #27ae60 !important;
 }
 
-a .standard {
+.standard {
   color: -webkit-link;
+  text-decoration: underline;
+  cursor: auto;
+}
+
+.link {
   text-decoration: underline;
   cursor: auto;
 }

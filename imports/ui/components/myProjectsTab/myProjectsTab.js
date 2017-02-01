@@ -36,7 +36,7 @@ class Controller {
 				sortable: "name",
 				title: this.translate('PROJECT.NAME'),
 				getValue: interpolatedValue,
-				interpolateExpr: $interpolate('<a href="projects/{{row._id}}/details">{{row.name}}</a>')
+				interpolateExpr: $interpolate('<a class="link" href="projects/{{row._id}}/details">{{row.name}}</a>')
 			},
 			{
 				field: "minPoints",

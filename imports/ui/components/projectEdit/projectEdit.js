@@ -8,11 +8,12 @@ import template from './projectEdit.html';
 import {dateNowString} from '../../../helpers/helpers';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, $window, notification, validator) {
+	constructor($stateParams, $scope, $reactive, $state, $window, $filter, notification, validator) {
 
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.projectId = $stateParams.projectId;
+		this.translate = $filter('translate');
 		this.$state = $state;
 		this.notification = notification;
 		this.validator = validator;
@@ -46,8 +47,8 @@ class Controller {
 				name: this.project.name,
 				description: this.project.description,
 				tasks: JSON.parse(angular.toJson(this.project.tasks)),
-				minPoints: this.project.minPoints,
-				maxPoints: this.project.maxPoints,
+				// minPoints: this.project.minPoints,
+				// maxPoints: this.project.maxPoints,
 				isStepRating: this.project.isStepRating,
 				isStepDescription: this.project.isStepDescription,
 				surveyURL: this.project.surveyURL,
@@ -61,10 +62,10 @@ class Controller {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('Oops, unable to update the project...', error.message);
+				this.notification.error(this.translate('PROJECT_UPDATE_UNABLE'), error.message);
 			} else {
 				this.$state.go('projectsMy');
-				this.notification.success('Your project was updated successfully!');
+				this.notification.success(this.translate('PROJECT_UPDATE_SUCCESS'));
 			}
 
 		});
@@ -78,7 +79,7 @@ class Controller {
 			}
 		}
 		else {
-			this.notification.error('Your form is not valid');
+			this.notification.error(this.translate('FORM_INVALID'));
 		}
 	}
 }

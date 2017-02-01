@@ -9,11 +9,12 @@ import {ImagesStore} from '../../../api/files';
 import {name as SingleFileUpload} from '../upload/singleFileUpload';
 
 class Controller {
-	constructor($stateParams, $scope, $reactive, $state, notification) {
+	constructor($stateParams, $scope, $reactive, $state, $filter, notification) {
 
 		'ngInject';
 		$reactive(this).attach($scope);
 		this.userId = $stateParams.userId;
+		this.translate = $filter('translate');
 		this.$state = $state;
 		this.notification = notification;
 		this.$scope = $scope;
@@ -46,11 +47,11 @@ class Controller {
 			}
 		}, (error) => {
 			if (error) {
-				this.notification.error('Oops, unable to update the User... Error: ' + error.message);
+				this.notification.error(this.translate('USER_UPDATE_UNABLE') + error.message);
 				console.log(error);
 			} else {
 				this.$state.go('users');
-				this.notification.success('Your User was updated successfully!');
+				this.notification.success(this.translate('USER_UPDATE_SUCCESS'));
 			}
 
 		});
@@ -61,7 +62,7 @@ class Controller {
 			this.updateUser();
 		}
 		else {
-			this.notification.error('Your form is not valid');
+			this.notification.error(this.translate('FORM_INVALID'));
 		}
 	}
 }
