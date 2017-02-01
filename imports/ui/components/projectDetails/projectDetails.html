@@ -354,6 +354,21 @@
 		</div>
 	</div>
 
+	<div class="w3-container">
+		<div class="w3-accordion">
+			<button ng-click="compare = !compare" ng-init="compare=false" class="w3-btn-block w3-left-align w3-asphalt">
+				{{ 'COMPARE' | translate }}
+				<i class="fa fa-angle-double-down" aria-hidden="true"
+				   ng-if="!compare"></i>
+				<i class="fa fa-angle-double-up" aria-hidden="true" ng-if="compare"></i>
+			</button>
+			<div class="w3-accordion-content" ng-class="{'w3-show': compare}">
+
+				Divide research after x responses.
+
+			</div>
+		</div>
+	</div>
 
 	<div class="w3-container">
 		<div class="w3-accordion">

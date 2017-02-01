@@ -15,6 +15,7 @@ class Controller {
 		$reactive(this).attach($scope);
 		this.translate = $filter('translate');
 		this.$state = $state;
+		this.userId = Meteor.userId();
 		this.bigScreen = $window.innerWidth >= 768;
 		this.notification = notification;
 		this.ApplicationsStore = ApplicationsStore;
@@ -35,6 +36,9 @@ class Controller {
 				if (user) {
 					return user.profile.points;
 				}
+			},
+			projects() {
+				return Projects.find({owner: this.userId});
 			}
 		});
 	}
@@ -70,11 +74,14 @@ class Controller {
 	}
 
 	addProject() {
+		this.project._id = undefined;
+		this.project = JSON.parse(angular.toJson(this.project))
 		this.project.tasks = JSON.parse(angular.toJson(this.project.tasks));
-		this.project.owner = Meteor.userId();
+		this.project.owner = this.userId;
 		this.project.responses = [];
 		this.project.created = dateNowString();
 		this.project.updated = dateNowString();
+		console.log(this.project)
 		Projects.insert(this.project,
 			(error, id) => {
 				if (error) {
