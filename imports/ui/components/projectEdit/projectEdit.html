@@ -25,9 +25,9 @@
 			</p>
 
 			<fieldset>
-				<legend class="w3-btn-block w3-left-align w3-asphalt">
+				<legend class="w3-btn-block w3-left-align w3-asphalt" style="padding-left: 4px;">
 					{{'STEPS' | translate }} ({{$ctrl.project.tasks.length}}):
-					<select class="w3-input" style="max-width:100px; display: inline" ng-model="$ctrl.task"
+					<select class="w3-input" style="max-width:80px; display: inline" ng-model="$ctrl.task"
 					        ng-init="$ctrl.task = $ctrl.project.tasks[0]"
 					        ng-options="task as task.name for task in $ctrl.project.tasks">
 					</select>
