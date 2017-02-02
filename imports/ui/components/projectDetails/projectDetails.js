@@ -169,18 +169,26 @@ class Controller {
 			usersData() {
 				let users = this.getUsers();
 				let statistics = {
-					age: [], language: [], education: [], gender: []
+					age: [], language: [], education: [], gender: [], frequencyUseMobileApp: [], howLongUseMobileApp: []
 				};
 				if (users) {
 					users.forEach(u => {
 						statistics.age.push(getAgeRange(u.profile.birthDate));
+
 						statistics.language.push(this.translate(u.profile.language));
+
 						let education = 'USER.' + u.profile.education.toUpperCase();
 						statistics.education.push(this.translate(education));
+
 						let gender = 'USER.' + u.profile.gender.toUpperCase();
 						statistics.gender.push(this.translate(gender));
+
+						let frequencyUseMobileApp = u.profile.frequencyUseMobileApp;
+						statistics.frequencyUseMobileApp.push(this.translate(frequencyUseMobileApp));
+
+						statistics.howLongUseMobileApp.push(u.profile.howLongUseMobileApp);
 					});
-					[statistics.age, statistics.language, statistics.education, statistics.gender] = Object.values(statistics).map(this.convertToObject);
+					[statistics.age, statistics.language, statistics.education, statistics.gender, statistics.frequencyUseMobileApp, statistics.howLongUseMobileApp] = Object.values(statistics).map(this.convertToObject);
 					// console.log(statistics);
 					return statistics;
 				}
@@ -298,8 +306,8 @@ class Controller {
 			data.actionsStatsAll = this.allStats(data.actionsAll);
 			data.mistakesStatsAll = this.allStats(data.mistakesAll);
 			data.timesStatsAll = this.allStats(data.timesAll);
-			data.faultyTimesStatsAll =this.allStats(data.faultyTimesAll);
-			data.partFaultyTimesStatsAll =this.allStats(data.partFaultyTimesAll);
+			data.faultyTimesStatsAll = this.allStats(data.faultyTimesAll);
+			data.partFaultyTimesStatsAll = this.allStats(data.partFaultyTimesAll);
 			return data;
 		}
 	};

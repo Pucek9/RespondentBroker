@@ -37,40 +37,58 @@
 				<i class="fa fa-angle-double-up" aria-hidden="true" ng-if="userStats"></i>
 			</button>
 			<div class="w3-accordion-content" ng-class="{'w3-show': userStats}">
+				<div class="w3-row">
+					<div class="w3-third">
+						<h6>{{ 'USER.EDUCATION' | translate }}</h6>
+						<canvas class="chart chart-pie"
+						        chart-data="$ctrl.usersData.education.values" chart-labels="$ctrl.usersData.education.keys"
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
+						</canvas>
+					</div>
 
-				<div class="w3-quarter">
-					<h6>{{ 'USER.EDUCATION' | translate }}</h6>
-					<canvas class="chart chart-pie"
-					        chart-data="$ctrl.usersData.education.values" chart-labels="$ctrl.usersData.education.keys"
-					        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
-					</canvas>
+					<div class="w3-third">
+						<h6>{{ 'USER.LANGUAGE' | translate }}</h6>
+						<canvas class="chart chart-pie"
+						        chart-data="$ctrl.usersData.language.values" chart-labels="$ctrl.usersData.language.keys"
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
+						</canvas>
+					</div>
+
+					<div class="w3-third">
+						<h6>{{ 'USER.AGE' | translate }}</h6>
+						<canvas class="chart chart-pie"
+						        chart-data="$ctrl.usersData.age.values" chart-labels="$ctrl.usersData.age.keys"
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
+						</canvas>
+					</div>
 				</div>
+				<div class="w3-row">
+					<div class="w3-third">
+						<h6>{{ 'USER.GENDER' | translate }}</h6>
+						<canvas class="chart chart-pie"
+						        chart-data="$ctrl.usersData.gender.values" chart-labels="$ctrl.usersData.gender.keys"
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
+						</canvas>
+					</div>
 
-				<div class="w3-quarter">
-					<h6>{{ 'USER.LANGUAGE' | translate }}</h6>
-					<canvas class="chart chart-pie"
-					        chart-data="$ctrl.usersData.language.values" chart-labels="$ctrl.usersData.language.keys"
-					        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
-					</canvas>
+					<div class="w3-third">
+						<h6>{{ 'FREQUENCY' | translate }}</h6>
+						<canvas class="chart chart-pie"
+						        chart-data="$ctrl.usersData.frequencyUseMobileApp.values"
+						        chart-labels="$ctrl.usersData.frequencyUseMobileApp.keys"
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
+						</canvas>
+					</div>
+
+					<div class="w3-third">
+						<h6>{{ 'HOW_LONG_USE_MOBILE_APP' | translate }}</h6>
+						<canvas class="chart chart-pie"
+						        chart-data="$ctrl.usersData.howLongUseMobileApp.values"
+						        chart-labels="$ctrl.usersData.howLongUseMobileApp.keys"
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
+						</canvas>
+					</div>
 				</div>
-
-				<div class="w3-quarter">
-					<h6>{{ 'USER.AGE' | translate }}</h6>
-					<canvas class="chart chart-pie"
-					        chart-data="$ctrl.usersData.age.values" chart-labels="$ctrl.usersData.age.keys"
-					        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
-					</canvas>
-				</div>
-
-				<div class="w3-quarter">
-					<h6>{{ 'USER.GENDER' | translate }}</h6>
-					<canvas class="chart chart-pie"
-					        chart-data="$ctrl.usersData.gender.values" chart-labels="$ctrl.usersData.gender.keys"
-					        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
-					</canvas>
-
-				</div>
-
 			</div>
 		</div>
 	</div>
