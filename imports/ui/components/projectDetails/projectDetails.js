@@ -318,9 +318,9 @@ class Controller {
 					data.firstHalf.timesAll.push(
 						...response.steps.map(step => this.getTimeFromAction(step.actions))
 					);
-					// data.firstHalf.faultyTimesAll.push(
-					// 	...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
-					// );
+					data.firstHalf.faultyTimesAll.push(
+						...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
+					);
 				} else {
 					data.secondHalf.completed.push(
 						response.steps.map(step => Number(step.isComplete)),
@@ -334,9 +334,9 @@ class Controller {
 					data.secondHalf.timesAll.push(
 						...response.steps.map(step => this.getTimeFromAction(step.actions))
 					);
-					// data.secondHalf.faultyTimes.push(
-					// 	...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
-					// );
+					data.secondHalf.faultyTimesAll.push(
+						...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
+					);
 				}
 			});
 			data.starsStatsAll = this.allStats(data.starsAll);
@@ -359,7 +359,6 @@ class Controller {
 			data.actionsStatsAll = this.allStats(data.actionsAll);
 			data.firstHalf.actionsStatsAll = this.allStats(data.firstHalf.actionsAll);
 			data.secondHalf.actionsStatsAll = this.allStats(data.secondHalf.actionsAll);
-
 
 			data.mistakesStatsAll = this.allStats(data.mistakesAll);
 			data.firstHalf.mistakesStatsAll = this.allStats(data.firstHalf.mistakesAll);
