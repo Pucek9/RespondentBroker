@@ -17,6 +17,7 @@ class Controller {
 		$reactive(this).attach($scope);
 		this.translate = $filter('translate');
 		this.projectId = $stateParams.projectId;
+		this.$scope = $scope;
 		this.$state = $state;
 		this.stats = stats;
 		this.FileSaver = FileSaver;
@@ -28,6 +29,7 @@ class Controller {
 		this.times = false;
 		this.faultyTimes = false;
 		this.partFaultyTimes = false;
+		this.dividePoint = 1;
 
 		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
 		this.columns = [
@@ -233,10 +235,24 @@ class Controller {
 				partFaultyTimes: [],
 				partFaultyTimesAll: [],
 				completed: [],
-				completedAll: []
-
+				completedAll: [],
+				firstHalf: {
+					completed: [],
+					actionsAll: [],
+					mistakesAll: [],
+					timesAll: [],
+					faultyTimesAll: [],
+				},
+				secondHalf: {
+					completed: [],
+					actionsAll: [],
+					mistakesAll: [],
+					timesAll: [],
+					faultyTimesAll: [],
+				}
 			};
-			responses.forEach(response => {
+
+			responses.forEach((response, index)=> {
 				data.dataSeries.push(response._id);
 				data.stars.push(
 					response.steps.map(step => step.stars),
@@ -288,12 +304,49 @@ class Controller {
 				data.completed.push(
 					response.steps.map(step => Number(step.isComplete)),
 				);
+				// console.log(index,this.dividePoint,index <= this.dividePoint);
+				if(index <= this.dividePoint-1) {
+					data.firstHalf.completed.push(
+						response.steps.map(step => Number(step.isComplete)),
+					);
+					data.firstHalf.actionsAll.push(
+						...response.steps.map(step => step.actions.filter(a => a.type === 'action' || a.type === 'finishFaultyPath').length)
+					);
+					data.firstHalf.mistakesAll.push(
+						...response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction' || a.type === 'beginFaultyPath').length)
+					);
+					data.firstHalf.timesAll.push(
+						...response.steps.map(step => this.getTimeFromAction(step.actions))
+					);
+					// data.firstHalf.faultyTimesAll.push(
+					// 	...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
+					// );
+				} else {
+					data.secondHalf.completed.push(
+						response.steps.map(step => Number(step.isComplete)),
+					);
+					data.secondHalf.actionsAll.push(
+						...response.steps.map(step => step.actions.filter(a => a.type === 'action' || a.type === 'finishFaultyPath').length)
+					);
+					data.secondHalf.mistakesAll.push(
+						...response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction' || a.type === 'beginFaultyPath').length)
+					);
+					data.secondHalf.timesAll.push(
+						...response.steps.map(step => this.getTimeFromAction(step.actions))
+					);
+					// data.secondHalf.faultyTimes.push(
+					// 	...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
+					// );
+				}
 			});
 			data.starsStatsAll = this.allStats(data.starsAll);
 			data.starsAll = this.convertToObject(data.starsAll);
 			data.mistakesRespondents = this.getPercentage(data.mistakes);
 			data.completedAll = this.convertToObject(data.completedAll);
+
 			data.completedTranspoted = this.stats.transpose(data.completed).map(this.getBinaryPercentage);
+			data.firstHalf.completed =  this.stats.transpose(data.firstHalf.completed).map(this.getBinaryPercentage);
+			data.secondHalf.completed =  this.stats.transpose(data.secondHalf.completed).map(this.getBinaryPercentage);
 
 			data.starsStats = this.transposeToStats(data.stars);
 			data.actionsStats = this.transposeToStats(data.actions);
@@ -304,9 +357,22 @@ class Controller {
 			data.partFaultyTimesStats = this.transposeToStats(data.partFaultyTimes);
 
 			data.actionsStatsAll = this.allStats(data.actionsAll);
+			data.firstHalf.actionsStatsAll = this.allStats(data.firstHalf.actionsAll);
+			data.secondHalf.actionsStatsAll = this.allStats(data.secondHalf.actionsAll);
+
+
 			data.mistakesStatsAll = this.allStats(data.mistakesAll);
+			data.firstHalf.mistakesStatsAll = this.allStats(data.firstHalf.mistakesAll);
+			data.secondHalf.mistakesStatsAll = this.allStats(data.secondHalf.mistakesAll);
+
 			data.timesStatsAll = this.allStats(data.timesAll);
+			data.firstHalf.timesStatsAll = this.allStats(data.firstHalf.timesAll);
+			data.secondHalf.timesStatsAll = this.allStats(data.secondHalf.timesAll);
+
 			data.faultyTimesStatsAll = this.allStats(data.faultyTimesAll);
+			data.firstHalf.faultyTimesStatsAll = this.allStats(data.firstHalf.faultyTimesAll);
+			data.secondHalf.faultyTimesStatsAll = this.allStats(data.secondHalf.faultyTimesAll);
+
 			data.partFaultyTimesStatsAll = this.allStats(data.partFaultyTimesAll);
 			return data;
 		}
@@ -320,6 +386,19 @@ class Controller {
 		this.partFaultyTimes = false;
 		this[tab] = true;
 	}
+
+	changeDividePoint() {
+		Projects.update({
+			_id: this.projectId
+		}, { $set: {random: Math.random()}}, (error) => {
+			if (error) {
+				console.log(error.message)
+			} else {
+				console.log('success')
+			}
+
+		});
+	};
 
 	averageMap = (array => this.stats.average(array));
 

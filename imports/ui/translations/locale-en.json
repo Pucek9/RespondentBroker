@@ -63,6 +63,7 @@
 	"TIMES": "Times",
 	"FAULTY_TIMES": "Faulty times",
 	"PART_FAULTY_TIMES": "Part of faulty time in total time",
+	"PART_FAULTY_TIMES_S": "Part of faulty time",
 	"COMPLETED_TOTAL": "Total binary efficiency ratio",
 	"COMPLETED_TASK": "Binary efficiency ratio per task",
 	"DETAILS": "Details",
