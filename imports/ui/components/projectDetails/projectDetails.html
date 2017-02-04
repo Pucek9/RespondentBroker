@@ -47,26 +47,28 @@
 					</div>
 
 					<div class="w3-third">
-						<h6>{{ 'USER.LANGUAGE' | translate }}</h6>
-						<canvas class="chart chart-pie"
-						        chart-data="$ctrl.usersData.language.values" chart-labels="$ctrl.usersData.language.keys"
-						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
-						</canvas>
-					</div>
-
-					<div class="w3-third">
 						<h6>{{ 'USER.AGE' | translate }}</h6>
 						<canvas class="chart chart-pie"
 						        chart-data="$ctrl.usersData.age.values" chart-labels="$ctrl.usersData.age.keys"
 						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
 						</canvas>
 					</div>
-				</div>
-				<div class="w3-row">
+
 					<div class="w3-third">
 						<h6>{{ 'USER.GENDER' | translate }}</h6>
 						<canvas class="chart chart-pie"
 						        chart-data="$ctrl.usersData.gender.values" chart-labels="$ctrl.usersData.gender.keys"
+						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
+						</canvas>
+					</div>
+
+				</div>
+				<div class="w3-row">
+
+					<div class="w3-third">
+						<h6>{{ 'USER.LANGUAGE' | translate }}</h6>
+						<canvas class="chart chart-pie"
+						        chart-data="$ctrl.usersData.language.values" chart-labels="$ctrl.usersData.language.keys"
 						        chart-options="{legend: $ctrl.legend, tooltips: $ctrl.tooltipsPie}">
 						</canvas>
 					</div>
