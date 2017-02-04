@@ -443,7 +443,9 @@ class Controller {
 	getTimeFromAction = (actions) => {
 		let start = actions.find(a => a.type === 'start');
 		let end = actions.find(a => a.type === 'end');
-		return end.time - start.time;
+		if (start && end) {
+			return end.time - start.time
+		} else return 0;
 	};
 
 	getFaultyTimesFromAction = (actions) => {
