@@ -46,11 +46,11 @@ export default (precision = 4) => {
 		},
 
 		transpose(a) {
-			if (a[0] )
-			{
+			if (a[0]) {
 				return Object.keys(a[0]).map(c => a.map(r => r[c]));
+			} else {
+				return [];
 			}
-			else return []
 		}
 
 	}

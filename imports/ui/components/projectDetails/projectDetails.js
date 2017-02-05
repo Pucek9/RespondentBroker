@@ -238,21 +238,29 @@ class Controller {
 				completedAll: [],
 				firstHalf: {
 					completed: [],
+					actions: [],
 					actionsAll: [],
+					mistakes: [],
 					mistakesAll: [],
+					times: [],
 					timesAll: [],
+					faultyTimes: [],
 					faultyTimesAll: [],
 				},
 				secondHalf: {
 					completed: [],
+					actions: [],
 					actionsAll: [],
+					mistakes: [],
 					mistakesAll: [],
+					times: [],
 					timesAll: [],
+					faultyTimes: [],
 					faultyTimesAll: [],
 				}
 			};
 
-			responses.forEach((response, index)=> {
+			responses.forEach((response, index) => {
 				data.dataSeries.push(response._id);
 				data.stars.push(
 					response.steps.map(step => step.stars),
@@ -305,39 +313,35 @@ class Controller {
 					response.steps.map(step => Number(step.isComplete)),
 				);
 				// console.log(index,this.dividePoint,index <= this.dividePoint);
-				if(index <= this.dividePoint-1) {
-					data.firstHalf.completed.push(
-						response.steps.map(step => Number(step.isComplete)),
-					);
-					data.firstHalf.actionsAll.push(
-						...response.steps.map(step => step.actions.filter(a => a.type === 'action' || a.type === 'finishFaultyPath').length)
-					);
-					data.firstHalf.mistakesAll.push(
-						...response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction' || a.type === 'beginFaultyPath').length)
-					);
-					data.firstHalf.timesAll.push(
-						...response.steps.map(step => this.getTimeFromAction(step.actions))
-					);
-					data.firstHalf.faultyTimesAll.push(
-						...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
-					);
-				} else {
-					data.secondHalf.completed.push(
-						response.steps.map(step => Number(step.isComplete)),
-					);
-					data.secondHalf.actionsAll.push(
-						...response.steps.map(step => step.actions.filter(a => a.type === 'action' || a.type === 'finishFaultyPath').length)
-					);
-					data.secondHalf.mistakesAll.push(
-						...response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction' || a.type === 'beginFaultyPath').length)
-					);
-					data.secondHalf.timesAll.push(
-						...response.steps.map(step => this.getTimeFromAction(step.actions))
-					);
-					data.secondHalf.faultyTimesAll.push(
-						...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
-					);
-				}
+
+				let half = (index <= this.dividePoint - 1) ? 'firstHalf' : 'secondHalf';
+				data[half].completed.push(
+					response.steps.map(step => Number(step.isComplete)),
+				);
+				data[half].actions.push(
+					response.steps.map(step => step.actions.filter(a => a.type === 'action' || a.type === 'finishFaultyPath').length)
+				);
+				data[half].actionsAll.push(
+					...response.steps.map(step => step.actions.filter(a => a.type === 'action' || a.type === 'finishFaultyPath').length)
+				);
+				data[half].mistakes.push(
+					response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction' || a.type === 'beginFaultyPath').length)
+				);
+				data[half].mistakesAll.push(
+					...response.steps.map(step => step.actions.filter(a => a.type === 'wrongAction' || a.type === 'beginFaultyPath').length)
+				);
+				data[half].times.push(
+					response.steps.map(step => this.getTimeFromAction(step.actions))
+				);
+				data[half].timesAll.push(
+					...response.steps.map(step => this.getTimeFromAction(step.actions))
+				);
+				data[half].faultyTimes.push(
+					response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
+				);
+				data[half].faultyTimesAll.push(
+					...response.steps.map(step => this.getFaultyTimesFromAction(step.actions))
+				);
 			});
 			data.starsStatsAll = this.allStats(data.starsAll);
 			data.starsAll = this.convertToObject(data.starsAll);
@@ -345,15 +349,31 @@ class Controller {
 			data.completedAll = this.convertToObject(data.completedAll);
 
 			data.completedTranspoted = this.stats.transpose(data.completed).map(this.getBinaryPercentage);
-			data.firstHalf.completed =  this.stats.transpose(data.firstHalf.completed).map(this.getBinaryPercentage);
-			data.secondHalf.completed =  this.stats.transpose(data.secondHalf.completed).map(this.getBinaryPercentage);
+			data.firstHalf.completed = this.stats.transpose(data.firstHalf.completed).map(this.getBinaryPercentage);
+			data.secondHalf.completed = this.stats.transpose(data.secondHalf.completed).map(this.getBinaryPercentage);
 
 			data.starsStats = this.transposeToStats(data.stars);
+
 			data.actionsStats = this.transposeToStats(data.actions);
+			data.firstHalf.actionsStats = this.transposeToStats(data.firstHalf.actions);
+			data.secondHalf.actionsStats = this.transposeToStats(data.secondHalf.actions);
+
 			data.mistakesStats = this.transposeToStats(data.mistakes);
+			data.firstHalf.mistakesStats = this.transposeToStats(data.firstHalf.mistakes);
+			data.secondHalf.mistakesStats = this.transposeToStats(data.secondHalf.mistakes);
+
 			data.mistakesRespondentsStats = this.transposeToStats(data.mistakesRespondents);
+			data.firstHalf.mistakesRespondentsStats = this.transposeToStats(data.firstHalf.mistakesRespondents);
+			data.secondHalf.mistakesRespondentsStats = this.transposeToStats(data.secondHalf.mistakesRespondents);
+
 			data.timesStats = this.transposeToStats(data.times);
+			data.firstHalf.timesStats = this.transposeToStats(data.firstHalf.times);
+			data.secondHalf.timesStats = this.transposeToStats(data.secondHalf.times);
+
 			data.faultyTimesStats = this.transposeToStats(data.faultyTimes);
+			data.firstHalf.faultyTimesStats = this.transposeToStats(data.firstHalf.faultyTimes);
+			data.secondHalf.faultyTimesStats = this.transposeToStats(data.secondHalf.faultyTimes);
+
 			data.partFaultyTimesStats = this.transposeToStats(data.partFaultyTimes);
 
 			data.actionsStatsAll = this.allStats(data.actionsAll);
@@ -373,6 +393,7 @@ class Controller {
 			data.secondHalf.faultyTimesStatsAll = this.allStats(data.secondHalf.faultyTimesAll);
 
 			data.partFaultyTimesStatsAll = this.allStats(data.partFaultyTimesAll);
+			console.log(data)
 			return data;
 		}
 	};
@@ -389,11 +410,10 @@ class Controller {
 	changeDividePoint() {
 		Projects.update({
 			_id: this.projectId
-		}, { $set: {random: Math.random()}}, (error) => {
+		}, {$set: {random: Math.random()}}, (error) => {
 			if (error) {
 				console.log(error.message)
 			} else {
-				console.log('success')
 			}
 
 		});
@@ -427,11 +447,14 @@ class Controller {
 
 	transposeToStats = (arrays) => {
 		const stats = [];
-		const transposed = this.stats.transpose(arrays);
-		transposed.forEach(a => {
-			stats.push(this.allStats(a));
-		});
-		return this.stats.transpose(stats);
+		console.log(arrays)
+		if (arrays) {
+			const transposed = this.stats.transpose(arrays);
+			transposed.forEach(a => {
+				stats.push(this.allStats(a));
+			});
+			return this.stats.transpose(stats);
+		}
 	};
 
 	getBinaryPercentage = (array) => {

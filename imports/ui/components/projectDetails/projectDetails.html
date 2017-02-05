@@ -391,45 +391,81 @@
 					<h6>{{ 'COMPLETED_TASK' | translate }}</h6>
 					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
 					        chart-data="[$ctrl.data.firstHalf.completed, $ctrl.data.secondHalf.completed]" chart-labels="$ctrl.data.names"
-					        chart-options="{scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarPercentage}">
+					        chart-options="{scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarPercentage}" chart-series="[1,2]">
+					</canvas>
+				</div>
+
+				<!--<div class="w3-row">-->
+					<!--<h6>{{ 'ACTIONS' | translate }} - {{'PROJECT_STATS' | translate}}</h6>-->
+					<!--<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"-->
+					        <!--chart-data="[$ctrl.data.firstHalf.actionsStatsAll, $ctrl.data.secondHalf.actionsStatsAll ]" chart-labels="$ctrl.data.series"-->
+					        <!--chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"-->
+					        <!--chart-series="$ctrl.data.series">-->
+					<!--</canvas>-->
+				<!--</div>-->
+
+				<div class="w3-row">
+					<h6>{{ 'ACTIONS' | translate }} - {{'STATS' | translate}}</h6>
+					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
+					        chart-data="[$ctrl.data.firstHalf.actionsStats[1], $ctrl.data.secondHalf.actionsStats[1]]" chart-labels="$ctrl.data.names"
+					        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarStatics}"
+					        chart-series="[1,2]">
+					</canvas>
+				</div>
+
+				<!--<div class="w3-row">-->
+					<!--<h6>{{ 'MISTAKES' | translate }} - {{'PROJECT_STATS' | translate}}</h6>-->
+					<!--<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"-->
+					        <!--chart-data="[$ctrl.data.firstHalf.mistakesStatsAll, $ctrl.data.secondHalf.mistakesStatsAll]" chart-labels="$ctrl.data.series"-->
+					        <!--chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"-->
+					        <!--chart-series="$ctrl.data.series">-->
+					<!--</canvas>-->
+				<!--</div>-->
+
+				<div class="w3-row">
+					<h6>{{ 'MISTAKES' | translate }} - {{'STATS' | translate}}</h6>
+					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
+					        chart-data="[$ctrl.data.firstHalf.mistakesStats[1],$ctrl.data.secondHalf.mistakesStats[1]]" chart-labels="$ctrl.data.names"
+					        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarStatics}"
+					        chart-series="[1,2]">
 					</canvas>
 				</div>
 
 				<div class="w3-row">
-					<h6>{{ 'ACTIONS' | translate }} - {{'PROJECT_STATS' | translate}}</h6>
+					<h6>{{ 'TIMES' | translate }} - {{'STATS' | translate}}</h6>
 					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
-					        chart-data="[$ctrl.data.firstHalf.actionsStatsAll, $ctrl.data.secondHalf.actionsStatsAll ]" chart-labels="$ctrl.data.series"
-					        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
-					        chart-series="$ctrl.data.series">
+					        chart-data="[$ctrl.data.firstHalf.timesStats[1],$ctrl.data.secondHalf.timesStats[1]]" chart-labels="$ctrl.data.names"
+					        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarStatics}"
+					        chart-series="[1,2]">
 					</canvas>
 				</div>
 
-				<div class="w3-row">
-					<h6>{{ 'MISTAKES' | translate }} - {{'PROJECT_STATS' | translate}}</h6>
-					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
-					        chart-data="[$ctrl.data.firstHalf.mistakesStatsAll, $ctrl.data.secondHalf.mistakesStatsAll]" chart-labels="$ctrl.data.series"
-					        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
-					        chart-series="$ctrl.data.series">
-					</canvas>
-				</div>
+				<!--<div class="w3-row">-->
+					<!--<h6>{{ 'TIMES' | translate }}  - {{'PROJECT_STATS' | translate}}</h6>-->
+					<!--<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"-->
+					        <!--chart-data="[$ctrl.data.firstHalf.timesStatsAll,$ctrl.data.secondHalf.timesStatsAll]" chart-labels="$ctrl.data.series"-->
+					        <!--chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"-->
+					        <!--chart-series="$ctrl.data.series">-->
+					<!--</canvas>-->
+				<!--</div>-->
 
 				<div class="w3-row">
-					<h6>{{ 'TIMES' | translate }}  - {{'PROJECT_STATS' | translate}}</h6>
+					<h6>{{ 'FAULTY_TIMES' | translate }} - {{'STATS' | translate}}</h6>
 					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
-					        chart-data="[$ctrl.data.firstHalf.timesStatsAll,$ctrl.data.secondHalf.timesStatsAll]" chart-labels="$ctrl.data.series"
-					        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
-					        chart-series="$ctrl.data.series">
+					        chart-data="[$ctrl.data.firstHalf.faultyTimesStats[1], $ctrl.data.secondHalf.faultyTimesStats[1]]" chart-labels="$ctrl.data.names"
+					        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales,  tooltips: $ctrl.tooltipsBarStatics}"
+					        chart-series="[1,2]">
 					</canvas>
 				</div>
-
-				<div class="w3-row">
-					<h6>{{ 'FAULTY_TIMES' | translate }} - {{'PROJECT_STATS' | translate}}</h6>
-					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
-					        chart-data="[$ctrl.data.firstHalf.faultyTimesStatsAll,$ctrl.data.secondHalf.faultyTimesStatsAll]" chart-labels="$ctrl.data.series"
-					        chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"
-					        chart-series="$ctrl.data.series">
-					</canvas>
-				</div>
+				<!---->
+				<!--<div class="w3-row">-->
+					<!--<h6>{{ 'FAULTY_TIMES' | translate }} - {{'PROJECT_STATS' | translate}}</h6>-->
+					<!--<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"-->
+					        <!--chart-data="[$ctrl.data.firstHalf.faultyTimesStatsAll,$ctrl.data.secondHalf.faultyTimesStatsAll]" chart-labels="$ctrl.data.series"-->
+					        <!--chart-options="{ scales: $ctrl.scales, tooltips: $ctrl.tooltipsBar}"-->
+					        <!--chart-series="$ctrl.data.series">-->
+					<!--</canvas>-->
+				<!--</div>-->
 
 			</div>
 		</div>
