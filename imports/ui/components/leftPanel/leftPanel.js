@@ -1,13 +1,13 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-
 import {name as Navigation} from '../navigation/navigation';
 import {name as UserPanel} from '../userPanel/userPanel';
 import template from './leftPanel.html';
 
-class LeftPanel {
+class Controller {
 
 	constructor() {
+		this.logo = 'Respondent Broker';
 		// Get the Sidenav
 		this.mySidenav = document.getElementById("mySidenav");
 		// Get the DIV with overlay effect
@@ -33,16 +33,13 @@ class LeftPanel {
 
 }
 
-
 const name = 'leftPanel';
 
-// create a module
 export default angular.module(name, [
 	angularMeteor,
 	Navigation,
 	UserPanel
 ]).component(name, {
 	template,
-	controller: LeftPanel,
-	controllerAs: name
+	controller: Controller
 });

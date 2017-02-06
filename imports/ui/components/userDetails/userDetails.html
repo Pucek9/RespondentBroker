@@ -1,0 +1,31 @@
+<div class="w3-card-4">
+	<header class="w3-container">
+		<h5>
+			<h5><i class="fa fa-{{$ctrl.icon}} "></i> {{$ctrl.pageTitle | translate}}</h5>
+		</h5>
+	</header>
+	<div class="w3-container">
+		<div
+				class="w3-container">
+			<img ng-src="{{$ctrl.user.profile.avatar}}" class="w3-right" style="width:150px">
+			<p><i class="fa fa-address-card-o" aria-hidden="true"></i>
+				{{'USER.NAME' | translate}}: {{$ctrl.user.profile.name}} {{$ctrl.user.profile.forName}}</p>
+			<p><i class="fa fa-envelope-o" aria-hidden="true"></i>
+				{{'EMAIL' | translate}}: <a
+						href="mailto:{{$ctrl.user.profile.email}}?subject=RespondentBroker&body=sent from Respondent Broker">{{$ctrl.user.profile.email}}</a>
+			</p>
+			<p><i class="fa fa-star" aria-hidden="true"></i>
+				{{'LEVEL' | translate}}: {{$ctrl.user.profile.level}}</p>
+			<p><i class="fa fa-money" aria-hidden="true"></i>
+				{{'POINTS' | translate}}: {{$ctrl.user.profile.points}}</p>
+		</div>
+		<div class="w3-container">
+			<header class="w3-container w3-blue">
+				<h6>
+					<i class="fa fa-mobile" aria-hidden="true"></i>
+					{{'RESPONSES' | translate}} ({{$ctrl.responses.length}}):
+				</h6></header>
+			<dynamic-table data="$ctrl.responses" columns="$ctrl.columns"></dynamic-table>
+		</div>
+	</div>
+</div>

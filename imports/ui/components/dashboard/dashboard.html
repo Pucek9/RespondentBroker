@@ -1,1 +1,93 @@
-<h5><i class="fa fa-{{dashboard.icon}} fa-fw"></i>{{dashboard.pageTitle}}</h5>
+<div class="w3-card-4">
+	<header class="w3-container">
+		<h5>
+			<i class="fa fa-{{$ctrl.icon}} "></i> {{$ctrl.pageTitle | translate}}
+		</h5>
+	</header>
+	<div class="w3-container">
+
+		<div class="w3-container">
+			<div class="w3-row-padding w3-margin-bottom">
+				<!--<h3>{{'ABOUT.SYSTEM' | translate}}</h3>-->
+
+				<div class="w3-quarter"
+				     ng-init="showResponsesWithoutPay=false"
+				     ng-mouseover="showResponsesWithoutPay=true"
+				     ng-mouseleave="showResponsesWithoutPay=false">
+					<div class="w3-container w3-red w3-padding-16">
+						<div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+						<div class="w3-right">
+							<h3>{{$ctrl.responsesWithoutPay.length}}</h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>{{'DASHBOARD.RESPONSES_TO_PAY' | translate}}</h4>
+					</div>
+					<div ng-if="showResponsesWithoutPay">
+						<a ng-repeat="response in $ctrl.responsesWithoutPay"
+						   ng-href="/projects/{{response.project}}/responses/{{response._id}}"
+						   class="w3-btn w3-btn-block">{{'DASHBOARD.GO_TO_PAY' | translate }} {{$index+1}}</a>
+					</div>
+				</div>
+
+				<div class="w3-quarter"
+				     ng-init="showMyProjectsResponses=false"
+				     ng-mouseover="showMyProjectsResponses=true"
+				     ng-mouseleave="showMyProjectsResponses=false">
+					<div class="w3-container w3-blue w3-padding-16">
+						<div class="w3-left"><i class="fa fa-check-square-o w3-xxxlarge"></i></div>
+						<div class="w3-right">
+							<h3>{{$ctrl.myProjectsResponses.length}}</h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>{{'DASHBOARD.RESPONSES_IN_MY_PROJECTS' | translate}}</h4>
+					</div>
+					<div ng-if="showMyProjectsResponses">
+						<a ng-repeat="response in $ctrl.myProjectsResponses"
+						   ng-href="/projects/{{response.project}}/responses/{{response.response}}"
+						   class="w3-btn w3-btn-block" >{{'DASHBOARD.GO_TO_SEE_RESPONSE' | translate }} {{$index+1}}</a>
+					</div>
+				</div>
+
+				<div class="w3-quarter"
+				     ng-init="showMyProjects=false"
+				     ng-mouseover="showMyProjects=true"
+				     ng-mouseleave="showMyProjects=false">
+					<div class="w3-container w3-teal w3-padding-16">
+						<div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+						<div class="w3-right">
+							<h3>{{$ctrl.myProjects.length}}</h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>{{'DASHBOARD.MY_PROJECTS' | translate}}</h4>
+					</div>
+					<div ng-if="showMyProjects">
+						<a ng-repeat="project in $ctrl.myProjects"
+						   ng-href="/projects/{{project._id}}/details"
+						   class="w3-btn w3-btn-block" >{{'DASHBOARD.GO_TO_PROJECT' | translate }} {{$index+1}}</a>
+					</div>
+				</div>
+
+				<div class="w3-quarter"
+				     ng-init="showUsersResponded=false"
+				     ng-mouseover="showUsersResponded=true"
+				     ng-mouseleave="showUsersResponded=false">
+					<div class="w3-container w3-orange w3-text-white w3-padding-16">
+						<div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+						<div class="w3-right">
+							<h3>{{$ctrl.usersResponded.length}}</h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>{{'DASHBOARD.USERS_RESPONDED' | translate}}</h4>
+					</div>
+					<div ng-if="showUsersResponded">
+						<a ng-repeat="user in $ctrl.usersResponded"
+						   ng-href="/users/{{user}}/details"
+						   class="w3-btn w3-btn-block" >{{'DASHBOARD.SEE_USER' | translate }} {{$index+1}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+

@@ -1,4 +1,15 @@
-<h5><i class="fa fa-{{myProjectsTab.icon}} fa-fw"></i>{{myProjectsTab.pageTitle}} ({{myProjectsTab.projects.length}})</h5>
-<a class="w3-btn w3-teal" href='/projects/new'>Add new</a>
+<div class="w3-card-4">
+	<header class="w3-container ">
+		<h5>
+			<button class="w3-btn w3-ripple w3-right w3-border w3-green header-button" ui-sref="projectAdd">
+				<i class="fa fa-plus "></i>
+				<span ng-show="$ctrl.bigScreen"> {{'ADD_NEW' | translate }}</span>
+			</button>
+			<i class="fa fa-{{$ctrl.icon}} "></i> {{$ctrl.pageTitle | translate}} ({{$ctrl.projects.length}})
+		</h5>
+	</header>
+	<div class="w3-container">
+		<dynamic-table data="$ctrl.projects" columns="$ctrl.columns"></dynamic-table>
+	</div>
+</div>
 
-<dynamic-table data="myProjectsTab.projects" columns="myProjectsTab.columns" params="myProjectsTab.params"></dynamic-table>

@@ -1,0 +1,82 @@
+<div class="w3-card-4">
+	<header class="w3-container">
+		<h5>
+			<i class="fa fa-{{$ctrl.icon}}"></i> {{$ctrl.pageTitle | translate}}
+		</h5>
+	</header>
+	<div class="w3-container">
+
+		<div class="w3-container">
+			<h3>{{'ABOUT.PROLOG' | translate}}</h3>
+			<ul>
+				<li>{{'ABOUT.1' | translate}}</li>
+				<li>{{'ABOUT.2' | translate}}</li>
+				<li>{{'ABOUT.3' | translate}}</li>
+				<ul>
+					<li>{{'ABOUT.3a' | translate}}</li>
+					<li>{{'ABOUT.3b' | translate}}</li>
+				</ul>
+				<li>{{'ABOUT.4' | translate}}</li>
+				<ul>
+					<li>{{'ABOUT.4a' | translate}}</li>
+					<li>{{'ABOUT.4b' | translate}}</li>
+					<li>{{'ABOUT.4c' | translate}}</li>
+					<li>{{'ABOUT.4d' | translate}}</li>
+					<li>{{'ABOUT.4e' | translate}}</li>
+					<li>{{'ABOUT.4f' | translate}}</li>
+				</ul>
+				<li>{{'ABOUT.5' | translate}}</li>
+				<li>{{'ABOUT.6' | translate}}</li>
+				<li>{{'ABOUT.7' | translate}}</li>
+			</ul>
+		</div>
+
+		<div class="w3-container">
+			<h3>{{'ABOUT.SYSTEM' | translate}}</h3>
+			<div class="w3-row-padding w3-margin-bottom">
+
+				<div class="w3-quarter">
+					<div class="w3-container w3-red w3-padding-16">
+						<div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+						<div class="w3-right">
+							<h3>{{$ctrl.points}}</h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>{{'POINTS' | translate}}</h4>
+					</div>
+				</div>
+
+				<div class="w3-quarter">
+					<div class="w3-container w3-blue w3-padding-16">
+						<div class="w3-left"><i class="fa fa-check-square-o w3-xxxlarge"></i></div>
+						<div class="w3-right">
+							<h3>{{$ctrl.responses.length}}</h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>{{'RESPONSES' | translate}}</h4>
+					</div>
+				</div>
+				<div class="w3-quarter">
+					<div class="w3-container w3-teal w3-padding-16">
+						<div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+						<div class="w3-right">
+							<h3>{{$ctrl.projects.length}}</h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>{{'PROJECTS' | translate}}</h4>
+					</div>
+				</div>
+				<div class="w3-quarter">
+					<div class="w3-container w3-orange w3-text-white w3-padding-16">
+						<div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+						<div class="w3-right">
+							<h3>{{$ctrl.users.length}}</h3>
+						</div>
+						<div class="w3-clear"></div>
+						<h4>{{'USERS' | translate}}</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

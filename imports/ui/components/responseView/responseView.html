@@ -1,0 +1,50 @@
+<div class="w3-card-4">
+	<header class="w3-container ">
+		<h5>
+			<a class="button w3-btn w3-ripple w3-right w3-border w3-black header-button"
+			   href="/projects/{{$ctrl.projectId}}/details">
+				<i class="fa fa-chevron-circle-left"></i>
+				<span ng-show="$ctrl.bigScreen">{{'BACK' | translate}}</span>
+			</a>
+			<i class="fa fa-{{$ctrl.icon}} fa-fw"></i>
+			{{$ctrl.pageTitle | translate}}
+		</h5>
+	</header>
+
+	<div
+			class="w3-container">
+		<h5>{{'STEPS' | translate}}:</h5>
+		<div ng-repeat="step in $ctrl.response.steps" class="w3-card-4 ">
+			<h5>
+				<!--style="padding-left: 0px; padding-right: 0px"-->
+				<a class="w3-btn-block w3-asphalt w3-left-align"
+				   href="/projects/{{$ctrl.projectId}}/responses/{{$ctrl.responseId}}/steps/{{$index}}">
+					{{step.tag}}
+				</a>
+			</h5>
+		</div>
+	</div>
+
+	<footer class="w3-container" ng-if="!$ctrl.response.isPaid && $ctrl.projectOwner">
+		<form name="form">
+			<p>
+				<label>{{'RESPONSE_VIEW.PAY_FOR' | translate}} <a
+						href="users/{{$ctrl.response.owner}}/details">{{$ctrl.owner.profile.name}} {{$ctrl.owner.profile.forName}}</a>
+					{{$ctrl.project.minPoints}}-{{$ctrl.project.maxPoints}} {{'PROJECT.PREVIEW.POINTS' | translate}}.
+				<input class="w3-input" type="number" ng-model="$ctrl.points" name="points" required ng-class="{'w3-border-red w3-pale-red': !form.points.$valid }"
+				       placeholder="points" min="{{$ctrl.project.minPoints}}" max="{{$ctrl.project.maxPoints}}"></label>
+			</p>
+			<p>
+				<button class="w3-btn w3-ripple w3-left w3-border w3-green" ng-click="$ctrl.submit()">
+					<i class="fa fa-money"></i> {{'RESPONSE_VIEW.PAY' | translate}}
+				</button>
+			</p>
+		</form>
+	</footer>
+
+	<footer class="w3-container " ng-if="$ctrl.response.isPaid">
+		<p>Already paid for user <a
+				href="users/{{$ctrl.response.owner}}/details">{{$ctrl.owner.profile.name}} {{$ctrl.owner.profile.forName}}</a>
+		</p>
+	</footer>
+</div>

@@ -1,6 +1,10 @@
-<h5><i class="fa fa-{{usersTab.icon}} fa-fw"></i>{{usersTab.pageTitle}}</h5>
-
-<ul>
-	<li ng-repeat="user in usersTab.users">{{user.emails[0].address}}</li>
-</ul>
-{{usersTab.users.length}}
+<div class="w3-card-4">
+	<header class="w3-container ">
+		<h5><i class="fa fa-{{$ctrl.icon}} fa-fw"></i>{{$ctrl.pageTitle | translate}} ({{$ctrl.users.length}})</h5>
+	</header>
+	<div
+			class="w3-container"
+			>
+		<dynamic-table data="$ctrl.users" columns="$ctrl.columns"></dynamic-table>
+	</div>
+</div>

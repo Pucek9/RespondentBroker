@@ -1,13 +1,31 @@
-<div class="w3-container w3-row">
+<div class="w3-container w3-row" style="overflow: visible">
 	<div class="w3-col s4">
-		<img src="images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+		<img ng-src="{{($ctrl.user ? $ctrl.user.profile.avatar : $ctrl.guestAvatar)}}" class="w3-circle w3-margin-right"
+		     style="width:50px">
+		<div ng-show="$ctrl.user">
+			<span><i class="fa fa-star" aria-hidden="true"></i> {{$ctrl.user.profile.level}}</span>
+			<span><i class="fa fa-money" aria-hidden="true"></i> {{$ctrl.user.profile.points}}</span>
+		</div>
 	</div>
 	<div class="w3-col s8">
-		<span>Welcome, <strong>{{userPanel.name}}</strong></span><br>
-		<login-buttons></login-buttons>
-		<a href="#" class="w3-hover-none w3-hover-text-red w3-show-inline-block"><i class="fa fa-envelope"></i></a>
-		<a href="#" class="w3-hover-none w3-hover-text-green w3-show-inline-block"><i class="fa fa-user"></i></a>
-		<a href="#" class="w3-hover-none w3-hover-text-yellow w3-show-inline-block"><i class="fa fa-cog"></i></a>
-		<a href="#" class="w3-hover-none w3-hover-text-blue w3-show-inline-block"><i class="fa fa-language"></i></a>
+		<span>{{'WELCOME' | translate}}, <strong>{{($ctrl.user ? $ctrl.user.profile.name : 'Guest')}}</strong></span><br/>
+		<login-buttons ng-init="$ctrl.email()"></login-buttons>
+		<br/>
+		<a href="mailto:?subject=RespondentBroker&body=sent from Respondent Broker"
+		   class="w3-hover-none w3-hover-text-red w3-show-inline-block"><i class="fa fa-envelope"></i></a>
+		<a href="/users/{{$ctrl.user._id}}/details" class="w3-hover-none w3-hover-text-green w3-show-inline-block"><i
+				class="fa fa-user"></i></a>
+		<a href="/users/{{$ctrl.user._id}}/edit" class="w3-hover-none w3-hover-text-yellow w3-show-inline-block"><i
+				class="fa fa-cog"></i></a>
+
+		<div class="w3-dropdown-hover" style="width: 25px;">
+			<a class="w3-hover-none w3-hover-text-blue w3-show-inline-block"><i class="fa fa-language"></i></a>
+			<div class="w3-dropdown-content w3-border">
+				<button ng-repeat="language in $ctrl.languages" ng-click="$ctrl.updateLanguage(language)">
+					<img style="max-height: 25px" src="images/{{language}}.png" class="flag flag-pl"/>{{language | translate}}
+				</button>
+			</div>
+		</div>
 	</div>
+	<h1></h1>
 </div>

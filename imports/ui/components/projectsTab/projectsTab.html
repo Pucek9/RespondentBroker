@@ -1,2 +1,10 @@
-<h5><i class="fa fa-{{projectsTab.icon}} fa-fw"></i>{{projectsTab.pageTitle}} ({{projectsTab.projects.length}})</h5>
-<dynamic-table data="projectsTab.projects" columns="projectsTab.columns" params="projectsTab.params"></dynamic-table>
+<div class="w3-card-4">
+	<header class="w3-container ">
+		<h5><i class="fa fa-{{$ctrl.icon}}"></i> {{$ctrl.pageTitle | translate}} ({{$ctrl.projects.length}})</h5>
+	</header>
+	<div
+			class="w3-container"
+			>
+		<dynamic-table data="$ctrl.projects" columns="$ctrl.columns"></dynamic-table>
+	</div>
+</div>

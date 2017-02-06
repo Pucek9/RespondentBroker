@@ -1,65 +1,124 @@
+import {Meteor} from 'meteor/meteor';
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
-import {Meteor} from 'meteor/meteor';
-
-import template from './myProjectsTab.html';
 import {Projects} from '../../../api/projects';
-import {name as ProjectAdd} from '../projectAdd/projectAdd';
-// import {name as ProjectRemove} from '../projectRemove/projectRemove';
+import {PROJECTS_MY as PAGE} from '../../../helpers/constants';
+import {interpolatedValue} from '../../../helpers/helpers';
 import {name as DynamicTable} from '../dynamicTable/dynamicTable';
 
-class MyProjectsTab {
+import template from './myProjectsTab.html';
+import actionsTemplate from './actions.html';
 
-	constructor($scope, $reactive, dataTableFormatter) {
+class Controller {
+
+	constructor($scope, $reactive, $interpolate, $filter, $window, NgTableParams) {
 		'ngInject';
 		$reactive(this).attach($scope);
-		// this.dataTableFormatter = dataTableFormatter;
-		this.pageTitle = 'My Projects ';
-		this.icon = 'search';
+		this.bigScreen = $window.innerWidth >= 768;
+		this.NgTableParams = NgTableParams;
 		this.userId = Meteor.userId();
+		[this.pageTitle, this.icon] = [PAGE.pageTitle, PAGE.icon];
+		this.translate = $filter('translate');
 
 		this.helpers({
 			projects() {
-				return Projects.find({owner: this.userId});
+				return Projects.find({owner: this.userId}, {sort: {name: 1}});
 			}
 		});
 
-
-		this.params = {formatTittle: true, hideId: true, dateColumn: 'createDate'};
-		//
 		this.columns = [
 			{field: "_id", filter: {_id: "text"}, show: false, sortable: "_id", title: "_id"},
-			{field: "projectName", filter: {projectName: "text"}, show: true, sortable: "projectName", title: "Project Name"},
-			{field: "responses", filter: {responses: "text"}, show: true, sortable: "responses", title: "Responses"},
-			{field: "createDate", filter: {createDate: "text"}, show: true, sortable: "createDate", title: "Create Date"},
-			{field: "updateDate", filter: {createDate: "text"}, show: true, sortable: "updateDate", title: "Last Update"},
-			{field: "owner", filter: {owner: "text"}, show: true, sortable: "owner", title: "Owner"}
+			{
+				field: "name",
+				filter: {name: "text"},
+				show: true,
+				sortable: "name",
+				title: this.translate('PROJECT.NAME'),
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate('<a class="link" href="projects/{{row._id}}/details">{{row.name}}</a>')
+			},
+			{
+				field: "minPoints",
+				filter: {minPoints: "number"},
+				show: true,
+				sortable: "minPoints",
+				title: this.translate('MIN_POINTS')
+			},
+			{
+				field: "maxPoints",
+				filter: {maxPoints: "number"},
+				show: true,
+				sortable: "maxPoints",
+				title: this.translate('MAX_POINTS')
+			},
+			{
+				field: "created",
+				filter: {created: "text"},
+				show: true,
+				sortable: "created",
+				title: this.translate('CREATE_DATE')
+			},
+			{
+				field: "updated",
+				filter: {created: "text"},
+				show: true,
+				sortable: "updated",
+				title: this.translate('LAST_UPDATE')
+			},
+			{
+				field: "statusActive",
+				filter: {statusActive: "text"},
+				show: true,
+				sortable: "statusActive",
+				title: this.translate('ACTIVE'),
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.statusActive | translate}}`),
+			},
+			{
+				field: "responses",
+				show: true,
+				title: this.translate('RESPONSES'),
+				sortable: "responses.length",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.responses.length}} {{ row.autoDeactivate ? '/'+row.autoDeactivateCount.toString() : ''}}`)
+			},
+			{
+				field: "tasks",
+				show: true,
+				title: this.translate('STEPS'),
+				sortable: "tasks.length",
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(`{{row.tasks.length}}`)
+			},
+			{
+				field: "_id",
+				show: true,
+				title: this.translate('ACTIONS'),
+				getValue: interpolatedValue,
+				interpolateExpr: $interpolate(actionsTemplate)
+			}
 		];
-	}
+
+	};
+
 }
 
-const name = 'myProjectsTab';
-
-// create a module
-export default angular.module(name, [
+export default angular.module(PAGE.name, [
 	angularMeteor,
 	uiRouter,
-	ProjectAdd,
-	// ProjectRemove,
 	DynamicTable
-]).component(name, {
+]).component(PAGE.name, {
 	template,
-	controllerAs: name,
-	controller: MyProjectsTab
+	controller: Controller
 })
 	.config(config);
 
 function config($stateProvider) {
 	'ngInject';
 	$stateProvider
-		.state('myProjects', {
-			url: '/projects/my',
-			template: '<my-projects-tab></my-projects-tab>'
+		.state(PAGE.name, {
+			url: PAGE.url,
+			template: PAGE.template
 		});
 }

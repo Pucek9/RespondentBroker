@@ -1,0 +1,57 @@
+<div layout="column">
+	<!--ng-hide="singleFileUpload.fileToUpload"-->
+	<input class="w3-input" type="file" name="file"
+	       ng-disabled="singleFileUpload.disabled"
+	       ngf-drop
+	       ngf-select
+	       ngf-change="singleFileUpload.addFiles($files)"
+	       ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+	       class="drop-box"
+	       ngf-multiple="false"
+	       ngf-allow-dir="false"
+	       ngf-accept="singleFileUpload.type"
+	       ngf-drop-available="true">
+	<div ng-show="singleFileUpload.fileToUpload" layout="column" class="ng-crop w3-border">
+
+		<div class="w3-progress-container">
+			<div id="myBar" class="w3-progressbar w3-green" style="width:{{singleFileUpload.progress}}%">
+				<div class="w3-text-white">{{singleFileUpload.progress}}%</div>
+			</div>
+		</div>
+
+		<div ng-if="singleFileUpload.isImage()">
+			Choosen image:
+			<div class="ng-crop-container w3-row">
+				<img ng-src="{{singleFileUpload.fileToUpload}}" style="width:100px"/>
+			</div>
+		</div>
+		<div ng-if="singleFileUpload.isAudio()">
+			Choosen audio:
+			<div class="ng-crop-container w3-row">
+				<audio ng-src="{{singleFileUpload.fileToUpload}}" controls></audio>
+			</div>
+		</div>
+		<div ng-if="singleFileUpload.isVideo()">
+			Choosen video:
+			<div class="ng-crop-container w3-row">
+				<video
+						width="100" height="177"
+						ng-src="{{singleFileUpload.fileToUpload}}" controls></video>
+			</div>
+		</div>
+		<div ng-if="singleFileUpload.isApplication()">
+			Choosen file:  Choosen file: {{singleFileUpload.currentFile.name}}
+		</div>
+
+		<div>
+			<md-button ng-disabled="singleFileUpload.disabled" ng-click="singleFileUpload.save()" class="md-primary">
+				Save
+			</md-button>
+			<md-button ng-disabled="singleFileUpload.disabled" ng-click="singleFileUpload.reset()">
+				Cancel
+			</md-button>
+		</div>
+
+	</div>
+
+</div>

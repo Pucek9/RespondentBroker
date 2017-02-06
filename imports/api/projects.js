@@ -1,15 +1,22 @@
-import { Mongo } from 'meteor/mongo';
-
+import {Mongo} from 'meteor/mongo';
 export const Projects = new Mongo.Collection('projects');
+import {isOwner} from '../helpers/helpers.js';
 
 Projects.allow({
-	insert(userId, project) {
-		return userId && project.owner === userId;
+	insert(userId, object) {
+		return isOwner(userId, object);
 	},
-	update(userId, project, fields, modifier) {
-		return userId && project.owner === userId;
+	update(userId, object, fields, modifier) {
+		if (userId) {
+			if (fields == 'responses' || fields == 'statusActive') {
+				return true;
+			}
+			else {
+				return isOwner(userId, object);
+			}
+		}
 	},
-	remove(userId, project) {
-		return userId && project.owner === userId;
+	remove(userId, object) {
+		return isOwner(userId, object);
 	}
 });

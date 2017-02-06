@@ -1,17 +1,16 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import uiRouter from 'angular-ui-router';
-
 import template from './dynamicTable.html';
-import {Projects} from '../../../api/projects';
 
-class DynamicTable {
+class Controller {
 
-	constructor($scope,$reactive,NgTableParams) {
+	constructor($scope, $timeout, $reactive, NgTableParams) {
 		'ngInject';
 		$reactive(this).attach($scope);
+		this.$timeout = $timeout;
+
 		this.dataSet = new NgTableParams({
-			count: 5
+			count: 10
 		}, {
 			counts: [5, 10, 25],
 			filterDelay: 300,
@@ -20,13 +19,23 @@ class DynamicTable {
 
 	$onInit() {
 		this.renderTable();
+		this.$timeout(this.clickOnHeader, 1000);
 	};
 
 	renderTable() {
 		this.dataSet.settings({
 			dataset: this.data
-			});
+		});
 	};
+
+	clickOnHeader() {
+		let headerSelector = 'dynamic-table > div > table > thead > tr.ng-table-sort-header > th:nth-child(1) > div';
+		let header = angular.element(document).find(headerSelector)[0];
+		if (header) {
+			header.click();
+			header.click();
+		}
+	}
 
 }
 
@@ -34,14 +43,12 @@ const name = 'dynamicTable';
 
 export default angular.module(name, [
 	angularMeteor,
-	uiRouter,
 ]).component(name, {
 	template,
 	controllerAs: name,
-	controller: DynamicTable,
+	controller: Controller,
 	bindings: {
 		'columns': '=',
 		'data': '=',
-		'params': '='
 	},
 })

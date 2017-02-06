@@ -1,14 +1,13 @@
-html,body,h1,h2,h3,h4,h5
-{
+html, body, h1, h2, h3, h4, h5 {
 	font-family: "Raleway", sans-serif;
 }
 
-ul {
-	list-style: none;
-	-webkit-padding-start: 0px;
-	-webkit-margin-before: 0px;
-	-webkit-margin-after: 0px;
-}
+ul.navigation-list {
+	  list-style: none;
+	  -webkit-padding-start: 0px;
+	  -webkit-margin-before: 0px;
+	  -webkit-margin-after: 0px;
+  }
 
 .w3-sidenav a {
 	padding: 4px 12px 4px 4px;
@@ -18,7 +17,14 @@ a.w3-btn {
 	text-decoration: none;
 }
 
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+ul.pagination {
+	list-style: none;
+	-webkit-padding-start: 0px;
+	-webkit-margin-before: 0px;
+	-webkit-margin-after: 0px;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
 	z-index: 2;
 	color: #fff;
 	cursor: default;
@@ -26,7 +32,7 @@ a.w3-btn {
 	border-color: #337ab7;
 }
 
-.pagination>li>a, .pagination>li>span {
+.pagination > li > a, .pagination > li > span {
 	position: relative;
 	float: left;
 	padding: 6px 12px;
@@ -37,3 +43,99 @@ a.w3-btn {
 	background-color: #fff;
 	border: 1px solid #ddd;
 }
+
+#login-dropdown-list {
+	margin: -35px -14px 0 -92px;
+}
+
+.header-button {
+	margin-top: -7px;
+}
+
+md-toast {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	z-index: 10000;
+}
+
+md-toast div.md-toast-content {
+	height: 80px;
+	text-align: center;
+}
+
+md-toast div.md-toast-content span {
+	font-size: 20px;
+}
+
+md-toast.md-error-toast-theme div.md-toast-content{
+	color: white !important;
+	background-color: red !important;
+}
+
+md-toast.md-success-toast-theme div.md-toast-content{
+	color: white !important;
+	background-color: green !important;
+}
+
+md-toast.md-warning-toast-theme div.md-toast-content{
+	color: black !important;
+	background-color: orange !important;
+}
+
+md-toast.md-info-toast-theme div.md-toast-content{
+	color: white !important;
+	background-color: blue !important;
+}
+
+button.md-action.md-button.ng-scope.md-default-theme.md-ink-ripple {
+	background-color: darkred;
+}
+
+.md-ripple-container  {
+	display:none;
+}
+
+.angular-input-stars {
+	margin-top: 0px;
+	display: inline-block;
+	padding: 0;
+	padding-left: -5px;
+	list-style: none;
+
+}
+
+.angular-input-stars > li {
+
+	font-size: 17px;
+
+	display: inline-block;
+	padding-right: 5px;
+	padding-left: 5px;
+
+	cursor: pointer;
+
+}
+
+.angular-input-stars > li .active {
+
+	color: #FDE35E;
+	text-shadow: black 0 0 1px, 0 0 1px ;
+
+}
+
+div.w3-container {
+	overflow: auto;
+}
+
+/*input.w3-input {*/
+	/*width:96%*/
+/*}*/
+
+/*textarea.w3-input {*/
+	/*width:96%*/
+/*}*/
+
+/*select.w3-input {*/
+	/*width:96%*/
+/*}*/
