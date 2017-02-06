@@ -204,12 +204,10 @@
 
 					<div class="w3-row">
 						<h6>{{ 'RESPONSES_WITHOUT_ERRORS' | translate}}</h6>
-
 						<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
 						        chart-data="$ctrl.data.mistakesRespondents" chart-labels="$ctrl.data.names"
 						        chart-options="{tooltips: $ctrl.tooltipsBarPercentage, scales: $ctrl.scales}">
 						</canvas>
-
 					</div>
 
 					<div class="w3-row">
@@ -391,7 +389,15 @@
 					<h6>{{ 'COMPLETED_TASK' | translate }}</h6>
 					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
 					        chart-data="[$ctrl.data.firstHalf.completed, $ctrl.data.secondHalf.completed]" chart-labels="$ctrl.data.names"
-					        chart-options="{scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarPercentage}" chart-series="[1,2]">
+					        chart-options="{scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarPercentage}" chart-series="$ctrl.data.groups">
+					</canvas>
+				</div>
+
+				<div class="w3-row">
+					<h6>{{ 'RESPONSES_WITHOUT_ERRORS' | translate}}</h6>
+					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
+					        chart-data="[$ctrl.data.firstHalf.mistakesRespondents,$ctrl.data.secondHalf.mistakesRespondents]" chart-labels="$ctrl.data.names"
+					        chart-options="{tooltips: $ctrl.tooltipsBarPercentage, scales: $ctrl.scales}" chart-series="$ctrl.data.groups">
 					</canvas>
 				</div>
 
@@ -409,7 +415,7 @@
 					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
 					        chart-data="[$ctrl.data.firstHalf.actionsStats[1], $ctrl.data.secondHalf.actionsStats[1]]" chart-labels="$ctrl.data.names"
 					        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarStatics}"
-					        chart-series="[1,2]">
+					        chart-series="$ctrl.data.groups">
 					</canvas>
 				</div>
 
@@ -427,7 +433,7 @@
 					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
 					        chart-data="[$ctrl.data.firstHalf.mistakesStats[1],$ctrl.data.secondHalf.mistakesStats[1]]" chart-labels="$ctrl.data.names"
 					        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarStatics}"
-					        chart-series="[1,2]">
+					        chart-series="$ctrl.data.groups">
 					</canvas>
 				</div>
 
@@ -436,7 +442,7 @@
 					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
 					        chart-data="[$ctrl.data.firstHalf.timesStats[1],$ctrl.data.secondHalf.timesStats[1]]" chart-labels="$ctrl.data.names"
 					        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales, tooltips: $ctrl.tooltipsBarStatics}"
-					        chart-series="[1,2]">
+					        chart-series="$ctrl.data.groups">
 					</canvas>
 				</div>
 
@@ -454,7 +460,7 @@
 					<canvas class="chart chart-bar" ng-attr-height="{{$ctrl.bigScreen ? undefined : $ctrl.screen.height*0.7}}"
 					        chart-data="[$ctrl.data.firstHalf.faultyTimesStats[1], $ctrl.data.secondHalf.faultyTimesStats[1]]" chart-labels="$ctrl.data.names"
 					        chart-options="{legend: $ctrl.legend, scales: $ctrl.scales,  tooltips: $ctrl.tooltipsBarStatics}"
-					        chart-series="[1,2]">
+					        chart-series="$ctrl.data.groups">
 					</canvas>
 				</div>
 				<!---->

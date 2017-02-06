@@ -221,6 +221,10 @@ class Controller {
 					this.translate('MIN'),
 					this.translate('MAX'),
 				],
+				groups: [
+					this.translate('GROUP') + ' 1',
+					this.translate('GROUP') + ' 2',
+				],
 				dataSeries: [],
 				stars: [],
 				starsAll: [],
@@ -345,7 +349,11 @@ class Controller {
 			});
 			data.starsStatsAll = this.allStats(data.starsAll);
 			data.starsAll = this.convertToObject(data.starsAll);
-			data.mistakesRespondents = this.getPercentage(data.mistakes);
+
+			data.mistakesRespondents = this.getPercentage(data.mistakes)[0];
+			data.firstHalf.mistakesRespondents = this.getPercentage(data.firstHalf.mistakes)[0];
+			data.secondHalf.mistakesRespondents = this.getPercentage(data.secondHalf.mistakes)[0];
+
 			data.completedAll = this.convertToObject(data.completedAll);
 
 			data.completedTranspoted = this.stats.transpose(data.completed).map(this.getBinaryPercentage);
