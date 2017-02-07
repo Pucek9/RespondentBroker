@@ -401,7 +401,7 @@ class Controller {
 			data.secondHalf.faultyTimesStatsAll = this.allStats(data.secondHalf.faultyTimesAll);
 
 			data.partFaultyTimesStatsAll = this.allStats(data.partFaultyTimesAll);
-			console.log(data)
+			console.log(data);
 			return data;
 		}
 	};
@@ -455,7 +455,6 @@ class Controller {
 
 	transposeToStats = (arrays) => {
 		const stats = [];
-		console.log(arrays)
 		if (arrays) {
 			const transposed = this.stats.transpose(arrays);
 			transposed.forEach(a => {
