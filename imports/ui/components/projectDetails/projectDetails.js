@@ -50,14 +50,14 @@ class Controller {
 				getValue: interpolatedValue,
 				interpolateExpr: $interpolate(`<span class="link"><a href="users/{{row.owner}}/details">{{row.ownerName}}</a></span>`),
 			},
-			{
-				field: "steps",
-				show: true,
-				title: this.translate('STEPS'),
-				sortable: "steps.length",
-				getValue: interpolatedValue,
-				interpolateExpr: $interpolate(`{{row.steps.length}}`)
-			},
+			// {
+			// 	field: "steps",
+			// 	show: true,
+			// 	title: this.translate('STEPS'),
+			// 	sortable: "steps.length",
+			// 	getValue: interpolatedValue,
+			// 	interpolateExpr: $interpolate(`{{row.steps.length}}`)
+			// },
 			{
 				field: "isPaid",
 				filter: {isPaid: "text"},
