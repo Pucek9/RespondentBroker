@@ -25,19 +25,19 @@
 	<div class="w3-container">
 
 		<div ng-if="!$ctrl.isEnabled" class="w3-panel w3-orange w3-card-8">
-			<h3>{{'PROJECT.PREVIEW.PREVIEW_ONLY' | translate}}</h3>
+			<h4>{{'PROJECT.PREVIEW.PREVIEW_ONLY' | translate}}</h4>
 			<p ng-if="$ctrl.isMyProject">{{'PROJECT.PREVIEW.IS_MY_PROJECT' | translate}}</p>
 			<p ng-if="!$ctrl.canResponse">{{'PROJECT.PREVIEW.CANT_RESPONSE' | translate}}</p>
 			<p ng-if="!$ctrl.isStatusActive">{{'PROJECT.PREVIEW.ISNT_ACTIVE' | translate}}</p>
 		</div>
 
-		<h2>1. {{'PROJECT.PREVIEW.DOWNLOAD' | translate}}
+		<h5>1. {{'PROJECT.PREVIEW.DOWNLOAD' | translate}}
 			<a class="standard" href="https://lookback.io/download">LookBack</a> {{'and' | translate}} <a class="standard"
 			                                                                                              target="_self"
 			                                                                                              ng-href={{$ctrl.project.application}}>{{$ctrl.project.name}}</a>
-		</h2>
+		</h5>
 
-		<h2>2. {{'PROJECT.PREVIEW.FOLLOW_INSTRUCTIONS' | translate}}</h2>
+		<h5>2. {{'PROJECT.PREVIEW.FOLLOW_INSTRUCTIONS' | translate}}</h5>
 		<textarea class="w3-input" disabled="true" rows="10"
 		          ng-model="$ctrl.project.description">
 		</textarea>
@@ -130,9 +130,9 @@
 			</div>
 		</fieldset>
 
-		<h2>3. {{'PROJECT.PREVIEW.COMPLETE' | translate}} <a class="standard"
+		<h5>3. {{'PROJECT.PREVIEW.COMPLETE' | translate}} <a class="standard"
 		                                                     ng-href="{{$ctrl.project.surveyURL}}">{{'PROJECT.PREVIEW.SURVEY' | translate}}</a> {{'PROJECT.PREVIEW.SIGN_IT' | translate}}
-		</h2>
+		</h5>
 
 		<div>
 			<button

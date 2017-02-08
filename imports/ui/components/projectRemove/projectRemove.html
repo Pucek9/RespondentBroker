@@ -10,15 +10,15 @@
 	</header>
 	<div class="w3-container">
 		<div class="w3-panel w3-red w3-card-8">
-			<h2>{{'PROJECT.REMOVE.QUESTION' | translate }}</h2>
+			<h4>{{'PROJECT.REMOVE.QUESTION' | translate }}</h4>
 		</div>
 
-		<h4><b>{{'PROJECT.PROJECT_TITLE' | translate }}</b> {{$ctrl.project.name}}</h4>
-		<h4><b>{{'POINTS' | translate }}:</b> {{$ctrl.project.minPoints}} - {{$ctrl.project.maxPoints}}</h4>
-		<h4><b>{{'RESPONSES' | translate }}:</b> {{$ctrl.project.responses.length}}</h4>
-		<h4><b>{{'CREATE_DATE' | translate }}:</b> {{$ctrl.project.created}}</h4>
-		<h4><b>{{'LAST_UPDATE' | translate }}:</b> {{$ctrl.project.updated}}</h4>
-		<h4><b>{{'DESCRIPTION' | translate }}:</b></h4>
+		<h5><b>{{'PROJECT.PROJECT_TITLE' | translate }}</b> {{$ctrl.project.name}}</h5>
+		<h5><b>{{'POINTS' | translate }}:</b> {{$ctrl.project.minPoints}} - {{$ctrl.project.maxPoints}}</h5>
+		<h5><b>{{'RESPONSES' | translate }}:</b> {{$ctrl.project.responses.length}}</h5>
+		<h5><b>{{'CREATE_DATE' | translate }}:</b> {{$ctrl.project.created}}</h5>
+		<h5><b>{{'LAST_UPDATE' | translate }}:</b> {{$ctrl.project.updated}}</h5>
+		<h5><b>{{'DESCRIPTION' | translate }}:</b></h5>
 		<textarea class="w3-input" disabled="true" rows="5"
 		          ng-model="$ctrl.project.description"></textarea>
 		<button class="w3-btn w3-red w3-left w3-border " ng-click="$ctrl.confirm()">

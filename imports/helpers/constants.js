@@ -51,7 +51,7 @@ const PROJECT_DETAILS = {
 
 const PROJECT_EDIT = {
 	pageTitle: 'PROJECT.EDIT.TITLE',
-	icon: 'refresh',
+	icon: 'pencil-square-o',
 	name: 'projectEdit',
 	url: '/projects/:projectId/edit',
 	template: '<project-edit></project-edit>'
